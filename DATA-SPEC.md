@@ -36,8 +36,9 @@ it.**
   alike. With nothing set, it is the repo's `data/`, so an existing checkout
   keeps working unchanged.
 - **`RECIPES_DATA`** keeps the meaning it has today, for compatibility: when
-  set, it is where `ontology/` is read from, and it wins over
-  `<JIPBAP_DATA_DIR>/ontology`. Every other path follows `JIPBAP_DATA_DIR`.
+  set, it is the `ontology/` folder, for reads by the app and for writes by
+  the pipeline, and it wins over `<JIPBAP_DATA_DIR>/ontology`. Every other
+  path follows `JIPBAP_DATA_DIR`.
 - A relative value of either variable is resolved against the **repo root**,
   not the current directory, so it means the same folder whether the process
   starts in the repo root or in `app/`.
@@ -121,7 +122,7 @@ Built by `npm run recipe-index` from the crawl. The type is `Recipe` in
       "alternates": { "ing_…": [["ing_…"], ["ing_…", "ing_…"]] },  // optional: OR of ANDs
       "image": "https://…",                // optional
       "yield": "4",                        // optional: free text
-      "rating": 4.5,                       // optional: the source's own, out of 5
+      "rating": 4.5,                       // optional: the source's own, out of 5, or null
       "datePublished": "2021-02-19T…"      // optional
     }
   ]
@@ -173,16 +174,19 @@ the module named.
 | `decisions/ontology-edits.csv` | `lib/ontology-edits.ts` | Ingredient editor edits, overlaid on the ontology |
 | `decisions/unknown.csv` | `lib/unknowns.ts` | Verdicts on the unknown queue |
 | `decisions/parse-errors.csv` | `lib/unknowns.ts` | Reported parse errors |
+| `decisions/line-fixes.csv` | `lib/line-fixes.ts` | Corrections to single ingredient lines, applied by `npm run recipe-index` |
 
-The other files in `decisions/` are not written by the app. The website reads
-only `decisions/hard-to-find.csv` (§4). The rest are pipeline inputs.
+The other files in `decisions/` are not written by the app. Of those, the
+website reads only `decisions/hard-to-find.csv` (§4). The rest are pipeline
+inputs.
 
 ---
 
 ## 6. Runtime state
 
-Written by the app. Listed for location only: the format is owned by the
-module named, and nothing outside the app should edit these files while it runs.
+Written by the app, with one exception noted below. Listed for location only:
+the format is owned by the module named, and nothing outside the app should
+edit these files while it runs.
 
 | Path | Module | What it is |
 |---|---|---|
@@ -193,7 +197,7 @@ module named, and nothing outside the app should edit these files while it runs.
 | `creators/claims.json` | `lib/claims.ts` | Creator claims |
 | `creators/recipes.json` | `lib/creator-recipes.ts` | Recipes added by creators |
 | `creators/self.json` | `lib/self-creators.ts` | Creator self-registrations |
-| `creators/removals.json` | `lib/removals.ts` | Removal requests |
+| `creators/removals.json` | `lib/removals.ts` (reads) | Creator removals. Written by the operator script `src/ops/creator-removal.ts`, not by the app |
 | `images/user/` | `lib/user-images.ts` | Uploaded images |
 
 Writes to §5 and §6 files go to a temp file and are renamed into place. The
