@@ -26,7 +26,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { allergensOf, animalSourceOf } from "./allergens.js";
-import { aggregateKeys, displayNameFor } from "./naming.js";
+import { displayNameFor } from "./naming.js";
 import { fileURLToPath } from "node:url";
 import { loadNodes } from "./promote.js";
 import { loadAliases } from "./aliases.js";
@@ -41,11 +41,12 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 /**
  * Keys the catalogue only ever writes in the plural — NORMALIZATION, "Number".
  *
- * Read once at build time from the tracked vocabulary file. Absent catalogue
- * means an empty set and the rule degrades to plain "singular", which is the
- * safe direction: it never keeps a plural that the data cannot justify.
+ * The catalogue was the Weee! vocabulary, removed with that integration, so the
+ * set is empty and the rule degrades to plain "singular" — the safe direction:
+ * it never keeps a plural that the data cannot justify. `aggregateKeys` still
+ * takes a vocabulary CSV if a retailer catalogue comes back.
  */
-const AGGREGATES = aggregateKeys(resolve(ROOT, "data/weee/vocabulary.csv"));
+const AGGREGATES = new Set<string>();
 const QC = resolve(ROOT, "data/qc");
 const OUT = resolve(ROOT, "data/ontology/ontology.yaml");
 /**
