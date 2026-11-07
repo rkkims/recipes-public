@@ -28,7 +28,7 @@ import { marked } from "marked";
 /**
  * Find `legal/`, walking up from wherever the process was started.
  *
- * The same pattern `lib/data` and `lib/weee` use, and for the same reason: the
+ * The same pattern `lib/data` uses, and for the same reason: the
  * app is a nested package and `cwd` differs between `next dev` in `app/`, a
  * production start from the repo root, and a test runner.
  */

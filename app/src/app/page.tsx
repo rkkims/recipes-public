@@ -32,7 +32,7 @@ import { Shell } from "@/components/Shell";
 import { TimeZone } from "@/components/TimeZone";
 import { Nav } from "@/components/Nav";
 import { allRecipesFor, usedInOf } from "@/lib/recipes";
-import { weeePerk, weeeUrlFor } from "@/lib/weee";
+import { DEFAULT_RETAILER } from "@/lib/retailers";
 import { cookRows, detailRows, dietFor, statesOf, extrasOf } from "@/lib/detail";
 import { isStaple, starterList } from "@/lib/starter";
 import { FirstRun } from "@/components/FirstRun";
@@ -391,7 +391,7 @@ export default async function Home({ searchParams }: {
   const chipStates = statesOf(owner, resolveId);
 
   const detail: DetailIngredient[] = openMatch && open
-    ? detailRows(open, openMatch, statesOf(owner, resolveId), nameOf, weeeUrlFor)
+    ? detailRows(open, openMatch, statesOf(owner, resolveId), nameOf, DEFAULT_RETAILER.urlFor)
     : [];
 
   const onList = new Set(
@@ -524,7 +524,7 @@ export default async function Home({ searchParams }: {
                               question: cl.question, because: cl.because,
                             }))}
                             aisles={browseAisles()}
-                            {...(weeePerk() ? { perk: weeePerk()! } : {})}
+                            {...(DEFAULT_RETAILER.perk() ? { perk: DEFAULT_RETAILER.perk()! } : {})}
                             accounted={signedIn(owner)} />
         }
       >
@@ -615,7 +615,7 @@ export default async function Home({ searchParams }: {
                   {...(n ? { n } : {})} {...(allow ? { allow } : {})}
                   {...(seed ? { seed } : {})}
                   meta={meta} hiddenIds={hiddenIds}
-                  {...(weeePerk() ? { perk: weeePerk()! } : {})}
+                  {...(DEFAULT_RETAILER.perk() ? { perk: DEFAULT_RETAILER.perk()! } : {})}
                   offersFor={offersForBlocking} />
 
         {/* The corpus counts, and the "hidden by you" line that outlived

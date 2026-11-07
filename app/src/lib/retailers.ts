@@ -2,12 +2,12 @@
  * The retailer registry — RETAILER-SPEC §2.
  *
  * A retailer is a **row**, not a module: the product knows about shelves,
- * offers and regions, and never about Weee!. This file is the table; each
- * retailer's own module (`weee.ts` today) stays a plain set of functions with
+ * offers and regions, and never about any one retailer. This file is the table; each
+ * retailer's own module (`instacart.ts` today) stays a plain set of functions with
  * no knowledge that an interface exists.
  *
  * The import direction is deliberate and one-way — `retailers.ts` imports from
- * `weee.ts`, never the reverse. A retailer module that imported the registry
+ * `instacart.ts`, never the reverse. A retailer module that imported the registry
  * would make the registry uneditable without touching every retailer, which is
  * the coupling this file exists to remove.
  *
@@ -19,7 +19,7 @@
  * `components/affiliate.tsx` and deals in URLs it was handed, not in
  * retailers.
  */
-import { INSTACART_BRAND, WEEE_BRAND, type RetailerBrand } from "./retailer-brand";
+import { INSTACART_BRAND, type RetailerBrand } from "./retailer-brand";
 import {
   instacartHomeUrl,
   instacartPerk,
@@ -29,14 +29,6 @@ import {
   instacartTrackingHost,
   instacartUrlFor,
 } from "./instacart";
-import {
-  weeeHomeUrl,
-  weeePerk,
-  weeeProductImage,
-  weeeProductsFor,
-  weeeSearchUrl,
-  weeeUrlFor,
-} from "./weee";
 
 /**
  * Where a retailer can actually deliver.
@@ -64,7 +56,7 @@ export type Retailer = RetailerBrand & {
   hosts: readonly string[];
   regions: readonly Region[];
   /** A URL for buying this ingredient, or null. Null is a real answer and
-      callers must render nothing for it (`weee.ts`'s posture, unchanged). */
+      callers must render nothing for it (every retailer module's posture). */
   urlFor: (name: string) => string | null;
   /**
    * A search for this name, asked for rather than fallen back to.
@@ -121,32 +113,15 @@ const INSTACART: Retailer = {
   searchPathPrefix: "/store/s",
 };
 
-const WEEE: Retailer = {
-  ...WEEE_BRAND,
-  hosts: ["www.weee.com", "weee.com", "www.sayweee.com", "sayweee.com"],
-  regions: ["US"],
-  urlFor: weeeUrlFor,
-  searchUrlFor: weeeSearchUrl,
-  productsFor: weeeProductsFor,
-  imageFor: weeeProductImage,
-  homeUrl: weeeHomeUrl,
-  perk: weeePerk,
-  searchPathPrefix: "/search",
-};
-
 /** Every registered retailer. Order is not significance — see §8: we never
-    rank retailers by what pays best. Weee! stays a row so `/go`'s allowlist
-    keeps resolving links already in the wild, but no surface offers it. */
-export const RETAILERS: readonly Retailer[] = [INSTACART, WEEE];
+    rank retailers by what pays best. */
+export const RETAILERS: readonly Retailer[] = [INSTACART];
 
 /**
  * The retailer a surface uses when nothing has chosen one.
  *
- * Instacart since 2026-08-21 — the business decision is written up in
- * BUSINESS-REVIEW §11: Weee!'s programme pays in store credit, enrols by
- * invitation only, and tiers from 2%; Instacart pays cash through Impact and
- * enrols openly. Mirrored by `DEFAULT_BRAND` in `retailer-brand.ts`, which
- * must stay in step.
+ * Instacart since 2026-08-21. Mirrored by `DEFAULT_BRAND` in
+ * `retailer-brand.ts`, which must stay in step.
  */
 export const DEFAULT_RETAILER: Retailer = INSTACART;
 

@@ -64,14 +64,6 @@ data/creators/removals.json
 # data/curation/ is TRACKED — same argument as data/decisions/: it is human
 # judgement, one recipe at a time, and nothing regenerates it.
 
-# Weee! catalogue — derived caches, regenerable by re-running the pipeline.
-# shelves.csv is NOT here: it is a reviewed file, the record of which shelves
-# hold ingredients (WEEE-SPEC §9 step 1).
-data/weee/parsed.csv
-data/weee/sitemap-titles.csv
-data/weee/offline/
-data/weee/offline.tar.gz
-
 # TypeScript incremental build state — a local artifact, rewritten on every
 # build and meaningless in a diff.
 app/tsconfig.tsbuildinfo
@@ -128,6 +120,5 @@ data/ontology/dead-images.json
 data/creators/
 data/curation/
 data/qc/
-data/weee/
 data/images/
 app/public/cached-images/

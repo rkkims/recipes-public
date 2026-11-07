@@ -31,7 +31,7 @@ import { Nav } from "@/components/Nav";
 import { PantryDrawerLive } from "@/components/PantryDrawerLive";
 import { GroceryListLive } from "@/components/GroceryListLive";
 import { ListOffline } from "@/components/ListOffline";
-import { weeePerk } from "@/lib/weee";
+import { DEFAULT_RETAILER } from "@/lib/retailers";
 import { clarifications } from "@/lib/clarify";
 import { browseAisles } from "@/lib/browse";
 import { signedIn } from "@/lib/account";
@@ -115,7 +115,7 @@ export default async function GroceryList() {
       <Shell listPage
              drawer={<PantryDrawerLive asks={asks} aisles={aisles}
                                        accounted={accounted}
-                                       {...(weeePerk() ? { perk: weeePerk()! } : {})}
+                                       {...(DEFAULT_RETAILER.perk() ? { perk: DEFAULT_RETAILER.perk()! } : {})}
                                        search={searchIngredients} only="pantry" />}>
         {/* §12: says which of offline / catching-up is happening, and drains
             the queue when the signal returns. The list itself no longer needs
@@ -126,7 +126,7 @@ export default async function GroceryList() {
             directly above it and answers the same question by being there. */}
         <GroceryListLive asks={asks} aisles={aisles}
                          accounted={accounted}
-                         {...(weeePerk() ? { perk: weeePerk()! } : {})}
+                         {...(DEFAULT_RETAILER.perk() ? { perk: DEFAULT_RETAILER.perk()! } : {})}
                          search={searchIngredients} offersFor={offersForListRows} />
       </Shell>
     </Page>

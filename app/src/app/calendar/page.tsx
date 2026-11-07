@@ -40,7 +40,7 @@ import { recipeProps } from "@/lib/recipe-props";
 import { clarifications } from "@/lib/clarify";
 import { browseAisles } from "@/lib/browse";
 import { signedIn } from "@/lib/account";
-import { weeePerk } from "@/lib/weee";
+import { DEFAULT_RETAILER } from "@/lib/retailers";
 import { getOwner, MEALS } from "@/lib/store";
 import { currentUser, ownerId } from "@/lib/owner";
 import { readPastedIngredients } from "@/app/actions";
@@ -109,7 +109,7 @@ export default async function Calendar({ searchParams }: {
       <Shell
         drawer={
           <PantryDrawerLive search={searchIngredients} asks={asks} aisles={browseAisles()}
-                            {...(weeePerk() ? { perk: weeePerk()! } : {})}
+                            {...(DEFAULT_RETAILER.perk() ? { perk: DEFAULT_RETAILER.perk()! } : {})}
                             accounted={accounted} />
         }
       >

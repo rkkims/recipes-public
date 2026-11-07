@@ -22,7 +22,7 @@ import { completions, searchAllRecipes } from "@/lib/recipes";
 import { getOwner } from "@/lib/store";
 import { ownerId } from "@/lib/owner";
 import { hardToFind } from "@/lib/findability";
-import { weeeProductImage, weeeProductsFor, weeeUrlFor } from "@/lib/weee";
+import { DEFAULT_RETAILER } from "@/lib/retailers";
 
 /**
  * The autosuggest's vocabulary — the whole ontology, not the shipped shelf.
@@ -54,7 +54,7 @@ export async function completeSearch(q: string) {
 /**
  * The Almost-there shelf's offers, asked for once the rows are known.
  *
- * A read, not a write, and a server one because the Weee tables are CSV on
+ * A read, not a write, and a server one because the retailer tables are CSV on
  * disk. It is fetched rather than shipped because of the arithmetic: 254 of
  * the bundle's 1,165 nodes carry products, which is 89 KB of catalogue sent to
  * answer a question about the eight ingredients this kitchen happens to be
@@ -70,16 +70,16 @@ export async function offersForBlocking(ingredientIds: string[]) {
     products: Array<{ id: string; title: string; url: string; image?: string }> }> = {};
   for (const id of ingredientIds.slice(0, 12)) {
     const name = nameOf(resolveId(id));
-    const products = weeeProductsFor(name, 4);
+    const products = DEFAULT_RETAILER.productsFor(name, 4);
     if (products.length === 0) continue;
-    const url = weeeUrlFor(name);
+    const url = DEFAULT_RETAILER.urlFor(name);
     if (!url) continue;
     out[id] = {
       url,
       /* Cached thumbnails when the offline fetch has run; a missing image
          degrades to the title, never blocks the offer. */
       products: products.map((p) => {
-        const image = weeeProductImage(p.id);
+        const image = DEFAULT_RETAILER.imageFor(p.id);
         return { ...p, ...(image ? { image } : {}) };
       }),
     };
@@ -107,14 +107,14 @@ export async function offersForListRows(rows: Array<{ name: string; kind?: strin
   }> = {};
   for (const { name, kind } of rows) {
     if (!hardToFind(name, kind)) continue;
-    const url = weeeUrlFor(name);
+    const url = DEFAULT_RETAILER.urlFor(name);
     if (!url) continue;
     out[name] = {
       url,
       /* Cached thumbnails when the offline fetch has run —
          CREATORS-TAB-SPEC §7; absent renders title-only. */
-      products: weeeProductsFor(name).map((p) => {
-        const image = weeeProductImage(p.id);
+      products: DEFAULT_RETAILER.productsFor(name).map((p) => {
+        const image = DEFAULT_RETAILER.imageFor(p.id);
         return { ...p, ...(image ? { image } : {}) };
       }),
     };

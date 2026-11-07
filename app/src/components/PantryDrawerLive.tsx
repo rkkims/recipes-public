@@ -29,7 +29,7 @@
  *
  * ── The affiliate row, and why it is fetched rather than shipped ──────────
  *
- * `PantryDrawer` computed `buy` inline from `weeeProductsFor`, a CSV read off
+ * `PantryDrawer` computed `buy` inline from the retailer's `productsFor`, a CSV read off
  * disk keyed on the ingredient's name. The catalogue covers the whole
  * vocabulary and the question is about the handful of things on one list, so
  * it arrives the way `HomeGrid`'s shelf offers do: the rows are known first,
@@ -62,7 +62,7 @@ export type AskRow = {
   id: string; trigger: string; grants: string; question: string; because: string;
 };
 
-/** What a hard-to-find list row can be bought from — `weeeUrlFor` + its products. */
+/** What a hard-to-find list row can be bought from — the retailer's `urlFor` + its products. */
 export type ListOffer = {
   url: string;
   products: Array<{ id: string; title: string; url: string; image?: string }>;

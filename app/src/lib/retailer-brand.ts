@@ -40,15 +40,6 @@ export type RetailerBrand = {
   blurb: string;
 };
 
-export const WEEE_BRAND: RetailerBrand = {
-  id: "weee",
-  label: "Weee!",
-  blurb:
-    "Weee! is an online grocery that specialises in Asian ingredients and " +
-    "delivers across most of the US. It carries the items a nearby store " +
-    "often does not.",
-};
-
 export const INSTACART_BRAND: RetailerBrand = {
   id: "instacart",
   label: "Instacart",
@@ -62,9 +53,6 @@ export const INSTACART_BRAND: RetailerBrand = {
  *
  * The mirror of `DEFAULT_RETAILER` in the registry and it must stay in step
  * with it — a page that links to one shop and names another is worse than
- * either. Instacart since 2026-08-21 (BUSINESS-REVIEW §11: Weee! pays in
- * store credit and enrols by invitation only; Instacart pays cash through
- * Impact and enrols openly). The Weee! row survives in the registry so old
- * outbound links keep resolving, but no surface offers it.
+ * either. Instacart since 2026-08-21, and the only registered retailer.
  */
 export const DEFAULT_BRAND: RetailerBrand = INSTACART_BRAND;

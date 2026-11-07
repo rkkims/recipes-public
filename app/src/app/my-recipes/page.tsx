@@ -51,7 +51,7 @@ import { Shell } from "@/components/Shell";
 import { PantryDrawerLive } from "@/components/PantryDrawerLive";
 import { clarifications } from "@/lib/clarify";
 import { browseAisles } from "@/lib/browse";
-import { weeePerk } from "@/lib/weee";
+import { DEFAULT_RETAILER } from "@/lib/retailers";
 
 /* The autosuggest now lives in `app/shelf-actions.ts` — see the note there. */
 
@@ -144,7 +144,7 @@ export default async function MyRecipes({ searchParams }: {
       */}
       <Shell drawer={<PantryDrawerLive search={searchIngredients} asks={asks}
                                        aisles={browseAisles()}
-                                       {...(weeePerk() ? { perk: weeePerk()! } : {})}
+                                       {...(DEFAULT_RETAILER.perk() ? { perk: DEFAULT_RETAILER.perk()! } : {})}
                                        accounted={account} />}>
         {/* No dietary control here. Every shelf on this page is the user’s OWN
             saves and cooks, and those are deliberately NOT filtered — hiding a
