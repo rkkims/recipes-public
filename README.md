@@ -81,3 +81,7 @@ server and a static export on Cloudflare (see `deploy/`).
 - `RECIPE-SPEC.md` and `RESOLUTION-SPEC.md` define the recipe entity and
   explain how an ingredient mention gets its meaning.
 - `app/src/lib/match.ts` is the matcher, the core of the product.
+
+## License
+
+The code is released under the MIT License. See `LICENSE`.
