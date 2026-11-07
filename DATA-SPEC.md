@@ -52,9 +52,9 @@ it.**
 | **Required** (§3) | The app refuses to start, with an error naming the missing file and the setting from §1 | The pipeline | Yes |
 | **Optional** (§4) | The feature it feeds is off; nothing else changes | The pipeline, or a person | Yes |
 | **Curated** (§5) | Treated as empty, created on first write | The running app, through the curator's tools | Yes: it is reviewed judgement, kept in the data repo, and the pipeline also reads it |
-| **Runtime state** (§6) | Treated as empty, created on first write | The running app, on behalf of users and creators | **No** |
+| **User data** (§6) | Treated as empty, created on first write | The running app, on behalf of users and creators | **No** |
 
-Each file has exactly one kind. Runtime state is the users' own data: it is
+Each file has exactly one kind. User data belongs to the app's users: it is
 never committed to the data repo or shipped with a data set, and a sample data
 set must not contain it. A sample data set may contain curated files.
 
@@ -157,7 +157,7 @@ Fields set by curation or creators, never by the pipeline: `cuisines`,
 
 CSV files have a header row. Multi-valued cells use `|`.
 
-A malformed optional file is treated as absent. It must never take a page down.
+A broken optional file (one that can't be parsed) is treated as absent. It must never take a page down.
 
 ---
 
@@ -182,7 +182,7 @@ inputs.
 
 ---
 
-## 6. Runtime state
+## 6. User data
 
 Written by the app, with one exception noted below. Listed for location only:
 the format is owned by the module named, and nothing outside the app should
