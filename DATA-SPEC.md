@@ -36,9 +36,9 @@ it.**
   alike. With nothing set, it is the repo's `data/`, so an existing checkout
   keeps working unchanged.
 - **`RECIPES_DATA`** keeps the meaning it has today, for compatibility: when
-  set, it is the `ontology/` folder, for reads by the app and for writes by
-  the pipeline, and it wins over `<JIPBAP_DATA_DIR>/ontology`. Every other
-  path follows `JIPBAP_DATA_DIR`.
+  set, it is the `ontology/` folder for every read and write under
+  `ontology/`, by the app and the pipeline alike, and it wins over
+  `<JIPBAP_DATA_DIR>/ontology`. Every other path follows `JIPBAP_DATA_DIR`.
 - A relative value of either variable is resolved against the **repo root**,
   not the current directory, so it means the same folder whether the process
   starts in the repo root or in `app/`.
