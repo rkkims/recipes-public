@@ -1,0 +1,26 @@
+# The pantry sync endpoint — STATIC-SPEC §2.
+#
+# One blob per household in KV, keyed by a device-generated random key that
+# IS the whole account: no email, no password, nothing server-side worth
+# stealing. Losing the key loses sync, never the pantry.
+#
+# The namespace was created 2026-08-23 and is referenced by id below; the id
+# is an identifier, not a secret (the token is the secret, and it lives in
+# the environment).
+#
+# Deployed in Slice C, when the client store's SyncAdapter gets its KV
+# accent. Until then this config documents the binding the Worker expects.
+#
+# ⚠ DO NOT DEPLOY THIS FILE. It names the SAME script as
+# `wrangler-api.toml` — `jipbap-sync` — and points at `workers/sync.ts`, which
+# does not exist. Deploying it would replace the event sink with nothing. §7b
+# revised the store from KV to D1 besides (an account is a lookup, and a
+# hundred thousand writes beat a thousand), so the binding below is the shape
+# of the design this config predates. It is kept as the record of it.
+name = "jipbap-sync"
+main = "../../workers/sync.ts"
+compatibility_date = "2026-08-23"
+
+[[kv_namespaces]]
+binding = "SYNC"
+id = "52900fe5e86c4e09b827c37621dc6e25"

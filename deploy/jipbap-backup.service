@@ -1,0 +1,11 @@
+[Unit]
+Description=Snapshot jipbap owner data (accounts, pantries, cook logs)
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/jipbap-backup
+# Set JIPBAP_BACKUP_GCS=gs://bucket/path to also copy off this disk.
+EnvironmentFile=-/etc/default/jipbap-backup
+Nice=10
+IOSchedulingClass=idle

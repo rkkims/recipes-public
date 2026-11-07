@@ -1,0 +1,323 @@
+child,parent,relation,verdict,why
+pork belly,pork,is_a,accept,a cut of pork
+pork shoulder,pork,is_a,accept,a cut of pork
+pork loin,pork,is_a,accept,a cut of pork
+pork butt,pork,is_a,accept,a cut of pork
+pork tenderloin,pork,is_a,accept,a cut of pork
+pork riblet,pork,is_a,accept,a cut of pork
+pork baby back rib,pork,is_a,accept,a cut of pork
+chicken breast,chicken,is_a,accept,a cut of chicken
+chicken wing,chicken,is_a,accept,a cut of chicken
+chicken thigh,chicken,is_a,accept,a cut of chicken
+chicken drumsticks,chicken,is_a,accept,a cut of chicken
+chicken tender,chicken,is_a,accept,a cut of chicken
+chicken leg quarter,chicken leg,is_a,accept,a cut of the leg; leg is_a chicken carries the rest
+beef brisket,beef,is_a,accept,a cut of beef
+beef short rib,beef,is_a,accept,a cut of beef
+beef chuck,beef,is_a,accept,a cut of beef
+beef sirloin,beef,is_a,accept,a cut of beef
+beef ribeye,beef,is_a,accept,a cut of beef
+beef shank,beef,is_a,accept,a cut of beef
+beef skirt steak,beef,is_a,accept,a cut of beef
+beef stew meat,beef,is_a,accept,beef sold for stewing
+beef tenderloin,beef,is_a,accept,a cut of beef
+beef steak,beef,is_a,accept,steak cut from beef
+beef mince,beef,is_a,accept,minced beef is beef
+beef flank steak,beef flank,is_a,accept,chains to beef through beef flank
+sirloin steak,sirloin,is_a,accept,a steak cut from the sirloin
+imitation crab meat,imitation crab,is_a,accept,the same product named twice
+ginger root,ginger,is_a,accept,the root IS the ginger sold
+ginseng root,ginseng,is_a,accept,the root IS the ginseng sold
+black pepper corn,black pepper,is_a,accept,peppercorns are black pepper unground
+panko bread crumbs,panko,is_a,accept,panko IS the breadcrumb
+chocolate chip,chocolate,is_a,accept,chocolate in a shape
+dark chocolate chip,dark chocolate,is_a,accept,chocolate in a shape
+white chocolate chip,white chocolate,is_a,accept,chocolate in a shape
+bittersweet chocolate chip,bittersweet chocolate,is_a,accept,chocolate in a shape
+bittersweet chocolate bar,bittersweet chocolate,is_a,accept,chocolate in a shape
+corn kernel,corn,is_a,accept,kernels are the corn
+clam meat,clam,is_a,accept,the edible part of the clam
+instant ramen noodles,instant ramen,is_a,accept,chains through instant ramen
+egg yolk,egg,derives_from,accept,a part separated from an egg — matches edges.ts on egg white
+egg white,egg,derives_from,accept,the repo already records egg white derives_from eggs
+egg wash,egg,derives_from,accept,made from egg
+pollock roe,pollock,derives_from,accept,roe comes from the fish; it is not a kind of fish
+fish cake,fish,derives_from,accept,made from fish
+fish ball,fish,derives_from,accept,made from fish
+pork bone,pork,derives_from,accept,a bone is not meat; it comes from the animal
+beef bone,beef,derives_from,accept,a bone is not meat; it comes from the animal
+chicken bouillon,chicken,derives_from,accept,same class as chicken stock
+chicken base,chicken,derives_from,accept,same class as chicken stock
+pumpkin puree,pumpkin,derives_from,accept,made from pumpkin
+pumpkin seeds,pumpkin,derives_from,accept,seeds of the plant
+fennel seeds,fennel,derives_from,accept,seeds of the plant
+cumin seeds,cumin,derives_from,accept,seeds of the plant
+coriander seeds,coriander,derives_from,accept,seeds of the plant
+celery seed,celery,derives_from,accept,seeds of the plant
+agave nectar,agave,derives_from,accept,made from agave
+graham cracker crumb,graham cracker,derives_from,accept,made by crushing them
+tapioca pearl,tapioca,derives_from,accept,made from tapioca
+sago pearl,sago,derives_from,accept,made from sago
+mozzarella cheese,mozzarella,is_a,reject,the head noun is cheese; the suffix rule already has it right
+cheddar cheese,cheddar,is_a,reject,the head noun is cheese; the suffix rule already has it right
+feta cheese,feta,is_a,reject,the head noun is cheese; the suffix rule already has it right
+ricotta cheese,ricotta,is_a,reject,the head noun is cheese; the suffix rule already has it right
+cherry tomato,cherry,is_a,reject,not a cherry — a variety of tomato
+oyster mushroom,oyster,is_a,reject,not an oyster — a mushroom named after one
+button mushroom,button,is_a,reject,button is not an ingredient
+english cucumber,english,is_a,reject,english is not an ingredient
+persian cucumber,persian,is_a,reject,persian is not an ingredient
+short grain rice,short grain,is_a,reject,short grain is a modifier; the suffix rule gives rice
+short grain white rice,short grain,is_a,reject,same
+korean green chili pepper,korean green,is_a,reject,korean green is not an ingredient
+japanese short-grain rice per donburi,japanese short-grain rice,is_a,reject,parser wreckage
+sugar snap pea,sugar,is_a,reject,not made of sugar
+milk bread,milk,is_a,reject,bread containing milk is not a kind of milk
+flour tortilla,flour,is_a,reject,a tortilla is not a kind of flour
+corn tortilla,corn,is_a,reject,a tortilla is not a kind of corn
+egg noodles,egg,is_a,reject,noodles containing egg are not a kind of egg
+egg roll wrapper,egg,is_a,reject,nothing to do with egg
+rice noodles,rice,is_a,reject,the suffix rule gives noodles and is right
+rice noodle,rice,is_a,reject,the suffix rule gives noodles and is right
+wheat noodles,wheat,is_a,reject,the suffix rule gives noodles and is right
+buckwheat noodles,buckwheat,is_a,reject,the suffix rule gives noodles and is right
+ramen noodles,ramen,is_a,reject,the suffix rule gives noodles and is right
+naengmyeon noodles,naengmyeon,is_a,reject,the suffix rule gives noodles and is right
+dried rice vermicelli noodles,dried rice,is_a,reject,dried rice is not the parent
+rice paper,rice,is_a,reject,a product of rice, not a kind of rice
+rice vermicelli,rice,is_a,reject,a product of rice, not a kind of rice
+wonton wrapper,wonton,is_a,reject,a wrapper is not a wonton
+dumpling wrapper,dumpling,is_a,reject,a wrapper is not a dumpling
+hot dog bun,hot dog,is_a,reject,a bun is not a hot dog
+ginger ale,ginger,is_a,reject,a soft drink is not a kind of ginger
+pumpkin spice,pumpkin,is_a,reject,a spice blend containing no pumpkin
+butter lettuce,butter,is_a,reject,a variety of lettuce
+orange bell pepper,orange,is_a,reject,the colour, not the fruit
+beef bulgogi,beef,is_a,reject,a dish, not a cut
+tortilla chip,tortilla,is_a,reject,a chip is not a tortilla
+semi-sweet chocolate chip,semi-sweet,is_a,reject,semi-sweet alone is a modifier
+kimchi brine,kimchi,is_a,reject,already excluded by name in edges.ts for a quantity reason
+"chinese five spice powder","five spice powder",is_a,accept,"vocab-triage: narrowed by chinese"
+"dried bay leaf","bay leaf",is_a,accept,"vocab-triage: narrowed by dried"
+"hot chili oil","chili oil",is_a,accept,"vocab-triage: narrowed by hot"
+"korean sweet potato","sweet potato",is_a,accept,"vocab-triage: narrowed by korean"
+"thai red chili pepper","red chili pepper",is_a,accept,"vocab-triage: narrowed by thai"
+"white button mushroom","button mushroom",is_a,accept,"vocab-triage: narrowed by white"
+"baby napa cabbage","napa cabbage",is_a,accept,"vocab-triage: narrowed by baby"
+"korean chili oil","chili oil",is_a,accept,"vocab-triage: narrowed by korean"
+"korean chili pepper","chili pepper",is_a,accept,"vocab-triage: narrowed by korean"
+"thai sweet soy sauce","soy sauce",is_a,accept,"vocab-triage: narrowed by thai sweet"
+"white granulated sugar","granulated sugar",is_a,accept,"vocab-triage: narrowed by white"
+"white short grain rice","short grain rice",is_a,accept,"vocab-triage: narrowed by white"
+"dried anchovy stock","anchovy stock",is_a,accept,"vocab-triage: narrowed by dried"
+"dried baby shrimp","shrimp",is_a,accept,"vocab-triage: narrowed by dried baby"
+"korean anchovy stock","anchovy stock",is_a,accept,"vocab-triage: narrowed by korean"
+"light olive oil","olive oil",is_a,accept,"vocab-triage: narrowed by light"
+"white cheddar cheese","cheddar cheese",is_a,accept,"vocab-triage: narrowed by white"
+"black sesame paste","sesame paste",is_a,accept,"vocab-triage: narrowed by black"
+"chinese fermented black beans","fermented black beans",is_a,accept,"vocab-triage: narrowed by chinese"
+"chinese red vinegar","vinegar",is_a,accept,"vocab-triage: narrowed by chinese red"
+"chinese yellow chives","chives",is_a,accept,"vocab-triage: narrowed by chinese yellow"
+"coarse korean salt","salt",is_a,accept,"vocab-triage: narrowed by coarse korean"
+"coarse kosher salt","kosher salt",is_a,accept,"vocab-triage: narrowed by coarse"
+"korean fine chili powder","chili powder",is_a,accept,"vocab-triage: narrowed by korean fine"
+"red sichuan peppercorn","sichuan peppercorn",is_a,accept,"vocab-triage: narrowed by red"
+"sweet soy sauce","soy sauce",is_a,accept,"vocab-triage: narrowed by sweet"
+"thai fish sauce","fish sauce",is_a,accept,"vocab-triage: narrowed by thai"
+"white jasmine rice","jasmine rice",is_a,accept,"vocab-triage: narrowed by white"
+"black sesame oil","sesame oil",is_a,accept,"vocab-triage: narrowed by black"
+"chinese sweet vinegar","vinegar",is_a,accept,"vocab-triage: narrowed by chinese sweet"
+"dried chinese mushroom","mushroom",is_a,accept,"vocab-triage: narrowed by dried chinese"
+"dried korean red chili pepper","red chili pepper",is_a,accept,"vocab-triage: narrowed by dried korean"
+"fine red chili powder","chili powder",is_a,accept,"vocab-triage: narrowed by fine red"
+"french green beans","green beans",is_a,accept,"vocab-triage: narrowed by french"
+"full-fat cream cheese","cream cheese",is_a,accept,"vocab-triage: narrowed by full-fat"
+"green sichuan peppercorn","sichuan peppercorn",is_a,accept,"vocab-triage: narrowed by green"
+"hot red chili pepper","red chili pepper",is_a,accept,"vocab-triage: narrowed by hot"
+"japanese sweet potato","sweet potato",is_a,accept,"vocab-triage: narrowed by japanese"
+"korean beef brisket","beef brisket",is_a,accept,"vocab-triage: narrowed by korean"
+"korean dried seaweed","dried seaweed",is_a,accept,"vocab-triage: narrowed by korean"
+"korean dumpling wrapper","dumpling wrapper",is_a,accept,"vocab-triage: narrowed by korean"
+"korean mung bean sprouts","mung bean sprouts",is_a,accept,"vocab-triage: narrowed by korean"
+"korean pork belly","pork belly",is_a,accept,"vocab-triage: narrowed by korean"
+"korean short grain rice","short grain rice",is_a,accept,"vocab-triage: narrowed by korean"
+"korean soft tofu","soft tofu",is_a,accept,"vocab-triage: narrowed by korean"
+"korean white cucumber","cucumber",is_a,accept,"vocab-triage: narrowed by korean white"
+"red green lettuce","lettuce",is_a,accept,"vocab-triage: narrowed by red green"
+"red thai chili pepper","thai chili pepper",is_a,accept,"vocab-triage: narrowed by red"
+"salted chicken broth","chicken broth",is_a,accept,"vocab-triage: narrowed by salted"
+"thai black glutinous rice","glutinous rice",is_a,accept,"vocab-triage: narrowed by thai black"
+"thai dark sweet soy sauce","soy sauce",is_a,accept,"vocab-triage: narrowed by thai dark sweet"
+"thai jasmine rice","jasmine rice",is_a,accept,"vocab-triage: narrowed by thai"
+"whole young chicken","chicken",is_a,accept,"vocab-triage: narrowed by whole young"
+"young napa cabbage","napa cabbage",is_a,accept,"vocab-triage: narrowed by young"
+"young whole chicken","chicken",is_a,accept,"vocab-triage: narrowed by young whole"
+"boneless chicken breast","chicken breast",is_a,accept,"vocab-triage: narrower form"
+"granny smith apple","apple",is_a,accept,"vocab-triage: narrower form"
+"perilla seed oil","oil",is_a,accept,"vocab-triage: narrower form"
+"super firm tofu","firm tofu",is_a,accept,"vocab-triage: narrower form"
+"usukuchi soy sauce","soy sauce",is_a,accept,"vocab-triage: narrower form"
+"baby portobello mushroom","mushroom",is_a,accept,"vocab-triage: narrower form"
+"boneless skin-on chicken thigh","chicken thigh",is_a,accept,"vocab-triage: narrower form"
+"canned bamboo shoot","bamboo shoot",is_a,accept,"vocab-triage: narrower form"
+"fresno chili pepper","chili pepper",is_a,accept,"vocab-triage: narrower form"
+"sesame seed oil","oil",is_a,accept,"vocab-triage: narrower form"
+"shanghai bok choy","bok choy",is_a,accept,"vocab-triage: narrower form"
+"skin-on chicken thigh","chicken thigh",is_a,accept,"vocab-triage: narrower form"
+"white sparkling sugar","sugar",is_a,accept,"vocab-triage: narrower form"
+"fully fermented kimchi","fermented kimchi",is_a,accept,"vocab-triage: narrower form"
+"holland chili pepper","chili pepper",is_a,accept,"vocab-triage: narrower form"
+"korean flower crab","crab",is_a,accept,"vocab-triage: narrower form"
+"long hot red pepper","red pepper",is_a,accept,"vocab-triage: narrower form"
+"low fat milk","milk",is_a,accept,"vocab-triage: narrower form"
+"red fresno chili pepper","chili pepper",is_a,accept,"vocab-triage: narrower form"
+"self raising flour","flour",is_a,accept,"vocab-triage: narrower form"
+"skin-on pork belly","pork belly",is_a,accept,"vocab-triage: narrower form"
+"skinless chicken thigh","chicken thigh",is_a,accept,"vocab-triage: narrower form"
+"bbq kimbap ham","ham",is_a,accept,"vocab-triage: narrower form"
+"bone in chicken thigh","chicken thigh",is_a,accept,"vocab-triage: narrower form"
+"boneless skin-on pork belly","pork belly",is_a,accept,"vocab-triage: narrower form"
+"chinese bbq pork","pork",is_a,accept,"vocab-triage: narrower form"
+"chinese bbq roast pork","pork",is_a,accept,"vocab-triage: narrower form"
+"chow fun noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"cured pork belly","pork belly",is_a,accept,"vocab-triage: narrower form"
+"five spice tofu","tofu",is_a,accept,"vocab-triage: narrower form"
+"full fat coconut milk","coconut milk",is_a,accept,"vocab-triage: narrower form"
+"korean wild sesame oil","sesame oil",is_a,accept,"vocab-triage: narrower form"
+"long green beans","green beans",is_a,accept,"vocab-triage: narrower form"
+"low sodium beef","beef",is_a,accept,"vocab-triage: narrower form"
+"non-fragrant cooking oil","oil",is_a,accept,"vocab-triage: narrower form"
+"red leaf lettuce","lettuce",is_a,accept,"vocab-triage: narrower form"
+"sanuki udon noodles","udon noodles",is_a,accept,"vocab-triage: narrower form"
+"seasoned dried seaweed","dried seaweed",is_a,accept,"vocab-triage: narrower form"
+"sushi grade salmon","salmon",is_a,accept,"vocab-triage: narrower form"
+"wild sesame oil","sesame oil",is_a,accept,"vocab-triage: narrower form"
+"aged parmesan cheese","parmesan cheese",is_a,accept,"vocab-triage: narrower form"
+"all pour pose flour","flour",is_a,accept,"vocab-triage: narrower form"
+"baked baking soda","baking soda",is_a,accept,"vocab-triage: narrower form"
+"balls burrata cheese","cheese",is_a,accept,"vocab-triage: narrower form"
+"bean thread noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"beta glucan mixed rice","rice",is_a,accept,"vocab-triage: narrower form"
+"bite size kimchi","kimchi",is_a,accept,"vocab-triage: narrower form"
+"blenched soybean sprouts","soybean sprouts",is_a,accept,"vocab-triage: narrower form"
+"bone-in pork shoulder","pork shoulder",is_a,accept,"vocab-triage: narrower form"
+"bone-in skin-on chicken breast","chicken breast",is_a,accept,"vocab-triage: narrower form"
+"boneless skinless pork belly","pork belly",is_a,accept,"vocab-triage: narrower form"
+"boneless skinless salmon","salmon",is_a,accept,"vocab-triage: narrower form"
+"braised pork belly","pork belly",is_a,accept,"vocab-triage: narrower form"
+"brown jasmine rice","jasmine rice",is_a,accept,"vocab-triage: narrower form"
+"chinese cooking rice wine","rice wine",is_a,accept,"vocab-triage: narrower form"
+"chinese lacey noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"chow mein noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"colby jack cheese","cheese",is_a,accept,"vocab-triage: narrower form"
+"cooled jasmine rice","jasmine rice",is_a,accept,"vocab-triage: narrower form"
+"cooled white rice","white rice",is_a,accept,"vocab-triage: narrower form"
+"dark meat chicken","chicken",is_a,accept,"vocab-triage: narrower form"
+"deboned chicken thigh","chicken thigh",is_a,accept,"vocab-triage: narrower form"
+"dried broad bean noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"dried mung bean noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"dried pad thai noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"dried pad thai rice noodles","rice noodles",is_a,accept,"vocab-triage: narrower form"
+"dried pink shrimp","shrimp",is_a,accept,"vocab-triage: narrower form"
+"dried sichuan chili pepper","chili pepper",is_a,accept,"vocab-triage: narrower form"
+"fatty hot pot beef","beef",is_a,accept,"vocab-triage: narrower form"
+"firm but ripped avocado","avocado",is_a,accept,"vocab-triage: narrower form"
+"fistful bean sprouts","bean sprouts",is_a,accept,"vocab-triage: narrower form"
+"fluffy white rice","white rice",is_a,accept,"vocab-triage: narrower form"
+"full chicken wing","chicken wing",is_a,accept,"vocab-triage: narrower form"
+"generous sprinkle black pepper","black pepper",is_a,accept,"vocab-triage: narrower form"
+"gluten-free all-purpose flour","all-purpose flour",is_a,accept,"vocab-triage: narrower form"
+"gluten-free low sodium soy sauce","low sodium soy sauce",is_a,accept,"vocab-triage: narrower form"
+"green outer napa cabbage","napa cabbage",is_a,accept,"vocab-triage: narrower form"
+"grounded black pepper","black pepper",is_a,accept,"vocab-triage: narrower form"
+"hawaiian chili pepper","chili pepper",is_a,accept,"vocab-triage: narrower form"
+"high smoke point vegetable oil","oil",is_a,accept,"vocab-triage: narrower form"
+"hong kong pan noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"hunan chili pepper","chili pepper",is_a,accept,"vocab-triage: narrower form"
+"hunan salted chili pepper","chili pepper",is_a,accept,"vocab-triage: narrower form"
+"ibs chicken thigh","chicken thigh",is_a,accept,"vocab-triage: narrower form"
+"ibs new potato","potato",is_a,accept,"vocab-triage: narrower form"
+"indian red pepper","red pepper",is_a,accept,"vocab-triage: narrower form"
+"jumbo size shrimp","shrimp",is_a,accept,"vocab-triage: narrower form"
+"jumbo tiger shrimp","shrimp",is_a,accept,"vocab-triage: narrower form"
+"korean chili paste gochujang","gochujang",is_a,accept,"vocab-triage: narrower form"
+"korean drinking vinegar","vinegar",is_a,accept,"vocab-triage: narrower form"
+"korean gochukaru for gochujang","gochujang",is_a,accept,"vocab-triage: narrower form"
+"korean grey zucchini","zucchini",is_a,accept,"vocab-triage: narrower form"
+"korean jin ganjang soy sauce","soy sauce",is_a,accept,"vocab-triage: narrower form"
+"korean kkotgae crab","crab",is_a,accept,"vocab-triage: narrower form"
+"korean pickled cucumber","cucumber",is_a,accept,"vocab-triage: narrower form"
+"korean rectangular fish cake","fish cake",is_a,accept,"vocab-triage: narrower form"
+"korean savory pancake flour","flour",is_a,accept,"vocab-triage: narrower form"
+"korean seasoned beef","beef",is_a,accept,"vocab-triage: narrower form"
+"korean seasoned soy sauce","soy sauce",is_a,accept,"vocab-triage: narrower form"
+"korean soup base soy sauce","soy sauce",is_a,accept,"vocab-triage: narrower form"
+"korean spicy green chili pepper","green chili pepper",is_a,accept,"vocab-triage: narrower form"
+"korean spicy tuna","tuna",is_a,accept,"vocab-triage: narrower form"
+"lean skin-on pork belly","pork belly",is_a,accept,"vocab-triage: narrower form"
+"loaf vietnamese uncooked processed ham","ham",is_a,accept,"vocab-triage: narrower form"
+"long green chili pepper","green chili pepper",is_a,accept,"vocab-triage: narrower form"
+"long string cheese","cheese",is_a,accept,"vocab-triage: narrower form"
+"loosely baby spinach","baby spinach",is_a,accept,"vocab-triage: narrower form"
+"low-moisture mozzarella cheese","mozzarella cheese",is_a,accept,"vocab-triage: narrower form"
+"madras curry powder","curry powder",is_a,accept,"vocab-triage: narrower form"
+"no-boil lasagna noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"ottogi korean curry powder","curry powder",is_a,accept,"vocab-triage: narrower form"
+"over easy egg","egg",is_a,accept,"vocab-triage: narrower form"
+"packaged udon noodles","udon noodles",is_a,accept,"vocab-triage: narrower form"
+"palm size dried seaweed","dried seaweed",is_a,accept,"vocab-triage: narrower form"
+"palm-sized korean radish","korean radish",is_a,accept,"vocab-triage: narrower form"
+"pancit bijon rice noodles","rice noodles",is_a,accept,"vocab-triage: narrower form"
+"pickled green cabbage","cabbage",is_a,accept,"vocab-triage: narrower form"
+"pre-grated parmesan cheese","parmesan cheese",is_a,accept,"vocab-triage: narrower form"
+"preserved thai salted radish","radish",is_a,accept,"vocab-triage: narrower form"
+"rashers pork belly","pork belly",is_a,accept,"vocab-triage: narrower form"
+"raw red-skin peanut","peanut",is_a,accept,"vocab-triage: narrower form"
+"red thai bird chili pepper","chili pepper",is_a,accept,"vocab-triage: narrower form"
+"refrigerated chow mein noodles","noodles",is_a,accept,"vocab-triage: narrower form"
+"salted cured pork","pork",is_a,accept,"vocab-triage: narrower form"
+"section of korean radish","korean radish",is_a,accept,"vocab-triage: narrower form"
+"shanghai baby bok choy","baby bok choy",is_a,accept,"vocab-triage: narrower form"
+"shell-on headless shrimp","shrimp",is_a,accept,"vocab-triage: narrower form"
+"sichuan chili oil","chili oil",is_a,accept,"vocab-triage: narrower form"
+"silken soft tofu","soft tofu",is_a,accept,"vocab-triage: narrower form"
+"skinless boneless chicken thigh","chicken thigh",is_a,accept,"vocab-triage: narrower form"
+"skinless pork belly","pork belly",is_a,accept,"vocab-triage: narrower form"
+"skinless pork shoulder","pork shoulder",is_a,accept,"vocab-triage: narrower form"
+"spicy chili oil","chili oil",is_a,accept,"vocab-triage: narrower form"
+"spiral bone-in half ham","ham",is_a,accept,"vocab-triage: narrower form"
+"spring bamboo shoot","bamboo shoot",is_a,accept,"vocab-triage: narrower form"
+"squares white fermented tofu","tofu",is_a,accept,"vocab-triage: narrower form"
+"sticky rice flour","rice flour",is_a,accept,"vocab-triage: narrower form"
+"sushi grade rice","rice",is_a,accept,"vocab-triage: narrower form"
+"sushi grade tuna","tuna",is_a,accept,"vocab-triage: narrower form"
+"sweetened condensed coconut milk","coconut milk",is_a,accept,"vocab-triage: narrower form"
+"table spoon sesame oil","sesame oil",is_a,accept,"vocab-triage: narrower form"
+"tablespons neutral oil","oil",is_a,accept,"vocab-triage: narrower form"
+"taiwanese rice wine","rice wine",is_a,accept,"vocab-triage: narrower form"
+"tamari soy sauce","soy sauce",is_a,accept,"vocab-triage: narrower form"
+"thai preserved sweet radish","radish",is_a,accept,"vocab-triage: narrower form"
+"thousand year-old egg","egg",is_a,accept,"vocab-triage: narrower form"
+"un-toasted sesame seeds","sesame seeds",is_a,accept,"vocab-triage: narrower form"
+"unseasoned raw dried seaweed","dried seaweed",is_a,accept,"vocab-triage: narrower form"
+"unseasoned rice vinegar","rice vinegar",is_a,accept,"vocab-triage: narrower form"
+"unsweetened full-fat coconut milk","coconut milk",is_a,accept,"vocab-triage: narrower form"
+"wad of preserved chili bamboo shoot","bamboo shoot",is_a,accept,"vocab-triage: narrower form"
+"wet rice flour","rice flour",is_a,accept,"vocab-triage: narrower form"
+"wet-milled rice flour","rice flour",is_a,accept,"vocab-triage: narrower form"
+"whole black silkie chicken","chicken",is_a,accept,"vocab-triage: narrower form"
+"whole rye flour","flour",is_a,accept,"vocab-triage: narrower form"
+"wild perilla oil","perilla oil",is_a,accept,"vocab-triage: narrower form"
+"young korean altari radish","radish",is_a,accept,"vocab-triage: narrower form"
+"your homemade chicken broth","chicken broth",is_a,accept,"vocab-triage: narrower form"
+"yukon golden potato","potato",is_a,accept,"vocab-triage: narrower form"
+"baby back pork","pork",is_a,accept,"vocab-triage: narrower form"
+"black and white sesame seeds","white sesame seeds",is_a,accept,"vocab-triage: narrower form"
+"boneless country pork","pork",is_a,accept,"vocab-triage: narrower form"
+"dry shiitake mushroom","shiitake mushroom",is_a,accept,"vocab-triage: narrower form"
+"juicy lemon juice","lemon juice",is_a,accept,"vocab-triage: narrower form"
+"mixture of julienne korean radish","korean radish",is_a,accept,"vocab-triage: narrower form"
+"rack baby back pork","pork",is_a,accept,"vocab-triage: narrower form"
+"red green chili pepper","green chili pepper",is_a,accept,"vocab-triage: narrowed by red"
+"sweet white rice","white rice",is_a,accept,"vocab-triage: narrowed by sweet"
+"white black sesame seeds","black sesame seeds",is_a,accept,"vocab-triage: narrowed by white"

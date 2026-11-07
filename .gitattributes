@@ -1,0 +1,11 @@
+# Reviewed data files are tracked (data/curation/, data/decisions/) and are read
+# by tools that compare them byte-for-byte. A checkout on Windows with
+# core.autocrlf=true would rewrite every line ending and make the next diff look
+# like the whole file changed.
+#
+# RUNBOOK's Windows notes flagged this as a reason data/ was git-ignored; these
+# two directories are no longer ignored, so the guard moves here.
+*.csv   text eol=lf
+*.json  text eol=lf
+*.jsonl text eol=lf
+*.md    text eol=lf

@@ -1,0 +1,9 @@
+[Unit]
+Description=Regenerate the jipbap traffic report from nginx logs
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/jipbap-stats
+Nice=10
+IOSchedulingClass=idle

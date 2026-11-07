@@ -1,0 +1,839 @@
+surface,node,source,note
+2% low fat milk,low fat milk,review,low fat milk
+active dry yeast,dry yeast,review,reviewer: yeast forms are one node
+aged kimchi,kimchi,review,"retargeted past `fermented kimchi`, which is now kimchi"
+and shrimp,shrimp,review,shrimp
+apricot preserve,maesilcheong,review,maesilcheong
+asian chives,buchu,review,
+assorted mushrooms,mushrooms,review,mushrooms
+bay,bay leaf,review,bay leaf
+bay leaves,bay leaf,review,bay leaf
+bean sauce,ground bean sauce,review,
+bird s eye chili,thai chili pepper,review,
+bird's eye chili,thai chili pepper,review,
+birds eye chili,thai chili pepper,review,
+black cardamom pod,black cardamon,review,black cardamon
+brisket,beef brisket,review,a cut names its animal
+brussel sprouts,brussels sprouts,review,
+cabbage kimchi,kimchi,review,
+canned tuna in oil,canned tuna,review,canned tuna
+canola,canola oil,review,"retargeted 2026-08-20 oil-family pass: the specific product, not the generic"
+cardamom pods,cardamom,review,cardamom
+carrot matchsticks,carrot,review,matchsticks is how it is processed
+cayenne,cayenne pepper,review,cayenne pepper
+cheongyang chili pepper,serrano pepper,review,
+chili,chili pepper,review,chili pepper
+chilies,chili pepper,review,chili pepper
+chilli,chili pepper,review,British spelling
+chilli pepper,chili pepper,review,British spelling
+chinese garlic chives,buchu,review,chinese chives
+chunjang,black bean paste,review,black bean paste
+cleaned squid,squid,review,squid
+clear rice wine,rice wine,review,
+coarse sea salt,coarse salt,review,
+coffee,ground coffee,review,ground coffee
+confectioners' sugar,granulated sugar,review,granulated sugar
+cooking oil,oil,review,neutral oil
+cooking oil for stir-frying,oil,review,oil
+cooking salt,salt,review,
+course salt,coarse salt,review,
+course sea salt,coarse salt,review,
+creamy peanut butter,peanut butter,review,
+crumbled seaweed,seaweed - nori/gim,review,gim sheets — not kelp; an automatic retarget had moved this off the slot child that claims it
+cut bacon,bacon,review,bacon
+cut pork belly,pork belly,review,pork belly
+dae pa,scallion,review,
+dae-pa,scallion,review,curator 2026-08-20: daepa is the large scallion — unified with dae pa; the leek rows were translation drift
+daepa,scallion,review,curator 2026-08-20: daepa is the large scallion — unified with dae pa; the leek rows were translation drift
+dangmyeon noodles,dangmyeon,review,dangmyeon
+dark brown sugar,brown sugar,review,
+dashi powder,dashi,review,dashi
+dasida,dashida,review,dashida
+day old jasmine rice,jasmine rice,review,"jasmin rice; was ""jasmin rice"" — resolved to the rule"
+diamond crystal kosher salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+diamond crystal salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+kosher salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+coarse kosher salt,coarse salt,review,"followed `kosher salt`, but to `coarse salt` — grain size IS identity (exceptions.ts); the brand word is not"
+distilled white vinegar,white vinegar,review,
+doenjang paste,doenjang,review,doenjang
+dotorimuk,acorn jelly,review,acorn jelly
+dried anchovies,myeolchi,review,
+dried anchovy,myeolchi,review,
+dried bay,bay leaf,review,bay leaf
+dried chili,dried chili pepper,review,dried chili pepper
+dried chilies,dried chili pepper,review,dried chili pepper
+dried kelp,seaweed - kombu/dashima,review,retargeted to the slot child
+dried naengmyeon noodles,naengmyeon noodles,review,naengmyeon noodles
+dried parsley flakes,dry parsely flakes,review,dry parsely flakes
+dried pollack,dried pollock,review,dried pollock
+dried red chilies,dried red chili pepper,review,dried red chili pepper
+dried red chilis,dried red chili pepper,review,dried red chili pepper
+dried red chilli pepper,dried red chili pepper,review,British spelling
+dried sea kelp,seaweed - kombu/dashima,review,retargeted to the slot child
+dried spaghetti,spaghetti,review,spaghetti
+dry spaghetti,spaghetti,review,spaghetti
+dutch processed cocoa powder,cocoa powder,review,cocoa powder
+eomuk,korean fish cake,review,korean fish cake
+espresso powder,instant coffee,review,instant coffee
+eye chili,thai chili pepper,review,
+fermented cabbage kimchi,kimchi,review,"retargeted past `fermented kimchi`, which is now kimchi"
+fermented shrimp,saeujeot,review,
+fermented soybean paste,doenjang,review,
+fine salt,salt,review,
+fine sea salt,salt,review,
+flaky sea salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+flank steak,beef flank steak,review,reviewer: a cut names its animal
+flat leaf parsley,parsely,review,parsely
+flying fish roe,tobiko,review,tobiko
+frying oil,oil,review,neutral oil
+garlic chives,buchu,review,
+ginko nut,ginkgo nuts,review,spelling; retargeted past a merged node
+glass noodles,dangmyeon,review,
+gochu-garu,gochugaru,review,
+gochugaru flakes,gochugaru,review,
+gochujang paste,gochujang,review,gochujang
+korean gochujang,gochujang,review,"reviewer: converge the suggest list — `korean` is where gochujang is from, not which gochujang"
+gochujang korean red chili pepper paste,gochujang,review,reviewer: converge the suggest list — the name is its own gloss
+korean chili paste gochujang,gochujang,review,"reviewer: converge the suggest list — same, with the gloss in front"
+gluten-free gochujang,gochujang,review,"reviewer: converge the suggest list — a dietary variant is a restriction, answered by the filter, not a second node (INGREDIENT-SPEC §1)"
+gochukaru,gochugaru,review,
+korean gochukaru for gochujang,gochugaru,review,"NOT gochujang: the line measures out chili FLAKES to make the paste with. `gochukaru` already redirects here (above); the trailing ""for gochujang"" is a purpose, and the head-noun deriver read it as the head"
+grain rice,rice,review,rice
+grain white rice,white rice,review,white rice
+granulated garlic,garlic,review,garlic
+grapeseed oil,grape seed oil,review,"retargeted 2026-08-20 oil-family pass: the specific product, not the generic"
+green cabbage,cabbage,review,
+green chilies,green chili pepper,review,green chili pepper
+green chilli,green chili pepper,review,British spelling
+green lettuce,lettuce,review,lettuce
+green onion,scallion,review,
+green onion greens,scallion,review,retargeted past a merged node
+green onion scallion,scallion,review,
+green onions,scallion,review,
+green onions scallions,scallion,review,
+green plum syrup,maesil syrup,review,maesil syrup
+green tea powder,matcha powder,review,matcha powder
+guk ganjang,soup soy sauce,review,
+guk kanjang,soup soy sauce,review,
+gukganjang,soup soy sauce,review,
+half and half,half-and-half,review,one carton of cream; the `and` is part of the name
+handfull cilantro,cilantro,review,cilantro
+hard boiled eggs,eggs,review,eggs
+hard egg,eggs,review,eggs
+hard eggs,eggs,review,eggs
+heavy whipping cream,heavy cream,review,
+homemade chili oil,chili oil,review,chili oil
+hot chicken stock,chicken stock,review,
+hot milk,milk,review,milk
+hot pepper paste,gochujang,review,
+hot water,water,review,
+hotdogs,hot dogs,review,hot dogs
+instant coffee powder,instant coffee,review,instant coffee
+instant dashi powder,dashi,review,dashi
+instant dry yeast,dry yeast,review,reviewer: instant yeast → dry yeast
+instant espresso powder,instant coffee,review,instant coffee
+instant yeast,dry yeast,review,reviewer: instant yeast → dry yeast
+jalape o pepper,jalapeno,review,jalapeno
+jalape o peppers,jalapeno,review,jalapeno
+jalapeno chili,jalapeno,review,retargeted past a merged node
+jalapeno pepper,jalapeno,review,jalapeno
+jalapeno peppers,jalapeno,review,jalapeno
+jalope o,jalapeno,review,jalapeno
+japanese kewpie mayonnaise,kewpie mayonnaise,review,kewpie mayonnaise
+japanese mayo,japanese mayonnaise,review,
+jasmin rice,jasmine rice,review,
+jjolmyeon,jjolmyeon noodles,review,jjolmyeon noodles
+juice from kimchi,kimchi juice,review,kimchi juice
+juice of 1 lime,lime,review,lime
+juice of half a lime,lime,review,lime
+jumbo shrimps,shrimp,review,shrimp
+justegg,eggs,review,typo from source; retargeted past a merged node
+kabocha,kabocha squash,review,kabocha squash
+kelp,seaweed - kombu/dashima,review,retargeted to the slot child
+kewpie mayo,kewpie mayonnaise,review,
+kimchi liquid,kimchi juice,review,kimchi juice
+kkaennip,perilla leaf,review,
+kkaetnip,perilla leaf,review,perilla leaf
+kongnamul,soybean sprouts,review,soybean sprout; retargeted past a merged node
+korean asian pear,asian pear,review,asian pear
+korean cheonilyeom sea salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+korean chili flakes,gochugaru,native,origin names a distinct product
+korean chili paste,gochujang,native,origin names a distinct product
+korean chili pepper flakes,gochugaru,review,gochugaru
+korean chili pepper paste,gochujang,review,gochujang
+korean chili powder,gochugaru,review,
+korean chilli paste,gochujang,review,gochujang
+korean chives,buchu,review,
+korean coarse sea salt,coarse salt,review,
+korean cooking wine,mirin,review,
+korean dumplings,mandu,review,mandu
+korean fermented soybean paste,doenjang,native,origin names a distinct product
+korean glass noodles,dangmyeon,review,
+korean hot pepper flakes,gochugaru,review,
+korean hot pepper paste,gochujang,native,origin names a distinct product
+korean kimchi sea salt,coarse salt,review,coarse salt
+korean mayonnaise,mayonnaise,review,mayonnaise
+korean mustard,mustard,review,mustard
+korean pear,asian pear,review,
+korean perilla,perilla leaf,review,perilla leaf
+korean perilla leaf,perilla leaf,review,
+korean perilla leaves,perilla leaf,review,retargeted past a merged node
+korean red chili flakes,gochugaru,native,origin names a distinct product
+korean red chili paste,gochujang,native,origin names a distinct product
+korean red chili pepper,red chili pepper,review,red chili pepper
+korean red chili pepper flakes,gochugaru,review,
+korean red chili pepper paste,gochujang,review,gochujang
+korean red chili powder,gochugaru,native,origin names a distinct product
+korean red pepper flakes,gochugaru,native,origin names a distinct product
+korean red pepper powder,gochugaru,review,gochugaru
+korean rice cakes,tteok,review,
+korean sea salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+korean solar sea salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+korean soup soy sauce,soup soy sauce,review,
+korean soy bean paste,doenjang,native,origin names a distinct product
+korean soy sauce for soup,soup soy sauce,review,gukganjang; retargeted past a merged node
+korean soybean paste,doenjang,native,origin names a distinct product
+korean sweet potato noodles,dangmyeon,review,dangmyeon
+korean white radish,korean radish,review,
+korean zucchini,zucchini,review,zucchini
+lemon zest,lemon,review,lemon
+links chinese sausage,chinese sausage,review,chinese sausage
+liquid stevia drops,liquid stevia,review,liquid stevia
+little neck clams,littleneck clams,review,littleneck clams
+live lobsters,lobster,review,lobster
+lump crab meat,crab meat,review,crab meat
+maesil cheong,plum extract,review,plum extract
+mayo,mayonnaise,review,
+meat,ground meat,review,ground meat
+medium sized potatoes,potatoes,review,potatoes
+medium-size onion,medium-size is size,review,medium-size is size (or measurement)
+mild green chili peppers,green chili pepper,review,green chili pepper
+mild red chili pepper,red chili pepper,review,"was ""mild red chili pepper"" — resolved to the rule"
+mirim,mirin,review,
+mirin wine,mirin,review,mirin
+moo,korean radish,review,
+morton kosher salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+mu,korean radish,review,
+mushroom caps,mushrooms,review,mushrooms
+myeongran,pollock roe,review,pollock roe
+myulchi aekjeot,myeolchi aekjeot,review,
+myulchiaekjeot,myeolchi aekjeot,review,"reviewer 2026-08-09: pointed at ""anchovy sauce"", which is not a node"
+napa cabbage kimchi,kimchi,review,
+nashi pear,asian pear,review,
+neutral cooking oil,oil,review,neutral oil
+neutral flavored honey,honey,review,honey
+neutral oil,oil,review,neutral oil
+neutral oil of oil in the pot,oil,review,oil
+neutral oil spray,oil,review,neutral oil; retargeted past a merged node
+oil for pan,oil,review,oil
+oil for stir-frying,oil,review,oil
+oligo syrup,oligodang,review,oligodang
+oligodang syrup,oligodang,review,oligodang
+orange zest,orange,review,orange
+organic cane sugar,cane sugar,review,cane sugar
+organic yolk,egg yolk,review,egg yolk
+overripe bananas,ripe bananas,review,ripe bananas
+panko breadcrumbs,panko,review,redundant category word
+panko crumbs,panko,review,redundant category word
+parmesan,parmesan cheese,review,parmesan cheese
+penne,penne pasta,review,penne pasta
+perilla,perilla leaf,review,perilla leaf
+perilla leaves,perilla leaf,review,
+plain breadcrumbs,breadcrumbs,review,breadcrumbs
+plum syrup,maesil syrup,review,maesil syrup
+plump garlic,garlic,review,garlic
+potato starch powder,potato starch,review,potato starch
+powdered sugar,granulated sugar,review,
+purple cabbage,red cabbage,review,
+ramen egg,eggs,review,retargeted past a merged node
+red chili,red chili pepper,review,red chili pepper
+red chili pepper powder,gochugaru,review,guchugaru
+red chilies,red chili pepper,review,red chili pepper
+red chilli,red chili pepper,review,British spelling
+red pepper flakes,chili flakes,review,retargeted 2026-08-17: identity is the generic; the Korean reading (gochugaru) moved to resolution.ts — was gochugaru
+red pepper paste,gochujang,review,
+rice cakes,tteok,review,
+ripe kimchi,kimchi,review,"retargeted past `fermented kimchi`, which is now kimchi"
+roasted seaweed,seaweed - nori/gim,review,retargeted to the slot child
+roasted sesame oil,sesame oil,review,
+rock salt,coarse salt,review,"curator 2026-08-20: salt structures by COARSENESS only — kosher, rock, flaky and solar salts are coarse; fine and table stay on salt"
+saewujeot,saeujeot,review,saeujeot
+sagol yuksu,beef broth,review,beef broth
+sake wine,sake,review,sake
+salted fermented shrimp,korean salted shrimp,review,korean salted shrimp
+salted shrimp,saeujeot,review,
+samgyeopsal,pork belly,review,pork belly
+scallion greens,scallion,review,
+scallion white part,scallion white,review,scallion white
+scallion whites,scallion,review,
+scoops vanilla ice cream,vanilla ice cream,review,vanilla ice cream
+sea kelp,seaweed - kombu/dashima,review,retargeted to the slot child
+sea kelp stock,kelp stock,review,kelp stock
+seasoned seaweed,seaweed - nori/gim,review,gim sheets — not kelp; an automatic retarget had moved this off the slot child that claims it
+seaweed,dried seaweed,review,dried seaweed
+seaweed sheets,seaweed - nori/gim,review,retargeted to the slot child
+seedless cucumber,cucumber,review,cucumber
+serrano,serrano pepper,review,serrano pepper
+serrano chili,serrano pepper,review,
+sesame leaves,perilla leaf,review,
+shaoxing rice wine,shaoxing wine,review,
+sharp cheddar cheese,cheddar cheese,review,cheddar cheese
+shaved ice,ice,review,shaved is processing
+shiitake,shiitake mushrooms,review,"typo fix: target was ""shiiitake mushrooms"", which is not a node; retargeted past a merged node"
+shiso leaves,shiso,review,sisho
+single chicken wings,chicken wings,review,chicken wings
+skirt steak,beef skirt steak,review,a cut names its animal
+soba,soba noodles,review,soba noodles
+soft egg,eggs,review,eggs
+soft eggs,eggs,review,eggs
+soft silken tofu,silken tofu,review,silken tofu
+somen noodles,somen,review,somen
+somyeon noodles,somyeon,review,somyeon
+soup soy sauce guk ganjang,soup soy sauce,review,
+sour cabbage kimchi,kimchi,review,"retargeted past `fermented kimchi`, which is now kimchi"
+sour kimchi,kimchi,review,"retargeted past `fermented kimchi`, which is now kimchi"
+soybean paste,doenjang,review,
+spring onion,scallion,review,
+square wonton wrappers,wonton wrappers,review,wonton wrappers
+star anise pods,star anise,review,star anise
+starch noodles,dangmyeon,review,
+starch powder,starch,review,starch
+sticky rice,glutinous rice,review,glutinous rice
+sundubu,silken tofu,review,silken tofu
+superfine sugar,fine sugar,review,fine sugar
+sweet condensed milk,sweetened condensed milk,review,
+sweet potato noodles,dangmyeon,review,
+sweet potato starch noodles,dangmyeon,review,
+sweet red bean paste,sweetened red bean paste,review,
+sweet red beans,red beans,review,red beans
+sweet rice,glutinous rice,review,reviewer: sweet rice flour → glutinous rice flour; same word
+sweet rice flour,glutinous rice flour,review,
+sweet rice wine,mirin,review,
+table salt,salt,review,
+taiwanese flat cabbage,taiwanese cabbage,review,taiwanese cabbage
+thai bird chili,thai chili pepper,review,
+thai bird chilies,thai chili pepper,review,thai chili pepper
+thai chili,thai chili pepper,review,thai chili pepper
+thai chilies,thai chili pepper,review,thai chili pepper
+toasted sesame oil,sesame oil,review,
+tomato ketchup,ketchup,review,ketchup
+tsuyu sauce,tsuyu,review,tsuyu
+tteok rice powder,rice flour,review,rice powder
+tteokbokki tteok,tteok,review,
+tube silken tofu,silken tofu,review,silken tofu
+udon,udon noodles,review,udon noodles
+unbleached all purpose flour,all-purpose flour,review,all-purpose flour
+unbleached bread flour,bread flour,review,"was ""unbleached bread flour"" — resolved to the rule"
+uncooked japanese short grain white rice,japanese short-grain white rice,review,"white rice; was ""white rice"" — resolved to the rule"
+uncooked jasmine rice,jasmine rice,review,"jasmin rice; was ""jasmin rice"" — resolved to the rule"
+uncooked short grain rice,short grain rice,review,short grain rice
+uncooked sticky rice,glutinous rice,review,glutinous rice
+uncooked white rice,white rice,review,white rice
+vanilla,vanilla extract,review,
+vegetable oil for pan,oil,review,oil
+very beef,beef,review,beef
+well fermented kimchi,kimchi,review,"retargeted past `fermented kimchi`, which is now kimchi"
+whipped cream,heavy cream,review,
+whipping cream,heavy cream,review,
+white bread,milk bread,review,milk bread
+white fluffy rice,rice,review,rice
+whole dry chili pepper,dried chili pepper,review,dried chili peppers; retargeted past a merged node
+whole grain mustard,mustard,review,mustard
+worth carrot,carrot,review,carrot
+worth cucumber,cucumber,review,cucumber
+worth of ginger,ginger,review,ginger
+yellow mustard,mustard,review,mustard
+yellow pickled radish,danmuji,review,"curator 2026-08-20: names the yellow pickle specifically, not the generic"
+yellow radish pickle,danmuji,review,curator 2026-08-20: same — the yellow pickle by another word order
+yolk,egg yolk,review,
+yubu,inari,review,inari
+yukon gold potato,yukon potatoes,review,yukon potatoes
+yukon gold potatoes,yukon potatoes,review,yukon potatoes
+yukon potato,yukon potatoes,review,yukon potatoes
+zest from 1 lemon,lemon,review,lemon
+zest of 1 lemon,lemon,review,lemon
+jalopeno,jalapeno,review,spelling
+jalopeno pepper,jalapeno,review,spelling
+cookie oil,oil,review,parse artifact of `cooking oil`
+baby back ribs,pork baby back ribs,review,a cut names its animal
+back ribs,pork back ribs,review,a cut names its animal
+spare ribs,pork spare ribs,review,a cut names its animal
+short ribs,beef short ribs,review,a cut names its animal
+egg,eggs,review,"number split: one ingredient, two nodes"
+all purpose flour,all-purpose flour,review,"number split: one ingredient, two nodes"
+korean radishes,korean radish,review,"number split: one ingredient, two nodes"
+five-spice powder,five spice powder,review,"number split: one ingredient, two nodes"
+jalapenos,jalapeno,review,"number split: one ingredient, two nodes"
+short-grain rice,short grain rice,review,"number split: one ingredient, two nodes"
+low-sodium chicken stock,low sodium chicken stock,review,"number split: one ingredient, two nodes"
+chicken thigh,chicken thighs,review,"number split: one ingredient, two nodes"
+dried chili peppers,dried chili pepper,review,"number split: one ingredient, two nodes"
+korean fish cakes,korean fish cake,review,"number split: one ingredient, two nodes"
+long hot green pepper,long hot green peppers,review,"number split: one ingredient, two nodes"
+almonds,almond,review,"number split: one ingredient, two nodes"
+short-grain white rice,short grain white rice,review,"number split: one ingredient, two nodes"
+red peppers,red pepper,review,"number split: one ingredient, two nodes"
+raisin,raisins,review,"number split: one ingredient, two nodes"
+anchovy kelp broth,anchovy-kelp broth,review,"number split: one ingredient, two nodes"
+pecan,pecans,review,"number split: one ingredient, two nodes"
+chinese sausages,chinese sausage,review,"number split: one ingredient, two nodes"
+mangoes,mango,review,"number split: one ingredient, two nodes"
+peach,peaches,review,"number split: one ingredient, two nodes"
+oyster,oysters,review,"number split: one ingredient, two nodes"
+ripe banana,ripe bananas,review,"number split: one ingredient, two nodes"
+sausage,sausages,review,"number split: one ingredient, two nodes"
+short rib,beef short ribs,review,"number split: one ingredient, two nodes; retargeted past a merged node"
+ginkgo nut,ginkgo nuts,review,"number split: one ingredient, two nodes"
+wood ear mushroom,wood ear mushrooms,review,"number split: one ingredient, two nodes"
+black cardamom pods,black cardamon,review,"number split: one ingredient, two nodes; retargeted past a merged node"
+confectioner sugar,confectioners sugar,review,"number split: one ingredient, two nodes"
+corn kernel,corn kernels,review,"number split: one ingredient, two nodes"
+fruits,fruit,review,"number split: one ingredient, two nodes"
+ripe mango,ripe mangoes,review,"number split: one ingredient, two nodes"
+ripe mangos,ripe mangoes,review,"number split: one ingredient, two nodes"
+asian eggplants,asian eggplant,review,"number split: one ingredient, two nodes"
+beets,beet,review,"number split: one ingredient, two nodes"
+anchovy kelp-stock,anchovy kelp stock,review,"number split: one ingredient, two nodes"
+bone in chicken,bone-in chicken,review,"number split: one ingredient, two nodes"
+all-purpose wheat flour,all purpose wheat flour,review,"number split: one ingredient, two nodes"
+boneless skin on chicken thighs,boneless skin-on chicken thighs,review,"number split: one ingredient, two nodes"
+long-grain white rice,long grain white rice,review,"number split: one ingredient, two nodes"
+white short-grain rice,short grain white rice,review,"number split: one ingredient, two nodes"
+whole-grain mustard,mustard,review,"number split: one ingredient, two nodes; retargeted past a merged node"
+hong-kong-style pan-fried noodles,hong kong style pan-fried noodles,review,"number split: one ingredient, two nodes"
+korean cheongyang chili peppers,korean cheongyang chili pepper,review,"number split: one ingredient, two nodes"
+korean sweet potatoes,korean sweet potato,review,"number split: one ingredient, two nodes"
+boneless pork chop,boneless pork chops,review,"number split: one ingredient, two nodes"
+dried schisandra berries,dried schisandra berry,review,"number split: one ingredient, two nodes"
+fully-fermented kimchi,kimchi,review,"retargeted past `fully fermented kimchi`, which is now kimchi"
+fermented kimchi,kimchi,review,"reviewer: all just kimchi — how far along it is changes what you cook, not what you own, and the pantry is inventory (UX-SPEC §3)"
+fully fermented kimchi,kimchi,review,reviewer: all just kimchi
+fermented napa cabbage kimchi,kimchi,review,reviewer: all just kimchi — the cabbage is what kimchi is made of by default
+fermented whole cabbage kimchi,kimchi,review,"reviewer: all just kimchi — whole vs cut is a form, not an ingredient"
+baechu kimchi,kimchi,review,"reviewer: all just kimchi — baechu (배추) IS napa cabbage, the default"
+bite size kimchi,kimchi,review,"reviewer: all just kimchi — cut size is a form, not an ingredient"
+vegan kimchi,kimchi,review,"reviewer: all just kimchi — whether it has jeotgal in it is a dietary-restriction question, answered by the filter, not by a second node"
+fermented vegan kimchi,kimchi,review,reviewer: all just kimchi — followed `vegan kimchi`
+hong kong-style pan-fried noodles,hong kong style pan-fried noodles,review,"number split: one ingredient, two nodes"
+korean green onions,korean green onion,review,"number split: one ingredient, two nodes"
+old-fashioned rolled oats,old fashioned rolled oats,review,"number split: one ingredient, two nodes"
+peach preserve,peach preserves,review,"number split: one ingredient, two nodes"
+ribeye steaks,beef ribeye,review,"number split: one ingredient, two nodes"
+self-raising flour,self raising flour,review,"number split: one ingredient, two nodes"
+bone-in chicken thighs,bone in chicken thighs,review,"number split: one ingredient, two nodes"
+chicken tenderloins,chicken tenderloin,review,"number split: one ingredient, two nodes"
+cylinder-shaped rice cake,cylinder shaped rice cake,review,"number split: one ingredient, two nodes"
+dried bellflower roots,dried bellflower root,review,"number split: one ingredient, two nodes"
+ears sweet corn,sweet corn,review,"number split: one ingredient, two nodes"
+full-fat coconut milk,full fat coconut milk,review,"number split: one ingredient, two nodes"
+green plums,green plum,review,"number split: one ingredient, two nodes"
+japanese sweet potatoes,japanese sweet potato,review,"number split: one ingredient, two nodes"
+korean leeks,korean leek,review,"number split: one ingredient, two nodes"
+lamb shanks,lamb shank,review,"number split: one ingredient, two nodes"
+live blue crabs,live blue crab,review,"number split: one ingredient, two nodes"
+shitake mushroom,shiitake mushrooms,review,spelling: one i; retargeted past a merged node
+shiiitake mushroom,shiitake mushrooms,review,spelling: three i; retargeted past a merged node
+dried shitake mushroom,dried shiitake mushrooms,review,spelling: one i; retargeted past a merged node
+dry shiitake mushroom,dried shiitake mushrooms,review,dry = dried; retargeted past a merged node
+fluid ounces coconut milk,coconut milk,review,vocab-triage: contains a unit or measure
+forearm-length pieces of spring onion,scallion,review,vocab-triage: contains a unit or measure
+forearm-sized piece of spring onion,scallion,review,vocab-triage: contains a unit or measure
+iphone-sized piece kelp,seaweed - kombu/dashima,review,vocab-triage: contains a unit or measure
+korean radish cut into,korean radish,review,vocab-triage: contains an instruction
+whole head of garlic,garlic,review,vocab-triage: contains a unit or measure
+x5 dried kelp,seaweed - kombu/dashima,review,vocab-triage: contains a number
+0% lean pork,pork,review,vocab-triage: contains a number
+2% milk,low fat milk,review,"small-family pass 2026-08-20: the specific product, not the generic"
+beef flavor cup noodles,cup noodles,review,"small-family pass 2026-08-20: the specific product, not the generic"
+chicken flavor cup noodles,cup noodles,review,"small-family pass 2026-08-20: the specific product, not the generic"
+coves garlic,garlic,review,vocab-triage: contains a unit or measure
+eight oz salmon,salmon,review,vocab-triage: contains a unit or measure
+fl ounces coconut milk,coconut milk,review,vocab-triage: contains a unit or measure
+fluid ounces soju,soju,review,vocab-triage: contains a unit or measure
+for 2 pounds garlic,garlic,review,vocab-triage: contains a number
+garlic cloves garlic,garlic,review,vocab-triage: contains a unit or measure
+green onions cut into 1,scallion,review,vocab-triage: contains a number
+half-inch thick slices ginger,ginger,review,vocab-triage: contains a unit or measure
+half-inch thick slices of ginger,ginger,review,vocab-triage: contains a unit or measure
+individual packet buckwheat noodles,noodles,review,vocab-triage: contains a unit or measure
+juice form 1 2 lemon,lemon,review,vocab-triage: contains a number
+juice form 1 orange,orange,review,vocab-triage: contains a number
+lemon zest from 3 lemon,lemon,review,vocab-triage: contains a number
+make 2 pounds gat-kimchi,kimchi,review,vocab-triage: contains a number
+napa cabbage chinese cabbage,napa cabbage,review,vocab-triage: repeats the head noun
+or dried ramen noodles,noodles,review,vocab-triage: starts mid-sentence
+orange zest of 1 2 orange,orange,review,vocab-triage: contains a number
+ot 8 oz dried naengmyeon noodles,noodles,review,vocab-triage: contains a number
+rice flour for dredging,rice flour,review,vocab-triage: contains an instruction
+salt for blanching,salt,review,vocab-triage: contains an instruction
+salt for cleaning the squid,salt,review,vocab-triage: contains an instruction
+sea salt for pickling,salt,review,vocab-triage: contains an instruction
+sesame oil2 cloves garlic,garlic,review,vocab-triage: contains a number
+short grain rice cooker cups rice,rice,review,vocab-triage: contains a unit or measure
+short-grain rice 1 2,short grain rice,review,vocab-triage: contains a number
+shrimp u15,shrimp,review,vocab-triage: contains a number
+strawberry strawberry,strawberries,review,vocab-triage: repeats the head noun; retargeted past a merged node
+sugar 2 4 lbs sugar,sugar,review,vocab-triage: contains a number
+sweet rice flour 2 cups 300g,glutinous rice flour,review,vocab-triage: contains a number
+sweet rice flour glutinous rice flour,glutinous rice flour,review,vocab-triage: repeats the head noun
+to cucumber,cucumber,review,vocab-triage: starts mid-sentence
+to dried shiitake mushroom,dried shiitake mushrooms,review,vocab-triage: starts mid-sentence; retargeted past a merged node
+to tomato,tomatoes,review,vocab-triage: starts mid-sentence; retargeted past a merged node
+tofu 36 ounces 1020,tofu,review,vocab-triage: contains a number
+u10 shrimp,shrimp,review,vocab-triage: contains a number
+whole 30 40 head on shrimp,shrimp,review,vocab-triage: contains a number
+whole head-on shrimp,shrimp,review,vocab-triage: contains a unit or measure
+whole pork belly 3-inch wide cut,pork belly,review,vocab-triage: contains a number
+zucchini cut into inch dice,zucchini,review,vocab-triage: contains a unit or measure
+beef cut into 2-3,beef,review,vocab-triage: contains a number
+hand-chopped pork and 20% fat,pork,review,vocab-triage: contains a number
+korean radish into inch thin bite,korean radish,review,vocab-triage: contains a unit or measure
+sweet rice cup rice cup 180,glutinous rice,review,vocab-triage: contains a number
+zest and juice from 1 lemon,lemon,review,vocab-triage: contains a number
+zest and juice of 1 lemon,lemon,review,vocab-triage: contains a number
+stocks of green onion,scallion,review,vocab-triage: counts the food rather than names it
+chicken stock concentrate,chicken stock,review,vocab-triage: counts the food rather than names it
+part sea salt,salt,review,vocab-triage: counts the food rather than names it
+green part of a scallion,scallion,review,vocab-triage: counts the food rather than names it
+anchovy sauce,myeolchi aekjeot,review,joins the family — korean/fermented anchovy sauce and myulchiaekjeot already target myeolchi aekjeot
+korean anchovy sauce,myeolchi aekjeot,review,"same sauce, named by country"
+myeolchiaekjeot,myeolchi aekjeot,review,unspaced
+fermented anchovy sauce,myeolchi aekjeot,review,aekjeot is the fermented sauce
+korean fermented anchovy sauce,myeolchi aekjeot,review,aekjeot is the fermented sauce
+1 egg yolk,egg yolk,review,measurement glued to the surface; same practice as the 2% low fat milk alias
+jalape o,jalapeno,review,mojibake: jalapeno with the n-tilde lost in encoding — same family as the jalape o pepper rows
+jalape os,jalapeno,review,mojibake plural of the row above
+pickled jalape o,pickled jalapeno,review,same mojibake; pickled is preservation and keeps its modifier
+anchovy,anchovies,review,"number split: one ingredient, two nodes — candidate twin of a confirmed node"
+baby green,baby greens,review,"number split: one ingredient, two nodes — candidate twin of a confirmed node"
+shiitake mushroom,shiitake mushrooms,review,"number split: one ingredient, two nodes"
+dried shiitake mushroom,dried shiitake mushrooms,review,"number split: one ingredient, two nodes"
+tomato,tomatoes,review,"number split: one ingredient, two nodes"
+soybean sprout,soybean sprouts,review,"number split: one ingredient, two nodes"
+chive,chives,review,"number split: one ingredient, two nodes"
+strawberry,strawberries,review,"number split: one ingredient, two nodes"
+rice noodle,rice noodles,review,"number split: one ingredient, two nodes"
+instant noodles,instant noodle,review,"number split: one ingredient, two nodes"
+bean thread noodles,bean thread noodle,review,"number split: one ingredient, two nodes"
+jajangmyeon noodles,jajangmyeon noodle,review,"number split: one ingredient, two nodes"
+korean noodles,korean noodle,review,"number split: one ingredient, two nodes"
+turnip greens,turnip green,review,"number split: one ingredient, two nodes"
+korean corn syrup,oligodang,review,the korean-prefixed form is an identity claim (mulyeot); bare corn syrup stays its own node per the 2026-08-09 reviewer note — audit 2026-08-17
+anchovy broth,anchovy stock,review,"merge: one ingredient, two names — Korean myeolchi yuksu; stock kept as the higher-use name (2026-08-19)"
+dashi stock,dashi,review,"merge: one ingredient, two names — dashi kept, it is the native term and already carries the powder aliases (2026-08-19)"
+chicken broth,chicken stock,review,"merge: one ingredient, two names — stock and broth are one purchase here; no recipe relies on the bones-vs-meat distinction (2026-08-19 stock cluster)"
+beef broth,beef stock,review,"merge: one ingredient, two names — same pair as chicken (2026-08-19 stock cluster)"
+vegetable broth,vegetable stock,review,"merge: one ingredient, two names — same pair; stock is the term the family settles on (2026-08-19 stock cluster)"
+veggie broth,vegetable stock,review,"merge: one ingredient, two names — casual short form; retargeted past vegetable broth, which retires in the same pass (2026-08-19 stock cluster)"
+dashi broth,dashi,review,"merge: one ingredient, two names — one Japanese broth under two names (2026-08-19 stock cluster)"
+korean anchovy stock,anchovy stock,review,"merge: one ingredient, two names — the korean- prefix adds no distinction; same myeolchi yuksu (2026-08-19 stock cluster)"
+korean soup stock,anchovy-kelp broth,review,"merge: one ingredient, two names — its own line defines it: Korean soup stock (dried kelp and dried anchovy stock) (2026-08-19 stock cluster)"
+anchovy kelp stock,anchovy-kelp broth,review,"merge: one ingredient, two names — stock/broth twin of the same homemade broth (2026-08-19 stock cluster)"
+dried anchovy stock,anchovy-kelp broth,review,"merge: one ingredient, two names — its line reads Dried kelp and dried anchovy stock — kelp is in it despite the name (2026-08-19 stock cluster)"
+kelp broth,kelp stock,review,"merge: one ingredient, two names — one kelp liquid under two names (2026-08-19 stock cluster)"
+dashima broth,kelp stock,review,"merge: one ingredient, two names — the korean name for the same kelp broth (2026-08-19 stock cluster)"
+dried anchovies for stock,myeolchi,review,"merge: one ingredient, two names — the dried fish you buy, not the liquid — myeolchi is that node (2026-08-19 stock cluster)"
+dried soup anchovy,myeolchi,review,"merge: one ingredient, two names — gukmyeolchi, the soup-stock grade of the same dried anchovy (2026-08-19 stock cluster)"
+korean ultimate broth,ultimate korean stock,review,"merge: one ingredient, two names — one blogger, two spellings of their house stock (2026-08-19 stock cluster)"
+dashima,seaweed - kombu/dashima,review,"merge: one ingredient, two names — dried kelp; also clears a live ambiguity where this surface was both a node and an alias (2026-08-19 stock cluster)"
+dried kombu,seaweed - kombu/dashima,review,"merge: one ingredient, two names — dried kelp under the japanese name (2026-08-19 stock cluster)"
+dried dashima,seaweed - kombu/dashima,review,"merge: one ingredient, two names — dried kelp; was only a survivor because the canonical was missing from the evidence packet (2026-08-19 stock cluster)"
+dried soup anchovies,myeolchi,review,"merge: one ingredient, two names — the registry (plural) name of dried soup anchovy; gukmyeolchi is the same dried fish (2026-08-19 stock cluster)"
+broth from boiling the chicken,chicken stock,review,"parse artifact: the recipe boils its own chicken; a cook holding stock is served — retargeted past chicken broth, retired in the same cluster (2026-08-19 stock cluster)"
+chicken broth from the soup,chicken stock,review,"parse artifact: same phrase family, same target (2026-08-19 stock cluster)"
+your homemade chicken broth,chicken stock,review,parse artifact: a phrase the parser minted; the ingredient is chicken stock (2026-08-19 stock cluster)
+soup ladles of chicken broth,chicken stock,review,parse artifact: the quantity (5-6 soup ladles) was read as part of the name (2026-08-19 stock cluster)
+vegetable stock for brown jasmine rice,vegetable stock,review,parse artifact: the purpose clause was read as part of the name (2026-08-19 stock cluster)
+gizzard broth,chicken stock,review,"parse artifact: the leftover broth from boiling the gizzards — produced by the recipe, and chicken stock is what a shopper would hold (2026-08-19 stock cluster)"
+soup broth,pork stock,review,"parse artifact: its own gloss says pork neck bone broth; produced by the recipe, pork stock is the purchasable equivalent (2026-08-19 stock cluster)"
+coarse korean salt,coarse salt,review,granularity draft: word-order variant of the alias `korean coarse sea salt` that coarse salt already carries (2026-08-19)
+kimchi salt,coarse salt,review,granularity draft: short form of the alias `korean kimchi sea salt` already on coarse salt; the recipe line itself reads kimchi salt (can substitute coarse sea salt) (2026-08-19)
+korean coarse kimchi sea salt,coarse salt,review,merge: the longest spelling of the salt kimchi is brined with; coarse salt already holds korean coarse sea salt and korean kimchi sea salt (2026-08-19)
+japanese sansho pepper,sansho peppercorn,review,the surface both corpus lines actually use (2026-08-19 granularity draft)
+thai fish sauce,nam pla,review,rename to the native term; the old name is how all three corpus lines write it (2026-08-19)
+단무지,danmuji,review,"the hangul spelling, from the koreanbapsang gloss (danmuji, 단무지)"
+korean yellow pickled radish,danmuji,review,curator 2026-08-20: candidate surface folded into the new node
+pre-cut danmuji,danmuji,review,"pre-cut is processing, not identity"
+thickened cream,heavy cream,review,hirokoliston vocab (audited 2026-08-20): Australian/British term for heavy cream used in baking and desserts.
+japanese short grain rice,short grain rice,review,hirokoliston vocab (audited 2026-08-20): Variety modifier does not change ingredient identity; it is short grain rice.
+icing sugar,confectioners sugar,review,hirokoliston vocab (audited 2026-08-20): British/Australian term for powdered confectioners sugar.
+potato starch flour,potato starch,review,hirokoliston vocab (audited 2026-08-20): Flour describes the ground form; the base ingredient is potato starch.
+greek yoghurt,greek yogurt,review,hirokoliston vocab (audited 2026-08-20): British spelling of yogurt; same ingredient.
+bi-carb soda,baking soda,review,hirokoliston vocab (audited 2026-08-20): Australian/British colloquial name for baking soda leavening agent.
+chilli garlic sauce,chili garlic sauce,review,hirokoliston vocab (audited 2026-08-20): British spelling of chili in the same sauce product.
+gelatine,gelatin,review,hirokoliston vocab (audited 2026-08-20): British spelling of gelatin gelling agent.
+butter puff pastry,puff pastry,review,hirokoliston vocab (audited 2026-08-20): Butter specifies fat type; the base ingredient is puff pastry.
+green capsicum,green bell pepper,review,"color folds to color, not to the generic — capsicum/bell pepper merge (2026-08-20)"
+yoghurt,yogurt,review,hirokoliston vocab (audited 2026-08-20): British spelling of yogurt.
+sweet azuki paste,sweetened red bean paste,review,hirokoliston vocab (audited 2026-08-20): Azuki beans are red beans; sweet azuki paste is a sweetened red bean paste.
+chilli flake,chili flakes,review,hirokoliston vocab (audited 2026-08-20): British spelling; dried chili pepper flakes is the standard term.
+asian chicken bouillon powder,chicken bouillon powder,review,hirokoliston vocab (audited 2026-08-20): Asian is a regional modifier; the base ingredient is chicken bouillon powder.
+chilli flakes,chili flakes,review,"hirokoliston vocab (audited 2026-08-20): British spelling variant; flaked form of dried chili peppers, identical ingredient."
+corn starch flour,corn flour,review,hirokoliston vocab (audited 2026-08-20): Corn starch flour and corn flour are functionally identical in recipes.
+full cream milk,whole milk,review,"small-family pass 2026-08-20: the specific product, not the generic"
+dried chilli pepper,dried chili pepper,review,hirokoliston vocab (audited 2026-08-20): Spelling variant of same dried pepper ingredient.
+pork steak,pork collar steak,review,hirokoliston vocab (audited 2026-08-20): Pork steak in butchery refers to the pork collar steak cut.
+espresso,shot espresso,review,hirokoliston vocab (audited 2026-08-20): Espresso is a shot of espresso coffee; same ingredient.
+punnet strawberries,strawberry,review,hirokoliston vocab (audited 2026-08-20): Punnet is packaging; the ingredient is strawberries.
+ra-yu,la-yu,review,hirokoliston vocab (audited 2026-08-20): Alternative romanization of the same Japanese chili oil.
+momen tofu,firm tofu,review,hirokoliston vocab (audited 2026-08-20): Momen is Japanese term for regular pressed firm tofu.
+edible chrysanthemum,ssukgat,review,hirokoliston vocab (audited 2026-08-20): (retargeted in audit: shungiku is not a node; ssukgat is the same chrysanthemum green and is) Shungiku is the native Japanese term; native t
+cos lettuce,romaine lettuce,review,hirokoliston vocab (audited 2026-08-20): British name for romaine lettuce; same vegetable.
+fetta cheese,feta,review,hirokoliston vocab (audited 2026-08-20): (retargeted in audit: fetta is not a node; feta is) Shortened form of the same ingredient; fetta is the canonical singular form.
+soup stock,stock,review,"hirokoliston vocab (audited 2026-08-20): Generic term for stock; vegetable or chicken are preparation variants, not identity."
+sweet chilli sauce,sweet chili sauce,review,hirokoliston vocab (audited 2026-08-20): British spelling variant (chilli/chili) of the same sauce.
+pizza base,crust pizza base,review,hirokoliston vocab (audited 2026-08-20): Nearly identical product; pizza base and crust pizza base name the same ingredient.
+instant soy sauce ramen,instant ramen,review,"hirokoliston vocab (audited 2026-08-20): Specific flavor variant of instant ramen; soy sauce is a flavor characteristic, not identity."
+dried chilli flake,chili flakes,review,hirokoliston vocab (audited 2026-08-20): Chilli is British spelling; the surface and target name the same ingredient.
+mixed grain,assorted mixed grain,review,hirokoliston vocab (audited 2026-08-20): The ontology node assorted mixed grain covers the generic mixed grain reference.
+instant coffee granule,instant coffee,review,"hirokoliston vocab (audited 2026-08-20): Granule is the physical form of instant coffee, not a distinct ingredient."
+hot chilli powder,hot pepper powder,review,hirokoliston vocab (audited 2026-08-20): Chilli and pepper name the same spice; chilli is British spelling.
+red salmon,salmon,review,hirokoliston vocab (audited 2026-08-20): Red salmon is a type of salmon; canned salmon in recipes is a form of this ingredient.
+earl grey tea,black tea,review,"hirokoliston vocab (audited 2026-08-20): Earl Grey is a flavored variety of black tea, not a separate ingredient."
+dried shiitake,dried shiitake mushroom,review,hirokoliston vocab (audited 2026-08-20): shortened form names the same dried mushroom product
+kent pumpkin,pumpkin,review,"hirokoliston vocab (audited 2026-08-20): kent is a specific variety of pumpkin, named by the broader category"
+greek style yoghurt,greek yogurt,review,hirokoliston vocab (audited 2026-08-20): British spelling variant of greek yogurt
+roma tomato,plum tomato,review,"hirokoliston vocab (audited 2026-08-20): roma and plum tomatoes are closely related cooking varieties, used interchangeably"
+punnet blueberries,blueberry,review,"hirokoliston vocab (audited 2026-08-20): punnet is a container term, not a product modifier"
+unsweetened yoghurt,plain yogurt,review,"hirokoliston vocab (audited 2026-08-20): unsweetened describes plain yogurt, the default type"
+unsweetened greek yoghurt,plain greek yogurt,review,hirokoliston vocab (audited 2026-08-20): unsweetened variant of greek yogurt
+japanese rice,japanese short-grain rice,review,hirokoliston vocab (audited 2026-08-20): japanese rice refers to short-grain white rice
+red thai curry paste,thai red curry paste,review,"hirokoliston vocab (audited 2026-08-20): Identical ingredient, just different word order."
+dried black fungus mushroom,dried wood ear mushroom,review,hirokoliston vocab (audited 2026-08-20): Black fungus and wood ear are regional names for the same mushroom.
+thai green curry paste,green curry paste,review,hirokoliston vocab (audited 2026-08-20): Thai green curry paste is the standard product; 'Thai' is a descriptor implicit in the category.
+smoked pork sausage,smoked sausage,review,hirokoliston vocab (audited 2026-08-20): Pork sausage is the standard meaning of smoked sausage; the meat type is a specification.
+vegetable stock cube,vegetable stock,review,hirokoliston vocab (audited 2026-08-20): Same ingredient in a concentrated cube form; the form is not the identity.
+italian mixed herb,italian herb,review,hirokoliston vocab (audited 2026-08-20): Italian herb seasoning typically refers to a blend; 'mixed' is implicit in the product name.
+mentsuyu',mentsuyu,review,hirokoliston vocab (audited 2026-08-20): Apostrophe is a stray character; this is the standard Japanese noodle broth.
+beef stock cube,beef stock,review,hirokoliston vocab (audited 2026-08-20): Cube is just the form; the ingredient is beef stock.
+gluten-free plain flour,gluten-free all-purpose flour,review,hirokoliston vocab (audited 2026-08-20): Plain and all-purpose flour are interchangeable in most baking contexts.
+quick + easy mentsuyu,mentsuyu,review,"hirokoliston vocab (audited 2026-08-20): The 'quick & easy' part is a recipe instruction, not part of the ingredient name."
+sultana,golden raisin,review,hirokoliston vocab (audited 2026-08-20): (downgraded from mint in audit: sultana IS the golden raisin; the node exists)
+wombok,napa cabbage,review,hirokoliston vocab (audited 2026-08-20): (downgraded from mint in audit: wombok is the Australian name for napa/Chinese cabbage — the node exists)
+crispy chilli oil,chili crisp,review,hirokoliston vocab (audited 2026-08-20): (downgraded from mint in audit: the node exists; crispy chilli oil is what AU labels call chili crisp)
+continental cucumber,english cucumber,review,hirokoliston vocab (audited 2026-08-20): (downgraded from mint in audit: the same long seedless cucumber; the node exists)
+tasty cheese,cheddar cheese,review,hirokoliston vocab (audited 2026-08-20): (downgraded from mint in audit: Australian mild cheddar; alias beats a node no recipe elsewhere names)
+chilli oil,chili oil,review,hirokoliston vocab (audited 2026-08-20): (downgraded from mint in audit: the node exists — my near-match code missed it across the chilli/chili spelling)
+fetta,feta,review,AU spelling of feta — audit companion to the fetta cheese retarget (2026-08-20)
+allspice powder,allspice,review,curate UI
+harusame noodle,harusame,review,hirokoliston vocab mint alias (2026-08-20)
+sweetened chestnut paste,chestnut paste,review,hirokoliston vocab mint alias (2026-08-20)
+choc ripple biscuits,chocolate ripple biscuit,review,hirokoliston vocab mint alias (2026-08-20)
+kanten,agar,review,hirokoliston vocab mint alias (2026-08-20)
+vegetarian gelling powder,agar,review,hirokoliston vocab mint alias (2026-08-20)
+dry harusame noodles,harusame,review,hirokoliston vocab mint alias (2026-08-20)
+brioche bread,brioche,review,hirokoliston vocab mint alias (2026-08-20)
+red capsicum,red bell pepper,review,capsicum is bell pepper; the AU branch folds color-to-color into the established family
+capsicum,bell pepper,review,"capsicum IS bell pepper — one plant, two English dialects; bell pepper keeps the name as the family head with four color children"
+dried chili pepper flakes,chili flakes,review,"one product, two labels — chili flakes is the family head (six children, and the resolution table speaks its name); the AU chilli spellings ride over as aliases"
+high smoke point vegetable oil,oil,review,"a role phrase, not a product — the frying-oil rule (curator 2026-08-20)"
+non-fragrant cooking oil,oil,review,"a role phrase, not a product — the frying-oil rule (curator 2026-08-20)"
+tablespons neutral oil,oil,review,"a role phrase, not a product — the frying-oil rule (curator 2026-08-20)"
+rice cooking wine,rice wine,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+shaoxing cooking wine,shaoxing wine,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+mirim cooking wine,mirin,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+chinese cooking rice wine,shaoxing wine,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+any chinese rice wine,shaoxing wine,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+korean rice cakes for soup,tteok,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+rice cake for tteokbokki,tteok,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+korean rice cakes for tteokbokki,tteok,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+rice cake for ddukboki,tteok,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+any cuts of beef,beef,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+any tender cut of beef,beef,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+for the beef,beef,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+assorted lettuce,lettuce,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+mixed seafood,assortment of seafood,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+assorted seafood,assortment of seafood,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+dried anchovies for soup,myeolchi,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+dried anchovies for stir fry,myeolchi,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+leftover thanksgiving turkey,turkey,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+milk powder for bread,milk powder,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+dak galbi sauce reserved,dakgalbi sauce,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+homemade puff pastry,puff pastry,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+homemade double pie crust,pie crust,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+fish cakes store-bought,fish cake,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+oil for pan-frying,oil,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+oil for stir,oil,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+mixed salad greens,mixed greens,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+mixed green salad,mixed greens,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+mixed baby salad greens,mixed greens,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+for each bowl salad greens,mixed greens,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+dried mixed fruit,mixed dried fruit,review,"role phrase or relic, not a product — the frying-oil rule, batch pass (curator 2026-08-20)"
+remaining chicken thighs and leg meat,chicken thighs,review,role phrase — retry with the registry name (plural trap)
+extra virgin olive oil,extra-virgin olive oil,review,"the unhyphenated spelling, protected in the parser 2026-08-20"
+tuna in olive oil,canned tuna,review,merged from tuna in olive oil in curate UI
+gelatine powder,gelatin,review,vocab-flag resolution (2026-08-20): powder is the default form
+black fungus mushroom,wood ear mushroom,review,vocab-flag resolution (2026-08-20): same fungus
+edamame bean,edamame,review,vocab-flag resolution (2026-08-20): the bean is the thing
+dry harusame noodles,harusame,review,vocab-flag resolution (2026-08-20): form word
+panko breadcrumb,panko,review,vocab-flag resolution (2026-08-20): panko IS the breadcrumb
+vegetarian gelling powder,agar,review,vocab-flag resolution (2026-08-20): the role phrase for agar-type gelling
+jel-it-in vegetarian gelling powder,agar,review,vocab-flag resolution (2026-08-20): queen brand of the same
+kombu dashi powder,dashi,review,"vocab-flag resolution (2026-08-20): powder form, same as dashi powder"
+mentsuyu sauce,mentsuyu,review,vocab-flag resolution (2026-08-20): wording variant
+pickled gherkin,gherkin,review,vocab-flag resolution (2026-08-20): gherkins are pickled by definition
+cream,heavy cream,review,vocab-flag resolution (2026-08-20): bare AU cream is pouring/heavy — the thickened cream precedent
+asian mushroom,mushroom,review,vocab-flag resolution (2026-08-20): generic; any mushroom satisfies
+custard,vanilla custard,review,vocab-flag resolution (2026-08-20): the default custard
+dark miso,red miso,review,vocab-flag resolution (2026-08-20): dark = aka in common use
+muscovado syrup,muscovado,review,vocab-flag resolution (2026-08-20): made from the sugar you buy
+dried fruit,mixed dried fruit,review,vocab-flag resolution (2026-08-20): the baking product
+mixed fruit,mixed dried fruit,review,"vocab-flag resolution (2026-08-20): same, AU baking shorthand"
+biscuit,sweet biscuit,review,vocab-flag resolution (2026-08-20): her biscuits are the sweet kind
+marmalade,orange marmalade,review,vocab-flag resolution (2026-08-20): the default marmalade
+casserole beef,beef,review,vocab-flag resolution (2026-08-20): the AU stewing-cut label
+mixed herbs,mixed herb,review,vocab-flag resolution (2026-08-20): number variant
+italian mixed herbs,italian herb mix,review,vocab-flag resolution (2026-08-20): wording variant
+choc ripple biscuits,chocolate ripple biscuit,review,vocab-flag resolution (2026-08-20): the label abbreviation
+dry burghul,burghul,review,vocab-flag resolution (2026-08-20): form word
+dry koya dofu,koya dofu,review,vocab-flag resolution (2026-08-20): koya dofu is freeze-dried by definition
+food colour,food coloring,review,vocab-flag resolution (2026-08-20): AU spelling
+agar agar,agar,review,"one gelling agent, doubled name — collision found by the ambiguity check"
+harusame noodles,harusame,review,"same noodle, number variant"
+choc ripple biscuit,chocolate ripple biscuit,review,label abbreviation folds into the full name
+chicken stock powder,chicken bouillon powder,review,"one powder, two labels — the form is the identity, the label is not (curator 2026-08-20)"
+regular soy sauce,soy sauce,review,soy sauce pass (curator 2026-08-20): the settled ruling: the generic IS the regular bottle
+korean soy sauce,soy sauce,review,soy sauce pass (curator 2026-08-20): same ruling — jin ganjang is the corpus generic
+korean jin ganjang soy sauce,soy sauce,review,"soy sauce pass (curator 2026-08-20): same ruling, longest spelling"
+korean soup base soy sauce,soup soy sauce,review,soy sauce pass (curator 2026-08-20): a guk-ganjang spelling
+korean soup soy sauce gukganjang,soup soy sauce,review,soy sauce pass (curator 2026-08-20): the other guk-ganjang spelling
+korean fish sauce,myeolchi aekjeot,review,"fish sauce pass (curator 2026-08-20): korean fish sauce IS aekjeot — the named Korean product, not the generic"
+korean anchovy fish sauce,myeolchi aekjeot,review,"fish sauce pass (curator 2026-08-20): the same product, longer spelling"
+anchovy fish sauce,myeolchi aekjeot,review,fish sauce pass (curator 2026-08-20): anchovy fish sauce is myeolchi aekjeot by definition
+aekjeot,myeolchi aekjeot,review,"fish sauce pass (curator 2026-08-20): the bare category word, zero uses — folds into the dominant kind"
+perilla seed oil,perilla oil,review,merged from perilla seed oil in curate UI
+blak pepper,black pepper,review,corpus-wide name dedupe (curator 2026-08-20)
+constarch,cornstarch,review,corpus-wide name dedupe (curator 2026-08-20)
+soy sause,soy sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+guchugaru,gochugaru,review,corpus-wide name dedupe (curator 2026-08-20)
+naeyngmyeon noodles,naengmyeon noodles,review,corpus-wide name dedupe (curator 2026-08-20)
+korean tuna saue,korean tuna sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+pumpkin pure,pumpkin puree,review,corpus-wide name dedupe (curator 2026-08-20)
+gruy re cheese,gruyere cheese,review,corpus-wide name dedupe (curator 2026-08-20)
+romain lettuce,romaine lettuce,review,corpus-wide name dedupe (curator 2026-08-20)
+arugla,arugula,review,corpus-wide name dedupe (curator 2026-08-20)
+apple sider,apple cider,review,corpus-wide name dedupe (curator 2026-08-20)
+silke tofu,silken tofu,review,corpus-wide name dedupe (curator 2026-08-20)
+ssukat,ssukgat,review,corpus-wide name dedupe (curator 2026-08-20)
+dangmuyeon,dangmyeon,review,corpus-wide name dedupe (curator 2026-08-20)
+dang myeon,dangmyeon,review,corpus-wide name dedupe (curator 2026-08-20)
+short grain rice four,short grain rice flour,review,corpus-wide name dedupe (curator 2026-08-20)
+all spice,allspice,review,corpus-wide name dedupe (curator 2026-08-20)
+honey crisp apple,honeycrisp apple,review,corpus-wide name dedupe (curator 2026-08-20)
+omni pork luncheon meat,omnipork luncheon meat,review,corpus-wide name dedupe (curator 2026-08-20)
+beltfish,belt fish,review,corpus-wide name dedupe (curator 2026-08-20)
+buchim garu,buchimgaru,review,corpus-wide name dedupe (curator 2026-08-20)
+garae tteok,garaetteok,review,corpus-wide name dedupe (curator 2026-08-20)
+ssam jang,ssamjang,review,corpus-wide name dedupe (curator 2026-08-20)
+suimi ya cai,sui mi ya cai,review,corpus-wide name dedupe (curator 2026-08-20)
+toban djang,toban djan,review,corpus-wide name dedupe (curator 2026-08-20)
+chilli powder,chili powder,review,corpus-wide name dedupe (curator 2026-08-20)
+chilli sauce,chili sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+castor sugar,caster sugar,review,corpus-wide name dedupe (curator 2026-08-20)
+self-rising flour,self raising flour,review,corpus-wide name dedupe (curator 2026-08-20)
+beef rib eye,beef ribeye,review,corpus-wide name dedupe (curator 2026-08-20)
+corn starch,cornstarch,review,corpus-wide name dedupe (curator 2026-08-20)
+cornflour,cornstarch,review,corpus-wide name dedupe (curator 2026-08-20)
+bread crumbs,breadcrumbs,review,corpus-wide name dedupe (curator 2026-08-20)
+soy bean sprouts,soybean sprouts,review,corpus-wide name dedupe (curator 2026-08-20)
+mungbean sprouts,mung bean sprouts,review,corpus-wide name dedupe (curator 2026-08-20)
+flour all purpose,all-purpose flour,review,corpus-wide name dedupe (curator 2026-08-20)
+flank beef steak,beef flank steak,review,corpus-wide name dedupe (curator 2026-08-20)
+skinless boneless chicken breast,boneless skinless chicken breast,review,corpus-wide name dedupe (curator 2026-08-20)
+skinless boneless pork belly,boneless skinless pork belly,review,corpus-wide name dedupe (curator 2026-08-20)
+skin-on boneless pork belly,boneless skin-on pork belly,review,corpus-wide name dedupe (curator 2026-08-20)
+lean skin-on pork belly,skin-on lean pork belly,review,corpus-wide name dedupe (curator 2026-08-20)
+fermented red bean curd,red fermented bean curd,review,corpus-wide name dedupe (curator 2026-08-20)
+dried adzuki red beans,dried red adzuki beans,review,corpus-wide name dedupe (curator 2026-08-20)
+dried vermicelli rice noodles,dried rice vermicelli noodles,review,corpus-wide name dedupe (curator 2026-08-20)
+short grain japanese rice,japanese short-grain rice,review,corpus-wide name dedupe (curator 2026-08-20)
+short-grain korean rice,korean short grain rice,review,corpus-wide name dedupe (curator 2026-08-20)
+kimchi pork mix base,kimchi pork base mix,review,corpus-wide name dedupe (curator 2026-08-20)
+italian spicy sausage,spicy italian sausage,review,corpus-wide name dedupe (curator 2026-08-20)
+instant korean ramen noodles,korean instant ramen noodles,review,corpus-wide name dedupe (curator 2026-08-20)
+greek yogurt plain,plain greek yogurt,review,corpus-wide name dedupe (curator 2026-08-20)
+white short grain rice,short grain white rice,review,corpus-wide name dedupe (curator 2026-08-20)
+young whole chicken,whole young chicken,review,corpus-wide name dedupe (curator 2026-08-20)
+red thai chili pepper,thai red chili pepper,review,corpus-wide name dedupe (curator 2026-08-20)
+agar powder,agar,review,corpus-wide name dedupe (curator 2026-08-20)
+hondashi powder,hondashi,review,corpus-wide name dedupe (curator 2026-08-20)
+miso paste,miso,review,corpus-wide name dedupe (curator 2026-08-20)
+white miso paste,white miso,review,corpus-wide name dedupe (curator 2026-08-20)
+wasabi paste,wasabi,review,corpus-wide name dedupe (curator 2026-08-20)
+sriracha sauce,sriracha,review,corpus-wide name dedupe (curator 2026-08-20)
+ponzu sauce,ponzu,review,corpus-wide name dedupe (curator 2026-08-20)
+worcestershire,worcestershire sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+hot pepper sauce,hot sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+hot mustard paste,hot mustard,review,corpus-wide name dedupe (curator 2026-08-20)
+chinese five spice powder,chinese five spice,review,corpus-wide name dedupe (curator 2026-08-20)
+pumpkin spice powder,pumpkin spice,review,corpus-wide name dedupe (curator 2026-08-20)
+cocoa,cocoa powder,review,corpus-wide name dedupe (curator 2026-08-20)
+matcha,matcha powder,review,corpus-wide name dedupe (curator 2026-08-20)
+ceremonial-grade matcha powder,ceremonial grade matcha,review,corpus-wide name dedupe (curator 2026-08-20)
+cinnamon powder,cinnamon,review,corpus-wide name dedupe (curator 2026-08-20)
+turmeric powder,turmeric,review,corpus-wide name dedupe (curator 2026-08-20)
+white pepper powder,white pepper,review,corpus-wide name dedupe (curator 2026-08-20)
+cumin powder,cumin,review,corpus-wide name dedupe (curator 2026-08-20)
+cardamom seed,cardamom,review,corpus-wide name dedupe (curator 2026-08-20)
+ginger root,ginger,review,corpus-wide name dedupe (curator 2026-08-20)
+taro root,taro,review,corpus-wide name dedupe (curator 2026-08-20)
+sesame seed oil,sesame oil,review,corpus-wide name dedupe (curator 2026-08-20)
+perilla powder,perilla seeds powder,review,corpus-wide name dedupe (curator 2026-08-20)
+rice wine vinegar,rice vinegar,review,corpus-wide name dedupe (curator 2026-08-20)
+dried pollock fish,dried pollock,review,corpus-wide name dedupe (curator 2026-08-20)
+glutinous rice powder,glutinous rice flour,review,corpus-wide name dedupe (curator 2026-08-20)
+rice powder,rice flour,review,corpus-wide name dedupe (curator 2026-08-20)
+korean mustard seed powder,korean mustard powder,review,corpus-wide name dedupe (curator 2026-08-20)
+korean red pepper bean paste,korean red pepper paste,review,corpus-wide name dedupe (curator 2026-08-20)
+chinese chili flakes,chinese chili pepper flakes,review,corpus-wide name dedupe (curator 2026-08-20)
+thai chili pepper flakes,thai chili flakes,review,corpus-wide name dedupe (curator 2026-08-20)
+acorn starch powder,acorn starch,review,corpus-wide name dedupe (curator 2026-08-20)
+barley malt,barley malt powder,review,corpus-wide name dedupe (curator 2026-08-20)
+chicken powder,chicken bouillon powder,review,corpus-wide name dedupe (curator 2026-08-20)
+soybean sauce,soy sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+belacan sauce,belacan,review,corpus-wide name dedupe (curator 2026-08-20)
+buldak,buldak sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+korean green,korean green pepper,review,corpus-wide name dedupe (curator 2026-08-20)
+cannellini,cannellini beans,review,corpus-wide name dedupe (curator 2026-08-20)
+azuki,azuki beans,review,corpus-wide name dedupe (curator 2026-08-20)
+azuki red beans,azuki beans,review,corpus-wide name dedupe (curator 2026-08-20)
+adzuki red beans,azuki beans,review,corpus-wide name dedupe (curator 2026-08-20)
+red adzuki beans,azuki beans,review,corpus-wide name dedupe (curator 2026-08-20)
+dried azuki beans,dried adzuki beans,review,corpus-wide name dedupe (curator 2026-08-20)
+red bean paste,sweetened red bean paste,review,corpus-wide name dedupe (curator 2026-08-20)
+azuki red bean paste,sweetened red bean paste,review,corpus-wide name dedupe (curator 2026-08-20)
+oyster mushroom sauce,vegetarian oyster sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+vegetarian mushroom oyster sauce,vegetarian oyster sauce,review,corpus-wide name dedupe (curator 2026-08-20)
+jajangmyeon,jajangmyeon noodle,review,corpus-wide name dedupe (curator 2026-08-20)
+black pepper corn,black peppercorns,review,dedupe retry against the registry (plural) name
+canned chick pea,canned chickpeas,review,dedupe retry against the registry (plural) name
+soy bean,soybeans,review,dedupe retry against the registry (plural) name
+black soy beans,black soybeans,review,dedupe retry against the registry (plural) name
+button,button mushrooms,review,dedupe retry against the registry (plural) name
+vegetable oil,oil,review,merged from vegetable oil in curate UI
+saeujeot,saewoojeot,review,curate UI
+dasima,seaweed - kombu/dashima,review,25-mention orphan twin of the kombu alias
+dry miyeok,seaweed - wakame/miyeok,review,twin of alias dried miyeok
+kimbap seaweed,seaweed - nori/gim,review,role phrase
+triangle kimbap seaweed wraps,seaweed - nori/gim,review,role phrase
+palm size dried seaweed,dried seaweed,review,size phrase
+dried wakame seaweed,seaweed - wakame/miyeok,review,curator line note on Easy Miso Soup
+wakame seaweed,seaweed - wakame/miyeok,review,same note
+nori seaweed,seaweed - nori/gim,review,names the species not the category
+haidai,seaweed - kombu/dashima,review,海带 in thewoksoflife lines
+sushi nori,seaweed - nori/gim,review,common on kimbap lines
+sesame dipping sauce,goma dare,review,curator note on Chanko Nabe 2026-08-20
+sisho,shiso,review,typo twin; its alias shiso leaves was outranking the real node
+japanese sesame paste,neri goma,review,goma dare recipe line 2026-08-20
+godeungeo,mackerel,review,merged from godeungeo in curate UI
+silk chocolate soy milk,chocolate soy milk,review,renamed in curate UI
+garlic chive,buchu,review,singular twin
+asian garlic chives,buchu,review,role-phrase twin
+buchu and,buchu,review,parse artifact
+chinese chives,buchu,review,same plant (jiucai = Allium tuberosum); curator ruling 2026-08-21 follows the buchu naming pattern
+ribeye,beef ribeye,review,twin (corpus dedupe while curating bulgogi)
+ribeye steak,beef ribeye,review,form-word twin
+eggshells,eggs,review,nobody buys eggshell only (curator 2026-08-21)
+salted gulbi,gulbi,review,folds into gulbi (curator 2026-08-21)
+non-iodized salt,salt,review,merged from non-iodized salt in curate UI
+ear sweet corn,sweet corn,review,merged from ear sweet corn in curate UI

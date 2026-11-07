@@ -1,0 +1,12 @@
+[Unit]
+Description=Republish jipbap static site when curation inputs change (STATIC-SPEC §6)
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/recipes
+# Cloudflare credentials, chmod 600 and never in the repo. The dash means a
+# missing file is not a failure: the timer stays harmless on a box that has
+# no publish rights.
+EnvironmentFile=-/home/ubuntu/.jipbap-deploy.env
+ExecStart=/usr/local/bin/jipbap-static

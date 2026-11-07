@@ -1,0 +1,3185 @@
+/* Primitive styling only. Replaced wholesale when a designed system arrives —
+   nothing outside primitives.tsx references any of these class names.
+
+   ── One palette, two themes ──────────────────────────────────────────────
+   Colour used to be written literally at every use, with a handful of
+   `prefers-color-scheme` blocks patching SOME components afterwards. The
+   result was exactly what it sounds like: `body` had no dark rule at all, so
+   in dark mode the page stayed white while the cards, drawer and modal went
+   dark. Patches of each.
+
+   So every colour is a token now, declared once per theme. A component that
+   forgets to think about dark mode still gets it, because it never names a
+   colour — and the class of bug where half the page flips is not possible.
+
+   The values live in one place and are *assigned* twice, because CSS has no
+   way to share a block between a media query and an attribute selector. The
+   duplication is the assignment list, never the colours themselves. */
+:root {
+  --light-bg: #fff;         --dark-bg: #0e0e0e;
+  --light-fg: #111;         --dark-fg: #e8e8e8;
+  --light-muted: #666;      --dark-muted: #9a9a9a;
+  --light-faint: #999;      --dark-faint: #777;
+  --light-line: #eee;       --dark-line: #262626;
+  --light-border: #ccc;     --dark-border: #3a3a3a;
+  --light-border-soft: #ddd;--dark-border-soft: #333;
+  --light-surface: #fff;    --dark-surface: #161616;
+  --light-sunken: #fafafa;  --dark-sunken: #111;
+  --light-hover: #f6f6f6;   --dark-hover: #1e1e1e;
+  /* The one brand colour: cookable, done, yours. */
+  --light-accent: #1f5c34;  --dark-accent: #7FBF95;
+  --light-accent-fg: #fff;  --dark-accent-fg: #0e0e0e;
+  --light-accent-tint: #f4f9f5; --dark-accent-tint: #16211a;
+  /* Inverted controls — a primary button, a selected filter. */
+  --light-invert: #111;     --dark-invert: #e8e8e8;
+  --light-invert-fg: #fff;  --dark-invert-fg: #111;
+
+  /* Semantic tints. Each is a background and a foreground that stay legible
+     together, so a component picks a PAIR and cannot mismatch them. */
+  --light-have-bg: #eef6ee;   --dark-have-bg: #16241a;
+  --light-have-fg: #2c5c2c;   --dark-have-fg: #8FCFA3;
+  --light-want-bg: #eef2fa;   --dark-want-bg: #141a26;
+  --light-want-fg: #33506B;   --dark-want-fg: #A8C4DE;
+  --light-want-line: #b8c8e6; --dark-want-line: #2c3a55;
+  --light-urgent-bg: #fdf0e6; --dark-urgent-bg: #271b10;
+  --light-urgent-fg: #8a4d17; --dark-urgent-fg: #D8A63F;
+  --light-urgent-line: #e8bd93; --dark-urgent-line: #5a431f;
+  --light-missing-bg: #faf0f0;--dark-missing-bg: #2a1616;
+  --light-missing-fg: #7a3b3b;--dark-missing-fg: #E4886D;
+  --light-missing-line: #e0b4b4; --dark-missing-line: #5a2c2c;
+  --light-warn-bg: #FFF7E0;   --dark-warn-bg: #2A2410;
+  --light-warn-fg: #5A4A12;   --dark-warn-fg: #E6D9A8;
+  --light-warn-line: #E4C86A; --dark-warn-line: #6A5A22;
+  --light-star: #E0A21C;      --dark-star: #E0A21C;
+  --light-star-off: #d8d8d8;  --dark-star-off: #3a3a3a;
+  --light-danger: #b3261e;    --dark-danger: #E4786D;
+  --light-alias: #8A5E06;     --dark-alias: #D8A63F;
+
+  --bg: var(--light-bg);               --fg: var(--light-fg);
+  --muted: var(--light-muted);         --faint: var(--light-faint);
+  --line: var(--light-line);           --border: var(--light-border);
+  --border-soft: var(--light-border-soft);
+  --surface: var(--light-surface);     --sunken: var(--light-sunken);
+  --hover: var(--light-hover);
+  --accent: var(--light-accent);       --accent-fg: var(--light-accent-fg);
+  --accent-tint: var(--light-accent-tint);
+  --invert: var(--light-invert);       --invert-fg: var(--light-invert-fg);
+  --have-bg: var(--light-have-bg);     --have-fg: var(--light-have-fg);
+  --want-bg: var(--light-want-bg);     --want-fg: var(--light-want-fg);
+  --want-line: var(--light-want-line);
+  --urgent-bg: var(--light-urgent-bg); --urgent-fg: var(--light-urgent-fg);
+  --urgent-line: var(--light-urgent-line);
+  --missing-bg: var(--light-missing-bg); --missing-fg: var(--light-missing-fg);
+  --missing-line: var(--light-missing-line);
+  --warn-bg: var(--light-warn-bg);     --warn-fg: var(--light-warn-fg);
+  --warn-line: var(--light-warn-line);
+  --star: var(--light-star);           --star-off: var(--light-star-off);
+  --danger: var(--light-danger);       --alias: var(--light-alias);
+  --shadow: rgba(0,0,0,.06);
+  --scrim: rgba(0,0,0,.35);
+
+  /*
+    ── No display face ─────────────────────────────────────────────────────
+
+    A serif was fitted to the wordmark and four headings on 2026-08-20 and
+    taken off the same day, at Richard's word on seeing it: the wordmark
+    first, then the rest. `system-ui` throughout is the decision, not the
+    absence of one.
+
+    Recorded so it is not proposed again as an obvious win. The argument FOR
+    was real — system-ui is the typeface of a settings panel, and a name that
+    disappears is not a brand — and it lost to how it actually looked. If a
+    display face is ever revisited, the thing to fix first is the evidence:
+    the trial was judged from screenshots taken on this VM, which has no
+    Georgia installed and rendered Liberation Serif instead. Nobody has yet
+    seen the face that would ship.
+  */
+
+  color-scheme: light;
+}
+
+/*
+  ── Light only ────────────────────────────────────────────────────────────
+
+  There were two more assignment blocks here — one for `prefers-color-scheme:
+  dark`, one for the `[data-theme="dark"]` the toggle set — and they are gone
+  with the toggle itself.
+
+  The token structure below stays exactly as it was, and that is deliberate:
+  every colour is still named once and assigned once, so nothing in the app
+  writes a literal colour. Bringing dark back is re-adding an assignment list,
+  not re-theming a stylesheet.
+
+  The `--dark-*` values are kept as declarations for the same reason. They cost
+  nothing unreferenced and they are the palette somebody chose, which is the
+  expensive half of the work.
+*/
+
+* { box-sizing: border-box; }
+/*
+  ── the black flash on tap ────────────────────────────────────────────────
+
+  Mobile browsers paint their own highlight over whatever you touch: a dark
+  translucent rectangle covering the element's box. On a small control nobody
+  notices. On `.section-fold`, which spans the ENTIRE width of a shelf heading,
+  it is a black bar flashing across the panel — which is what "black flickering
+  when I click the caret" is.
+
+  Turning it off means the tap needs an acknowledgement of our own, or it reads
+  as dead: `:active` darkens the caret for exactly as long as the finger is
+  down, which is the same information without painting over the content.
+*/
+html { -webkit-tap-highlight-color: transparent; }
+
+body { margin: 0; font: 15px/1.5 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+a { color: inherit; }
+.page { max-width: 1100px; margin: 0 auto; padding: 16px 16px 120px; }
+.section { margin: 0 0 28px; }
+.section-title { font-size: 13px; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+.count { color: var(--faint); font-weight: 400; }
+.section-action { margin-left: auto; text-transform: none; letter-spacing: 0; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--border); background: var(--surface); border-radius: 14px;
+  padding: 3px 10px; font: inherit; font-size: 13px; color: var(--fg); cursor: pointer; }
+.chip-have { background: var(--have-bg); border-color: var(--have-fg); color: var(--have-fg); }
+.chip-want { background: var(--want-bg); border-color: var(--want-line); color: var(--want-fg); }
+.chip-urgent { background: var(--urgent-bg); border-color: var(--urgent-line);
+  color: var(--urgent-fg); font-weight: 600; }
+/* Removed from the shelf it is drawn on, and kept there so it can be put back.
+   The same treatment a ticked list row gets, on the chip itself, so both panels
+   say "gone" the one way. */
+.chip-gone { opacity: .45; text-decoration: line-through; }
+.chip-missing { background: var(--missing-bg); border-color: var(--missing-line);
+  color: var(--missing-fg); }
+/*
+  Two states, and the fill is what tells them apart — Richard's rule, 2026-08-18.
+
+    FILLED   this button changes something. Commit, save, delete, move.
+    OUTLINED it leaves things as they are. Cancel, dismiss, done, back, or a
+             button that only opens a form where the change will be made.
+
+  So the fill is not emphasis, it is a claim about consequence, and it has to
+  mean the same thing on every screen. Two rules follow from that:
+
+  - Nothing is drawn as bare text. A borderless label is a third state the eye
+    has to learn, and it reads as a link — so the quiet kind keeps its outline
+    and spends only colour on being quieter.
+  - Outlined means NO fill, not a paler one. `--surface` here made the button
+    a filled shape everywhere the page behind it was a different tone, which
+    is the one distinction the whole scheme rests on.
+
+  Filled is `--invert`, never `--accent`: the accent means "you have this" in
+  the pantry, and a button wearing it says the wrong thing loudly.
+*/
+/*
+  ── And one size, big enough to hit ───────────────────────────────────────
+
+  13px type in a 4px box was a desk-era default that survived into a product
+  used one-handed in a shop. Every button now wears the size the checkout pair
+  wears — 46px tall, 15px, semibold, 8px radius — which is the size already
+  approved on "Done shopping" and on the two-ended dialogs, and which clears the
+  44px touch target those were sized against in the first place.
+
+  `min-height` rather than `height`, and `inline-flex` to centre a label that
+  may wrap: a button is as tall as its content when its content is taller, and
+  never shorter than a thumb. The one deliberate exception stays the checkout
+  pair at 58px — see `.ask-actions-tall` — because that hand is also holding a
+  trolley.
+*/
+.btn { border: 1px solid var(--border); background: none; border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 46px; padding: 10px 16px; font: inherit; font-size: 15px;
+  font-weight: 600; color: var(--fg); cursor: pointer; }
+.btn-primary { background: var(--invert); color: var(--invert-fg); border-color: var(--invert); }
+.btn-quiet { border-color: var(--border-soft); background: none; color: var(--muted); }
+.btn:disabled { opacity: .5; cursor: default; }
+.toggle { display: flex; align-items: center; gap: 6px; padding: 3px 0; cursor: pointer; }
+/*
+  ── Panels are filled, not outlined ───────────────────────────────────────
+
+  Every container in the product was a 1px rounded rectangle on white — the
+  first-run card, the pantry, the grocery list, the request cards, the recipe
+  cards. Counted at 1280px the home screen drew about sixty of them. When
+  everything is outlined nothing is emphasised, and a page of equal-weight
+  boxes reads as an admin tool rather than something to cook from.
+
+  A fill says the same thing with no line: this is a region, it is behind the
+  page rather than on it. `--sunken` is two points off white, which is enough
+  to separate a panel from the page and not enough to compete with a
+  photograph — and the photograph is the thing that should be loudest here.
+
+  The borders that stay are the ones doing work a fill cannot: dividers
+  between rows, the focus ring, and anything drawn over an image.
+*/
+.panel { border: 0; border-radius: 8px; padding: 12px;
+  background: var(--sunken); }
+.note { color: var(--muted); font-size: 13px; margin: 6px 0; }
+.empty { color: var(--faint); font-size: 14px; margin: 6px 0; }
+.recipe { border-top: 1px solid var(--line); padding: 10px 0; }
+.recipe-head { display: flex; gap: 8px; align-items: baseline; }
+.recipe-title { font-weight: 600; text-decoration: none; }
+@media (hover: hover) { .recipe-title:hover { text-decoration: underline; } }
+.recipe-source { color: var(--faint); font-size: 12px; }
+.recipe-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tag { font-size: 12px; padding: 1px 7px; border-radius: 10px;
+  background: var(--sunken); color: var(--muted); }
+.tag-have { background: var(--have-bg); color: var(--have-fg); }
+.tag-missing { background: var(--missing-bg); color: var(--missing-fg); }
+.tag-urgent { background: var(--urgent-bg); color: var(--urgent-fg); }
+.tag-warn { background: var(--warn-bg); color: var(--warn-fg); }
+.search { display: flex; gap: 6px; margin-bottom: 8px; position: relative; }
+.search input { flex: 1; padding: 6px 8px; border: 1px solid var(--border);
+  border-radius: 4px; font: inherit; background: var(--surface); color: var(--fg); }
+/* The ✕-in-a-circle, riding inside the bar's right edge — drawn, not typed,
+   like every mark. The input's own padding keeps text from running under it. */
+.search input:not(:placeholder-shown) { padding-right: 32px; }
+.search-clear { position: absolute; right: 4px; top: 50%;
+  transform: translateY(-50%); display: inline-flex; padding: 3px;
+  border: 0; border-radius: 50%; background: none; color: var(--muted);
+  cursor: pointer; line-height: 0; }
+@media (hover: hover) { .search-clear:hover { color: var(--fg); } }
+
+/* ── nav ──────────────────────────────────────────────────────────────────
+   Both other pages existed and neither was findable: the calendar hung off one
+   inline link in the home page's filter row, and "my recipes" was a tab inside
+   a gallery. A product with three places needs three visible places. */
+/* Off-screen until focused, then a real, visible control at the top-left. It
+   must not be `display: none` — a hidden element cannot receive focus, and a
+   skip link nobody can focus is decoration. */
+.skip { position: absolute; left: -9999px; top: 0; z-index: 100;
+  padding: 10px 16px; border-radius: 0 0 8px 0;
+  background: var(--invert); color: var(--invert-fg);
+  font-weight: 600; text-decoration: none; }
+.skip:focus { left: 0; }
+/* Phone-only — see the rule inside the 640px block. At desk width the pantry
+   drawer is already beside the grid with its own controls, and a floating disc
+   for a panel you can SEE is furniture. */
+.pantry-fab { display: none; }
+.nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  padding: 0 0 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line); }
+/* The name, at the size a name should be.
+   It inherited body size, which made it the same weight of thing as the
+   tagline beside it and the links opposite — the one word on the page that is
+   not navigation, drawn as though it were. Everywhere at once, because it is
+   the same mark on the app pages, the sign-in page, the account page and the
+   legal documents, all of which reach it through this one class. */
+/* The mark sits beside the name, not above it — see `Brand`. `inline-flex`
+   rather than a floated image so the two move as one object: the link's hit
+   area covers both, and the gap cannot collapse when the bar wraps.
+
+   The mark is drawn on a 24-unit box whose bowl occupies the lower two thirds,
+   so centring it against a capital letter sets it slightly low. The nudge is
+   optical and belongs here rather than in the SVG, which other surfaces draw
+   at other sizes. */
+.nav-brand { font-weight: 700; text-decoration: none; font-size: 20px;
+  letter-spacing: -.01em; display: inline-flex; align-items: center; gap: 7px; }
+.nav-brand svg { flex: none; transform: translateY(-.5px); }
+@media (max-width: 560px) { .nav-brand { font-size: 18px; gap: 6px; } }
+/* What the corpus is, beside the name it belongs to — see `Nav`. Muted and
+   small: it is an answer to a question a returning user stopped asking, and it
+   must not compete with the places next to it.
+
+   `margin-right: auto` is what used to sit on `.nav-brand`, pushing everything
+   else right; it moves here so the tagline stays welded to the name rather than
+   floating between the brand and the first link. */
+.nav-tag { margin: 0 10px 0 8px; font-size: 12px; color: var(--muted);
+  white-space: nowrap; }
+@media (max-width: 560px) {
+  /* On a narrow phone the bar is brand + theme toggle, and the tagline is the
+     only thing that can wrap. Let it: two short lines is better than a truncated
+     sentence, and this is the width where a stranger most needs to read it. */
+  .nav-tag { white-space: normal; margin: 0 8px 0 0; }
+}
+
+/* ── the inventory controls (§4d) ─────────────────────────────────────────
+   Right-aligned in the top bar, adjacent to each other so they read as a pair.
+   When the sign-up button joins this bar it goes to their right. */
+.nav-panel { display: inline-flex; align-items: center; gap: 6px;
+  font: inherit; font-size: 14px; padding: 6px 11px;
+  border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); color: var(--fg); cursor: pointer; }
+.nav-panel[aria-pressed="true"] { background: var(--invert); color: var(--invert-fg);
+  border-color: var(--invert); }
+.nav-panel svg { flex: none; }
+
+/* ── the bottom bar: phones only (§4d) ────────────────────────────────────
+   Where the thumb is. Hidden by default so that a desk browser never pays for
+   it; the phone rule below switches it on. */
+.tabbar { display: none; }
+/*
+  The grocery list is a page; the drawer never holds that shelf any more.
+*/
+.panels-no-list .shelf-list { display: none; }
+/*
+  The panel state governs the PHONE's floating widget only.
+
+  On a desk the drawer is docked furniture with its own dock/hide/expand
+  controls, and its nav icon was removed precisely because it is already
+  visible. Applying "pantry closed" at that width hid the drawer with nothing
+  left to reopen it — the pantry became unreachable on every desktop page.
+*/
+@media (max-width: 860px) {
+  .panels-no-pantry .shelf-pantry, .panels-no-pantry .pantry-search { display: none; }
+}
+/* Closed on a phone means the floating widget is dismissed; on a desk the
+   drawer stays where it is. */
+@media (max-width: 860px) {
+  .panels-no-pantry.panels-no-list .drawer { display: none; }
+}
+.nav-link { text-decoration: none; font-size: 14px; padding: 5px 11px;
+  border-radius: 999px; color: var(--muted); }
+@media (hover: hover) { .nav-link:hover { background: var(--hover); color: var(--fg); } }
+.nav-link[aria-current="page"] { background: var(--invert); color: var(--invert-fg); }
+/* The three places, hard right.
+
+   They were centred, which was the right answer while a theme toggle and a
+   sign-up button held the far end — the group sat between two weights. Both
+   are gone, so centring left the bar as name, tagline, a gap, three links, and
+   then a second gap to the edge: the places floating in the middle of nothing
+   with the corner they used to balance now empty.
+
+   `margin-left: auto` and one gap instead. The brand and what it is on the
+   left, where reading starts; the places on the right, where a cursor already
+   is after using the last one. */
+.nav-places { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+/* Kept for whatever ends up on this side next — empty today. */
+.nav-end { display: flex; align-items: center; gap: 6px; }
+@media (max-width: 860px) {
+  /* The places live in the bottom bar at this width, so the group is empty and
+     the auto margins would push the theme toggle to the middle of the bar. */
+  .nav-places { display: none; }
+}
+/* Three states, one control: the label says what you will GET, and "system"
+   is a real choice rather than the absence of one. */
+.theme-btn { font: inherit; font-size: 13px; padding: 5px 11px; border-radius: 999px;
+  border: 1px solid var(--border-soft); background: var(--surface); color: var(--muted);
+  cursor: pointer; }
+@media (hover: hover) { .theme-btn:hover { color: var(--fg); border-color: var(--border); } }
+
+/*
+ * The state widget sits IN FLOW, under the shelf whose chip opened it.
+ *
+ * It was `position: fixed` on the bottom edge — a sheet, docked to the
+ * viewport rather than to the thing being edited. Moving it in the DOM did
+ * nothing while that held, which is the tell: it was anchored to the window,
+ * not the chip. Now it is a panel that pushes the page down where it belongs,
+ * with a notch pointing back at the row it came from.
+ */
+.widget { position: relative; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 12px 14px; margin: 10px 0 4px;
+  box-shadow: 0 2px 10px var(--shadow); }
+.widget::before { content: ""; position: absolute; top: -6px; left: 18px; width: 10px; height: 10px;
+  background: var(--surface); border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border); transform: rotate(45deg); }
+.widget-inner { max-width: 900px; }
+.widget h3 { margin: 0 0 6px; font-size: 15px; }
+.widget-close { float: right; }
+
+/* curation */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin: 10px 0; }
+.grid label, .wide { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--muted); }
+.wide { margin-top: 8px; }
+.grid select, .grid input, .wide input { font: inherit; font-size: 14px; color: var(--fg);
+  background: var(--surface); padding: 5px 6px; border: 1px solid var(--border); border-radius: 4px; }
+.line { border-top: 1px solid var(--line); padding: 6px 0; display: flex;
+  flex-wrap: wrap; gap: 6px; align-items: center; }
+.line-raw { flex: 1 1 320px; text-align: left; font: inherit; font-size: 13px;
+  background: none; border: 1px solid transparent; border-radius: 4px; color: var(--fg);
+  padding: 2px 4px; cursor: pointer; }
+@media (hover: hover) { .line-raw:hover { border-color: var(--border-soft); } }
+.line-bad { background: var(--missing-bg); border-color: var(--missing-line);
+  text-decoration: line-through; }
+.tier { font: inherit; font-size: 11px; padding: 1px 7px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--sunken); color: var(--muted); cursor: pointer; }
+/* A marked main ingredient reads as an assertion; the unmarked prompt stays
+   faint, so twelve lines do not look like twelve unanswered questions. */
+.tier-main { background: var(--accent); border-color: var(--accent);
+  color: var(--accent-fg); font-weight: 600; }
+/* Quiet until used — twelve empty boxes must not read as twelve open questions. */
+.line-note { flex: 1 1 160px; min-width: 120px; font: inherit; font-size: 12px;
+  padding: 2px 6px; border: 1px solid transparent; border-bottom-color: var(--line);
+  border-radius: 4px; background: none; color: var(--fg); }
+@media (hover: hover) { .line-note:hover { border-color: var(--border-soft); } }
+.line-note:focus { border-color: var(--border); outline: none; background: var(--surface); }
+.line-note:not(:placeholder-shown) { background: var(--sunken); border-color: var(--border-soft); }
+/* Substitutes read as an offer, not a correction — different colour, same shape. */
+.line-sub:not(:placeholder-shown) { background: var(--accent-tint); border-color: var(--have-fg); }
+/* curation ledger */
+.ledger { display: flex; flex-direction: column; }
+.ledger-row { border-top: 1px solid var(--line); padding: 6px 0; display: flex;
+  flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; }
+.ledger-title { flex: 1 1 260px; font-weight: 500; color: var(--fg); }
+.ledger-source, .ledger-when { font-size: 12px; color: var(--faint); }
+.ledger-src { font-size: 12px; }
+.method { margin: 6px 0; padding-left: 20px; font-size: 14px; color: var(--fg); }
+.method li { margin-bottom: 6px; }
+.ask { margin-top: 10px; padding: 8px 10px; border: 1px solid var(--urgent-line);
+  background: var(--urgent-bg); color: var(--fg); border-radius: 6px; font-size: 14px; }
+
+/* ── failure, said out loud ─────────────────────────────────────────────
+   Optimistic writes are right for a pantry — the alternative is a UI that
+   lags every tap. They are only honest if a failure is impossible to miss,
+   so these are loud on purpose and do not auto-dismiss. */
+.failbar { position: sticky; top: 0; z-index: 20; margin: 0 0 10px;
+  padding: 8px 12px; border: 1px solid var(--missing-line); border-radius: 6px;
+  background: var(--missing-bg); color: var(--missing-fg); font-size: 13px;
+  display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.failbar button { font: inherit; font-size: 12px; margin-left: auto;
+  border: 1px solid var(--missing-line); background: var(--surface); color: var(--missing-fg);
+  border-radius: 5px; padding: 2px 8px; cursor: pointer; }
+.fail { color: var(--danger); }
+.fail-detail { white-space: pre-wrap; background: var(--sunken); color: var(--fg);
+  padding: 10px; border-radius: 6px; font-size: 12.5px; overflow-x: auto; }
+
+/* The buy link sits with the gap it answers, not in a shop of its own. */
+.buy a { color: var(--accent); }
+.buy { margin-top: 2px; }
+
+/*
+ * The §3a check line. Deliberately quiet: it is a question about a recipe the
+ * user CAN probably cook, so it must not read like the missing-ingredient tag.
+ */
+.recipe-checks {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0 0 0 10px;
+  border-left: 2px solid var(--warn-line);
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+.recipe-checks li { margin: 3px 0; }
+
+/* ── search hits ──────────────────────────────────────────────────────────
+   Rows, not chips: a chip has room for a name and nothing else, and the
+   choice between `onion` and `korean green onion` is settled by the count. */
+.hits { list-style: none; margin: 8px 0 0; padding: 0; border: 1px solid var(--line);
+  border-radius: 4px; }
+.hits li + li { border-top: 1px solid var(--line); }
+.hit { display: flex; align-items: baseline; gap: 10px; width: 100%; text-align: left;
+       background: none; border: 0; padding: 7px 10px; font: inherit; color: var(--fg);
+       cursor: pointer; }
+@media (hover: hover) { .hit:hover { background: var(--hover); } }
+.hit-name { font-weight: 600; }
+.hit-via { color: var(--alias); font-size: 13px; }
+.hit-via b { font-weight: 700; }
+.hit-count { margin-left: auto; color: var(--muted); font-size: 12px;
+  font-variant-numeric: tabular-nums; }
+.hit-held { color: var(--accent); font-size: 11px; text-transform: uppercase;
+  letter-spacing: .06em; }
+.hit.held .hit-name { color: var(--accent); }
+.hit[disabled] { cursor: default; }
+@media (hover: hover) { .hit[disabled]:hover { background: none; } }
+.hit-have { color: var(--accent); font-weight: 600; }
+
+/* The MATCHES scroll, not the drawer.
+   Five of yours plus twelve from the corpus, each of which can carry children
+   under it, is taller than the whole drawer on a phone (`min(66vh, 520px)`,
+   below). With the lists in normal flow the only scroller was `.drawer-inner`,
+   so reaching the bottom match scrolled the search field off the top — you
+   could not see what you had typed — and pushed both shelves out of sight.
+   `contain` stops the drawer taking over once this reaches its end. */
+.hitbox { max-height: min(46vh, 320px); overflow-y: auto; overscroll-behavior: contain; }
+
+/* ── near-miss distance ───────────────────────────────────────────────────
+   Its own tag, because the list is ORDERED on it and the eye should be able
+   to run down the column reading just this. */
+.tag-away { background: var(--want-bg); color: var(--want-fg); font-weight: 600; }
+
+/* ── shell: pantry drawer beside the gallery ──────────────────────────────
+   The pantry used to stack above the results, so a real pantry put your own
+   ingredients between you and the recipes they unlocked. Beside, not before. */
+.shell { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 26px; align-items: start; }
+/*
+   On a wide screen the drawer is NOT its own scroll region.
+
+   It used to be `sticky` with `max-height: calc(100vh - 28px)` and its own
+   `overflow-y`, which pinned it to the viewport and gave the page two
+   scrollbars side by side. That costs more than it buys: a real pantry of
+   sixty ingredients plus the grocery list plus the tickable kitchen is far
+   taller than a viewport, so the useful part was always the bit you had
+   scrolled a nested bar to reach, and the wheel did different things
+   depending on which column the pointer happened to be over.
+
+   Now it takes its natural height and the page scrolls, once, like a page.
+   The phone keeps its own scroller — there the drawer is an overlay over a
+   live page, which is a different thing and set in the media query below.
+*/
+.drawer-inner { padding-right: 6px; }
+.drawer-toggle, .drawer-scrim, .drawer-rail { display: none; }
+
+/* ── drawer modes ────────────────────────────────────────────────────────
+   Docked is the default. Hidden gives the gallery the full width and leaves
+   a rail to bring it back. Full is for sorting the pantry out properly,
+   which is a different job from cooking and wants the whole screen. */
+.shell-hidden { grid-template-columns: 34px minmax(0, 1fr); gap: 14px; }
+.shell-hidden .drawer { display: none; }
+.shell-hidden .drawer-rail { display: flex; position: sticky; top: 14px;
+  flex-direction: column; align-items: center; gap: 8px; width: 34px; padding: 10px 0;
+  font: inherit; font-size: 12px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--surface); color: var(--muted); cursor: pointer; }
+@media (hover: hover) { .shell-hidden .drawer-rail:hover { background: var(--hover); color: var(--fg); } }
+.drawer-rail svg { width: 18px; height: 18px; }
+.drawer-rail-word { writing-mode: vertical-rl; letter-spacing: .08em; text-transform: uppercase; }
+
+.shell-full { grid-template-columns: minmax(0, 1fr); }
+.shell-full .drawer { position: fixed; inset: 0; z-index: 45; background: var(--bg);
+  overflow-y: auto; }
+.shell-full .drawer-inner { position: static; max-height: none;
+  max-width: 900px; margin: 0 auto; padding: 20px 18px 60px; }
+.shell-full .main { display: none; }
+.shell-full .drawer-scrim { display: none; }
+
+.drawer-modes { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 10px; }
+/*
+  The controls stick; the pantry does not — desk widths only.
+
+  This replaces a floating close button that appeared once the drawer had
+  scrolled away, and it is better for the reason the button was weak: it was a
+  SECOND control meaning the same thing as this row, arriving from nowhere based
+  on scroll position, and it could only close. Anyone who wanted to expand or
+  shrink the pantry was still scrolling back up.
+
+  Sticking the row instead keeps hide, expand and shrink where they already
+  live, always in reach, and costs no new UI. The pantry contents still scroll
+  away with the page — one scrollbar, one mental model, which is the whole
+  reason the column stopped being its own scroll region.
+
+  Desk only: on a phone the drawer is an overlay with its own scroller, these
+  buttons are hidden anyway, and there is nothing to scroll past.
+
+  The background is not decoration. Sticky content with a transparent
+  background has the ingredient chips of the shelf below sliding visibly
+  underneath it.
+*/
+@media (min-width: 861px) {
+  /*
+    Stuck to the EDGE, not 8px short of it.
+
+    `top: 8px` left an 8px strip of live page above the band, so a chip from the
+    shelf below rode up into it and sat there half-drawn, cut off by the top of
+    the window. A sticky bar with a backdrop is only honest while its backdrop
+    reaches the edge it is stuck to; short of that it is a floating card with a
+    slot of moving content above it.
+
+    Nothing moves at rest: sticky only takes effect once the row would have
+    scrolled past, so the top-of-page alignment with `.toolbar` below is
+    untouched, and `padding-top` keeps the same 6px of air above the buttons.
+  */
+  .drawer-modes { position: sticky; top: 0; z-index: 6;
+    background: var(--bg); padding: 6px 0 8px; margin-bottom: 4px; }
+  /*
+    The search row starts level with those buttons.
+
+    The `6px` above is the sticky row's backdrop, and it pushed the ⛶/‹ pair
+    6px down the page while the recipe search box and the dietary filter beside
+    it started at the column top. Six pixels is too small to read as a decision
+    and too large to look like anything but a mistake: two rows of controls,
+    side by side, almost level.
+
+    Matched here rather than by taking the padding off the drawer, because the
+    padding is doing a job — it is what the sticky row paints over the chips
+    scrolling beneath it. The same number, so the two move together if it ever
+    changes.
+  */
+  .toolbar { margin-top: 6px; }
+  /*
+    And the column has to be tall enough to stick INSIDE.
+
+    A sticky element travels within its parent's box and no further, so on the
+    cook page — where the pantry panel is collapsed and the column is 293px of
+    a 3,341px row — it scrolled away almost immediately with nothing to hold
+    it. `align-items: start` on the shell grid is what keeps the column its
+    content's height; stretching this one column gives the sticky row the whole
+    scroll to work in, and changes nothing about where the content sits, since
+    the content is still at the top of it.
+  */
+  .shell > .drawer { align-self: stretch; }
+  .drawer-inner { height: 100%; }
+}
+/* Icon-only, so square rather than a pill sized for words — and big enough
+   that the glyph has room in it. At 26px the mark filled the box and read as
+   cramped; the target was also under every touch guideline going. */
+.drawer-mode { font: inherit; line-height: 0; width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+  border-radius: 8px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--muted); cursor: pointer; }
+/* A finger is not a cursor. 44px is the smallest target that reliably works. */
+@media (pointer: coarse) {
+  .drawer-mode { width: 44px; height: 44px; }
+  .drawer-mode svg { width: 24px; height: 24px; }
+}
+/* No accent. The accent means "you have this" everywhere else in the product,
+   and spending it on a window control tells the eye the wrong thing is
+   important. Chrome gets a neutral response and nothing more. */
+@media (hover: hover) { .drawer-mode:hover { background: var(--hover); color: var(--fg); } }
+.drawer-mode[aria-pressed="true"] { border-color: var(--border); color: var(--fg); }
+.main { min-width: 0; }
+
+/* ── filters ──────────────────────────────────────────────────────────── */
+.topbar { border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 14px; }
+/* USER-SPEC §6. Muted, not an alert — it reports a setting working as asked,
+   and a warning colour would read as something having gone wrong. */
+.hidden-note { margin: 8px 0 0; }
+.hidden-note b { color: var(--fg); font-variant-numeric: tabular-nums; }
+
+/* "Buy one thing" — reuses `.hits`/`.hit` so a suggestion you can act on looks
+   the same wherever it appears, rather than being a second thing to learn. */
+.unlocks { margin-top: 14px; }
+.unlocks-lead { margin: 0; font-size: 12px; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--muted); }
+.filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 16px; }
+.filter { display: inline-flex; align-items: baseline; gap: 7px; font: inherit; font-size: 14px;
+  padding: 7px 13px; border: 1px solid var(--border-soft); border-radius: 999px;
+  background: var(--surface); color: var(--muted); cursor: pointer; }
+@media (hover: hover) { .filter:hover { border-color: var(--border); color: var(--fg); } }
+.filter[aria-selected="true"] { background: var(--invert); border-color: var(--invert);
+  color: var(--invert-fg); }
+.filter-count { font-size: 12px; font-variant-numeric: tabular-nums; opacity: .7; }
+
+/* ── gallery ──────────────────────────────────────────────────────────── */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(216px, 1fr)); gap: 16px; }
+/*
+  The grid before the device has answered — `HomeGrid`.
+
+  The pantry is read in a mount effect and the shelf arrives over the network,
+  so the first paint genuinely does not know what to draw. It holds the SHAPE
+  of what is coming rather than a spinner: the cards are the page, and a layout
+  that jumps by a screen height when they land reads as broken however fast it
+  was. Same grid, same card proportion, no animation — a pulsing block is a
+  claim about how long this will take, and we do not know.
+*/
+.gridskeleton { display: grid; grid-template-columns: repeat(auto-fill, minmax(216px, 1fr));
+  gap: 16px; }
+.gridskeleton-card { border-radius: 8px; background: var(--sunken); aspect-ratio: 3 / 4; }
+/* `position: relative` so the title's stretched overlay has this to size to —
+   see `.card-title::after`. */
+.card { position: relative; border: 0; border-radius: 8px;
+  overflow: hidden;
+  background: var(--sunken); display: flex; flex-direction: column; }
+.card-shot { position: relative; display: block; aspect-ratio: 4 / 3; background: var(--sunken); }
+.card-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-noshot { position: absolute; inset: 0; display: grid; place-items: center;
+  color: var(--faint); font-size: 12px; }
+.card-badge { position: absolute; left: 8px; bottom: 8px; font-size: 11px; font-weight: 600;
+  padding: 3px 8px; border-radius: 999px; backdrop-filter: blur(3px); }
+/* Fixed, not themed: these sit over a photograph, and a photograph does not
+   change with the theme. */
+.card-badge-have { background: rgba(14,99,83,.92); color: #fff; }
+.card-badge-away { background: rgba(17,17,17,.82); color: #fff; }
+.card-body { padding: 10px 11px 12px; display: flex; flex-direction: column; gap: 4px; }
+/* The title became an `h3` for the document outline; the heading element itself
+   carries no styling of its own, so the card looks exactly as it did. */
+.card-title-h { margin: 0; font: inherit; }
+.card-title { font-weight: 600; font-size: 14px; line-height: 1.32; color: inherit;
+  text-decoration: none; }
+/*
+  The whole card is the link.
+
+  One `<a>` stretched over the card beats wrapping the card in an anchor: the
+  heart is a BUTTON, and a button nested inside an anchor is invalid markup that
+  fires both. The overlay sits under `.card-save` (z-index 2), so the heart keeps
+  its own hit area and everything else — photo, title, source, meter, the gaps
+  between them — opens the recipe.
+
+  Text stays selectable outside the overlay's own box, and the accessible name is
+  still just the title, because a pseudo-element contributes no content.
+*/
+.card-title::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+/* Any real button in the body rises above the overlay for the same reason the
+   heart does — chips without handlers are spans, so this can only catch
+   controls. Found the hard way: "delete" on an Added-by-me card hit-tested to
+   the stretched link and opened the recipe it was meant to remove. */
+.card-body button { position: relative; z-index: 2; }
+/* The ring belongs to the card, not to a line of text, now that the whole card
+   is the target. */
+.card:has(.card-title:focus-visible) { outline: 2px solid var(--accent);
+  outline-offset: 2px; }
+.card-title:focus-visible { outline: none; }
+@media (hover: hover) { .card-title:hover { text-decoration: underline; } }
+.source-mark { display: inline-flex; vertical-align: -1.5px; }
+.card-source { margin: 0; font-size: 11px; color: var(--faint); text-transform: uppercase;
+  letter-spacing: .05em; }
+/* The lead words stay small text; the ingredients are chips like everywhere
+   else in the product. Wrapping, because a card is narrow and a name is not. */
+.card-uses { margin: 4px 0 0; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.card-lead { font-size: 11px; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .04em; }
+.card-chips { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+/* Chips on a card sit inside a 200px column, so they run at a smaller size
+   than the drawer's without becoming a different object. */
+.card .chip { font-size: 11px; padding: 2px 7px; border-radius: 10px; }
+/* …but this selector outranks `.chip-pinned` (0,2,0 against 0,1,0), so it was
+   silently dropping the padding that makes room for the pip and the mark sat
+   on top of the first letter. Restated at matching specificity, and the pip
+   scaled to the smaller chip. */
+.card .chip-pinned { padding-left: 17px; }
+.card .chip-pinned::before { left: 6px; width: 6px; height: 6px; margin-top: -3px; }
+.card-missing { margin: 2px 0 0; font-size: 12px; color: var(--missing-fg); }
+.card-warn { margin: 2px 0 0; font-size: 12px; color: var(--missing-fg); }
+.card-check { margin: 4px 0 0; display: flex; align-items: center; gap: 5px;
+  flex-wrap: wrap; font-size: 12px; line-height: 1.4; color: var(--warn-fg);
+  background: var(--warn-bg); border-left: 2px solid var(--warn-line);
+  padding: 5px 7px; border-radius: 3px; }
+.card-actions { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+/* No left margin. The 6px was a gap from the source name it used to sit
+   beside; now that it starts its own line the same rule reads as an
+   indent, which lines it up with nothing. */
+.card-cooked { color: var(--accent); }
+.foot { margin-top: 22px; }
+
+/*
+  ── phone shape (§4d) ──────────────────────────────────────────────────────
+  Places move to a bottom bar and the top bar sheds them, keeping only the
+  brand and the two inventory controls. 640px rather than 860: a tablet has
+  room for the top bar and gets the desk shape, which is what §4d decided for
+  the panels too.
+*/
+@media (max-width: 640px) {
+  .nav .nav-link { display: none; }
+  .nav { padding-bottom: 8px; margin-bottom: 10px; }
+
+  /* The panels have one home on a phone — the bottom bar — so the top-right
+     pair is redundant there and was the only thing left at the unreachable end
+     of the screen. */
+  .nav .nav-panel { display: none; }
+
+  /*
+    Nothing on the right at all on a phone.
+
+    The sign-up ask and the theme toggle both sat in the top-right corner —
+    the one part of the screen a hand holding the phone cannot reach — and
+    between them they took enough width that the tagline had nowhere to go.
+    Neither is something anyone opens this app to do. The theme follows the
+    system by default and the ask has other moments (§9); on a phone the bar
+    is the name and what it is, and nothing else.
+  */
+  /*
+    Except it is back, because what lives here changed.
+
+    The argument above still holds for what it USED to hold — a sign-up ask and
+    a theme toggle, neither of which anyone opens this app to do. It now holds
+    one word: "Account" signed in, "Sign in" signed out. Both are destinations
+    someone goes looking for, and with the slot hidden there was no route to
+    either from a phone at all: no way to reach the account page, and no way to
+    sign in except by stumbling on the prompt inside the pantry.
+
+    A rare, deliberate destination is exactly what the far corner is FOR. The
+    reach argument is about things you use constantly, which is why the three
+    places and both panels are on the bottom bar and this is not.
+  */
+  .nav-end { display: flex; }
+  /*
+    And the link itself, which `.nav .nav-link { display: none }` above also
+    catches — that rule is there to move the PLACES to the bottom bar, and this
+    is not one of the places. Same specificity, declared after, so it wins.
+    One short word, so the tagline keeps its line.
+  */
+  /*
+    Outlined, like every other control in the product (Richard's call,
+    2026-08-18). On a desk this word sits in a row of place links and reads as
+    one of them; on a phone the places are on the bottom bar and this is the
+    only thing in the corner, so bare text left the one route to the account
+    looking like a caption. It changes nothing by itself — it opens a page — so
+    it takes the outline and not the fill.
+  */
+  .nav-end .nav-link { display: inline-flex; align-items: center; font-size: 13px;
+    border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px;
+    color: var(--fg); }
+
+  /*
+    The corner, and actually IN the corner.
+
+    `.nav` wraps, and the tagline carries `margin-right: auto` — so on a phone
+    the tagline claimed the rest of the first line and pushed this link onto a
+    row of its own, at the LEFT, a third of the way down the header. A corner
+    control that is neither in the corner nor level with the name reads as an
+    orphaned link rather than as the account slot.
+
+    So the rows are stated rather than left to fall out of the wrapping: the
+    name and the account link share the top line, and the tagline takes the
+    full width beneath them. It is the only part here that wants to wrap
+    anyway, and it is the part with nothing to be level with.
+  */
+  .nav-end { order: 2; margin-left: auto; align-self: flex-start; }
+  .nav-tag { order: 3; flex: 1 0 100%; margin: 2px 0 0; }
+
+  .tabbar { display: flex; flex-direction: column; position: fixed;
+    left: 0; right: 0; bottom: 0; z-index: 70;
+    background: var(--surface); border-top: 1px solid var(--line);
+    padding: 0 4px calc(6px + env(safe-area-inset-bottom));
+    /* The home-indicator strip on a modern iPhone is not tappable, so the bar
+       has to sit above it or its own labels are unreachable. */ }
+  /* The layer row sits above the places and is drawn as a shelf over them —
+     tinted, and divided by a hairline, so the stacking is visible rather than
+     merely implied by order. */
+  /*
+    The pantry, as a disc floating above the bar.
+
+    It used to be a full-width tinted row of its own — a whole band of a phone
+    screen spent on one icon, there to say "this layers over the page rather
+    than navigating somewhere". A control drawn floating IN FRONT of the content
+    says that by itself, and gives the band back to the grid.
+
+    Right-hand side, above the tab bar and clear of it, which is where the thumb
+    of the hand holding the phone already is. Fixed, so it does not scroll away.
+  */
+  .pantry-fab { position: fixed; z-index: 71;
+    right: 14px; bottom: calc(84px + env(safe-area-inset-bottom));
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border); background: var(--surface); color: var(--fg);
+    box-shadow: 0 3px 14px rgba(0,0,0,.22); cursor: pointer; }
+  .pantry-fab[aria-pressed="true"] { background: var(--invert); color: var(--invert-fg);
+    border-color: var(--invert); }
+  .tabbar-places { display: flex; padding-top: 4px; }
+  .tabbar-item { flex: 1 1 0; display: flex; flex-direction: column; align-items: center;
+    gap: 3px; padding: 6px 2px; min-height: 48px;
+    border: 0; background: none; cursor: pointer;
+    font: inherit; font-size: 10px; letter-spacing: .01em;
+    color: var(--muted); text-decoration: none; }
+  .tabbar-item[aria-current="page"], .tabbar-item[aria-pressed="true"] { color: var(--fg); }
+  .tabbar-label { line-height: 1; }
+
+  /*
+    The panel's window controls are a desk idea, and on a phone they were the
+    first thing in it.
+
+    Dock / hide / expand describe a panel that shares the screen with a gallery.
+    A phone panel is a sheet over the page — there is nothing to dock beside and
+    nothing to expand into — and the tab bar now opens and closes it, so these
+    were three controls for a job that already had one. The save indicator stays:
+    that is about the CONTENT, and it is the answer to "is my pantry kept".
+  */
+  .drawer-mode { display: none; }
+  .drawer-modes { justify-content: flex-end; min-height: 0; }
+  .drawer-toggle { display: none; }
+
+  /* The bar is fixed over the page, so the last of the content needs room to
+     clear it — otherwise the final row of cards is permanently behind it. */
+  .page, main.main { padding-bottom: 76px; }
+  /* And the acknowledgement sits above the bar rather than under it. */
+  .ack-wrap { bottom: 64px; }
+}
+
+/*
+  The pantry pill exists ONLY in the tablet band — 641px to 860px.
+
+  Below 641px there is a tab bar with a fridge on it, and the pill was a second
+  front door to the same panel: two controls, in two places, for one thing, and
+  the redundant one sat at the top of the page where the thumb is not. The tab
+  bar wins because it is where every other destination already is.
+
+  It was bounded only above, so `max-width: 860px` kept matching all the way
+  down and the later block beat the tab bar block's `display: none`. Stating
+  both edges is what makes "only here" true rather than merely intended.
+
+  `justify-self` because the toggle is a direct child of the `.shell` grid, and
+  a grid item stretches to its column unless told not to. `inline-flex` never
+  got the chance to shrink it, so the pill spanned the full width and — being
+  sticky — rode down the gallery covering whichever card's save heart happened
+  to be under it. The heart is at `right: 6px`; a pill that ends at its own text
+  cannot reach it.
+*/
+@media (max-width: 860px) and (min-width: 641px) {
+  .drawer-toggle { display: inline-flex; align-items: center; gap: 7px;
+    justify-self: start;
+    position: sticky; top: 8px; z-index: 30;
+    margin-bottom: 10px; font: inherit; font-size: 14px; padding: 7px 13px;
+    border: 1px solid var(--border); border-radius: 999px; background: var(--surface);
+    color: var(--fg); cursor: pointer; }
+}
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  /*
+    A FLOATING widget, not an edge-to-edge sheet.
+
+    A full-height drawer covering the screen makes consulting the pantry a place
+    you go — which is the thing §4d says it is not. Floating over the page, with
+    the page visible around it, is what makes it read as reference: you can see
+    the recipe you were reading behind the thing you are checking. It sits above
+    the tab bar so the bar it was opened from is never covered.
+  */
+  .drawer { position: fixed; inset: auto 10px calc(76px + env(safe-area-inset-bottom)) 10px;
+    width: auto; max-height: min(66vh, 520px); z-index: 40;
+    /*
+      THE PANEL ITSELF SCROLLS. There is no inner scroller any more.
+
+      This has been wrong three times, each time because the height was being
+      negotiated between two elements: the panel is bottom-anchored with a
+      `max-height` and no `height`, so its height is auto, and every attempt to
+      have a child fill it — `height: 100%`, then `flex: 1` — depended on that
+      auto height resolving to something the child could measure against.
+
+      So: one element, one height, one scroller. The panel caps itself and
+      scrolls its own overflow. Nothing inside has to know how tall it is, which
+      is the only version of this that cannot come apart again.
+
+      `overscroll-behavior: contain` keeps a flick at either end from chaining
+      into the page underneath.
+    */
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; box-shadow: 0 10px 34px rgba(0,0,0,.32);
+    overflow-y: auto; overscroll-behavior: contain;
+    /* No `-webkit-overflow-scrolling: touch`.
+
+       On a rounded, scrolling box it promotes the panel to its own compositing
+       layer in Safari, and the corners then paint as black flashes that leave
+       artifacts behind when the content height changes — which is exactly what
+       folding a shelf does. It has also been a no-op since iOS 13: momentum
+       scrolling is the default, so the property buys nothing and costs that. */
+    transform: translateY(12px) scale(.98); opacity: 0; pointer-events: none;
+    transition: transform .16s ease, opacity .16s ease; }
+  .shell-open .drawer { transform: none; opacity: 1; pointer-events: auto; }
+  /*
+    One rule, and it scrolls.
+
+    There were two, and the second undid the first: it set `max-height: none`
+    and `height: 100%` over a `max-height` that had just been given. `.drawer`
+    caps itself at 66vh and hides its own overflow, so a taller pantry was
+    simply cut off at the rounded corner — a sixty-chip kitchen showed however
+    many fitted and there was no way to reach the rest. The grocery list below
+    it was unreachable outright.
+
+    `height: 100%` is what makes the scroller fill the capped parent rather
+    than sizing to its own content, and the height cap now lives only on
+    `.drawer`, in one place, so the two cannot disagree again.
+
+    `overscroll-behavior: contain` stops a flick at the end of the pantry from
+    scrolling the page behind it — the drawer floats over a live page, and
+    handing the gesture through would move the thing the user is looking past.
+  */
+  /* Plain content now — the panel above is the scroller. Every height and
+     overflow the desk layout puts here has to be undone, or the inner starts
+     capping itself inside a parent that is already capped. */
+  .drawer-inner { position: static; max-height: none; height: auto;
+    overflow: visible; padding: 14px; }
+  /* No room for two columns, so "hidden" and "docked" are the same thing here —
+     the toggle above the content opens it either way. */
+  .shell-hidden { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .shell-hidden .drawer { display: block; }
+  .shell-hidden .drawer-rail { display: none; }
+  .shell-full .drawer { z-index: 45; }
+  .shell-full .main { display: none; }
+  .drawer-scrim { display: block; position: fixed; inset: 0; z-index: 35; border: 0;
+    background: var(--scrim); }
+}
+@media (prefers-reduced-motion: reduce) { .drawer { transition: none; } }
+
+/* ── acknowledgement (§4d) ────────────────────────────────────────────────
+   Bottom centre, above everything including the modal — a write can be made
+   from inside the recipe sheet, and feedback that appeared behind it would be
+   feedback nobody sees. `pointer-events: none` on the wrapper so a strip
+   sitting over the grid never eats a tap meant for a card; the strip itself
+   takes them back, because it holds a button. */
+/*
+  ── THE LAYER SCALE ───────────────────────────────────────────────────────
+  Every fixed layer in the app, in the order they must stack. Two bugs came
+  from getting this wrong, both the same shape: a thing opened FROM a surface
+  rendered BEHIND that surface, so it was visible and unusable.
+
+     20  in-flow stickies — failbar, suggest lists
+   30-45 shell furniture — sticky headings, drawer, drawer scrim, full drawer
+     70  tab bar
+     71  floating buttons — pantry, search, report
+     75  install prompt
+     95  .modal-wrap      the recipe modal
+     96  .popover         a panel opened from inside it
+     97  .modal-wrap-dlg  a dialog opened from either
+     98  .offline-bar     a fact about the whole app
+     99  .ack-wrap        undo, which must outrank anything it can be raised from
+    100  .skip            keyboard entry, above all content
+    200  .tapmeter        diagnostic, opt-in, deliberately above everything
+
+  The rule that generates it: **if X can be opened from Y, X sits above Y.**
+  Undo is last because it can be raised from every one of them.
+*/
+.ack-wrap { position: fixed; left: 0; right: 0; bottom: 0; z-index: 99;
+  display: flex; justify-content: center; padding: 0 12px 16px;
+  pointer-events: none; }
+.ack { pointer-events: auto; display: flex; align-items: center; gap: 14px;
+  max-width: min(460px, 100%);
+  padding: 11px 14px; border-radius: 10px;
+  background: var(--invert); color: var(--invert-fg);
+  box-shadow: 0 6px 24px rgba(0,0,0,.3);
+  font-size: 14px; animation: ack-in .16s ease-out; }
+.ack-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ack-undo { flex: none; border: 0; background: none; cursor: pointer;
+  font: inherit; font-weight: 700; text-decoration: underline;
+  color: inherit; padding: 4px 2px; }
+@keyframes ack-in { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .ack { animation: none; } }
+
+/* ── recipe modal ─────────────────────────────────────────────────────── */
+/* UX-SPEC §5: a control panel, not a preview. It sits over whatever page you
+   were on, because `?recipe=` is a parameter rather than a route. */
+/* The padding is what guarantees space around the sheet. Margins on the child
+   collapse against a scrolling flex container at the bottom edge; padding on
+   the scroller does not. */
+/*
+  A dialog is the TOP layer, above everything including whatever opened it.
+
+  It was 60 — under the phone tab bar (70) and under the anchored chip bar
+  (75) — so the Detail sheet opened BEHIND the four buttons that summoned it
+  and its scrim shaded nothing. A modal that does not cover what is beneath it
+  is not a modal; it is a second panel competing for the same screen.
+
+  95 rather than 90, so it is also above the offline bar. That strip is page
+  chrome and belongs under the scrim like the rest of the page.
+*/
+.modal-wrap { position: fixed; inset: 0; z-index: 95; display: flex;
+  align-items: flex-start; justify-content: center; overflow-y: auto;
+  /* A gap above, not a margin of air. It only has to say the sheet sits OVER
+     the page rather than starting at it — 12vh was doing that at the cost of
+     pushing the title off a phone, so the recipe opened showing its own top
+     edge and nothing else. Still scaled to the viewport, just far less of it. */
+  /* The band of scrim above the sheet.
+
+     It was cut to almost nothing when the floating ✕ went, on the grounds that
+     the control needing that room had left. Too far: the gap is also what says
+     "this is OVER the page" and gives the scrim something to be, and at 8px
+     the sheet reads as having replaced the page rather than covered it.
+     Restored to a middle: clearly a layer, still short of pushing the title
+     off the fold on a phone. */
+  padding: clamp(18px, 4vh, 44px) 16px 48px; }
+/*
+  A dialog always sits above both the sheet and any popover — see the note on
+  `.popover`. `Dialog` shares `.modal-wrap` with the recipe modal, so it carries
+  a modifier rather than a z-index of its own scattered through the component.
+
+  AFTER `.modal-wrap`, and that is the whole rule. It used to sit above it, and
+  two single-class selectors have identical specificity — so `.modal-wrap`'s 95
+  won on source order and the modifier did nothing. The "…" sheet opened from an
+  ingredient chip landed at 95, UNDER the popover at 96, so the panel it was
+  opened from covered it. Nothing about the declaration looked wrong; it was in
+  the wrong place in the file.
+*/
+.modal-wrap-dlg { z-index: 97; }
+/*
+   Centred on a desk, top-aligned on a phone.
+
+   A phone's sheet is nearly as tall as the screen, so "centred" and "at the
+   top" are the same picture and flex-start is the one that cannot go wrong. On
+   a wide screen a short recipe left a sheet pinned under the top edge with a
+   third of the window empty below it, which reads as the layout having failed
+   rather than as a deliberate position.
+
+   `margin-block: auto` on the CHILD, not `align-items: center` on the parent.
+   They look identical until the sheet is taller than the window, at which point
+   centring with `align-items` puts the top of the sheet above the scroll
+   origin and it cannot be reached at all. Auto margins collapse instead of
+   overflowing, so a long recipe simply goes back to starting at the top.
+*/
+@media (min-width: 861px) {
+  .modal-col { margin-block: auto; }
+}
+/* ── focus ──────────────────────────────────────────────────────────────
+   Nothing styled focus, so every ring was the browser's own blue — including
+   a full-sheet one around the modal, because it is focused programmatically
+   on open so that assistive tech lands inside it. That focus is structural
+   rather than something the user navigated to, so it shows nothing.
+
+   Everything you can actually operate keeps a ring, in this product's green.
+   Removing the indicator instead would make the app unusable by keyboard,
+   which is a far worse outcome than an ugly edge. */
+.modal:focus, .askbox:focus, .popover:focus, [role="tabpanel"]:focus,
+[tabindex="-1"]:focus { outline: none; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+/* Decoration only — the wrapper owns the dismissal, so this never has to be
+   hit-tested and its geometry cannot break closing. */
+.modal-scrim { position: fixed; inset: 0; border: 0; padding: 0;
+  background: var(--scrim); cursor: pointer; pointer-events: none; }
+/* `min(620px, 100%)` made the sheet exactly full-width on any screen under
+   620px, so it met both edges and the rounded corners were invisible against
+   them — the modal read as the page rather than as something over it. The
+   wrapper's padding now holds it off every edge, and the radius has something
+   to show against. */
+/* The column carries the sheet's width so the close button above it can align
+   to the sheet's own right edge rather than the viewport's. */
+.modal-col { position: relative; z-index: 1; display: flex; flex-direction: column;
+  align-items: flex-end; width: min(620px, 100%); }
+.modal { position: relative; z-index: 1; width: 100%;
+  margin: 0; background: var(--surface); border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.28); overflow: hidden; }
+/*
+  Phones only — not tablets, not desks.
+
+  `pointer: coarse` alone was too broad: a tablet is thumb-operated too, but it
+  has room for the sheet to sit well inside the viewport, so the scrim around it
+  is a large easy target and the button is a fourth way to do one thing. The
+  width bound is what separates the two — on a phone the sheet fills nearly the
+  whole screen and there is barely any scrim left to hit. Both conditions, so a
+  narrow desktop window does not sprout one either.
+*/
+/* The way out, at the bottom of the sheet — see `RecipeModal`. It matches the
+   two buttons above it in size and shape and differs only in fill: outline
+   against their solids, because it is the one that commits to nothing. */
+/*
+  The third button in the column, and now actually the same size as the two
+  above it.
+
+  It is rendered by `RecipeModal`, OUTSIDE `.modal-body` — closing is the
+  modal's business, not the detail's — so it never inherited the body's 20px
+  side padding and ran a full 40px wider than "View full recipe" and "Made
+  it!". Three stacked buttons where the last one is wider reads as a mistake,
+  because it is one.
+
+  Side margins match the body's padding; the 10px top matches the gap between
+  the exit and "Made it!", so all three are evenly spaced; the 22px bottom is
+  the body's own bottom padding, which this element sits below and so has to
+  supply itself. `min-height` is the same 62px floor the pair above share.
+*/
+/* `width: auto` on a BUTTON is shrink-to-fit, not fill — form controls size to
+   their content, so "Close" came out 87px wide beside two 318px buttons. An
+   explicit width is the only version that matches, and the 40px it subtracts is
+   the body's two 20px side paddings. */
+.modal-dismiss { display: flex; align-items: center; justify-content: center;
+  width: calc(100% - 40px); box-sizing: border-box;
+  min-height: 62px; margin: 10px 20px 22px; padding: 12px 18px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: none; color: var(--fg); cursor: pointer;
+  font: inherit; font-size: 16px; font-weight: 600; letter-spacing: .01em; }
+@media (hover: hover) { .modal-dismiss:hover { background: var(--hover); } }
+/* Positioned, so the heart inside it (`.card-save`, absolute) has something to
+   anchor to — otherwise it flies to the nearest positioned ancestor, which is
+   the sheet, and lands on the title. */
+.modal-shot { position: relative; background: var(--sunken); }
+/* No photo: the heart gets a row of its own at the top of the sheet, still on
+   the right, so its position does not move with the artwork. */
+.modal-save-bare { display: flex; justify-content: flex-end;
+  padding: 8px 8px 0; }
+.modal-save-bare .card-save { position: static; }
+/* Whole photo, never a band. The corpus is TikTok and Instagram, so the hero
+   is as often 9:16 as 16:9, and a fixed 220px cover crop beheaded the portrait
+   ones. Natural height up to what the sheet can afford; when the ratio and the
+   sheet disagree, the sunken ground shows at the sides. */
+.modal-shot img { display: block; width: 100%; height: auto;
+  max-height: min(52vh, 400px); object-fit: contain; }
+.modal-body { padding: 18px 20px 22px; }
+/* When the close button follows, the body stops padding its own bottom: the
+   22px was stacking with the button's 10px top margin and making the gap
+   below "Made it!" three times the gap above it. The button supplies the
+   bottom air itself. */
+.modal-body:has(+ .modal-dismiss) { padding-bottom: 0; }
+.modal-title { margin: 0 0 2px; font-size: 21px; line-height: 1.25; }
+.modal-h3 { margin: 18px 0 7px; font-size: 12px; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+.modal-h3 .count { margin-left: 6px; color: var(--faint); }
+.modal-actions { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+/* The way out is the last thing you do BEFORE cooking, and never taxed (§5). */
+.modal-exit { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+/*
+  Full width, and louder than anything else in the sheet.
+  It was an inline-block pill the width of its own label, sitting among a column
+  of same-shaped buttons — Plan, Made it, add a note — so the one control that
+  ends the decision looked like a peer of the ones that defer it. Spanning the
+  row is what makes it read as the bottom of the panel rather than another
+  option in it, and it is the easiest possible thumb target on a phone.
+*/
+.modal-exit .btn { display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 3px;
+  width: 100%; text-decoration: none;
+  padding: 12px 18px; border-radius: 8px;
+  font-size: 16px; font-weight: 600; letter-spacing: .01em;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18); }
+/* The second line inside the exit button — quieter than the label it sits
+   under, and never louder than the verb. Not `.note`: that colour is tuned for
+   the page background and this sits on the inverted fill. */
+.btn-sub { font-size: 12px; font-weight: 400; letter-spacing: 0; opacity: .78; }
+
+/*
+  "Made it!" — the exit's peer, and drawn as one.
+
+  Two things can happen at the bottom of the sheet: go and read the recipe, or
+  say you already cooked it. Same width, same height, same weight, because they
+  are the same KIND of decision; only the fill separates them. Making this the
+  quiet text link it started as put the one tap that drains the pantry two
+  visual tiers below the one that leaves the site.
+
+  The gap is 10px rather than the row gap used elsewhere: close enough to read
+  as a pair, far enough that a thumb aiming for one cannot catch the other.
+*/
+.modal-madeit { margin-top: 10px; }
+.modal-madeit .btn { display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 12px 18px; border-radius: 8px;
+  font-size: 16px; font-weight: 600; letter-spacing: .01em;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18); }
+/*
+  One height for the pair, set here rather than left to the content.
+
+  The exit carries a second line ("Come back to update your pantry") and this
+  one does not, so left alone they differ by about sixteen pixels — enough that
+  they stop reading as two of the same thing and start reading as a button and
+  a lesser button. A floor on both settles it, and neither can be clipped by it
+  because it is a minimum.
+*/
+.modal-exit .btn, .modal-madeit .btn { min-height: 62px; }
+.btn-madeit { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+/* "Edit" between two full-width buttons was the same pebble-between-boulders
+   the standalone page's actions row fixed — it takes their exact size here
+   too. Its own class rather than a blanket `.modal-actions .btn`, because the
+   OPEN edit form lives in the same section and its Save/Cancel pair must not
+   inherit hero sizing. Border and surface, no shadow: it edits, it does not
+   commit to anything, so it dresses like "Close". */
+.btn-editfull { display: flex; width: 100%; align-items: center; justify-content: center;
+  min-height: 62px; padding: 12px 18px; border-radius: 8px;
+  font-size: 16px; font-weight: 600; letter-spacing: .01em; }
+
+/* ── my version (§8) ──────────────────────────────────────────────────── */
+.myversion { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.myversion-title { margin: 0 0 10px; font-size: 15px; }
+.field { display: block; margin: 10px 0; }
+.field-label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.field textarea { width: 100%; font: inherit; font-size: 14px; padding: 8px 10px;
+  border: 1px solid var(--border-soft); border-radius: 4px; resize: vertical;
+  background: var(--surface); color: var(--fg); }
+/* The cook date in the "Made it!" dialogue. Sized like the note field beside
+   it rather than left at the browser's default, which is a different font and
+   about two thirds the height of everything around it. */
+.daypick { font: inherit; font-size: 14px; padding: 7px 10px;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--fg); }
+.daypick:disabled { opacity: .5; }
+.stars { display: flex; gap: 2px; align-items: center; margin: 4px 0; }
+.star { border: 0; background: none; cursor: pointer; padding: 0 2px;
+  font-size: 22px; line-height: 1; color: var(--star-off); }
+.star.on { color: var(--star); }
+.star:disabled { cursor: default; }
+.stars-inline { color: var(--star); }
+.cook-line { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; flex-wrap: wrap; }
+.cook-line .note { margin: 0; }
+.history-line { margin-top: 0; }
+.history-note { color: var(--muted); font-size: 13px; font-style: italic; margin: 2px 0 8px; }
+
+/* The wake-up: after "Made it" lands, the rating glows briefly. Nothing is
+   blocked and nothing must be dismissed — ignoring it is free. */
+.lastcook { margin-top: 12px; border-radius: 6px; padding: 2px 8px; margin-left: -8px; }
+.woken { animation: wake 2.4s ease-out; }
+@keyframes wake {
+  0%, 55% { background: var(--warn-bg); box-shadow: 0 0 0 1px var(--warn-line); }
+  100% { background: transparent; box-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) { .woken { animation: none; background: var(--warn-bg); } }
+
+/* ── summary (§6, §9) ─────────────────────────────────────────────────────
+   Reachable from any date-bound modal. Every number is computed from the cook
+   log; nothing here is stored. */
+.summary { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.summary-back { margin: 0 0 10px; font-size: 13px; }
+.summary-head { margin: 0 0 2px; display: flex; align-items: baseline; gap: 6px; }
+.summary-rating { font-size: 24px; }
+.summary-list { list-style: none; margin: 4px 0 14px; padding: 0; font-size: 14px; }
+.summary-list li { padding: 5px 0; border-top: 1px solid var(--line); }
+
+/* ── meal plan ────────────────────────────────────────────────────────────
+   A week, not a month: thirty cells on a phone give each meal a few pixels,
+   and "what am I eating this week" is a week-shaped question. */
+.cal-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cal-range { font-weight: 600; }
+.cal-home { margin-left: auto; }
+.cal-link { text-decoration: none; margin-left: 8px; }
+/* The calendar is a COLUMN of days — RECIPE-SPEC §4d.
+   Seven columns spent the widest axis on the thing there are fewest of, and gave
+   each meal inside a day a sliver. The phone already stacked it, which was the
+   tell: the stacked version was the readable one and the desktop grid was the
+   exception. */
+.week { display: flex; flex-direction: column; gap: 8px; }
+.day { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+       display: grid; grid-template-columns: 92px 1fr; gap: 10px; align-items: start; }
+.day-today { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.day-past { background: var(--sunken); }
+/* The date is a fixed rail on the left, so the eye runs straight down it and
+   every day's entries start at the same x. */
+.day-head { margin: 0; font-size: 12px; display: flex; flex-direction: column; gap: 1px; }
+.day-name { font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.day-num { color: var(--faint); font-weight: 400; }
+.day-today-tag { color: var(--accent); font-weight: 600; }
+.day-empty { color: var(--faint); margin: 0; grid-column: 2; }
+/* Entries side by side: a day is one line of the eye, and a day with three
+   things in it is a row of three rather than a stack of three. */
+.day-body { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.day-body .slot { flex: 0 1 auto; }
+.slot { display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap;
+  padding: 5px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.slot-meal { font-size: 10px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--faint); flex: 0 0 100%; }
+.slot-title { flex: 1 1 auto; text-decoration: none; }
+@media (hover: hover) { .slot-title:hover { text-decoration: underline; } }
+.slot-done .slot-title { color: var(--accent); }
+.slot-tick { color: var(--accent); font-weight: 700; }
+/* Cooked but never planned — a record, styled apart from an intention. */
+.slot-loose .slot-meal { color: var(--accent); }
+/* Whether a planned meal is cookable, said on the square. Quiet — it is
+   context for a decision already made, not an alarm. */
+.slot-away { font-size: 11px; color: var(--urgent-fg); white-space: nowrap; }
+.slot-can { color: var(--accent); }
+
+/* Meal slots, shared by the calendar's planner and the after-the-fact ask. */
+.meals { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 4px 0; }
+.mealchip { font: inherit; font-size: 12px; padding: 2px 9px; border-radius: 999px;
+  border: 1px solid var(--border-soft); background: var(--surface); color: var(--muted);
+  cursor: pointer; }
+.mealchip.on { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.mealchip:disabled { opacity: .5; cursor: default; }
+.cookrow { border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; }
+.cookrow:first-child { border-top: 0; }
+.cookrow-undo { margin-left: auto; }
+.planner-form { border: 1px solid var(--border-soft); border-radius: 6px;
+  padding: 10px; margin: 6px 0; }
+.planner-form input[type="date"] { font: inherit; padding: 5px 7px;
+  border: 1px solid var(--border); border-radius: 4px;
+  background: var(--surface); color: var(--fg); }
+
+/* One column per day stops working long before a phone's width. */
+@media (max-width: 780px) {
+  /* On a phone the rail costs too much of a narrow screen, so the date goes
+     back above its entries. */
+  .day { grid-template-columns: 1fr; gap: 4px; }
+  .day-head { flex-direction: row; align-items: baseline; gap: 6px; }
+  .day-empty, .day-body { grid-column: 1; }
+}
+
+/* The "+" sits at the foot of a day and stays quiet until hovered — seven of
+   them across a week must not read as seven things demanding attention. */
+.day-add { width: auto; margin-top: 0; padding: 2px 10px; font: inherit; font-size: 13px;
+  padding: 3px 0; border: 1px dashed var(--border-soft); border-radius: 4px;
+  background: none; color: var(--faint); cursor: pointer; }
+@media (hover: hover) { .day-add:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-tint); } }
+
+/* The picker: below the grid, because a day column is a seventh of the width
+   and a search box in one would be unusable. */
+.picker { border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px;
+  margin: 12px 0; background: var(--surface); box-shadow: 0 2px 10px var(--shadow); }
+.picker .search { margin-top: 8px; }
+
+/* ── the basket (UX-SPEC §4b) ─────────────────────────────────────────────
+   Nothing the app suggests reaches the grocery list without passing through
+   here. It sits at the top of the list itself — reviewed where it will land,
+   not in a dialog over it. */
+.basket { border: 1px solid var(--want-line); background: var(--want-bg); border-radius: 6px;
+  padding: 10px 12px; margin-bottom: 10px; }
+.basket-list { list-style: none; margin: 6px 0 8px; padding: 0; font-size: 14px;
+  max-height: 260px; overflow-y: auto; }
+.basket-list li { display: flex; align-items: baseline; gap: 8px;
+  padding: 4px 0; border-top: 1px solid var(--want-line); }
+.basket-list li:first-child { border-top: 0; }
+.basket-name { font-weight: 600; }
+.basket-why { color: var(--muted); font-size: 12px; }
+.basket-x { margin-left: auto; border: 0; background: none; cursor: pointer;
+  color: var(--faint); font-size: 13px; line-height: 1; padding: 2px 4px; }
+@media (hover: hover) { .basket-x:hover { color: var(--danger); } }
+
+/* More specific options, nested under the broad match. Indented and quieter:
+   an offer, not a correction (INGREDIENT-SPEC §3a). */
+.kids { list-style: none; margin: 0; padding: 0; }
+.kids .hit { padding-left: 22px; font-size: 14px; }
+.kids .hit-name { font-weight: 500; }
+.kid-mark { color: var(--faint); font-size: 11px; margin-left: -12px; }
+
+/* ── add your own recipe (SOCIAL-INGEST §2a) ──────────────────────────────
+   Paste-time metadata is the CONFIRMATION, not the extraction: you see the
+   thumbnail and title so you know you pasted the right video, then you type
+   the ingredients yourself. */
+.addrecipe { border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px;
+  margin-bottom: 16px; background: var(--surface); }
+.addrecipe-discard { margin-left: auto; display: inline-flex; padding: 5px;
+  border: 0; border-radius: 6px; background: none; color: var(--danger); cursor: pointer; }
+@media (hover: hover) { .addrecipe-discard:hover { background: var(--hover); } }
+.addrecipe-meta { display: flex; gap: 12px; align-items: flex-start; margin: 8px 0; }
+.addrecipe-meta img { width: 120px; height: 90px; object-fit: cover; border-radius: 4px;
+  background: var(--sunken); flex: 0 0 auto; }
+.addrecipe-meta > div { flex: 1 1 auto; min-width: 0; }
+.addrecipe .field input { width: 100%; font: inherit; padding: 6px 8px;
+  border: 1px solid var(--border); border-radius: 4px;
+  background: var(--surface); color: var(--fg); }
+
+/* ── first run ──────────────────────────────────────────────────────────── */
+/* The one place the brand colour is allowed to be a FIELD rather than a hair
+   line: this card is the first thing a new kitchen sees, and an accent tint
+   says "start here" without an outline shouting it. */
+.firstrun { border: 0; border-radius: 10px; padding: 18px;
+  margin-bottom: 18px; background: var(--accent-tint); }
+.firstrun-title { margin: 0 0 6px; font-size: 18px; }
+.firstrun-set { border: 0; padding: 8px 0 0; margin: 10px 0 0; display: flex;
+  flex-wrap: wrap; gap: 6px; align-items: center; }
+.firstrun-set legend { padding: 0; }
+/* Room between the last chip row and Done / No restrictions — the buttons sat
+   directly under the allergen chips and read as part of the same group. */
+.firstrun .cook-line { margin-top: 16px; }
+.firstrun-starter { list-style: none; margin: 12px 0; padding: 0;
+  display: grid; gap: 6px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.starter { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+  font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--surface); color: var(--muted); cursor: pointer; }
+.starter.on { border-color: var(--accent); color: var(--fg); }
+.starter-tick { width: 1em; color: var(--accent); font-weight: 700; }
+.starter-name { font-weight: 600; }
+
+/* ── the settle block, after a cook ─────────────────────────────────────── */
+.settle { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.settle-list { list-style: none; margin: 8px 0; padding: 0; }
+.settle-list li { display: flex; align-items: center; gap: 10px; padding: 4px 0; }
+.settle-list li + li { border-top: 1px solid var(--line); }
+.settle-name { flex: 1 1 auto; min-width: 0; }
+.settle-choice { display: flex; gap: 4px; flex: 0 0 auto; }
+.settle-btn { font: inherit; font-size: 12px; padding: 3px 8px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  cursor: pointer; }
+.settle-btn.on { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.settle-instead { font: inherit; font-size: 12px; padding: 3px 6px;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: var(--surface); color: var(--fg); }
+
+/* ── grid paging, plan line, active-filter notices ──────────────────────── */
+.gallery-more { text-align: center; margin-top: 14px; }
+.tonight-line, .pin-note, .lifted-note { margin: 0 0 12px; padding: 8px 10px;
+  border-left: 3px solid var(--accent); background: var(--sunken); border-radius: 0 4px 4px 0; }
+.findrecipe { margin-bottom: 14px; position: relative; }
+.findrecipe-hits { margin-bottom: 0; }
+/* The completions float over the page rather than pushing the grid down — the
+   grid IS the result now (§4j), and a list that shoved it out of view while you
+   typed would hide the thing you are searching. */
+.findrecipe .hitbox { position: absolute; z-index: 30; left: 0; right: 0;
+  background: var(--surface); border-radius: 4px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.22); }
+/* No "showing X" line under the box: the searched word stays IN the box and
+   the shelf it made is named after it, so a third statement of the same fact
+   was the page repeating itself twice over. */
+
+/* ── card pending: the tap is a server navigation, so it must acknowledge ── */
+.card-shot { position: relative; }
+.card-pending { position: absolute; inset: 0; display: block;
+  background: color-mix(in srgb, var(--surface) 55%, transparent); }
+.card-pending::after { content: ""; position: absolute; top: 50%; left: 50%;
+  width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%;
+  border: 2px solid var(--line); border-top-color: var(--accent);
+  animation: card-spin 0.7s linear infinite; }
+@keyframes card-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .card-pending::after { animation: none; border-top-color: var(--line); }
+}
+
+/* ── welcome back, diet notices ─────────────────────────────────────────── */
+.welcomeback { border: 1px solid var(--accent); border-radius: 8px; padding: 16px;
+  margin-bottom: 18px; background: var(--sunken); }
+.diet-warn, .diet-note { margin: 8px 0; }
+
+/* ── the aisle: one row per list item, ticked as the trolley fills ─────────
+   Every row the same height and every row ruled, which is a shopping list's
+   own shape. It used to rule only BETWEEN siblings, so a one-item aisle drew
+   no line at all and the page came out patchy: some groups boxed, some
+   floating, none of it meaning anything. The line belongs to the row. */
+.aisle { list-style: none; margin: 6px 0; padding: 0; }
+/* No rule under the row (Richard, 2026-08-18). It was drawn when the row was a
+   tick, a small chip and a reason — three things needing a line to say where one
+   row ended. The chip is now the row, at 16px on a 44px pill, and it draws its
+   own edges: a hairline under every one of them was a grid around things that
+   already had shape. */
+.aisle li { display: flex; align-items: center; gap: 10px; min-height: 46px;
+  padding: 4px 0; }
+.aisle-tick { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  font: inherit; font-size: 13px; cursor: pointer; }
+@media (hover: hover) { .aisle-tick:hover { border-color: var(--accent); color: var(--accent); } }
+.aisle-why { margin-left: auto; font-size: 11px; text-align: right; }
+
+/* ── own recipe: the method, and the paste-a-list reviewer ──────────────── */
+.recipe-steps { white-space: pre-wrap; margin: 6px 0 0; line-height: 1.55; }
+.paste { border: 1px solid var(--line); border-radius: 6px; padding: 10px;
+  margin: 8px 0; background: var(--sunken); }
+.paste textarea { width: 100%; font: inherit; padding: 6px 8px;
+  border: 1px solid var(--border); border-radius: 4px;
+  background: var(--surface); color: var(--fg); }
+
+.device-note { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--line); }
+
+.import-title { font: inherit; font-size: 13px; padding: 3px 6px; min-width: 0; width: 100%;
+  max-width: 260px; border: 1px solid var(--border); border-radius: 4px;
+  background: var(--surface); color: var(--fg); }
+
+/* ── the distance meter ─────────────────────────────────────────────────
+   Replaces "needs a, b, c" with a reading of how far the pantry is. The
+   count beside it is the accessible version; the bar is decoration over it,
+   which is why the graphic carries aria-hidden. */
+.meter { display: flex; align-items: center; gap: 7px; margin: 2px 0 1px; }
+.meter-segs { display: flex; gap: 2px; flex: 1 1 auto; min-width: 0; }
+.meter-segs i { height: 6px; flex: 1 1 auto; border-radius: 1px; background: var(--line); }
+.meter-segs i.on { background: var(--accent); }
+.meter-segs i.off { background: var(--line); }
+.meter-bar { flex: 1 1 auto; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.meter-bar span { display: block; height: 100%; background: var(--accent); }
+.meter-count { flex: 0 0 auto; font-size: 11px; font-weight: 600; color: var(--muted);
+  font-variant-numeric: tabular-nums; }
+.meter-count.done { color: var(--accent); }
+
+/* Visible to screen readers only — the meter's number needs a unit and the
+   card has no room to print one. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ── the collapsed dietary control ──────────────────────────────────────
+   Twelve toggles and two paragraphs used to sit here permanently, for a
+   setting most people change twice. Closed, it states what is on. */
+.toolbar { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap;
+  border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 12px; }
+.toolbar > *:first-child { flex: 1 1 240px; min-width: 0; }
+.dietchip { display: inline-flex; align-items: baseline; gap: 8px; flex: 0 0 auto;
+  font: inherit; font-size: 13px; padding: 7px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  cursor: pointer; }
+@media (hover: hover) { .dietchip:hover { border-color: var(--accent); } }
+.dietchip.on { border-color: var(--accent); color: var(--fg); }
+.dietchip-what { font-weight: 600; }
+.dietchip-do { font-size: 11px; color: var(--accent); text-transform: uppercase;
+  letter-spacing: .04em; }
+
+/* ── the notice strip ───────────────────────────────────────────────────
+   Four separately-bordered blocks became one status area at a fifth of the
+   height. Ordered by what it costs you to miss, not by render order. */
+.notices { border: 1px solid var(--line); border-left: 3px solid var(--line);
+  border-radius: 0 5px 5px 0; background: var(--sunken);
+  padding: 6px 10px; margin: 0 0 12px; display: flex; flex-direction: column; gap: 3px; }
+.notices .notice { margin: 0; font-size: 12px; line-height: 1.45; color: var(--muted); }
+.notices .notice-filter { color: var(--fg); }
+.notices .notice-filter b { color: var(--accent); }
+
+/* ── the pantry's one cloud, four views ─────────────────────────────────── */
+/* ── the two shelves ────────────────────────────────────────────────────
+   What you own and what you still need are different kinds of fact, so they
+   are styled apart rather than merely labelled apart: a tab bar made them
+   look like two views of one thing, and you had to read a control to know
+   which you were looking at. */
+.shelf { border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; }
+.shelf .section { margin: 0; }
+.shelf-pantry { background: var(--sunken); border: 0; }
+/* Dashed said "provisional", which a grocery list is not — it is the most
+   committed thing in the product. No fill HERE, though: on a phone this shelf
+   is the whole screen, and a full-screen grey field is exactly the "line for
+   its own sake" the desk-width rule below argues against. The fill arrives
+   with the width that needs it. */
+.shelf-list { background: none; border: 0; }
+
+/* ── the anchored state widget ──────────────────────────────────────────
+   Fixed, not absolute: `.drawer-inner` sets `overflow-y: auto` and would
+   clip an absolutely-positioned panel inside it. See `Popover`. */
+/* Above the phone tab bar, which is fixed at z-index 70. At 60 the panel
+   rendered BEHIND it: cut off at the bottom of the screen and, worse, not
+   tappable there — a control you can see and cannot press. */
+/* Sized by its content now that the content is a row of four buttons rather
+   than a card. A fixed 280px column was what made this tall, and tall is what
+   made it impossible to place under a chip near the bottom of a drawer. */
+/*
+  Above the recipe modal, and that was a real bug rather than a nicety.
+
+  The popover portals to `document.body`, so it is a SIBLING of the modal
+  rather than a child of it — and at 75 against the modal's 95 it opened
+  BEHIND. Tapping an ingredient inside a recipe appeared to do nothing: the
+  panel was there, on screen, with its buttons unreachable under the sheet.
+  That is the "fix your pantry while you decide" path, which is the whole
+  reason chips in the modal are tappable at all.
+
+  Three layers now, and they have to stay in this order: the sheet you are
+  reading, the panel you opened from it, and any dialog that panel opens.
+    95  .modal-wrap      the recipe modal
+    96  .popover         the ingredient panel over it
+    97  .modal-wrap-dlg  a dialog opened from either
+*/
+.popover { position: fixed; z-index: 96; width: max-content;
+  max-width: calc(100vw - 16px);
+  overflow-y: auto; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.popover .widget { border: 0; margin: 0; background: none; }
+/* Tight. The panel is 232px wide on a phone and its content is three short
+   buttons; 12px on every side spent a tenth of the width on air and pushed the
+   flags into two lines that had room to be one. */
+.popover .widget-inner { padding: 6px; }
+/* Just the `⋯` now, pushed to the right. The name went: the panel is anchored
+   to the chip that opened it, so a heading repeating it was the ingredient
+   said twice on one screen. */
+/* The ⋯, alone on its row and hard right. It holds one rare, consequential
+   thing (the standing exclusion) and nothing else. */
+.widget-head { display: flex; justify-content: flex-end; }
+.widget-more { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0; border-radius: 6px; line-height: 0;
+  border: 1px solid transparent; background: none; color: var(--muted); cursor: pointer; }
+@media (hover: hover) { .widget-more:hover { background: var(--hover); color: var(--fg); } }
+/* Open reads as a fill, not a drawn rectangle — the border that appeared at
+   the moment of the click read as a focus box around the control rather than
+   as its state. */
+.widget-more[aria-expanded="true"] { background: var(--hover); color: var(--fg); }
+@media (pointer: coarse) { .widget-more { width: 40px; height: 40px; } }
+
+/* Three states as pressed buttons on one row — not a form of three checkboxes.
+   Same shape as the meal slots and the settle control, learned once. */
+/* One per line. A two-column grid wrapped two of the three labels in a 232px
+   panel, and made the targets half-width for no gain. */
+.flags { display: flex; flex-direction: column; gap: 5px; margin: 8px 0 4px; }
+/* "Use first" spans the row above the other two — it is a different question
+   from "where is it", and the only one that steers the ranking. */
+/* Tick and label are one centred group — see `.flag-tick`. */
+.flag { position: relative; font: inherit; font-size: 12px; padding: 8px 10px;
+  border-radius: 6px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--muted); cursor: pointer; display: inline-flex; align-items: center;
+  justify-content: center; gap: 4px; white-space: nowrap; }
+@media (hover: hover) { .flag:hover { border-color: var(--accent); } }
+.flag.on { border-color: var(--accent); background: var(--sunken);
+  color: var(--accent); font-weight: 600; }
+/* In the flow, immediately before the words. It is only rendered when the flag
+   is on, so it cannot reserve space in the unset state and cannot push an
+   unticked label off centre — which is what the absolute version was avoiding
+   at the cost of stranding the tick at the far edge. */
+.flag-tick { line-height: 1; font-weight: 700; }
+
+/* A standing instruction that hides hundreds of recipes is not the same kind
+   of act as "I have this", and must not sit at the same weight. */
+.widget-standing { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+
+/* ── clarifications: the question gets a screen, the answer gets a line ──── */
+.askbox { position: relative; z-index: 51; width: min(420px, 100%);
+  margin: auto; padding: 22px; border-radius: 14px; background: var(--surface);
+  border: 1px solid var(--border); box-shadow: 0 10px 40px rgba(0,0,0,.28); }
+.ask-eyebrow { margin: 0 0 8px; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--muted); }
+.ask-question { margin: 0 0 6px; font-size: 19px; line-height: 1.3; }
+.ask-because { margin: 0 0 16px; }
+.ask-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+
+/* The permission control — PRIVACY-SPEC §5. Separated from what sits above it,
+   because a toggle that reads as part of the paragraph before it reads as part
+   of the thing you already agreed to. No accent, no emphasis: it is asking for
+   something, and dressing it up is how a request starts to look like a default. */
+.consent { margin: 0 0 16px; padding: 12px 0 0; border-top: 1px solid var(--border); }
+.consent .note { margin: 4px 0 0; }
+
+/* An answered question is a state you can flip, not a question to re-read. */
+.ask-settled { display: flex; align-items: baseline; gap: 8px; margin: 6px 0 0;
+  font-size: 12px; color: var(--muted); }
+.ask-settled-q { flex: 1 1 auto; min-width: 0; }
+.ask-settled-a { flex: 0 0 auto; font: inherit; font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--accent);
+  background: none; color: var(--accent); cursor: pointer; text-transform: uppercase; }
+
+.askprompt { display: flex; align-items: center; gap: 8px; justify-content: space-between;
+  margin: 0 0 10px; padding: 7px 10px; font-size: 12px;
+  border: 1px solid var(--accent); border-radius: 6px; background: var(--sunken); }
+
+/* The basket is a question now, so it is laid out inside the dialog box. */
+.askbox .basket-list { list-style: none; margin: 10px 0; padding: 0;
+  max-height: 46vh; overflow-y: auto; }
+.askbox .basket-list li { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; }
+.askbox .basket-list li + li { border-top: 1px solid var(--line); }
+
+/* Custom items are entered in the search bar now, offered under the matches. */
+.customline { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
+
+/* A section heading that folds. The caret is the affordance; the count stays
+   on the heading so a folded section still says how much is in it.
+
+   `flex: 1` rather than `width: 100%`, so a section that also carries an
+   action still has somewhere to put it — the button takes what is left and the
+   action keeps its own corner. */
+.section-fold { display: flex; flex: 1; align-items: center; gap: 6px; font: inherit;
+  color: inherit; background: none; border: 0; padding: 4px 0; cursor: pointer;
+  text-align: left; }
+/* Far right, and the same object as the drawer's close control — a 20px SVG at
+   stroke 2, sized and coloured by the same rules. It was a 10px text glyph on
+   the left, which made the one control that hides a sixty-chip panel both the
+   smallest mark on the panel and the only typed one. */
+.section-caret { margin-left: auto; display: block; flex: 0 0 auto;
+  color: var(--muted); }
+/*
+  Hover, but only where hovering is a thing.
+
+  A touch device has no pointer to leave, so `:hover` STICKS after a tap until
+  you touch something else. The caret stayed dark long after the tap that
+  darkened it — the "remnant". `@media (hover: hover)` is what keeps a mouse
+  affordance from becoming a phone artifact.
+*/
+@media (hover: hover) {
+  .section-fold:hover .section-caret { color: var(--fg); }
+}
+/* The tap acknowledgement, on every device: it lasts exactly as long as the
+   finger is down and paints nothing over the heading. */
+.section-fold:active .section-caret { color: var(--fg); }
+
+/* UX-SPEC §9 — the ask sits above the thing it is about, and is quiet enough
+   to ignore. Non-blocking is a requirement, not a style choice. */
+.signup, .gate { display: flex; align-items: center; gap: 8px; justify-content: space-between;
+  flex-wrap: wrap; margin: 0 0 12px; padding: 8px 10px; font-size: 12px;
+  border: 1px solid var(--accent); border-radius: 6px; background: var(--sunken); }
+.signup-do { display: flex; gap: 4px; flex: 0 0 auto; }
+
+/* The recipe's ⋯ sits beside the title, not among Save and Plan. */
+.modal-head { display: flex; align-items: flex-start; gap: 10px; }
+.modal-head .modal-title { flex: 1 1 auto; min-width: 0; }
+/* In flow, and no `min-width`. Absolute positioning put it outside the
+   popover's `overflow-y: auto`, which clips absolutely-positioned
+   descendants — so a 230px menu in a 232px panel lost its text at the right
+   edge and its second line off the bottom. It is a block that pushes the
+   flags down while it is open, which nothing can clip. */
+.moremenu-panel { margin: 8px 0 0; padding: 8px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--sunken);
+  /*
+    A definite width, because the button inside it must not move when pressed.
+
+    The panel shrink-wrapped, and the ⋯ is a `flex: 0 0 auto` item at the end
+    of the modal head, so its width was whatever the label happened to measure.
+    "On" adds `font-weight: 600` — so pressing the button made its own text
+    wider, which widened the panel, which moved the panel's left edge 8px
+    towards the title. The control jumped sideways under the finger at the
+    moment it was used, and re-wrapped its label from three lines to two.
+
+    Fixed here rather than by dropping the bold: weight is the non-colour half
+    of the on-state, and colour alone is the thing this codebase refuses to
+    rely on. `min-width: 0` on the title beside it means this can take its
+    width without pushing anything off the edge.
+  */
+  width: 184px; }
+
+/* In the modal head the panel floats instead of flowing. In flow it widened
+   the head's last flex item the moment it opened, which walked the ⋯ sideways
+   under the finger — the exact jump the fixed width above exists to prevent,
+   arriving through the layout instead of the label. Anchored to the corner
+   that opened it, nothing the panel does can move its own trigger. (The
+   in-flow rule above still holds inside the ingredient popover, whose
+   `overflow-y: auto` clips absolutely-positioned descendants.) */
+.modal-more { position: relative; }
+.modal-more .moremenu-panel { position: absolute; top: calc(100% + 6px); right: 0;
+  margin: 0; padding: 0; border: 0; background: none; z-index: 4; }
+/* One button needs no bubble around it — its own border is its edge, and the
+   shadow is what says it sits above the sheet rather than in it. */
+.modal-more .standing-btn { background: var(--surface);
+  box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+/* The failure line floats with the panel, so it has to bring its own ground —
+   bare text over the sheet's content is unreadable. */
+.modal-more .moremenu-panel .fail { margin: 6px 0 0; padding: 6px 10px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+
+/* A standing instruction reads as an action, not a form field. */
+.standing-btn { width: 100%; font: inherit; font-size: 12px; padding: 8px 10px;
+  border-radius: 6px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--muted); cursor: pointer; text-align: left; }
+@media (hover: hover) { .standing-btn:hover { border-color: var(--border); color: var(--fg); } }
+/* On means RED, because what it is on about is a standing instruction that
+   hides recipes. Amber read as a caution about the setting; red reads as the
+   setting being active, which is the fact. Tapping it again turns it off —
+   `aria-pressed` carries that for anyone who cannot see the colour. */
+.standing-btn.on { border-color: var(--danger); color: var(--danger);
+  background: var(--surface); font-weight: 600; }
+
+/* "Use first" — weight and shape, never a fourth colour. A drawn pip rather
+   than a bullet in the text, which inherited the label's size and read as
+   punctuation. `currentColor` keeps it inside whatever tone the chip already
+   has, so nothing new is introduced to the palette. */
+.chip-pinned { position: relative; padding-left: 21px; font-weight: 650;
+  border-width: 2px; }
+.chip-pinned::before { content: ""; position: absolute; left: 8px; top: 50%;
+  width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%;
+  background: currentColor; }
+
+/* "saving… / autosaved" — quiet, and it fades. Loud enough to find when you
+   look for it, never loud enough to watch. */
+.savestate { display: inline-flex; align-items: center; gap: 4px; margin-right: auto;
+  font-size: 11px; color: var(--muted); }
+.savestate-saved { color: var(--accent); }
+.savespin { animation: savespin .8s linear infinite; }
+@keyframes savespin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .savespin { animation: none; } }
+
+/* ── the heart, over the photo ──────────────────────────────────────────
+   Saving belongs on the image in a grid: the column is 200px and a word
+   competing with the title costs more than it earns. Outside the link, so
+   the tap saves rather than also opening the recipe. */
+.card-media { position: relative; }
+.card-save { position: absolute; top: 6px; right: 6px; z-index: 2;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0; border-radius: 999px; line-height: 0;
+  border: 0; cursor: pointer; color: #fff;
+  background: rgba(0,0,0,.45); backdrop-filter: blur(2px); }
+@media (hover: hover) { .card-save:hover { background: rgba(0,0,0,.65); } }
+.card-save.on { color: var(--accent-fg, #fff); background: rgba(0,0,0,.6); }
+@media (pointer: coarse) { .card-save { width: 40px; height: 40px; } }
+
+/* ── the list, walked by aisle (§4d) ──────────────────────────────────────
+   A quiet header: it is a signpost you skim past, not a section title
+   competing with "Grocery list" above it. */
+.aisle-head { margin: 0 0 2px; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--faint); font-weight: 600; }
+/* The gap belongs to the GROUP, not to the heading inside it: with the margin
+   on the heading, the space above "meat" depended on whether produce's last row
+   had a why-line under it, so no two gaps on the page were equal. */
+.aisle-group + .aisle-group { margin-top: 18px; }
+
+/* ── /list — the grocery list page (§4e) ──────────────────────────────────
+   One assembly rendered twice with a different half showing. */
+.only-pantry .shelf-list { display: none; }
+.only-list .shelf-pantry { display: none; }
+/*
+  The add box STAYS on the list page — it is the list's front door.
+
+  It was hidden here because, back when the list was a panel in the drawer, a
+  search box floating above a lone grocery shelf read as "search the list". Then
+  the list became a page with no pantry beside it, and the rule left `/list` with
+  no text input at all: you could not put "paper towels" on your own grocery
+  list from your own grocery list. That is the one thing a notes app does, and
+  the reason someone would keep using one instead of this.
+*/
+/* The sign-up prompt belongs to the pantry half; two of them on one page is
+   the product asking twice. */
+.only-list .signup { display: none; }
+
+/*
+  Docked on desk and tablet only.
+
+  It was "at every width", from the version of §4e that stacked this page on a
+  phone. The phone now floats the pantry like every other page — one behaviour
+  everywhere beats a better one that only applies here — so the docking is
+  scoped to the widths that have room for two columns.
+*/
+/* The add box is always available on `/list`, whatever the phone's panel state
+   says — there is no pantry panel here for it to belong to. */
+.shell-listpage .pantry-search { display: block; }
+/* One readable column, not a 1280px input: the list is a held phone's page
+   first, and on a desk a full-bleed text box read as a search engine. */
+/* 560, not 720. A grocery list is a dozen short rows; at 720 the rule under
+   each one ran on for half a screen past the last word, and the emptiness read
+   as a page that had failed to load rather than as margin. */
+.shell-listpage { grid-template-columns: minmax(0, 1fr); gap: 0;
+  width: min(560px, 100%); margin: 0 auto; }
+
+/* The page heading, on the page whose whole content is one shelf. `Section`
+   draws it, so these undo the small-uppercase-label treatment a shelf heading
+   wears everywhere else and give the row a title and a status instead. */
+.shell-listpage .shelf-list .section-title { text-transform: none;
+  letter-spacing: 0; align-items: center; margin-bottom: 2px;
+  /* Two controls beside a 23px title do not fit a 320px phone. Let them drop
+     to their own line there rather than squeeze the title. */
+  flex-wrap: wrap; gap: 2px 10px; }
+.list-title { font-size: 23px; font-weight: 650; letter-spacing: -0.01em; }
+.shell-listpage .drawer-toggle, .shell-listpage .drawer-rail,
+.shell-listpage .drawer-mode { display: none; }
+/*
+  `/list` carries no DOCKED pantry — the rows say what you have, in colour.
+
+  That is a statement about the two-column layout, and it used to be written as
+  `display: none` at every width. On a phone there is no two-column layout to
+  refuse: the pantry is a sheet that floats over whatever page you are on, and
+  hiding it here made the tab bar's fridge dead on the one page you are most
+  likely to be holding in a shop. Scoped to the widths that actually have a
+  second column, so the phone gets the same panel it gets everywhere.
+*/
+@media (min-width: 641px) {
+  .shell-listpage .drawer, .shell-listpage .drawer-scrim { display: none; }
+}
+/*
+  One add box on the page, not two — but only where both are on the page.
+
+  At desk width `/list` shows its own add box and the pantry sits docked beside
+  it, so a second box inside the panel would be the same control twice, three
+  inches apart. On a phone the panel FLOATS OVER the page: the page’s box is
+  behind the drawer and unreachable, so hiding the drawer’s left the pantry
+  with no way to add anything to it at all. You could open your kitchen and not
+  put anything in it.
+
+  Scoped to the width where the premise is true.
+*/
+@media (min-width: 641px) {
+  .shell-listpage .drawer .pantry-search { display: none; }
+}
+/*
+  On a phone the pantry floats on EVERY page, `/list` included — reversing the
+  stacked shape specced for this page alone.
+
+  One behaviour everywhere beats a better behaviour that is only here: the
+  pantry is reference, and reference you consult without losing your place. A
+  version of it stacked below the list would be the same panel behaving
+  differently on the one page you use it most.
+*/
+
+
+/* A ticked row dims until you leave the page — §4e. It is off the list the
+   instant it is ticked; this is a view of THIS visit, not state. */
+.aisle li.ticked .chip { opacity: .45; text-decoration: line-through; }
+.aisle li.ticked .aisle-tick { opacity: .45; }
+
+/* ── the return arc (§4a) ─────────────────────────────────────────────────
+   Quiet and green: it reports that something is now possible, which is good
+   news but not an announcement. */
+.ready { margin: 0 0 16px; padding: 12px 14px; border-radius: 10px;
+  background: var(--accent-tint); border: 1px solid var(--border-soft); }
+.ready-lead { margin: 0 0 6px; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .06em; font-weight: 700; color: var(--accent); }
+.ready-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.ready-list li { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.ready-when { font-size: 12px; }
+
+/* ── PWA chrome (§12) ─────────────────────────────────────────────────────
+   The offline bar is a statement of fact, not an error: amber rather than red,
+   because nothing has gone wrong — there is simply no signal. */
+/* Above the modal: going offline while a recipe is open is exactly when you
+   need to know, and at 90 the sheet hid it. See the layer scale above. */
+.offline-bar { position: fixed; left: 0; right: 0; top: 0; z-index: 98;
+  padding: 8px 14px; font-size: 13px; text-align: center;
+  background: var(--warn-bg, #4a3a12); color: var(--warn-fg, #fdf3d8); }
+.offline-page { max-width: 34rem; }
+
+/* The install ask sits above the tab bar, never over it. */
+.installbar { position: fixed; z-index: 75;
+  left: 10px; right: 10px; bottom: calc(84px + env(safe-area-inset-bottom));
+  display: flex; gap: 12px; align-items: center; justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 12px 14px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+.installbar-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.installbar-actions { display: flex; gap: 8px; align-items: center; flex: none; }
+@media (min-width: 641px) {
+  /* No tab bar to clear at this width, and a corner is less intrusive than a
+     band across a wide screen. */
+  .installbar { left: auto; right: 16px; bottom: 16px; max-width: 26rem; }
+}
+
+/* The sign-up ask in its persistent form (§9) — a control, not a banner. */
+.nav-signup { font: inherit; font-size: 13px; font-weight: 600;
+  padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--accent); background: none; color: var(--accent); }
+@media (hover: hover) { .nav-signup:hover { background: var(--accent-tint); } }
+
+/* ── the offline list (§12) ───────────────────────────────────────────────
+   The one screen in the product that accepts writes with no signal, so it is
+   the one that has to say so. */
+.listoffline { margin: 0 0 12px; padding: 10px 12px; border-radius: 8px;
+  font-size: 13px; background: var(--sunken); border: 1px solid var(--border-soft); }
+.aisle-pending li { opacity: .75; }
+
+/* ── curation autosuggest ─────────────────────────────────────────────────
+   Anchored under the field it belongs to, and above the rows beneath it: the
+   curation queue is dense, and a list that pushed the layout would move the
+   line the curator is reading. */
+.suggestwrap { position: relative; display: inline-block; }
+.suggestlist { position: absolute; z-index: 20; left: 0; top: calc(100% + 2px);
+  min-width: min(320px, 78vw); margin: 0; padding: 4px; list-style: none;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; box-shadow: 0 8px 22px rgba(0,0,0,.22); }
+.suggestlist button { display: flex; gap: 8px; align-items: baseline; width: 100%;
+  padding: 6px 8px; border: 0; border-radius: 5px; background: none;
+  font: inherit; font-size: 13px; text-align: left; cursor: pointer; color: var(--fg); }
+@media (hover: hover) { .suggestlist button:hover { background: var(--accent-tint); } }
+.suggestlist .hit-count { margin-left: auto; color: var(--faint); font-size: 12px; }
+/* The curation-only edit affordance beside a suggestion — sized to the row,
+   never accented (chrome carries no accent). */
+.suggest-row { display: flex; align-items: stretch; }
+.suggest-row > button:first-child { flex: 1; }
+.suggestlist .hit-edit { flex: 0 0 auto; width: 28px; display: flex;
+  align-items: center; justify-content: center; color: var(--faint); }
+@media (hover: hover) { .suggestlist .hit-edit:hover { color: var(--fg); } }
+
+/* "Nearly there" — one row per blocking ingredient, recipes sliding beside it.
+   The row is the unit; the strip is allowed to run off the right edge, because
+   a cut-off card is what says there are more without spending a control on it. */
+.nearrows { display: flex; flex-direction: column; gap: 18px; }
+.nearrow-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* `center`, not `baseline`: the name is a chip now, and a chip has padding, so
+   baseline-aligning it against plain text sat the row's controls low. */
+.nearrow-name { margin: 0; font-size: 15px; display: flex; align-items: center;
+  gap: 8px; flex-wrap: wrap; }
+/* The pair of answers, pushed to the far end together rather than each one
+   claiming `margin-left: auto` and stacking apart. */
+.nearrow-do { margin-left: auto; display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap; }
+.nearrow-strip { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0 2px;
+                 scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+/* No scrollbar on the phone, where it would eat a row of the card. */
+.nearrow-strip::-webkit-scrollbar { height: 6px; }
+.nearrow-strip::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+.nearcard { flex: 0 0 148px; scroll-snap-align: start; display: flex; flex-direction: column;
+            gap: 4px; text-decoration: none; color: inherit; }
+@media (hover: hover) { .nearcard:hover .nearcard-title { color: var(--accent); } }
+.nearcard-img { width: 148px; height: 100px; object-fit: cover; border-radius: 6px;
+                background: var(--sunken); display: block; }
+.nearcard-noimg { border: 1px solid var(--line); }
+.nearcard-title { font-size: 13px; line-height: 1.3;
+                  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+                  overflow: hidden; }
+.nearcard-away { font-size: 11px; }
+
+/* "Add it and you can cook these" — the evidence inside the add dialog.
+   Reuses the strip from "Nearly there" on purpose: it is the same claim in the
+   same shape, and a second card style for one dialog is how they diverge. */
+.ask-unlocks { margin: 10px 0 4px; }
+.ask-unlocks .nearrow-strip { padding-top: 6px; }
+.ask-unlocks .nearcard { flex-basis: 116px; }
+.ask-unlocks .nearcard-img { width: 116px; height: 78px; }
+
+/* "Don't ask me again" — a checkbox inside a question, so it reads as a footnote
+   to the two buttons rather than as a third option beside them. */
+.dontask { font-size: 12px; color: var(--faint); display: inline-flex;
+           align-items: center; gap: 2px; cursor: pointer; }
+
+/* A note is not a dish: no link, no tick, and drawn as an aside rather than as
+   something you are going to cook. */
+.slot-note .slot-title { color: var(--faint); font-style: italic; }
+
+/* The cuisine filter — chips, reusing the meal-slot chip so the two rows of
+   filters in this product look like one idea rather than two. */
+.cuisinebar { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 10px; }
+.cuisinebar .mealchip { text-transform: capitalize; text-decoration: none; }
+
+/* The affiliate block — UX-SPEC §4h. Below the list and visibly separate from
+   it, because the promise is that the list stands up without this. */
+.buyblock { margin: 16px 0 0; padding: 12px 14px; border-top: 1px solid var(--line); }
+.buyblock-lead { margin: 0 0 8px; font-size: 13px; color: var(--faint); }
+.buyblock-items { display: flex; gap: 6px; flex-wrap: wrap; }
+.buyblock-items a.mealchip { text-decoration: none; }
+.buyblock-products { list-style: none; margin: 10px 0; padding: 0; }
+.buyblock-products li + li { border-top: 1px solid var(--line); }
+.buyblock-products a { display: block; padding: 7px 0; font-size: 14px; }
+
+/* ── the published legal documents (/privacy, /terms) ─────────────────────
+   A document, not a screen: one column at a readable measure, no nav, and
+   nothing computed. Everything here is descendant-scoped to `.legal-body`
+   because that subtree is raw HTML from `marked` — it carries no class names of
+   ours, and these rules must not leak into the app's own markup. */
+.legal-page { max-width: 44rem; }
+.legal-home { font-size: 13px; color: var(--muted); margin: 0 0 20px; }
+.legal-home a { color: var(--muted); }
+.legal-foot { margin: 32px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
+
+.legal-body { font-size: 15px; line-height: 1.65; }
+.legal-body h1 { font-size: 26px; line-height: 1.2; margin: 0 0 6px; }
+.legal-body h2 { font-size: 19px; line-height: 1.3; margin: 34px 0 8px;
+  padding-top: 14px; border-top: 1px solid var(--line); }
+.legal-body h3 { font-size: 16px; margin: 22px 0 6px; }
+.legal-body p, .legal-body li { color: var(--fg); }
+.legal-body p { margin: 0 0 12px; }
+.legal-body ul, .legal-body ol { margin: 0 0 12px; padding-left: 22px; }
+.legal-body li { margin: 4px 0; }
+.legal-body hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
+.legal-body code { font-size: .9em; background: var(--hover); padding: 1px 4px;
+  border-radius: 3px; }
+/* The commitments are quoted rather than paraphrased — §5.1 has to be quotable
+   verbatim — so a blockquote here is load-bearing and reads as one. */
+.legal-body blockquote { margin: 0 0 14px; padding: 10px 14px;
+  border-left: 3px solid var(--accent); background: var(--surface);
+  border-radius: 0 6px 6px 0; }
+.legal-body blockquote p:last-child { margin-bottom: 0; }
+/* Wide tables scroll inside their own box rather than pushing the page sideways
+   on a phone. */
+.legal-body table { display: block; overflow-x: auto; width: 100%;
+  border-collapse: collapse; margin: 0 0 14px; font-size: 14px; }
+.legal-body th, .legal-body td { text-align: left; vertical-align: top;
+  padding: 7px 12px 7px 0; border-bottom: 1px solid var(--line); }
+.legal-body th:empty { padding: 0; }
+
+/* The affiliate disclosure, on the block rather than only in the footer —
+   see `BuyBlock`. Quiet, but never smaller than the body text around it: a
+   disclosure set in fine print is the thing "clear and conspicuous" is written
+   to forbid. */
+.buyblock-disclose { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
+.buyblock-disclose a { color: var(--muted); }
+
+/* ── site footer ────────────────────────────────────────────────────────── */
+/* Centred (Richard, 2026-08-18). It is the one block on the page that belongs
+   to the site rather than to the task, and left-aligned it read as one more
+   column of content trailing off under the last thing you were doing. */
+.sitefoot { max-width: 60rem; margin: 40px auto 0; padding: 16px 16px 24px;
+  border-top: 1px solid var(--line); font-size: 12px; color: var(--muted);
+  text-align: center; }
+.sitefoot p { margin: 0 0 6px; }
+.sitefoot a { color: var(--muted); }
+.sitefoot-links { margin: 0; }
+
+@media (max-width: 860px) {
+  /* The phone tab bar is fixed at the bottom, so the last thing in the document
+     has to clear it or the links sit under the bar and cannot be tapped. The
+     pages already reserve this; the footer is outside them. */
+  .sitefoot { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+}
+
+/* The date picker in the "Made it!" dialogue, with the day said in words
+   beside it — an ISO string is what the input speaks, not what a reader wants. */
+.daypick-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.daypick-said { font-size: 14px; }
+
+/* Two ends of one decision, so half the row each and both at full size.
+   Overrides `.ask-actions`' content-width buttons, which made "cancel" read as
+   a footnote next to a solid Save. */
+.ask-actions-split { display: flex; gap: 10px; margin-top: 18px; }
+.ask-actions-split .btn { flex: 1 1 0; display: flex; align-items: center;
+  justify-content: center; min-height: 46px; padding: 12px 14px;
+  font-size: 15px; font-weight: 600; border-radius: 8px; }
+
+/* The checkout question, answered mid-aisle with one thumb — bigger than the
+   desk-sized split above, because the hand holding the phone is also holding a
+   trolley. `wrap: nowrap` keeps the pair on one row: two labels of unequal
+   length stacking at a narrow width is exactly the "one of these is the real
+   button" reading the split exists to prevent. */
+.ask-actions-tall { flex-wrap: nowrap; }
+.ask-actions-tall .btn { min-height: 58px; padding: 14px 10px; font-size: 15px;
+  text-align: center; line-height: 1.25; }
+
+/* The name IS the question here, so it is sized like one. */
+.ask-question-big { font-size: 27px; font-weight: 650; line-height: 1.2;
+  margin-bottom: 14px; }
+
+/*
+  The cart — a shelf, in the page's own vocabulary (CART-SPEC §3).
+
+  It was a drawing: an SVG basket built to grow with its contents. Two rewrites
+  and it still read as assembled rather than drawn, which is the honest limit of
+  a line drawing stretched around live content. A heading wearing the same small
+  uppercase label as PRODUCE and MEAT says the same thing, cannot look sloppy,
+  and puts the cart in the same family as the aisles it sits under.
+
+  The rule above it is the only thing separating it from them, because the claim
+  IS different: everything above is what to buy, this is what is in the bag.
+*/
+.cart-shelf { margin-top: 22px; padding-top: 16px;
+  border-top: 1px solid var(--border-soft); }
+/* The mark sits ON the label's line, at the label's colour — see the tab bar's
+   icons, which it is drawn to match. */
+.cart-head { display: flex; align-items: center; gap: 7px; }
+.cart-head svg { flex: 0 0 auto; }
+/* One row each, like the aisles: `.aisle` does the ruling and the height, and
+   this only takes the top margin off so the heading sits close to its rows. */
+.cart-items { margin-top: 0; }
+/* An empty cart is a signpost, not a section: quieter, and it says what it is
+   waiting for rather than sitting there blank. */
+.cart-empty .cart-head { color: var(--line); }
+.cart-hint { margin: 0; padding: 10px 0; border: 0; }
+
+/*
+  The checkbox, which exists only in select mode.
+
+  Drawn as the tick's twin — same 26px circle, same place at the head of the row
+  — because it stands where the tick stands and a second shape there would read
+  as a different kind of control. Filled when checked, which is the fill rule:
+  it is stating what the buttons below are about to change.
+*/
+.pick-box { font-size: 15px; line-height: 1; }
+.pick-box[aria-checked="true"] { background: var(--invert); color: var(--invert-fg);
+  border-color: var(--invert); }
+
+/* Stacked, full width: two answers to "what now?", not an action and its
+   cancel. The gap is the row's own margin. */
+.list-finish + .list-finish { margin-top: 8px; }
+
+/*
+  The chips on the grocery page are the page (Richard, 2026-08-18: bigger, and
+  bigger type).
+
+  Elsewhere a chip is one of forty in a cloud you scan, and 13px is right for
+  that. Here it is a row you tap while walking, and it is now the row's ONLY
+  control — the tick has gone until you ask for it — so it takes the size that
+  job needs. 16px on a 44px pill clears the touch target on its own, without the
+  row having to be tall around a small mark.
+*/
+.shell-listpage .aisle .chip { font-size: 16px; padding: 9px 16px;
+  border-radius: 999px; }
+
+/*
+  The offer, at the end of the row it is about (UX-SPEC §4h, reversed on the
+  row's placement only — see `Pantry`).
+
+  Quiet by construction: muted, small, and after the name and the reason, so the
+  row reads "what to buy, why, and only then where". It wraps to its own line on
+  a narrow phone rather than squeezing the chip, because the chip is the row's
+  control and the link is an aside.
+*/
+/*
+  An outlined button (Richard, 2026-08-19), which is what the scheme says it is:
+  it leaves everything here as it is and takes you somewhere else. `btn-quiet`
+  carries the outline and the muted ink; these three lines only size it down.
+
+  Smaller than the standard 46px control, like the heading's Select and Undo:
+  it sits at the end of a row it must not outweigh, and the chip beside it is
+  the row's actual subject.
+*/
+.aisle-buy { margin-left: auto; min-height: 34px; padding: 5px 12px;
+  font-size: 13px; font-weight: 600; border-radius: 999px;
+  white-space: nowrap; text-decoration: none; }
+.aisle-buy .aff-mark { font-weight: 700; color: var(--fg); }
+@media (hover: hover) { .aisle-buy:hover { color: var(--fg); } }
+/* All that is left of the block on this page: the line the links require, in
+   the same visual field as the rows carrying them. */
+/* Centred (Richard, 2026-08-19), like the footer. It is the same KIND of line
+   as the one down there: a standing fact about how this is paid for, not part
+   of the task, so it stops sitting in the list's left-aligned column and reads
+   as a note under the page instead of a row of it. */
+.list-disclose { margin: 14px 0 0; text-align: center; }
+/* Picked for the pantry: filled, because pressing the button below will move
+   it. The chip is stating what is about to change, which is the same claim the
+   button scheme makes with fill everywhere else. Works on a list row as well as
+   a cart chip — Select belongs to the page, not to one shelf. */
+.cart-pick .chip { background: var(--invert); color: var(--invert-fg);
+  border-color: var(--invert); opacity: 1; text-decoration: none; }
+/* A mode switch, so it is small and quiet next to the heading. */
+.list-select { min-height: 32px; padding: 4px 12px; font-size: 13px;
+  border-radius: 999px; }
+.list-select[aria-pressed="true"] { background: var(--invert);
+  color: var(--invert-fg); border-color: var(--invert); }
+/* The place a thing just went, as a road to it — see `dest` in `Pantry`. A
+   button, not a link: it opens the shelf on the page you are on, and only
+   navigates when the shelf is somewhere else. Underlined and at the toast's own
+   weight, so it reads as the one word in the sentence you can press. */
+.ack-dest { border: 0; background: none; padding: 0; font: inherit;
+  color: inherit; cursor: pointer; text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+
+/* The heading's two right-hand things need air between them: the progress ran
+   straight into the Undo pill and the pill read as part of the sentence. */
+.shell-listpage .section-action { display: inline-flex; align-items: center;
+  gap: 12px; }
+
+/* End of the trip: one wide action, set apart from the last aisle so it reads
+   as finishing the list rather than as another row of it. Size and weight come
+   from `.btn` now; what is left here is the width. */
+.list-finish { margin-top: 14px; }
+.list-finish .btn { flex: 1 1 0; }
+
+/*
+  The heading's undo, and the one button in the product that is deliberately
+  small: it sits beside a 23px title in a row a phone has to fit, and at full
+  size it would be the loudest thing on a page whose subject is a list of
+  groceries. Filled, because it writes — the scheme is about the FILL, and the
+  size is a separate argument.
+*/
+.list-undo { min-height: 32px; padding: 4px 12px; font-size: 13px;
+  border-radius: 999px; }
+
+/* On `/list` the page IS the grocery list, so the shelf stops drawing a box
+   around itself — a boundary implies something outside it to be bounded from,
+   and there is nothing else on the page. */
+.only-list .shelf-list { border: 0; padding-left: 0; padding-right: 0; }
+
+/*
+  Except on a desk, where the boundary IS bounding something: the rest of a
+  1280px window.
+
+  The argument above holds on a phone — the list fills the screen, and a box
+  drawn around a full screen is a line for its own sake. At desk width the same
+  column is 560px of content adrift in a wide white field, and with no edge the
+  eye cannot tell margin from unfinished page. The card gives the column a
+  shape; the shape is what was missing, not more content.
+
+  It said: quiet, deliberately — a soft border, no shadow, no fill of its own,
+  a boundary rather than a panel, `--surface` equalling `--bg` in light mode
+  and the whole thing really buying the dark theme, where the card would lift
+  a shade off the page.
+
+  The goal was right and the mechanism has been swapped (2026-08-20). What the
+  column needs is a SHAPE, and a fill draws one without a line — so this is now
+  `--sunken`, two points off white, which is the same treatment every other
+  panel got. It reads as a region the list sits in rather than a rule drawn
+  around it. The dark-theme argument is moot besides: the theme is unwired,
+  and a fill would have carried to it just as well.
+*/
+@media (min-width: 861px) {
+  .shell-listpage .only-list .shelf-list { border: 0;
+    border-radius: 12px; padding: 16px 20px 6px; background: var(--sunken); }
+}
+
+/* The two closed sets in the diet panel, flowing rather than stacking — see
+   `Diet`. `column-gap` is wide enough that two adjacent labels cannot be read
+   as one phrase; `row-gap` stays tight so a wrapped set still reads as a block.
+   `max-width` keeps a wide desktop panel from stretching one set into a single
+   unreadable line. */
+.dietset { display: flex; flex-wrap: wrap; gap: 2px 18px; margin: 4px 0 2px;
+  max-width: 34rem; }
+.dietset .toggle { flex: 0 0 auto; }
+
+/* ── the search that follows you down the page (phones only) ──────────────
+   Desk width keeps the bar where it is: the toolbar is a few hundred pixels up,
+   not four screens, and a floating control there would be solving a problem
+   that only exists on a phone. */
+.findrecipe-mark { height: 0; }
+.findfloat { display: none; }
+
+@media (max-width: 640px) {
+  /*
+    One surface that grows, rather than two objects side by side.
+
+    The magnifier and the bar used to be separate floating things that happened
+    to be adjacent — a disc, a gap, then a box. Wrapping both in a single
+    rounded layer makes the open state read as the SAME object as the closed
+    one, stretched: the circle becomes a pill, and the bar is inside the thing
+    that was the button. That is what makes the slide say "this came out of
+    here" rather than "something appeared next to this".
+
+    No `right` — the layer is sized by its content, so it hugs the button when
+    closed and follows the strip out as it opens. `max-width` keeps it inside
+    the screen once the strip reaches its own limit.
+  */
+  /* No `gap`. A flex gap is reserved between the two children even when the
+     second has zero width, so the closed pill carried 4px of empty space on
+     the right of the button and the button sat 2px left of centre inside its
+     own circle. The spacing lives on the strip instead, where it appears with
+     the strip and animates with it. */
+  .findfloat { position: fixed; z-index: 71; left: 14px; top: 12px;
+    display: inline-flex; align-items: center;
+    max-width: calc(100vw - 28px); padding: 4px;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: var(--surface); box-shadow: 0 3px 14px rgba(0,0,0,.22); }
+
+  /* Flat inside the layer: the chrome belongs to the layer now, and a bordered
+     disc inside a bordered pill is two rings around one control. The pressed
+     fill stays, because that is the part that says the bar is open. */
+  .findfloat-fab { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 0; background: none; color: var(--fg); cursor: pointer; padding: 0; }
+  .findfloat.is-open .findfloat-fab { background: var(--invert); color: var(--invert-fg); }
+
+  /*
+    The bar slides OUT of the button.
+
+    `max-width` from zero, clipped, so it is revealed left to right from behind
+    the control that opens it — an element that simply appears has no
+    direction, and the direction is the whole point.
+
+    Width rather than `transform: scaleX`, which would stretch the placeholder
+    text horizontally for the length of the animation. `visibility` steps at
+    the far end so the input is not a tab stop while it is folded away.
+  */
+  /*
+    A real WIDTH, not a max-width, and this is the part that was wrong.
+
+    The layer is `inline-flex`, so it is shrink-to-fit: it sizes to its
+    content first, and only then is there any free space for `flex-grow` to
+    distribute. There never was any. So the strip grew to whatever the form
+    happened to measure — about a default input — and `max-width` capped a
+    width nothing was pushing against. Raising the cap from 78vw to the full
+    margin changed a limit that was never being reached, which is why it
+    looked identical.
+
+    Given a definite width, the strip pushes the layer open instead of asking
+    to be allowed to. `flex: 0 0 auto` so the width is honoured rather than
+    negotiated, and it animates from zero exactly as a max-width would have.
+  */
+  .findfloat-strip { flex: 0 0 auto; width: 0; margin-left: 0; overflow: hidden;
+    opacity: 0; visibility: hidden;
+    transition: width .22s ease, margin-left .22s ease, opacity .12s ease,
+                visibility 0s linear .22s; }
+  /*
+    Open, the bar runs to the right margin.
+
+    `78vw` stopped it short, so the layer ended in the middle of the screen
+    with a strip of page beside it — a control that looks like it did not
+    finish opening. The width here is everything the layer can hold: the
+    viewport, less its two 14px margins, less the 40px button, its 4px gap and
+    the layer’s own 4px padding either side.
+
+    Still a `max-width` rather than a right edge, because that is what
+    animates — a `right` going from auto to a length does not.
+  */
+  .findfloat.is-open .findfloat-strip { width: calc(100vw - 80px); margin-left: 4px;
+    opacity: 1; visibility: visible;
+    transition: width .22s ease, margin-left .22s ease, opacity .12s ease .04s,
+                visibility 0s; }
+  .findfloat-strip .search { margin: 0; width: 100%; }
+  /* Borderless: the layer around it is the border now. */
+  .findfloat-strip .search input { min-height: 40px; border: 0; background: none;
+    padding-left: 2px; }
+
+  /* Outside the layer, and offset so it lines up with the bar rather than with
+     the button — a dropdown inside the clipped strip has nowhere to drop. */
+  .findfloat-results { position: fixed; z-index: 70; left: 58px; right: 14px; top: 66px;
+    max-height: calc(100vh - 152px); overflow-y: auto; overscroll-behavior: contain;
+    border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.28); }
+  .findfloat-results .hitbox { max-height: none; border-radius: 12px; }
+}
+
+@media (max-width: 640px) {
+  /* The state widget, sized for a phone.
+
+     280px is a desk width, and on a 360px screen it left 40px of daylight
+     either side — the panel read as "the screen, slightly inset" rather than as
+     something anchored to the chip that opened it. Narrower, so the chip it
+     points at is still visible beside it and the panel is legibly ABOUT that
+     chip. */
+  .popover { max-width: calc(100vw - 20px); font-size: 13px; }
+  .popover .toggle { padding: 5px 0; }
+}
+
+/* The tap has landed and the grid is on its way — see `CuisineBar`.
+
+   A dot in the flow of the label rather than a spinner over it: the chip keeps
+   its size, so the row cannot reflow under a finger that is still on it. It
+   pulses rather than spins because a spinner at this size is a smudge. */
+.mealchip-wait { display: inline-block; width: 6px; height: 6px; margin-right: 6px;
+  border-radius: 50%; background: currentColor; vertical-align: middle;
+  animation: waitpulse .9s ease-in-out infinite; }
+@keyframes waitpulse { 0%, 100% { opacity: .25 } 50% { opacity: 1 } }
+@media (prefers-reduced-motion: reduce) {
+  .mealchip-wait { animation: none; opacity: .7; }
+}
+
+/*
+  ── the grid renders what you can see ─────────────────────────────────────
+
+  `content-visibility: auto` lets the browser skip style, layout and paint for
+  any card that is off screen, and do the work when it scrolls near. It is
+  virtualisation done by the engine rather than by us.
+
+  ── Why this and not a JS virtualiser ─────────────────────────────────────
+
+  A real virtualiser keeps a window of items in the DOM and absolutely positions
+  them against a measured scroll height. It would cut the node count too, and it
+  costs three things this design is built on: the cards are SERVER-rendered, so
+  the list would have to become client-side data; card height varies with title
+  length, missing-ingredient chips and warnings, so every row needs measuring;
+  and `?n=` exists precisely so a reload puts you back where you were, which a
+  windowed list has to reimplement.
+
+  This gets the expensive part — the style, layout and paint of 300 cards —
+  for four lines and no change to how anything is fetched, and it leaves Ctrl+F,
+  linkability and the back button working, all of which a windowed list breaks
+  unless it is careful.
+
+  ── What it does not fix ──────────────────────────────────────────────────
+
+  The bytes still cross the wire and the nodes still exist, so a filter change
+  still unmounts however many cards React had mounted. That is the remaining
+  cost, and the honest ceiling on this approach.
+
+  `contain-intrinsic-size` is the placeholder a skipped card claims: roughly a
+  4:3 photo plus title, meter and chips. Wrong guesses only cost scrollbar
+  accuracy, which the browser corrects as cards come into view — `auto` makes it
+  remember the real size once measured.
+*/
+.gallery .card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 320px;
+}
+
+/* ── the tickable kitchen (full-screen pantry only) ───────────────────────
+   `Shell` owns the mode; this component never needed to know it, so one class
+   on an ancestor does the showing rather than a prop threaded through the
+   drawer. */
+.shelf-browse { display: none; }
+.shell-full .shelf-browse { display: block; background: var(--sunken);
+  border: 1px solid var(--line); }
+/* Wide enough for a two-word ingredient without wrapping, narrow enough that a
+   phone still gets two columns — the grid is scanned, and a single column of
+   ninety rows is the list this replaces. */
+.browse-grid { display: grid; gap: 2px 14px;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); margin-bottom: 10px; }
+.browse-item { display: flex; align-items: center; gap: 7px; padding: 5px 4px;
+  border-radius: 6px; cursor: pointer; font-size: 14px; color: var(--fg); }
+@media (hover: hover) { .browse-item:hover { background: var(--hover); } }
+/* Ticked reads as held, in the pantry's own green — the same colour the chip
+   below it will take, so the two say one thing. */
+.browse-item.on { color: var(--have-fg); font-weight: 600; }
+.browse-item input { width: 17px; height: 17px; flex: none; accent-color: var(--accent);
+  cursor: pointer; }
+
+/* ── the Save bar for a session of ticking ────────────────────────────────
+   Sticky to the bottom of the drawer's own scroller, because filling in a
+   kitchen means tick a screenful, scroll, tick more — and a button that has
+   scrolled off is a button you have to go hunting for to finish the job.
+   Only in the DOM while something is unsaved, so it costs nothing at rest. */
+.browse-save { position: sticky; bottom: 0; z-index: 3;
+  margin: 6px -14px -10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: var(--bg); border-top: 1px solid var(--line); }
+.browse-save-row { display: flex; gap: 8px; }
+.browse-commit, .browse-discard { flex: 1; min-height: 44px; border-radius: 10px;
+  font-size: 15px; font-weight: 600; cursor: pointer; border: 1px solid transparent; }
+/* The way forward carries the pantry's own green: saving these IS having them. */
+.browse-commit { flex: 2; background: var(--have-bg); color: var(--have-fg);
+  border-color: var(--have-fg); }
+/* Quiet, and half the width. It undoes work, and the pair should say which
+   one is the way forward without anyone having to read both. */
+.browse-discard { background: transparent; color: var(--muted); border-color: var(--line); }
+.browse-commit[disabled], .browse-discard[disabled] { opacity: .6; cursor: default; }
+@media (hover: hover) {
+  .browse-commit:hover:not([disabled]) { filter: brightness(.97); }
+  .browse-discard:hover:not([disabled]) { background: var(--hover); }
+}
+
+/* ── the account page ─────────────────────────────────────────────────────
+   A form, not a screen: one column at a width where an email field does not
+   run the length of a desktop monitor. No nav, so it needs its own air. */
+.auth-page { max-width: 26rem; }
+.authbox { margin-top: 8px; }
+
+/* ── managing the account ─────────────────────────────────────────────────
+   Three choices in ascending order of consequence, so the type gets quieter
+   rather than louder as it goes down: the loud thing on this page should be
+   what you HAVE, not the button that ends it. */
+.account { margin-top: 4px; }
+.account-h { font-size: 24px; line-height: 1.2; margin: 0 0 6px; }
+.account-who { margin: 0 0 16px; display: flex; flex-wrap: wrap; gap: 4px 10px;
+  align-items: baseline; }
+.account-since { color: var(--muted); font-size: 13px; }
+/* What is actually in there. A list rather than a sentence because the eye
+   should be able to check one number without reading the other three. */
+.account-holds { list-style: none; margin: 0 0 22px; padding: 12px 14px;
+  background: var(--sunken); border: 1px solid var(--line); border-radius: 10px;
+  display: grid; gap: 4px; font-size: 14px; color: var(--muted); }
+.account-holds b { color: var(--fg); font-variant-numeric: tabular-nums; }
+.account-h3 { font-size: 15px; margin: 22px 0 4px; }
+/* The two harmless controls share a row and no headings: they are the
+   most understood buttons on the internet and a label each was telling
+   the reader what they already knew. */
+.account-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.account-row .account-btn, .account-row .account-export { margin-top: 0; }
+/* A rule above the last one, because "close your account" should not look like
+   the next item on a list of settings. */
+.account-h3-end { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.account-btn, .account-export { display: inline-block; margin-top: 10px;
+  min-height: 44px; padding: 11px 16px; border-radius: 8px; font: inherit;
+  font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none;
+  border: 1px solid var(--border); background: var(--surface); color: var(--fg); }
+.account-btn[disabled] { opacity: .55; cursor: default; }
+@media (hover: hover) {
+  .account-btn:hover:not([disabled]), .account-export:hover { background: var(--hover); }
+}
+/* Outline, not filled. A filled red button is the loudest thing on any screen
+   it appears on, and this one should be findable rather than inviting. It
+   fills only inside the dialog, where it is the answer to a question already
+   asked. */
+.account-danger { color: var(--danger); border-color: var(--danger); background: transparent; }
+@media (hover: hover) { .account-danger:hover:not([disabled]) { background: var(--hover); } }
+
+.account-confirm { display: grid; gap: 6px; margin: 16px 0 4px; font-size: 14px; }
+.account-confirm input { width: 100%; font: inherit;
+  /* 16px, or iOS zooms on focus and the dialog jumps under the finger. */
+  font-size: 16px; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: 6px; background: var(--surface); color: var(--fg); }
+.account-confirm-row { display: flex; gap: 8px; margin-top: 14px; }
+.account-confirm-row .account-btn { flex: 1; margin-top: 0; }
+.account-confirm-row .account-danger:not([disabled]) { background: var(--danger);
+  color: #fff; border-color: var(--danger); }
+/* The dialog's own heading. Sized against the note under it rather than
+   against the page title, which is not on screen while a dialog is up. */
+.account-dlg-h { font-size: 18px; line-height: 1.25; margin: 0 0 8px; }
+.auth-title { font-size: 24px; line-height: 1.2; margin: 0 0 8px; }
+.auth-lead { margin: 0 0 12px; }
+.authbox .field input { width: 100%; font: inherit; font-size: 15px;
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--fg); }
+.authbox .field input:disabled { opacity: .6; }
+/* The terms tick is the one control here that is a decision rather than a
+   field, so it gets air above it and reads at body size rather than as a
+   caption. */
+.auth-terms { align-items: flex-start; gap: 9px; margin: 16px 0 4px;
+  font-size: 14px; line-height: 1.45; }
+.auth-terms input { width: 18px; height: 18px; margin-top: 1px; flex: none;
+  accent-color: var(--accent); }
+.auth-actions { margin-top: 18px; }
+.auth-actions .btn { width: 100%; justify-content: center; min-height: 46px;
+  display: flex; align-items: center; font-size: 15px; font-weight: 600;
+  border-radius: 8px; }
+.auth-swap { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.auth-swap .btn { padding: 2px 4px; }
+
+/* "More", below the flags and quieter than them: they answer the question the
+   widget was opened for, this is the second question. Full width so it reads as
+   a row of the panel rather than a stray control floating in it. */
+/* The fourth flag. Same shape as the three above it; the only difference is
+   that it opens a field rather than setting a state. */
+.widget-notebtn { width: 100%; margin-top: 5px; }
+
+/*
+  16px, and it is not a style choice.
+
+  iOS Safari zooms the whole page in when a focused input is under 16px, and
+  it does not zoom back out. Tapping "Note" on a phone threw the layout at the
+  screen and left it there. Every other route — `maximum-scale`, `user-scalable
+  =no` — fixes it by disabling pinch zoom for everybody, which trades a
+  nuisance for an accessibility failure.
+*/
+.widget-notefield { margin: 5px 0 0; }
+.widget-notefield textarea { width: 100%; font: inherit; font-size: 16px;
+  padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--fg); }
+/* Stacked, with room between: two standing decisions and a note field, none of
+   which should read as one control with three parts. */
+.moremenu-panel { display: flex; flex-direction: column; gap: 8px; }
+
+/* ── the chip bar ─────────────────────────────────────────────────────────
+   Four controls in a row, over the cloud rather than in it. Nothing here
+   wraps: the row is as wide as its buttons and the panel is as wide as the
+   row, so a narrow screen scrolls the drawer rather than folding the bar. */
+/* Vertical, full width, fixed size. Nothing in it opens anything in place, so
+   the layer cannot change height and therefore cannot move under the finger —
+   which is what every previous version did. */
+.chipbar { display: flex; flex-direction: column; gap: 4px; padding: 6px;
+  min-width: 168px; }
+.chipbar .flag { width: 100%; }
+
+/* The fourth row, drawn as one of them. It leads somewhere rather than setting
+   something, which is why it is a mark and not a word. */
+.chipbar-more { width: 100%; display: flex; align-items: center;
+  justify-content: center; height: 34px; padding: 0;
+  border: 1px solid var(--line); border-radius: 6px; line-height: 0;
+  background: var(--surface); color: var(--muted); cursor: pointer; }
+@media (hover: hover) { .chipbar-more:hover { border-color: var(--border); color: var(--fg); } }
+.chipbar-more[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+
+
+/* 16px, or iOS zooms the page in on focus and does not zoom back out. */
+.notefield { width: 100%; font: inherit; font-size: 16px; padding: 8px 10px;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--fg); }
+/* The background catch-up, said in one small circle — see `GridStatus`.
+   In the tab row beside the counts, because the counts are what is stale. */
+.gridspin { display: inline-flex; align-items: center; margin-left: 6px; }
+.gridspin-dot { width: 13px; height: 13px; border-radius: 50%;
+  border: 2px solid var(--line); border-top-color: var(--accent);
+  animation: gridspin .7s linear infinite; }
+@keyframes gridspin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .gridspin-dot { animation: none; border-top-color: var(--accent); opacity: .7; }
+}
+
+/* The tap stopwatch — only ever rendered with `?perf=1`. Fixed, tiny, and out
+   of the way of the controls it is measuring. */
+.tapmeter { position: fixed; z-index: 200; left: 8px; bottom: 8px;
+  padding: 5px 9px; border-radius: 999px; font: 600 12px/1 system-ui, sans-serif;
+  background: rgba(0,0,0,.82); color: #fff; pointer-events: none; }
+
+/* ── the report button ────────────────────────────────────────────────────
+   A dogfooding tool, not a feature: findable from anywhere, quiet enough that
+   it never competes with the product. Delete this block with the component.
+
+   Bottom-LEFT on a phone, mirroring the pantry FAB on the right and clearing
+   the tab bar by the same amount. Bottom-right on a desk, where nothing else
+   is fixed. */
+.reportfab { position: fixed; z-index: 71; right: 16px; bottom: 16px;
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 36px; padding: 7px 12px; border-radius: 999px;
+  font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  /* Chrome, so no accent — the accent means "you have this" everywhere else. */
+  box-shadow: 0 1px 4px rgb(0 0 0 / .10); opacity: .85; }
+@media (hover: hover) {
+  .reportfab:hover { opacity: 1; color: var(--fg); background: var(--hover); }
+}
+.reportfab svg { flex: none; }
+@media (max-width: 900px) {
+  .reportfab { left: 14px; right: auto;
+    bottom: calc(84px + env(safe-area-inset-bottom)); }
+  /* The word goes on a phone: the mark plus a 36px target is enough, and the
+     corner is shared with a tab bar that has its own words. */
+  .reportfab-word { display: none; }
+  .reportfab { padding: 8px; }
+}
+/* Said once, briefly, without anything to dismiss. */
+.reportdone { position: fixed; z-index: 72; left: 50%; transform: translateX(-50%);
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  margin: 0; padding: 8px 14px; border-radius: 999px; font-size: 13px;
+  background: var(--fg); color: var(--bg); box-shadow: 0 2px 10px rgb(0 0 0 / .2); }
+.account-confirm textarea { width: 100%; font: inherit; font-size: 16px;
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--fg); resize: vertical; }
+.account-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── reading them back, under /curate ─────────────────────────────────── */
+.reportlist { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+.reportitem { padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); }
+.reportitem-what { margin: 0 0 6px; white-space: pre-wrap; }
+.reportitem-meta { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 12px;
+  font-size: 12px; color: var(--muted); }
+.reportitem-meta code { font-size: 12px; }
+
+/* "(optional)", beside the question rather than under it. Every field in the
+   Made it form is optional except the date, and saying so on each one is what
+   stops the form reading as four things to fill in before it will accept. */
+.field-opt { font-weight: 400; color: var(--muted); }
+
+/* The category, under the box rather than over it: the thing to do on opening
+   the report dialog is type, and a control above the field would make sorting
+   the first act. */
+.reportkind { margin-top: 12px; }
+.reportkind select { font: inherit; font-size: 16px; padding: 9px 12px;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--fg); width: 100%; }
+/* Drawn as a tag on the review page, because scanning forty reports is looking
+   for one layer at a time and a word inside grey metadata is not scannable. */
+.reportkind-tag { display: inline-block; margin-right: 8px; padding: 1px 8px;
+  border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .02em;
+  text-transform: uppercase; vertical-align: 1px;
+  background: var(--sunken); border: 1px solid var(--line); color: var(--muted); }
+
+/* ── a recorded cook, closed ──────────────────────────────────────────────
+   Meal, rating and note are corrections and fold away; the settle question
+   does not, because it is the one thing only answerable now. */
+.cookrow-shut { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.cookrow-said { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  min-width: 0; }
+.cookrow-stars { color: var(--star); letter-spacing: .05em; }
+.cookrow-note { overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  max-width: 22ch; }
+.cookrow-acts { margin-left: auto; display: flex; gap: 4px; }
+/* The settle panel sits under the summary rather than beside it — it is a list
+   of rows, not a control. */
+.cookrow-shut .settle, .cookrow-shut .cook-line { flex-basis: 100%; }
+
+/* Your own history, on its own line under the source. A fact about you does not
+   belong inside a sentence about a blog. */
+.card-mine { display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin: 2px 0 0; font-size: 12px; color: var(--muted); }
+/* The user's own rating, in the star colour the rating control uses — so
+   "yours" is carried by the mark rather than by a word. The source's rating
+   stays muted text beside the source's name, which is what it is about. */
+.card-myrating { color: var(--star); letter-spacing: .04em; }
+
+/* "Add a recipe" — outlined, not filled.
+   It sits at the top of `/my-recipes` above the user's whole library, and as a
+   filled black button it was the heaviest thing on a page whose subject is the
+   recipes below it. Outlined it is still unmistakably the action, without
+   competing with the shelves it exists to fill. */
+.btn-addrecipe { background: var(--surface); color: var(--fg); border-color: var(--fg); }
+@media (hover: hover) { .btn-addrecipe:hover { background: var(--hover); } }
+
+/* "edit", inside the sentence it is about.
+   The history line is prose — "Cooked twice · last Tuesday · ★★★★" — so the way
+   to change it is a word at the end of that line, not a bordered control that
+   would turn the line into a toolbar. */
+.history-edit { font: inherit; font-size: inherit; background: none; border: 0;
+  padding: 0 0 0 8px; color: var(--muted); cursor: pointer;
+  text-decoration: underline; text-underline-offset: 2px; }
+@media (hover: hover) { .history-edit:hover { color: var(--fg); } }
+
+/* ── amending the whole log ───────────────────────────────────────────────
+   One block per cook, ruled apart, because they are separate records and a
+   run-on list of stars and notes belongs to nobody in particular. */
+.editcooks { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 14px;
+  max-height: 60vh; overflow-y: auto; }
+.editcook { padding-top: 12px; border-top: 1px solid var(--line); }
+.editcook:first-child { padding-top: 0; border-top: 0; }
+.editcook-when { display: flex; align-items: baseline; gap: 8px; margin: 0 0 6px;
+  font-size: 14px; }
+.editcook-del { margin-left: auto; padding-left: 0; color: var(--danger); }
+@media (hover: hover) { .editcook-del:hover { color: var(--danger); } }
+.editcook .field { margin-top: 6px; }
+.editcook textarea { width: 100%; font: inherit; font-size: 16px; padding: 8px 10px;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--fg); }
+
+/* Air between the chips you are missing and the button that buys them.
+   `.cook-line` gives every row 10px below and nothing above, which is right
+   when rows follow rows and wrong here: the chips are a list to read and the
+   button is a decision about all of them, and with no gap the button read as
+   the last chip in the row. */
+.addmissing { margin-top: 14px; }
+
+/* The distance meter and the head-start tag on one line: both answer "what
+   stands between me and this dish", so they belong in the same sentence. */
+.card-meter { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0; }
+/*
+  The meter must still fill the row.
+
+  It was a block and filled the card by default; wrapping it to sit beside the
+  head-start tag made it a FLEX ITEM, which shrinks to fit — and its segments
+  are `<i>` elements with no intrinsic width, so they collapsed to zero and the
+  bar vanished while the text beside it stayed. `flex: 1` gives it the width
+  back; `min-width: 0` stops a long missing-ingredients title from forcing the
+  row wider than the card.
+
+  Second regression from the same one-line wrapper. The lesson worth keeping:
+  putting a flex container around an existing child changes how that child is
+  SIZED, not just where it sits.
+*/
+.card-meter > .meter { flex: 1 1 auto; min-width: 0; }
+/* Amber, not the accent and not the alarm colour. It is neither something you
+   have nor something wrong — it is a condition on when you can eat, and it
+   should be legible without competing with the meter beside it. */
+.tag-ahead { background: var(--warn-bg); color: var(--warn-fg); white-space: nowrap; }
+
+/* Back sits opposite the brand: the brand says where you are, this says how to
+   leave. A link rather than a history call, so it means the same thing whether
+   you arrived from the nav or from a bookmark. */
+.page-brand { display: flex; align-items: center; gap: 12px; }
+/* Opposite corners, one thing each: the mark says where you are, the back link
+   says how to leave. The convention is that back sits at the leading edge, and
+   the argument against it here is the brand — this page has no nav, so the mark
+   IS the left edge, and two controls beside each other made both compete to be
+   the first thing read. `margin-left: auto` works because the brand comes
+   first in the DOM now; when back was first it pushed itself AND the brand to
+   the right, which put the mark in the middle of nowhere. */
+.page-back { display: inline-flex; align-items: center; gap: 4px; margin-left: auto;
+  font-size: 14px; color: var(--muted); text-decoration: none; }
+@media (hover: hover) { .page-back:hover { color: var(--fg); } }
+/* The same link on a page that has a nav, so it sits on a line of its own
+   above the title rather than opposite the brand. */
+.page-backline { margin: 0 0 4px; }
+
+
+
+/* A button that must read as a sentence's link, because it sits inside one —
+   the basics-seeding offer on a recipe page. Chrome gets no accent; the
+   underline is what says "this acts". */
+.linklike { display: inline; padding: 0; border: 0; background: none;
+  font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+
+
+/* The source name as a door. Underlined always — the reviewer's call over an
+   earlier hover-only version: an affordance nobody can see is not an
+   affordance, and on touch there is no hover to reveal it. */
+.card-source .source-link { color: inherit; text-decoration: underline; text-underline-offset: 2px;
+  /* Above the card's stretched link (z-1), same layer as the chips. */
+  position: relative; z-index: 2; }
+
+/* The creator's name with their favicon beside it, icon scaled to the type —
+   1em tracks the h1's own size, so the mark and the name read as one unit. */
+.creator-title { display: flex; align-items: center; gap: 10px; }
+/* A circle, like a profile picture — the reviewer's call: the page should read
+   as a person's, and a square favicon reads as a browser tab. The faint ring
+   keeps light icons from dissolving into the background. */
+.creator-title img { width: 1.6em; height: 1.6em; border-radius: 50%; flex: none;
+  /* contain, not cover — favicons are already tight crops, and covering
+     zoomed them into abstraction. No ring: the reviewer cut it. The padding
+     zooms the icon out inside its circle (border-box keeps the circle's
+     size), because edge-to-edge it read as a sticker, not a profile. */
+  object-fit: contain; box-sizing: border-box; padding: 0.18em; }
+
+/* The channel icons ride the title row — muted until hovered, sized to sit
+   quietly beside the name. */
+.creator-links { display: inline-flex; gap: 10px; align-items: center;
+  margin-left: 2px; align-self: center; }
+.creator-links a { color: var(--muted); display: inline-flex; }
+@media (hover: hover) { .creator-links a:hover { color: var(--fg); } }
+
+/* The sort select as a pill in the app's own clothes — appearance:none takes
+   the OS chrome away, the inline chevron gives it back on our terms, and the
+   native PICKER still opens, which is the whole reason this stayed a select. */
+.sortselect select { appearance: none; -webkit-appearance: none;
+  font: inherit; color: var(--fg);
+  padding: 5px 26px 5px 12px; border-radius: 999px;
+  border: 1px solid var(--line, rgba(0,0,0,0.15));
+  background: transparent no-repeat right 9px center;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+
+/* The standalone recipe page's hero: the same whole-picture rule the sheet
+   follows, with a taller cap — a full page has room the sheet does not. */
+.recipe-page .modal-shot img { height: auto; max-height: 440px; object-fit: contain; }
+
+/* Air between the cook record ("Made it!") and the payoff grid below it —
+   two different conversations, one breath apart. */
+.payoff { margin-top: 22px; }
+
+/* The shelf's sort — a pill that opens the platform's own picker. */
+.sortselect { font-size: 12.5px; color: var(--muted); }
+
+/* A favicon that only exists at 16px draws at its own scale, not stretched. */
+.creator-title img.avatar-lowres { width: 1em; height: 1em; padding: 0; }
+
+/* The creator-scoped grid's one line of words — who these dishes are from. */
+.payoff-heading { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
+
+/* Present for assistive tech, absent for eyes — the standard clip pattern. */
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px;
+  padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* "Save it" between two full-width buttons was a pebble between boulders —
+   on the standalone page it takes their size, so the three actions read as
+   one column of equals. */
+.recipe-page .modal-actions .btn { display: flex; width: 100%;
+  align-items: center; justify-content: center;
+  padding: 12px 18px; border-radius: 8px; font-size: 16px; font-weight: 600; }
+
+/* Claim surfaces: the token reads as a thing to copy, the check sits quietly
+   by the name, the invite stays a footnote. */
+.claim-token { font-size: 15px; padding: 3px 8px; background: var(--sunken);
+  border-radius: 6px; user-select: all; }
+.claim-ways { margin: 6px 0; padding-left: 20px; display: grid; gap: 8px; font-size: 13.5px; }
+.claim-ways code { overflow-wrap: anywhere; }
+.creator-claimed { color: var(--accent, #2e9e5b); align-self: center; }
+.claim-invite { margin-left: auto; align-self: center; font-size: 12.5px;
+  font-weight: 400; color: var(--muted); text-decoration: underline;
+  text-underline-offset: 2px; white-space: nowrap; }
+.creator-up { margin: 0 0 16px; }
+
+/* The shelf's tools — search and sort, one quiet row. */
+.shelf-tools { display: inline-flex; gap: 8px; align-items: center; }
+.shelfsearch { font: inherit; font-size: 12.5px; color: var(--fg);
+  border: 1px solid var(--line, rgba(0,0,0,0.15)); border-radius: 999px;
+  padding: 5px 12px; background: transparent; width: 170px; }
+.shelfsearch::placeholder { color: var(--muted); }
+
+/* Collection cards — a door apiece: thumbnails as the corner of what's
+   inside, the claimant's "+" card always last. */
+.col-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.col-card { position: relative;
+  padding: 10px; border: 1px solid var(--line, rgba(0,0,0,0.12)); border-radius: 10px; }
+.col-body { display: flex; flex-direction: column; gap: 4px;
+  text-decoration: none; color: inherit; }
+.col-card.on { border-color: var(--accent, #2e9e5b); }
+.col-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.col-thumbs img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 5px; }
+.col-more { display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 4/3; border-radius: 5px; background: var(--sunken);
+  font-size: 13px; font-weight: 600; color: var(--muted); }
+.col-edit { position: absolute; top: 8px; right: 10px; font-size: 12px;
+  color: var(--muted); text-decoration: underline; }
+.col-new { align-items: center; justify-content: center; min-height: 96px;
+  border-style: dashed; }
+.col-plus { font-size: 30px; color: var(--muted); line-height: 1; }
+
+/* The shelf search's suggestions, floating under the pill. */
+.shelfsearch-wrap { position: relative; display: inline-block; }
+.shelfsearch-hits { position: absolute; z-index: 5; right: 0; top: calc(100% + 4px);
+  min-width: 240px; margin: 0; padding: 4px; list-style: none;
+  background: var(--light-bg, #fff); border: 1px solid var(--line, rgba(0,0,0,0.15));
+  border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.12); }
+.shelfsearch-hits button { display: block; width: 100%; text-align: left;
+  padding: 7px 10px; border: 0; background: none; font: inherit; cursor: pointer;
+  border-radius: 6px; }
+@media (hover: hover) { .shelfsearch-hits button:hover { background: var(--sunken); } }
+
+/* The active collection as a removable chip beside the section name. */
+.filter-chip { display: inline-flex; align-items: center; gap: 5px;
+  margin-left: 10px; padding: 3px 10px; border-radius: 999px;
+  border: 1px solid var(--accent, #2e9e5b); color: var(--accent, #2e9e5b);
+  font-size: 12.5px; font-weight: 600; text-decoration: none; vertical-align: middle; }
+.filter-chip span { font-size: 14px; line-height: 1; }
+
+/* The claim page's pieces: benefits as a plain list, channel tabs as pills. */
+.claim-benefits { margin: 4px 0; padding-left: 18px; display: grid; gap: 8px; font-size: 13.5px; }
+.claim-channels { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.claim-ch { font: inherit; font-size: 13px; padding: 5px 14px; border-radius: 999px;
+  border: 1px solid var(--line, rgba(0,0,0,0.15)); background: transparent; cursor: pointer; }
+.claim-ch.on { border-color: var(--accent, #2e9e5b); color: var(--accent, #2e9e5b); font-weight: 600; }
+.claim-ch.off { opacity: 0.55; cursor: default; }
+
+/* Platform colours on the channel tabs — the reviewer's mapping: YouTube red,
+   TikTok black, Instagram pink. Colour rides the border and text; the active
+   tab thickens to a tint of its own colour, so "which platform" and "which is
+   chosen" stay two separate signals. Website keeps the app's green. */
+.claim-ch.ch-domain.on { border-color: var(--accent, #2e9e5b); color: var(--accent, #2e9e5b); }
+.claim-ch.ch-youtube { border-color: #cc0000; color: #cc0000; }
+.claim-ch.ch-youtube.on { background: rgba(204,0,0,0.08); font-weight: 600; }
+.claim-ch.ch-tiktok { border-color: #111; color: #111; }
+.claim-ch.ch-tiktok.on { background: rgba(0,0,0,0.07); font-weight: 600; }
+.claim-ch.ch-instagram { border-color: #e1306c; color: #e1306c; }
+.claim-ch.ch-instagram.on { background: rgba(225,48,108,0.08); font-weight: 600; }
+
+/* The claim pitch reads as prose, not chrome. */
+.claim-pitch { margin: 2px 0 6px; font-size: 13.5px; line-height: 1.55; }
+
+/* The creator add form's pieces. */
+.creator-add-shot { max-width: 220px; border-radius: 8px; margin: 4px 0; }
+.creator-add-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.creator-add-chips .chip { display: inline-flex; align-items: center; gap: 2px;
+  border: 1px solid var(--line, rgba(0,0,0,0.15)); border-radius: 999px; padding: 2px 4px 2px 10px; }
+.creator-add-chips .chip-required { border-color: var(--accent, #2e9e5b); }
+.creator-add-chips .chip-optional { border-style: dashed; color: var(--muted); }
+.creator-add-chips button { border: 0; background: none; font: inherit; cursor: pointer; padding: 2px 4px; }
+.creator-add-chips em { font-style: normal; font-size: 11.5px; color: var(--muted); }
+
+/* The withdraw control sits under the settings, plainly labelled. */
+.withdraw-row { display: grid; gap: 6px; margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--line, rgba(0,0,0,0.12)); max-width: 460px; }
+
+/* CREATOR-SPEC §5's recipe badge — muted like the chrome around it (chrome
+   gets no accent), the mark drawn not typed, and NEVER the profile's check:
+   the two badges must not share a glyph. On the card it is the visible
+   difference §5 demands between confirmed and unconfirmed rows. */
+.detail-confirmed, .card-confirmed { display: inline-flex; align-items: center;
+  gap: 3px; margin-left: 8px; font-size: 12px; color: var(--muted);
+  white-space: nowrap; }
+.card-confirmed { margin-left: 6px; font-size: 11.5px; }
+.confirm-unreadable ul { margin: 4px 0 0; padding-left: 18px; }
+
+/* A hidden row on the owner's own grid — unmistakably off, still readable.
+   The photo dims, the warn line says why; visitors never receive the card. */
+.card-hidden .card-shot { opacity: 0.45; }
+.card-hidden .card-title { color: var(--muted); }
+
+/* The creator's own line under the title row — content, not chrome, so it
+   keeps body color at caption size and stays one readable measure wide. */
+.creator-bio { margin: -6px 0 14px; font-size: 14px; max-width: 60ch; }
+
+/* SS5b's quarantined miss as a chip: visibly not a vocabulary chip - dotted,
+   muted, and inert until curation learns the word. */
+.creator-add-chips .chip-raw { border-style: dotted; color: var(--muted); }
+.creator-add-chips .chip-raw button:first-child { cursor: default; }
+
+/* The demand board's rows: a title and one quiet meta line - a request is a
+   count, not a card, and it must not compete with the recipe grids. */
+.req-list { list-style: none; margin: 0; padding: 0; }
+.req-row { padding: 10px 0; border-bottom: 1px solid var(--line); display: flex;
+  flex-direction: column; gap: 2px; }
+.req-row:last-child { border-bottom: 0; }
+.req-title { font-weight: 600; text-transform: capitalize; }
+.req-meta { font-size: 13px; color: var(--muted); }
+.req-card { border: 0; border-radius: 8px; padding: 12px 14px;
+  background: var(--sunken);
+  margin-top: 8px; }
+.req-card p { margin: 2px 0; }
+
+/* The standing note, read-only - their words on the dish, newlines kept
+   because the transfer merges note and steps with a blank line between. */
+.standing-note { white-space: pre-line; }
+
+/* ── the Creators place (CREATORS-TAB-SPEC §2, §4) ──────────────────────── */
+/* One narrow column, and the door pinned to the bottom by the flex column —
+   `margin-top: auto` is what puts "Are you a creator?" at the bottom center
+   even when the followed list is empty. */
+.creators-home { display: flex; flex-direction: column; min-height: 62vh;
+  width: min(560px, 100%); margin: 0 auto; padding: 26px 16px 40px;
+  box-sizing: border-box; }
+.creator-search input { width: 100%; box-sizing: border-box; font: inherit;
+  font-size: 16px; padding: 12px 16px; border: 1px solid var(--border);
+  border-radius: 10px; background: var(--surface); color: var(--fg); }
+.creator-hits { margin-top: 8px; border: 1px solid var(--line);
+  border-radius: 10px; background: var(--surface); overflow: hidden; }
+.creator-hits ul { list-style: none; margin: 0; padding: 0; }
+.creator-hits-head { margin: 0; padding: 9px 14px 3px; font-size: 11px;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+  font-weight: 600; }
+/* One row is one link — face, name, and the number that says whether the
+   page is worth opening. The count stays quiet; it is context, not a score. */
+.creator-hit { display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 10px 14px; border: 0; background: none; font: inherit;
+  color: var(--fg); cursor: pointer; text-align: left; text-decoration: none;
+  box-sizing: border-box; }
+@media (hover: hover) { .creator-hit:hover { background: var(--hover); } }
+.creator-hit-face { width: 28px; height: 28px; border-radius: 50%;
+  object-fit: cover; flex: 0 0 auto; }
+/* The favicon fallback draws SMALL — the profile page's rule, kept here. */
+.creator-hit-face.avatar-lowres { width: 16px; height: 16px; border-radius: 4px; }
+.creator-hit-name { flex: 1 1 auto; min-width: 0; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; }
+.creator-hit-count { flex: 0 0 auto; font-size: 12.5px; color: var(--muted); }
+.creator-hits-none { margin: 10px 2px 0; font-size: 13.5px; color: var(--muted); }
+.creators-subhead { margin: 26px 0 6px; font-size: 12px;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+  font-weight: 600; }
+.followed-list { list-style: none; margin: 0; padding: 0;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+  overflow: hidden; }
+.creator-door { margin: auto 0 0; padding-top: 40px; text-align: center;
+  font-size: 14px; }
+.creator-door a { color: var(--fg); }
+
+/* Follow — a pill that asks as an outline and holds as the accent, the same
+   grammar the flags speak. The signed-out version is the same pill saying
+   what it needs first. It rides the title's flex line beside the platform
+   icons; `flex: none` so a long display name squeezes the links, never the
+   button's label. */
+.follow-btn { flex: none; display: inline-flex; align-items: center; justify-content: center;
+  font: inherit; font-size: 13.5px; font-weight: 600; padding: 6px 16px;
+  border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--fg); cursor: pointer;
+  text-decoration: none; }
+@media (hover: hover) { .follow-btn:hover { background: var(--hover); } }
+.follow-btn.on { border-color: var(--accent); color: var(--accent);
+  background: var(--sunken); }
+
+/* ── the affiliate modal and its two new doors (CREATORS-TAB-SPEC §7) ───── */
+.aff-products { list-style: none; margin: 10px 0; padding: 0;
+  display: flex; flex-direction: column; gap: 6px; }
+.aff-product { display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px;
+  color: var(--fg); text-decoration: none; background: var(--surface); }
+@media (hover: hover) { .aff-product:hover { background: var(--hover); } }
+.aff-thumb { width: 44px; height: 44px; border-radius: 6px; object-fit: cover;
+  flex: 0 0 auto; background: var(--sunken); }
+/* The drawn stand-in, same box as the photograph it replaces — see
+   `ProductMark`. Centred rather than cropped, because it is a mark and not an
+   image of the thing. */
+.aff-thumb-mark { display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); color: var(--faint); }
+.aff-what { margin: 10px 0 0; font-size: 13.5px; color: var(--muted); }
+/* The perk is the retailer's promise — stated, not shouted. */
+.aff-perk { margin: 6px 0 0; font-size: 13.5px; font-weight: 600; }
+.aff-out { display: inline-flex; align-items: center; padding: 10px 16px;
+  border-radius: 8px; text-decoration: none; }
+
+/*
+  The Almost-there offer, as the strip's first card (Richard, 2026-08-19).
+
+  `.nearcard` does the sizing, so it is the same object as the recipes beside it
+  and cannot drift from them. What is added here is only what says "this one is
+  an ad": a border the recipe cards do not have, and the retailer's name on the
+  picture. The old `.nearoffer` button in the row's controls is gone.
+*/
+.nearcard-offer { border: 0; background: none; padding: 0; text-align: left;
+  cursor: pointer; position: relative; }
+.nearcard-offer .nearcard-img { border: 1px solid var(--border); }
+/* On the thumbnail rather than under it: the mark has to be attached to the
+   picture it is about, or a row of cards reads as one long shelf of ours. */
+/* The placeholder every offer card carries while there is no agreement to show
+   a partner's photography. A drawn jar on a sunken tile: it says "something you
+   buy" without borrowing a picture we have no licence for. */
+.nearcard-blank { display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); background: var(--sunken);
+  color: var(--faint); }
+@media (hover: hover) {
+  .nearcard-offer:hover .nearcard-title { color: var(--accent); }
+}
+
+/* The list's combined footer ad — one block, one tap, one modal. */
+.listad { margin-top: 18px; }
+.listad-body { display: flex; flex-direction: column; gap: 8px; width: 100%;
+  padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); font: inherit; color: var(--fg); cursor: pointer;
+  text-align: left; box-sizing: border-box; }
+@media (hover: hover) { .listad-body:hover { background: var(--hover); } }
+.listad-lead { font-size: 13.5px; font-weight: 600; }
+.listad-thumbs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.listad-thumb { width: 44px; height: 44px; border-radius: 6px;
+  object-fit: cover; background: var(--sunken); }
+.listad-name { font-size: 12.5px; color: var(--muted); }
+
+/* The door's own inputs. Unscoped, they fell through to the browser default:
+   a 13px box a handle barely fits in, on the one form where someone types
+   their name and their site. 16px also keeps iOS from zooming the field. */
+.selfreg .field input { width: 100%; box-sizing: border-box; font: inherit;
+  font-size: 16px; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: 6px; background: var(--surface); color: var(--fg); }
+
+/* The curation form's cuisine chips — the multi-answer row (first = main). */
+.cur-cuisines { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.cur-cuisines-label { font-size: 12px; color: var(--muted); margin-right: 3px; }
+.cur-main { font-style: normal; opacity: .7; }
+
+/* "1,045 recipes" is one fact and stays one line — the label above it may
+   wrap, the number must not split into "1,045 / recipes". */
+.firstrun-starter .hit-count { white-space: nowrap; }
+
+/* Component recipes — "uses their anchovy stock", linked under the counts
+   its ingredients were folded into. Quiet rows, not chips: a component is a
+   fact about the dish, not a state to tick. */
+.recipe-components { list-style: none; margin: 10px 0 0; padding: 0;
+  font-size: 13.5px; color: var(--muted); }
+.recipe-components li { margin: 3px 0; }
+.recipe-components a { color: var(--fg); }
+/* The creator add form's component chip — same family as the raw chip. */
+.chip-component em { font-style: normal; opacity: .7; }
+
+/* The door's platform rows (CREATORS-TAB-SPEC §5) — paste, parse, a row. */
+.platform-add { display: flex; gap: 8px; }
+.platform-add input { flex: 1 1 auto; min-width: 0; }
+.platform-rows { list-style: none; margin: 4px 0 10px; padding: 0;
+  display: flex; flex-direction: column; gap: 5px; }
+.platform-row { display: flex; align-items: center; gap: 6px; font-size: 13.5px;
+  padding: 7px 10px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--surface); }
+.platform-drop { margin-left: auto; border: 0; background: none;
+  color: var(--danger); cursor: pointer; font: inherit; padding: 2px 6px;
+  border-radius: 4px; }
+@media (hover: hover) { .platform-drop:hover { background: var(--hover); } }
+
+/* Related recipes — component and used-in cards at the foot of the
+   ingredient section (2026-08-21). Same quiet chrome as a Panel; the
+   thumbnail earns the glance, the label says which way the arrow points. */
+.related { margin: 14px 0 4px; }
+.related-head { margin: 0 0 6px; font-size: 0.82rem; font-weight: 600; color: var(--muted, #666); }
+.related-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.related-card { display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+  border: 1px solid var(--line, #ddd); border-radius: 10px; text-decoration: none; color: inherit; }
+.related-card:hover { background: var(--hover, rgba(0,0,0,0.03)); }
+.related-shot { width: 52px; height: 52px; border-radius: 8px; object-fit: cover; flex: none; }
+.related-noshot { background: var(--line, #eee); }
+.related-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.related-title { font-weight: 600; font-size: 0.92rem; }
+.related-label { font-size: 0.78rem; color: var(--muted, #666); }

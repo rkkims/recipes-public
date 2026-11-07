@@ -1,0 +1,53 @@
+{
+  "packageId": "app.jipbap.twa",
+  "host": "jipbap.com",
+  "name": "JipBap",
+  "launcherName": "JipBap",
+  "display": "standalone",
+  "themeColor": "#0f1a14",
+  "themeColorDark": "#0f1a14",
+  "navigationColor": "#0f1a14",
+  "navigationColorDark": "#0f1a14",
+  "navigationDividerColor": "#0f1a14",
+  "navigationDividerColorDark": "#0f1a14",
+  "backgroundColor": "#0f1a14",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://jipbap.com/icons/512",
+  "maskableIconUrl": "https://jipbap.com/icons/512",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./android-upload.keystore",
+    "alias": "jipbap"
+  },
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Grocery list",
+      "shortName": "List",
+      "url": "/list",
+      "chosenIconUrl": "https://jipbap.com/icons/192"
+    }
+  ],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://jipbap.com/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": { "enabled": false },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://jipbap.com/",
+  "minSdkVersion": 23,
+  "orientation": "portrait",
+  "shareTarget": {
+    "action": "https://jipbap.com/my-recipes",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

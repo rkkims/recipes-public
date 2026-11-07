@@ -1,0 +1,9 @@
+id,verdict,value,note,decided_at
+category-vegetable,reject,vegetable,"too broad — recipes almost never call for a vegetable generically, so the edge would disclose without ever matching",2026-08-05T00:00:00.000Z
+category-meat,reject,meat,"too broad — recipes name the animal; a generic meat requirement is rare enough that the category earns nothing",2026-08-05T00:00:00.000Z
+category-sauce,reject,sauce,"too broad — bottled sauces share a word, not an identity; bbq and sha cha substitute for nothing",2026-08-05T00:00:00.000Z
+category-spices,reject,spices,"the children are blends — garam masala, taco seasoning — and a recipe wanting one blend is not served by another",2026-08-05T00:00:00.000Z
+category-muk,reject,muk,"the term was invented by the draft, not taken from the corpus; no recipe asks for muk, so the category could never match",2026-08-05T00:00:00.000Z
+category-salted-seafood,reject,salted seafood,"two children and neither substitutes for the other — saeujeot and shrimp paste are used in different cuisines for different jobs",2026-08-05T00:00:00.000Z
+category-dairy,reject,dairy,"a provenance, not a use — recipes ask for cheese or cream, never for dairy, and yogurt substitutes for neither; the dietary question it looks like it answers belongs to allergen tagging, which already handles it",2026-08-05T00:00:00.000Z
+category-oats,reject,oats,"the children are cuts of one grain, and cuts that do not swap — steel cut will not cook in a rolled-oats recipe; siblings with no parent, which §3a says never match",2026-08-05T00:00:00.000Z

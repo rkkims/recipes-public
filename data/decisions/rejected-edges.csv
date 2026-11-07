@@ -1,0 +1,126 @@
+child,parent,note
+mozzarella cheese,mozzarella,claude: the head noun is cheese; the suffix rule already has it right
+cheddar cheese,cheddar,claude: the head noun is cheese; the suffix rule already has it right
+feta cheese,feta,claude: the head noun is cheese; the suffix rule already has it right
+ricotta cheese,ricotta,claude: the head noun is cheese; the suffix rule already has it right
+cherry tomatoes,cherries,claude: not a cherry — a variety of tomato
+oyster mushrooms,oysters,claude: not an oyster — a mushroom named after one
+button mushrooms,button,claude: button is not an ingredient
+english cucumber,english,claude: english is not an ingredient
+persian cucumbers,persian,claude: persian is not an ingredient
+short grain rice,short grain,claude: short grain is a modifier; the suffix rule gives rice
+short grain white rice,short grain,claude: same
+korean green chili peppers,korean green,claude: korean green is not an ingredient
+japanese short-grain rice per donburi,japanese short-grain rice,claude: parser wreckage
+sugar snap peas,sugar,claude: not made of sugar
+milk bread,milk,claude: bread containing milk is not a kind of milk
+flour tortillas,flour,claude: a tortilla is not a kind of flour
+corn tortillas,corn,claude: a tortilla is not a kind of corn
+egg noodles,eggs,claude: noodles containing egg are not a kind of egg
+egg roll wrappers,eggs,claude: nothing to do with egg
+rice noodles,rice,claude: the suffix rule gives noodles and is right
+rice noodle,rice,claude: the suffix rule gives noodles and is right
+wheat noodles,wheat,claude: the suffix rule gives noodles and is right
+buckwheat noodles,buckwheat,claude: the suffix rule gives noodles and is right
+ramen noodles,ramen,claude: the suffix rule gives noodles and is right
+naengmyeon noodles,naengmyeon,claude: the suffix rule gives noodles and is right
+dried rice vermicelli noodles,dried rice,claude: dried rice is not the parent
+rice paper,rice,claude: a product of rice
+rice vermicelli,rice,claude: a product of rice
+wonton wrappers,wontons,claude: a wrapper is not a wonton
+dumpling wrappers,dumplings,claude: a wrapper is not a dumpling
+hot dog buns,hot dogs,claude: a bun is not a hot dog
+ginger ale,ginger,claude: a soft drink is not a kind of ginger
+pumpkin spice,pumpkin,claude: a spice blend containing no pumpkin
+butter lettuce,butter,claude: a variety of lettuce
+orange bell pepper,orange,claude: the colour
+beef bulgogi,beef,claude: a dish
+tortilla chips,tortillas,claude: a chip is not a tortilla
+semi-sweet chocolate chips,semi-sweet,claude: semi-sweet alone is a modifier
+kimchi brine,kimchi,claude: already excluded by name in edges.ts for a quantity reason
+ot 8 oz dried naengmyeon noodles,naengmyeon noodles,parse artifact as a child; the dangling edge silently never fires
+anchovy sauce,anchovies,child is not a node; replaced by an alias to anchovy fish sauce
+whole head of garlic,garlic,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+coves garlic,garlic,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+for 2 pounds garlic,garlic,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+garlic cloves garlic,garlic,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+sesame oil2 cloves garlic,garlic,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+part sea salt,salt,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+sugar 2 4 lbs sugar,sugar,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+green part of a scallion,scallion,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+forearm-length pieces of spring onion,onion,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+forearm-sized piece of spring onion,onion,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+stocks of green onion,onion,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+half-inch thick slices ginger,ginger,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+half-inch thick slices of ginger,ginger,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+2% milk,milk,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+short grain rice cooker cups rice,rice,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+napa cabbage chinese cabbage,cabbage,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+eight oz salmon,salmon,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+zest and juice of 1 lemon,lemon,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+u10 shrimp,shrimp,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+whole 30 40 head on shrimp,shrimp,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+whole head-on shrimp,shrimp,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+make 2 pounds gat-kimchi,kimchi,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+zest and juice from 1 lemon,lemon,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+juice form 1 2 lemon,lemon,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+sweet rice flour glutinous rice flour,glutinous rice flour,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+fluid ounces coconut milk,coconut milk,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+fl ounces coconut milk,coconut milk,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+salt for cleaning the squid,squid,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+fluid ounces soju,soju,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+juice form 1 orange,orange,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+orange zest of 1 2 orange,orange,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+beef flavor cup noodles,noodles,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+chicken flavor cup noodles,noodles,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+or dried ramen noodles,ramen noodles,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+individual packet buckwheat noodles,buckwheat noodles,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+0% lean pork,lean pork,"dangling: child is an alias, not a node — the alias already resolves it, so the edge can never fire"
+oil from the jared crab paste,oil,removed in curate UI
+olive oil,olive,removed in curate UI
+dark soy sauce,soy sauce,a strong variant must not satisfy the all-purpose generic — the sesame-oil rule (curator 2026-08-20)
+soup soy sauce,soy sauce,a strong variant must not satisfy the all-purpose generic — the sesame-oil rule (curator 2026-08-20)
+sweet soy sauce,soy sauce,a strong variant must not satisfy the all-purpose generic — the sesame-oil rule (curator 2026-08-20)
+mushroom soy sauce,soy sauce,a strong variant must not satisfy the all-purpose generic — the sesame-oil rule (curator 2026-08-20)
+thai sweet soy sauce,soy sauce,a strong variant must not satisfy the all-purpose generic — the sesame-oil rule (curator 2026-08-20)
+thai dark sweet soy sauce,soy sauce,a strong variant must not satisfy the all-purpose generic — the sesame-oil rule (curator 2026-08-20)
+korean seasoned soy sauce,soy sauce,a strong variant must not satisfy the all-purpose generic — the sesame-oil rule (curator 2026-08-20)
+homemade shiso garlic soy sauce,soy sauce,a strong variant must not satisfy the all-purpose generic — the sesame-oil rule (curator 2026-08-20)
+beef stock,beef,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+chicken stock,chicken,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+pork stock,pork,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+lobster stock,lobster,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+turkey broth,turkey,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+fish sauce,fish,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+soy sauce,regular,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+rice wine,rice,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+korean rice wine,korean rice,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+rice vinegar,rice,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+rice vinegar,rice wine,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+apple cider vinegar,apple cider,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+apple vinegar,apple,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+persimmon vinegar,persimmon,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+red wine vinegar,red wine,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+white wine vinegar,white wine,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+chinese red vinegar,chinese red,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+avocado oil,avocado,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+coconut oil,coconut,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+grape seed oil,grape seed,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+shrimp paste,shrimp,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+korean tuna sauce,korean tuna,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+korean tuna and hot pepper sauce,korean tuna,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+thai sweet chili sauce,thai sweet,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+thai sweet soy sauce,thai sweet,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+korean green plum syrup,korean green pepper,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+brown rice syrup,brown rice,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+tuna in oil,tuna,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+steak sauce,steak,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+barley malt syrup,barley malt powder,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+chicken bouillon paste,chicken bouillon,"a ferment or a project is not coverage — holding the source cannot cook the recipe (curator 2026-08-20, chicken-stock report)"
+soy sauce,soybeans,"the same prune, against the registry plural"
+oyster sauce,oysters,"the same prune, against the registry plural"
+anchovy stock,anchovies,"the same prune, against the registry plural"
+vegetarian oyster sauce,oyster mushrooms,"the same prune, against the registry plural"
+yellowtail,tuna,removed in curate UI
+instant ramen noodles,ramen noodles,removed in curate UI
+korean instant ramen noodles,ramen noodles,removed in curate UI

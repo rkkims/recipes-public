@@ -1,0 +1,7 @@
+id,verdict,value,note,decided_at
+for 2,reject,,"serving count, parse artifact",2026-08-13T21:21:59.972Z
+for 4,reject,,"serving count, parse artifact",2026-08-13T21:21:59.973Z
+ground coffee,new,ground coffee,"real ingredient (dalgona etc.), not instant coffee, no node yet",2026-08-13T21:21:59.974Z
+1 egg yolk,alias,egg yolk,measurement glued to the surface; same practice as the 2% low fat milk alias,2026-08-13T21:21:59.974Z
+medium-size is size,reject,,,2026-08-13T23:22:49.131Z
+allspice powder,alias,allspice,,2026-08-13T23:23:42.035Z

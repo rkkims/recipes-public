@@ -1,0 +1,12 @@
+[Unit]
+Description=Hourly snapshot of jipbap owner data
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1h
+AccuracySec=5min
+# A VM that was off at the top of the hour still gets its snapshot on boot.
+Persistent=true
+
+[Install]
+WantedBy=timers.target

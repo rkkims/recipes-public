@@ -1,0 +1,26 @@
+# The static site — STATIC-SPEC §5 step 3.
+#
+# Deployed by `npm run build-static` (stage 2/3) and by the republish timer
+# (§6) as:  npx wrangler deploy -c deploy/cloudflare/wrangler-site.toml
+#
+# Credentials come from the environment, never from this file:
+# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID live in
+# /home/ubuntu/.jipbap-deploy.env (chmod 600), loaded by the systemd unit.
+#
+# No route and no custom domain here ON PURPOSE. Publishing only ever
+# updates jipbap-<hash>.workers.dev / the workers.dev subdomain; pointing
+# jipbap.com at this Worker is the cutover, and it stays a deliberate manual
+# act in the dashboard (§1: "one record flip, reversible in seconds").
+name = "jipbap"
+compatibility_date = "2026-08-23"
+# One small script, for one job: a recipe with no prerendered page gets the
+# browser-drawn shell instead of the 404 page (site-worker.ts).
+main = "site-worker.ts"
+
+[assets]
+directory = "../../static-out"
+binding = "ASSETS"
+# An unknown path serves the 404 page the build emitted. Recipe addresses go
+# through the script first, which asks the assets and falls back to the shell.
+not_found_handling = "404-page"
+run_worker_first = ["/recipe/*"]

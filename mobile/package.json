@@ -1,0 +1,24 @@
+{
+  "name": "jipbap-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Native shells around jipbap.com. Not a second app: see README.md.",
+  "scripts": {
+    "add:android": "cap add android",
+    "add:ios": "cap add ios",
+    "sync": "cap sync",
+    "open:android": "cap open android",
+    "open:ios": "cap open ios",
+    "twa:init": "bubblewrap init --manifest https://jipbap.com/manifest.webmanifest",
+    "twa:build": "bubblewrap build"
+  },
+  "devDependencies": {
+    "@bubblewrap/cli": "^1.24.1",
+    "@capacitor/cli": "^7.0.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0"
+  }
+}

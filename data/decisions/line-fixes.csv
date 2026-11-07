@@ -1,0 +1,6 @@
+recipe_id,raw,node,note,decided_at
+rec_5qbm8qqirdka,1 cup extra virgin olive olive oil ((plus more for the croutons)),extra-virgin olive oil,the blogger typed olive twice; the phrase guard cannot see through it,2026-08-20T20:35:09.127851+00:00
+rec_2kvm690uhn84,"800 g rib eye ((1.76 pounds) or top sirloin (or any tender prime beef cuts), thinly sliced, most excess fat removed",beef ribeye,rib eye parsed to the junk node eye,2026-08-21T04:20:00.000Z
+rec_tp871fq657g1,"½ cup citrus juice ((a mix of lemon, orange, and/or grapefruit juice; see Notes))",lemon,author offers a citrus mix; lemon is the anchor and its zest is already required,2026-08-21T04:20:00.000Z
+rec_2kvm690uhn84,"800 g rib eye ((1.76 pounds) or top sirloin (or any tender prime beef cut), thinly sliced, 2mm to 3mm (1/8 inch) thickness)",beef ribeye,retry with the verbatim raw; earlier row was reconstructed from a truncated display and matched nothing,2026-08-21T05:10:00.000Z
+rec_tp871fq657g1,"½ cup citrus juice ((a mix of lemon, orange, and/or grapefruit juices))",lemon,"retry with the verbatim raw, same lesson",2026-08-21T05:10:00.000Z

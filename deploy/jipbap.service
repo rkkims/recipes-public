@@ -1,0 +1,71 @@
+# jipbap — the Next server, kept running.
+#
+# Install:
+#   sudo cp deploy/jipbap.service /etc/systemd/system/jipbap.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now jipbap
+#
+# Watch:   journalctl -u jipbap -f
+# Restart: sudo systemctl restart jipbap
+
+[Unit]
+Description=jipbap (Next.js)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/recipes/app
+
+# ── the build this serves ─────────────────────────────────────────────────
+#
+# `.next-prod`, never `.next`. The curation session on :5173 reads `.next` for
+# hours at a time, and every `next build` rewrites that directory in place —
+# minting a new BUILD_ID and 404ing the chunks the open tab already has, which
+# kills the page mid-review. Production gets its own output so a deploy and a
+# review can never collide. `app/next.config.mjs` exists for this.
+Environment=NODE_ENV=production
+Environment=NEXT_DIST_DIR=.next-prod
+Environment=PORT=3000
+
+# Secrets live here, not in this file — this one is committed. Today it holds
+# WEEE_AFFILIATE_TAG, which is empty until Weee approves us; `lib/weee.ts`
+# produces a working untagged link when it is unset, so an absent file is a
+# working site and not a broken one.
+EnvironmentFile=-/home/ubuntu/recipes/app/.env.production
+
+# Take the port back before binding it. `deploy.sh` already did this, but only
+# on deploys — and the start that kept failing was the automatic one below, at
+# whatever hour a dev server got left running. See the script's header.
+#
+# `-` prefix: a reclaim that cannot run is not a reason to refuse to start.
+ExecStartPre=-/home/ubuntu/recipes/deploy/reclaim-3000.sh
+
+ExecStart=/usr/bin/npm run start --silent
+
+# A crash at 3am should not be a site that is down at 9am.
+Restart=always
+RestartSec=3
+
+# ── what it may touch ─────────────────────────────────────────────────────
+#
+# The one thing that CANNOT be read-only is the repo: `lib/store.ts` writes
+# every pantry change to data/app/owners.json, and `/curate` writes to
+# data/curation/. Everything else on the machine is off limits.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=false
+ReadWritePaths=/home/ubuntu/recipes/data
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=jipbap
+
+[Install]
+WantedBy=multi-user.target

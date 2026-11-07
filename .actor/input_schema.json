@@ -1,0 +1,32 @@
+{
+  "title": "Recipe corpus crawler input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "sourceIds": {
+      "title": "Source ids",
+      "type": "array",
+      "description": "Ids from src/ingest/sources.ts. Defaults to the two sources that return 403 to datacenter IPs.",
+      "editor": "stringList",
+      "default": ["maangchi", "justonecookbook"],
+      "prefill": ["maangchi", "justonecookbook"]
+    },
+    "limit": {
+      "title": "Pages per source",
+      "type": "integer",
+      "description": "Cap pages per source, sampled evenly across the sitemap. Leave empty for the full back catalogue. Start small — residential proxy traffic is metered.",
+      "editor": "number",
+      "minimum": 1,
+      "prefill": 20
+    },
+    "delayMs": {
+      "title": "Delay between requests (ms)",
+      "type": "integer",
+      "description": "Per-host delay. Not politeness theatre: hosts silently truncate paginated responses when hit too fast, without erroring.",
+      "editor": "number",
+      "default": 1500,
+      "minimum": 250
+    }
+  },
+  "required": []
+}

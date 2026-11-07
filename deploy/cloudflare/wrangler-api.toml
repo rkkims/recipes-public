@@ -1,0 +1,44 @@
+# The API Worker — STATIC-SPEC §7b.
+#
+# One endpoint today: `POST /api/events`, the sink the six client beacons
+# post to once the VM stops serving `/api/events` (`workers/api.ts`). §7b
+# names accounts, pantry sync and creator claims as this Worker's future
+# tenants; each arrives with its own test against §0b's contract, not as a
+# convenience because a Worker already exists.
+#
+# The script name is `jipbap-sync`, which is what §7b called it and what was
+# already created on the account. NOTE for anyone reading both files:
+# `wrangler-sync.toml` names the SAME script and points at `workers/sync.ts`,
+# which does not exist. That config is the placeholder §2 left behind; this is
+# the one that deploys.
+#
+# NO ROUTE AND NO CUSTOM DOMAIN HERE ON PURPOSE, the same standing rule as the
+# site and `/go`: publishing only ever updates the workers.dev subdomain, and
+# pointing jipbap.com/api/* at this Worker is part of the cutover — a
+# deliberate manual act in the dashboard.
+name = "jipbap-sync"
+main = "../../workers/api.ts"
+compatibility_date = "2026-08-24"
+
+# The database was created 2026-08-24, once the deploy token was given
+# D1:Edit (it had none: `GET /accounts/<id>/d1/database` answered 10000
+# Authentication error until then). The id below is an identifier, not a
+# secret — the token is the secret, and it lives in the environment
+# (/home/ubuntu/.jipbap-deploy.env, chmod 600).
+#
+# Re-creating it from nothing, should that ever be needed:
+#
+#   npx wrangler d1 create jipbap                # prints a new uuid
+#   npx wrangler d1 execute jipbap --remote --file=workers/schema.sql
+#   npx wrangler deploy -c deploy/cloudflare/wrangler-api.toml
+#
+# Wrangler 4 needs Node >= 22; this box runs 20, so deploys use a Node 22
+# unpacked in the session scratchpad rather than a system install.
+#
+# The Worker itself already survives a missing binding (`env.DB?.`): a beacon
+# that cannot be recorded is a gap, and a beacon that throws is a 500 on a page
+# that has already moved on.
+[[d1_databases]]
+binding = "DB"
+database_name = "jipbap"
+database_id = "7f62124b-97bd-4451-8734-fcf29df0bf28"

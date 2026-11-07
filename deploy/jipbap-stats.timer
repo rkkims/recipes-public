@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh the jipbap traffic report every 15 minutes
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=15min
+# Nothing depends on the exact minute, so let systemd batch it with other work.
+AccuracySec=1min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,1303 @@
+id,verdict,value,note,decided_at
+alias-salt,accept,,,2026-07-30T18:14:54.785Z
+alias-kosher-salt,accept,,,2026-07-30T18:14:56.376Z
+alias-korean-sea-salt,flag,,salt,2026-07-30T18:15:12.004Z
+alias-korean-kimchi-sea-salt,flag,,coarse salt,2026-07-30T18:15:26.203Z
+alias-coarse-salt,accept,,,2026-07-30T18:18:24.936Z
+alias-flaky-sea-salt,flag,,salt,2026-07-30T18:19:01.357Z
+alias-korean-solar-sea-salt,flag,,salt,2026-07-30T18:19:14.637Z
+alias-course-sea-salt,flag,,coarse salt,2026-07-30T18:19:22.260Z
+alias-rock-salt,flag,,salt,2026-07-30T18:19:46.803Z
+alias-korean-cheonilyeom-sea-salt,flag,,salt,2026-07-30T18:19:50.977Z
+alias-granulated-garlic,flag,,garlic,2026-07-30T18:20:17.509Z
+alias-white-and-black-sesame-seeds,flag,,should be split: white sesame seeds / black sesame seeds,2026-07-30T18:20:42.456Z
+alias-hard-egg,flag,,eggs,2026-07-30T18:21:02.128Z
+alias-hard-boiled-eggs,flag,,eggs,2026-07-30T18:21:06.831Z
+alias-soft-egg,flag,,eggs,2026-07-30T18:21:10.783Z
+alias-soy-sauce,accept,,,2026-07-30T18:21:19.578Z
+alias-light-soy-sauce,accept,,,2026-07-30T18:21:20.875Z
+alias-dark-soy-sauce,accept,,,2026-07-30T18:21:21.805Z
+alias-soup-soy-sauce,accept,,,2026-07-30T18:21:22.875Z
+alias-regular-soy-sauce,accept,,,2026-07-30T18:21:24.238Z
+alias-low-sodium-soy-sauce,accept,,,2026-07-30T18:21:25.358Z
+alias-thai-thin-soy-sauce,accept,,,2026-07-30T18:21:26.522Z
+alias-thai-black-soy-sauce,accept,,,2026-07-30T18:21:27.351Z
+alias-mushroom-soy-sauce,accept,,,2026-07-30T18:21:28.728Z
+alias-korean-soy-sauce,accept,,,2026-07-30T18:21:29.653Z
+alias-usukuchi-soy-sauce,accept,,,2026-07-30T18:21:30.993Z
+alias-thai-sweet-soy-sauce,accept,,,2026-07-30T18:21:32.393Z
+alias-dark-mushroom-soy-sauce,accept,,,2026-07-30T18:21:33.660Z
+alias-garlic,accept,,,2026-07-30T18:21:35.048Z
+alias-plump-garlic,flag,,garlic,2026-07-30T18:21:47.815Z
+alias-sugar,accept,,,2026-07-30T18:21:50.455Z
+alias-scallion,accept,,,2026-07-30T18:21:51.591Z
+alias-sesame-oil,accept,,,2026-07-30T18:21:53.215Z
+alias-oil,accept,,,2026-07-30T18:21:53.951Z
+alias-sesame-seeds,accept,,,2026-07-30T18:21:55.509Z
+alias-black-sesame-seeds,accept,,,2026-07-30T18:21:57.418Z
+alias-white-sesame-seeds,accept,,,2026-07-30T18:21:58.549Z
+alias-black-pepper,accept,,,2026-07-30T18:22:00.810Z
+alias-onion,accept,,,2026-07-30T18:22:02.132Z
+alias-eggs,accept,,,2026-07-30T18:22:03.556Z
+alias-quail-eggs,accept,,,2026-07-30T18:22:06.405Z
+alias-century-eggs,accept,,,2026-07-30T18:22:07.792Z
+alias-ginger,accept,,,2026-07-30T18:22:09.356Z
+alias-worth-of-ginger,reject,,ginger,2026-07-30T18:22:14.921Z
+alias-shaoxing-wine,accept,,,2026-07-30T18:22:17.287Z
+alias-rice-wine,accept,,,2026-07-30T18:22:18.716Z
+alias-red-wine,accept,,,2026-07-30T18:22:19.709Z
+alias-white-wine,accept,,,2026-07-30T18:22:21.036Z
+alias-cooking-wine,accept,,,2026-07-30T18:22:22.093Z
+alias-dry-white-wine,accept,,,2026-07-30T18:22:23.589Z
+alias-mirin-wine,flag,,mirin,2026-07-30T18:22:28.679Z
+alias-sake-wine,flag,,sake,2026-07-30T18:22:33.400Z
+alias-gochugaru,accept,,,2026-07-30T18:22:36.283Z
+alias-cornstarch,accept,,,2026-07-30T18:22:37.395Z
+alias-vegetable-oil,flag,,oil,2026-07-30T18:22:41.898Z
+alias-butter,accept,,,2026-07-30T18:22:50.951Z
+alias-unsalted-butter,accept,,,2026-07-30T18:22:51.951Z
+alias-peanut-butter,accept,,,2026-07-30T18:22:53.088Z
+alias-salted-butter,accept,,,2026-07-30T18:22:54.191Z
+alias-vegan-butter,accept,,,2026-07-30T18:22:55.656Z
+alias-carrot,accept,,,2026-07-30T18:22:57.397Z
+alias-peas-and-carrots,flag,,should be split into peas/carrots,2026-07-30T18:23:09.961Z
+alias-worth-carrot,reject,,carrot,2026-07-30T18:23:14.078Z
+alias-white-pepper,accept,,,2026-07-30T18:23:15.849Z
+alias-oyster-sauce,accept,,,2026-07-30T18:23:17.290Z
+alias-vegetarian-oyster-sauce,accept,,,2026-07-30T18:23:18.699Z
+alias-honey,accept,,,2026-07-30T18:23:20.270Z
+alias-neutral-flavored-honey,flag,,honey,2026-07-30T18:23:28.131Z
+alias-gochujang,accept,,,2026-07-30T18:23:32.102Z
+alias-mirin,accept,,,2026-07-30T18:23:33.606Z
+alias-lemon-juice,accept,,,2026-07-30T18:23:35.637Z
+alias-lime-juice,accept,,,2026-07-30T18:23:36.768Z
+alias-kimchi-juice,accept,,,2026-07-30T18:23:37.877Z
+alias-orange-juice,accept,,,2026-07-30T18:23:39.036Z
+alias-pineapple-juice,accept,,,2026-07-30T18:23:40.153Z
+alias-ginger-juice,accept,,,2026-07-30T18:23:41.305Z
+alias-apple-juice,accept,,,2026-07-30T18:23:42.437Z
+alias-yuzu-juice,accept,,,2026-07-30T18:23:43.345Z
+alias-watermelon-juice,accept,,,2026-07-30T18:23:44.682Z
+alias-fish-sauce,accept,,,2026-07-30T18:23:47.003Z
+alias-kimchi-and-kimchi-juice,flag,,should be split into kimchi/kimchi juice,2026-07-30T18:24:02.123Z
+alias-granulated-sugar,accept,,,2026-07-30T18:24:07.010Z
+alias-korean-fish-sauce,accept,,,2026-07-30T18:24:12.841Z
+alias-korean-anchovy-fish-sauce,accept,,,2026-07-30T18:24:14.238Z
+alias-vegan-fish-sauce,accept,,,2026-07-30T18:24:15.572Z
+alias-anchovy-fish-sauce,accept,,,2026-07-30T18:24:18.518Z
+alias-white-granulated-sugar,accept,,,2026-07-30T18:24:23.815Z
+alias-thai-fish-sauce,accept,,,2026-07-30T18:24:26.510Z
+alias-plant-based-fish-sauce,accept,,,2026-07-30T18:24:27.741Z
+alias-brown-sugar,accept,,,2026-07-30T18:24:30.250Z
+alias-light-brown-sugar,accept,,,2026-07-30T18:24:31.395Z
+alias-cabbage,accept,,,2026-07-30T18:24:33.348Z
+alias-napa-cabbage,accept,,,2026-07-30T18:24:34.289Z
+alias-red-cabbage,accept,,,2026-07-30T18:24:35.199Z
+alias-purple-cabbage,flag,,red cabbage,2026-07-30T18:24:48.219Z
+alias-taiwanese-cabbage,accept,,,2026-07-30T18:24:59.289Z
+alias-baby-napa-cabbage,accept,,,2026-07-30T18:25:01.061Z
+alias-olive-oil,accept,,,2026-07-30T18:25:08.536Z
+alias-virgin-olive-oil,accept,,,2026-07-30T18:25:11.986Z
+alias-extra-virgin-olive-oil,accept,,,2026-07-30T18:25:13.557Z
+alias-light-olive-oil,accept,,,2026-07-30T18:25:26.934Z
+alias-milk,accept,,,2026-07-30T18:25:27.617Z
+alias-cilantro,accept,,,2026-07-30T18:25:32.197Z
+alias-handfull-cilantro,reject,,cilantro,2026-07-30T18:25:36.499Z
+alias-firm-tofu,accept,,,2026-07-30T18:25:38.836Z
+alias-tofu,accept,,,2026-07-30T18:25:40.017Z
+alias-silken-tofu,accept,,,2026-07-30T18:25:40.879Z
+alias-soft-tofu,accept,,,2026-07-30T18:25:42.796Z
+alias-medium-firm-tofu,accept,,,2026-07-30T18:25:43.929Z
+alias-super-firm-tofu,accept,,,2026-07-30T18:25:50.813Z
+alias-tube-silken-tofu,flag,,silken tofu,2026-07-30T18:25:57.886Z
+alias-soft-silken-tofu,flag,,silken tofu,2026-07-30T18:26:08.335Z
+alias-pressed-tofu,flag,,tofu. but pressed needs a tofu pressor. actually this opens up opportunity for amazon associate linking,2026-07-30T18:27:03.334Z
+alias-cucumber,accept,,,2026-07-30T18:27:06.969Z
+alias-english-cucumber,accept,,,2026-07-30T18:27:08.463Z
+alias-seedless-cucumber,flag,,cucumber,2026-07-30T18:27:18.452Z
+alias-persian-cucumbers,accept,,,2026-07-30T18:27:19.679Z
+alias-korean-cucumber,accept,,,2026-07-30T18:27:24.591Z
+alias-kirby-cucumbers,accept,,,2026-07-30T18:27:26.864Z
+alias-lebanese-cucumber,accept,,,2026-07-30T18:27:29.476Z
+alias-japanese-cucumber,accept,,,2026-07-30T18:27:30.771Z
+alias-worth-cucumber,reject,,cucumber,2026-07-30T18:27:35.499Z
+alias-rice-vinegar,accept,,,2026-07-30T18:27:37.295Z
+alias-all-purpose-flour,accept,,,2026-07-30T18:31:21.331Z
+alias-unbleached-all-purpose-flour,flag,,all-purpose flour,2026-07-30T18:31:31.555Z
+alias-shiitake-mushrooms,accept,,,2026-07-30T18:31:36.059Z
+alias-dried-shiitake-mushrooms,accept,,,2026-07-30T18:31:37.217Z
+alias-vanilla-extract,accept,,,2026-07-30T18:31:39.247Z
+alias-korean-plum-extract,accept,,,2026-07-30T18:31:40.367Z
+alias-almond-extract,accept,,,2026-07-30T18:31:41.247Z
+alias-peppermint-extract,accept,,,2026-07-30T18:31:43.087Z
+alias-pork,accept,,,2026-07-30T18:31:45.415Z
+alias-chinese-roast-pork,accept,,,2026-07-30T18:31:46.771Z
+alias-fatty-pork,accept,,,2026-07-30T18:31:59.534Z
+alias-lean-pork,accept,,,2026-07-30T18:32:00.733Z
+alias-boneless-pork,accept,,,2026-07-30T18:32:02.722Z
+alias-baby-back-pork,accept,,,2026-07-30T18:32:17.825Z
+alias-korean-radish,accept,,,2026-07-30T18:32:26.781Z
+alias-daikon-radish,accept,,,2026-07-30T18:32:27.533Z
+alias-radish,accept,,,2026-07-30T18:32:30.825Z
+alias-yellow-pickled-radish,accept,,pickled radish,2026-07-30T18:33:00.350Z
+alias-red-radishes,accept,,,2026-07-30T18:33:02.628Z
+alias-chicken-stock,accept,,,2026-07-30T18:33:08.576Z
+alias-kimchi,accept,,,2026-07-30T18:33:10.559Z
+alias-low-sodium-chicken-stock,accept,,,2026-07-30T18:33:11.858Z
+alias-fermented-kimchi,accept,,,2026-07-30T18:33:15.136Z
+alias-cabbage-kimchi,edit,kimchi,"was ""cabbage kimchi"" — resolved to the rule",2026-07-30T18:33:25.854Z
+alias-sour-kimchi,flag,,fermented kimchi,2026-07-30T18:33:32.682Z
+alias-aged-kimchi,flag,,fermented kimchi,2026-07-30T18:33:38.850Z
+alias-juice-from-kimchi,flag,,kimchi juice,2026-07-30T18:33:48.350Z
+alias-hot-chicken-stock,flag,,chicken stock,2026-07-30T18:33:53.391Z
+alias-sour-cabbage-kimchi,flag,,fermented kimchi,2026-07-30T18:34:01.650Z
+alias-unsalted-chicken-stock,accept,,,2026-07-30T18:34:07.271Z
+alias-napa-cabbage-kimchi,flag,,kimchi,2026-07-30T18:34:15.399Z
+alias-well-fermented-kimchi,flag,,fermented kimchi,2026-07-30T18:34:21.171Z
+alias-ripe-kimchi,flag,,fermented kimchi,2026-07-30T18:34:27.970Z
+alias-vegan-kimchi,accept,,,2026-07-30T18:34:32.690Z
+alias-potato,accept,,,2026-07-30T18:34:37.328Z
+alias-sweet-potato,accept,,,2026-07-30T18:34:38.030Z
+alias-russet-potatoes,accept,,,2026-07-30T18:34:42.912Z
+alias-yukon-gold-potatoes,flag,,yukon potatoes,2026-07-30T18:34:49.080Z
+alias-yukon-potato,flag,,yukon potatoes,2026-07-30T18:34:55.211Z
+alias-baby-potatoes,accept,,,2026-07-30T18:34:56.551Z
+alias-medium-sized-potatoes,flag,,potatoes,2026-07-30T18:35:02.755Z
+alias-red-potatoes,accept,,,2026-07-30T18:35:04.352Z
+alias-potato-starch,accept,,,2026-07-30T18:35:06.358Z
+alias-corn-starch,accept,,,2026-07-30T18:35:07.093Z
+alias-wheat-starch,accept,,,2026-07-30T18:35:08.491Z
+alias-tapioca-starch,accept,,,2026-07-30T18:35:10.299Z
+alias-shrimp,accept,,,2026-07-30T18:35:11.632Z
+alias-sweet-potato-starch,accept,,,2026-07-30T18:35:14.731Z
+alias-dried-shrimp,accept,,,2026-07-30T18:35:16.750Z
+alias-korean-salted-shrimp,accept,,,2026-07-30T18:35:18.751Z
+alias-and-shrimp,flag,,shrimp,2026-07-30T18:35:23.831Z
+alias-jumbo-shrimps,flag,,shrimp,2026-07-30T18:35:36.275Z
+alias-salted-fermented-shrimp,flag,,korean salted shrimp,2026-07-30T18:35:59.815Z
+alias-red-bell-pepper,accept,,,2026-07-30T18:36:02.420Z
+alias-green-bell-pepper,accept,,,2026-07-30T18:36:03.997Z
+alias-bell-pepper,accept,,,2026-07-30T18:36:05.340Z
+alias-yellow-bell-pepper,accept,,,2026-07-30T18:36:06.555Z
+alias-orange-bell-pepper,accept,,,2026-07-30T18:36:08.005Z
+alias-heavy-cream,accept,,,2026-07-30T18:36:10.086Z
+alias-sour-cream,accept,,,2026-07-30T18:36:12.436Z
+alias-heavy-whipping-cream,flag,,heavy cream,2026-07-30T18:36:25.448Z
+alias-whipped-cream,flag,,heavy cream,2026-07-30T18:36:31.090Z
+alias-coconut-cream,accept,,,2026-07-30T18:36:33.956Z
+alias-vanilla-ice-cream,accept,,,2026-07-30T18:36:35.478Z
+alias-whipping-cream,flag,,heavy cream,2026-07-30T18:36:41.564Z
+alias-scoops-vanilla-ice-cream,reject,,vanilla ice cream,2026-07-30T18:36:50.165Z
+alias-garlic-powder,accept,,,2026-07-30T18:36:52.556Z
+alias-mung-bean-sprouts,accept,,,2026-07-30T18:36:54.916Z
+alias-soybean-sprouts,accept,,,2026-07-30T18:36:56.684Z
+alias-bean-sprouts,accept,,,2026-07-30T18:37:11.674Z
+alias-mungbean-sprouts,accept,,,2026-07-30T18:37:13.054Z
+alias-radish-sprouts,accept,,,2026-07-30T18:37:14.655Z
+alias-brussels-sprouts,accept,,,2026-07-30T18:37:16.163Z
+alias-alfalfa-sprouts,accept,,,2026-07-30T18:37:17.256Z
+alias-daikon-sprouts,accept,,,2026-07-30T18:37:18.693Z
+alias-snow-pea-sprouts,accept,,,2026-07-30T18:37:19.784Z
+alias-baking-soda,accept,,,2026-07-30T18:37:22.551Z
+alias-club-soda,accept,,,2026-07-30T18:37:23.903Z
+alias-baking-powder,accept,,,2026-07-30T18:37:25.394Z
+alias-red-chili-pepper,accept,,,2026-07-30T18:37:32.372Z
+alias-green-chili-peppers,accept,,,2026-07-30T18:37:34.575Z
+alias-chili-pepper,accept,,,2026-07-30T18:37:36.426Z
+alias-cheongyang-chili-pepper,flag,,serrano pepper,2026-07-30T18:37:46.356Z
+alias-dried-chili-peppers,accept,,,2026-07-30T18:37:47.664Z
+alias-thai-chili-pepper,accept,,,2026-07-30T18:37:49.113Z
+alias-dried-red-chili-pepper,accept,,,2026-07-30T18:37:51.234Z
+alias-mild-red-chili-pepper,edit,red chili pepper,"was ""mild red chili pepper"" — resolved to the rule",2026-07-30T18:37:52.365Z
+alias-korean-green-chili-peppers,accept,,,2026-07-30T18:38:05.103Z
+alias-whole-dry-chili-pepper,flag,,dried chili peppers,2026-07-30T18:38:19.418Z
+alias-korean-red-chili-pepper,flag,,red chili pepper,2026-07-30T18:38:30.666Z
+alias-mild-green-chili-peppers,flag,,green chili pepper,2026-07-30T18:38:39.168Z
+alias-rice,accept,,,2026-07-30T18:38:41.651Z
+alias-vinegar,accept,,,2026-07-30T18:38:43.162Z
+alias-mayonnaise,accept,,,2026-07-30T18:38:45.183Z
+alias-japanese-kewpie-mayonnaise,flag,,kewpie mayonnaise,2026-07-30T18:39:01.733Z
+alias-kewpie-mayonnaise,accept,,,2026-07-30T18:39:03.605Z
+alias-korean-mayonnaise,flag,,mayonnaise,2026-07-30T18:39:11.551Z
+alias-japanese-mayonnaise,accept,,,2026-07-30T18:39:23.116Z
+alias-flour,accept,,,2026-07-30T18:39:26.780Z
+alias-cinnamon,accept,,,2026-07-30T18:39:36.980Z
+alias-chinese-cinnamon,accept,,,2026-07-30T18:39:39.159Z
+alias-beef,accept,,,2026-07-30T18:39:42.462Z
+alias-lean-beef,accept,,,2026-07-30T18:39:46.439Z
+alias-very-beef,reject,,beef,2026-07-30T18:39:50.759Z
+alias-tender-beef,accept,,,2026-07-30T18:39:54.670Z
+alias-boneless-skinless-chicken-thighs,accept,,,2026-07-30T18:40:00.840Z
+alias-chicken-thighs,accept,,,2026-07-30T18:40:01.931Z
+alias-bone-in-skin-on-chicken-thighs,accept,,,2026-07-30T18:40:03.071Z
+alias-boneless-chicken-thighs,accept,,,2026-07-30T18:40:07.741Z
+alias-skin-on-chicken-thighs,accept,,,2026-07-30T18:40:08.912Z
+alias-boneless-skin-on-chicken-thighs,accept,,,2026-07-30T18:40:10.508Z
+alias-white-vinegar,accept,,,2026-07-30T18:40:12.369Z
+alias-shallot,accept,,,2026-07-30T18:40:13.269Z
+alias-serrano-chili,flag,,serrano pepper,2026-07-30T18:40:47.242Z
+alias-red-chili,flag,,red chili pepper,2026-07-30T18:40:52.631Z
+alias-thai-chili,flag,,thai chili pepper,2026-07-30T18:40:58.176Z
+alias-chili,flag,,chili pepper,2026-07-30T18:41:04.199Z
+alias-dried-chili,flag,,dried chili pepper,2026-07-30T18:41:09.215Z
+alias-dried-red-chilis,flag,,dried red chili pepper,2026-07-30T18:41:17.181Z
+alias-bird-s-eye-chili,flag,,thai chili pepper,2026-07-30T18:42:41.592Z
+alias-thai-bird-chili,flag,,thai chili pepper,2026-07-30T18:42:45.541Z
+alias-sweet-rice-flour,flag,,glutinous rice flour,2026-07-30T18:43:01.552Z
+alias-glutinous-rice-flour,accept,,,2026-07-30T18:43:03.034Z
+alias-rice-flour,accept,,,2026-07-30T18:43:05.076Z
+alias-wet-rice-flour,accept,,,2026-07-30T18:43:06.527Z
+alias-chicken-breast,accept,,,2026-07-30T18:43:11.245Z
+alias-boneless-skinless-chicken-breast,accept,,,2026-07-30T18:43:12.370Z
+alias-boneless-chicken-breast,accept,,,2026-07-30T18:43:13.801Z
+alias-zucchini,accept,,,2026-07-30T18:43:15.622Z
+alias-korean-zucchini,flag,,zucchini,2026-07-30T18:43:20.786Z
+alias-chicken-broth,accept,,,2026-07-30T18:43:23.754Z
+alias-anchovy-kelp-broth,accept,,,2026-07-30T18:43:27.244Z
+alias-vegetable-broth,accept,,,2026-07-30T18:43:28.328Z
+alias-anchovy-broth,accept,,,2026-07-30T18:43:29.761Z
+alias-beef-broth,accept,,,2026-07-30T18:43:31.172Z
+alias-broth,accept,,,2026-07-30T18:43:32.764Z
+alias-water-broth,reject,,parse error,2026-07-30T18:43:41.410Z
+alias-chicken-stock-broth,accept,,,2026-07-30T18:43:43.433Z
+alias-low-sodium-chicken-broth,accept,,,2026-07-30T18:43:44.870Z
+alias-dashi-broth,accept,,,2026-07-30T18:43:45.981Z
+alias-kelp-broth,accept,,,2026-07-30T18:43:47.558Z
+alias-tomatoes,accept,,,2026-07-30T18:43:51.298Z
+alias-cherry-tomatoes,accept,,,2026-07-30T18:43:52.602Z
+alias-canned-tomatoes,accept,,,2026-07-30T18:43:54.080Z
+alias-grape-tomatoes,accept,,,2026-07-30T18:43:54.997Z
+alias-sun-dried-tomatoes,accept,,,2026-07-30T18:43:57.809Z
+alias-ripe-tomatoes,accept,,,2026-07-30T18:43:59.600Z
+alias-plum-tomatoes,accept,,,2026-07-30T18:44:00.502Z
+alias-heirloom-tomato,accept,,,2026-07-30T18:44:01.873Z
+alias-dry-yeast,accept,,,2026-07-30T18:44:04.720Z
+alias-instant-yeast,accept,,dry yeast,2026-07-30T18:44:29.902Z
+alias-nutritional-yeast,accept,,,2026-07-30T18:44:07.944Z
+alias-yeast,accept,,,2026-07-30T18:44:09.424Z
+alias-instant-dry-yeast,flag,,dry yeast,2026-07-30T18:44:22.620Z
+alias-envelope-dry-yeast,reject,,dry yeast. parse error,2026-07-30T18:44:42.727Z
+alias-oligodang,accept,,,2026-07-30T18:44:44.955Z
+alias-sichuan-peppercorns,accept,,,2026-07-30T18:44:46.763Z
+alias-black-peppercorns,accept,,,2026-07-30T18:44:48.493Z
+alias-peppercorns,accept,,,2026-07-30T18:44:50.312Z
+alias-white-peppercorns,accept,,,2026-07-30T18:44:52.371Z
+alias-sake,accept,,,2026-07-30T18:44:54.282Z
+alias-mirin-sake,flag,,should be split into mirin/sake,2026-07-30T18:45:04.740Z
+alias-pepper,accept,,,2026-07-30T18:45:06.398Z
+alias-paprika,accept,,,2026-07-30T18:45:07.821Z
+alias-smoked-paprika,accept,,,2026-07-30T18:45:09.214Z
+alias-ketchup,accept,,,2026-07-30T18:45:10.762Z
+alias-white-rice,accept,,,2026-07-30T18:45:12.268Z
+alias-short-grain-white-rice,accept,,,2026-07-30T18:45:13.714Z
+alias-uncooked-japanese-short-grain-white-rice,edit,japanese short-grain white rice,"white rice; was ""white rice"" — resolved to the rule",2026-07-30T18:45:18.683Z
+alias-uncooked-white-rice,flag,,white rice,2026-07-30T18:45:23.582Z
+alias-grain-white-rice,flag,,white rice,2026-07-30T18:45:28.700Z
+alias-tomato-ketchup,flag,,ketchup,2026-07-30T18:45:40.690Z
+alias-chili-oil,accept,,,2026-07-30T18:45:42.579Z
+alias-chinese-chili-oil,accept,,,2026-07-30T18:45:44.041Z
+alias-homemade-chili-oil,flag,,chili oil,2026-07-30T18:45:49.166Z
+alias-hot-chili-oil,accept,,,2026-07-30T18:45:50.611Z
+alias-korean-chili-oil,accept,,,2026-07-30T18:46:05.980Z
+alias-yellow-onion,accept,,,2026-07-30T18:46:06.704Z
+alias-doenjang,accept,,,2026-07-30T18:46:07.861Z
+alias-serrano-pepper,accept,,,2026-07-30T18:46:10.093Z
+alias-onion-powder,accept,,,2026-07-30T18:46:11.321Z
+alias-bay,flag,,bay leaf,2026-07-30T18:46:23.816Z
+alias-dashima,accept,,,2026-07-30T18:46:24.914Z
+alias-dried-bay,flag,,bay leaf,2026-07-30T18:46:36.193Z
+alias-garlic-and-onion-powder,flag,,should be split into garlic powder/onion powder,2026-07-30T18:46:46.373Z
+alias-parsley,accept,,,2026-07-30T18:46:48.212Z
+alias-dried-parsley,accept,,,2026-07-30T18:46:49.663Z
+alias-italian-parsley,accept,,,2026-07-30T18:46:50.576Z
+alias-flat-leaf-parsley,reject,,parsely,2026-07-30T18:46:57.151Z
+alias-perilla,flag,,perilla leaf,2026-07-30T19:43:42.898Z
+alias-korean-perilla,flag,,perilla leaf,2026-07-30T19:43:51.894Z
+alias-pork-belly,accept,,,2026-07-30T19:43:55.063Z
+alias-cut-pork-belly,reject,,pork belly,2026-07-30T19:44:03.290Z
+alias-lean-pork-belly,accept,,,2026-07-30T19:44:07.609Z
+alias-apple,accept,,,2026-07-30T19:44:09.470Z
+alias-red-apple,accept,,,2026-07-30T19:44:14.725Z
+alias-sweet-apple,accept,,,2026-07-30T19:44:26.172Z
+alias-fuji-apple,accept,,,2026-07-30T19:44:27.636Z
+alias-sweet-red-apple,accept,,,2026-07-30T19:44:31.163Z
+alias-granny-smith-apple,accept,,,2026-07-30T19:44:31.996Z
+alias-lemon,accept,,,2026-07-30T19:44:33.775Z
+alias-dijon-mustard,accept,,,2026-07-30T19:44:36.175Z
+alias-yellow-mustard,flag,,mustard,2026-07-30T19:44:45.278Z
+alias-mustard,accept,,,2026-07-30T19:44:47.646Z
+alias-korean-mustard,flag,,mustard,2026-07-30T19:44:55.110Z
+alias-zest-of-1-lemon,reject,,lemon,2026-07-30T19:45:01.611Z
+alias-asian-mustard,accept,,,2026-07-30T19:45:22.134Z
+alias-zest-from-1-lemon,reject,,lemon,2026-07-30T19:45:29.474Z
+alias-whole-grain-mustard,reject,,mustard,2026-07-30T19:45:36.710Z
+alias-chinese-hot-mustard,accept,,,2026-07-30T19:45:42.779Z
+alias-hot-mustard,accept,,,2026-07-30T19:45:44.294Z
+alias-honey-mustard,accept,,,2026-07-30T19:45:45.552Z
+alias-japanese-karashi-hot-mustard,accept,,,2026-07-30T19:45:52.218Z
+alias-five-spice-powder,accept,,,2026-07-30T19:45:53.873Z
+alias-basil,accept,,,2026-07-30T19:45:54.927Z
+alias-thai-basil,accept,,,2026-07-30T19:45:57.435Z
+alias-dried-basil,accept,,,2026-07-30T19:45:58.451Z
+alias-chinese-five-spice-powder,accept,,,2026-07-30T19:45:59.879Z
+alias-pumpkin-spice-powder,accept,,,2026-07-30T19:46:01.723Z
+alias-holy-basil,accept,,,2026-07-30T19:46:06.929Z
+alias-green-beans,accept,,,2026-07-30T19:46:10.510Z
+alias-fermented-black-beans,accept,,,2026-07-30T19:46:11.520Z
+alias-red-beans,accept,,,2026-07-30T19:46:14.027Z
+alias-black-beans,accept,,,2026-07-30T19:46:15.179Z
+alias-sweet-red-beans,flag,,red beans,2026-07-30T19:46:31.891Z
+alias-dried-red-beans,accept,,,2026-07-30T19:46:34.309Z
+alias-cannellini-beans,accept,,,2026-07-30T19:46:37.360Z
+alias-string-beans,accept,,,2026-07-30T19:46:38.845Z
+alias-baked-beans,accept,,,2026-07-30T19:46:40.177Z
+alias-long-beans,accept,,,2026-07-30T19:46:41.318Z
+alias-dried-adzuki-beans,accept,,,2026-07-30T19:46:45.303Z
+alias-asian-pear,accept,,,2026-07-30T19:46:46.789Z
+alias-chicken,accept,,,2026-07-30T19:46:47.946Z
+alias-lettuce,accept,,,2026-07-30T19:46:49.464Z
+alias-romaine-lettuce,accept,,,2026-07-30T19:46:52.498Z
+alias-korean-asian-pear,flag,,asian pear,2026-07-30T19:47:01.100Z
+alias-green-lettuce,flag,,lettuce,2026-07-30T19:47:11.344Z
+alias-pear,accept,,,2026-07-30T19:47:14.852Z
+alias-green-leaf-lettuce,accept,,,2026-07-30T19:47:20.138Z
+alias-iceberg-lettuce,accept,,,2026-07-30T19:47:21.571Z
+alias-bone-in-chicken,accept,,,2026-07-30T19:47:25.671Z
+alias-romain-lettuce,accept,,,2026-07-30T19:47:26.997Z
+alias-rotisserie-chicken,accept,,,2026-07-30T19:47:28.875Z
+alias-butter-lettuce,accept,,,2026-07-30T19:47:30.277Z
+alias-hot-chicken,accept,,,2026-07-30T19:47:33.353Z
+alias-pine-nuts,accept,,,2026-07-30T19:49:32.207Z
+alias-seaweed,flag,,dried seaweed,2026-07-30T19:51:18.896Z
+alias-nuts,accept,,,2026-07-30T19:51:25.723Z
+alias-ginkgo-nuts,accept,,,2026-07-30T19:51:26.949Z
+alias-seasoned-seaweed,flag,,seaweed,2026-07-30T19:51:45.270Z
+alias-crumbled-seaweed,flag,,seaweed,2026-07-30T19:51:50.190Z
+alias-dried-seaweed,flag,,"this is very subtle point. In Asia, miyeok(wakame) and gim (nori) is completely different ingredient. when a user add this into a pantry, it should be clarified",2026-07-30T19:52:16.758Z
+alias-dried-wakame-seaweed,flag,,seaweed,2026-07-30T19:52:42.721Z
+alias-nori-seaweed,flag,,seaweed,2026-07-30T19:52:50.029Z
+alias-lime,accept,,,2026-07-30T19:52:55.173Z
+alias-dried-red-chilies,flag,,dried red chili pepper,2026-07-30T19:53:05.005Z
+alias-red-chilies,flag,,red chili pepper,2026-07-30T19:53:12.309Z
+alias-thai-chilies,flag,,thai chili pepper,2026-07-30T19:53:19.484Z
+alias-green-chilies,flag,,green chili pepper,2026-07-30T19:53:29.664Z
+alias-chilies,flag,,chili pepper,2026-07-30T19:53:51.159Z
+alias-thai-bird-chilies,flag,,thai chili pepper,2026-07-30T19:53:59.471Z
+alias-dried-chilies,flag,,dried chili pepper,2026-07-30T19:54:09.604Z
+alias-juice-of-1-lime,reject,,lime,2026-07-30T19:54:23.739Z
+alias-kaffir-lime,accept,,,2026-07-30T19:54:26.271Z
+alias-juice-of-half-a-lime,reject,,lime,2026-07-30T19:54:32.850Z
+alias-eye-chilies,flag,,parsing error - thai chili pepper,2026-07-30T19:54:48.624Z
+alias-peanuts,accept,,,2026-07-30T19:54:56.083Z
+alias-peas,accept,,,2026-07-30T19:54:57.985Z
+alias-snow-peas,accept,,,2026-07-30T19:54:59.432Z
+alias-sugar-snap-peas,accept,,,2026-07-30T19:55:01.344Z
+alias-green-peas,accept,,,2026-07-30T19:55:02.723Z
+alias-unsalted-peanuts,accept,,,2026-07-30T19:55:05.371Z
+alias-snap-peas,accept,,,2026-07-30T19:55:06.833Z
+alias-salted-peanuts,accept,,,2026-07-30T19:55:08.606Z
+alias-msg,accept,,,2026-07-30T19:55:10.073Z
+alias-bok-choy,accept,,,2026-07-30T19:55:12.072Z
+alias-baby-bok-choy,accept,,,2026-07-30T19:55:13.582Z
+alias-shanghai-bok-choy,accept,,,2026-07-30T19:55:14.952Z
+alias-yu-choy,accept,,,2026-07-30T19:55:16.073Z
+alias-spinach,accept,,,2026-07-30T19:55:17.565Z
+alias-buchu,accept,,,2026-07-30T19:55:18.642Z
+alias-baby-spinach,accept,,,2026-07-30T19:55:20.545Z
+alias-water-spinach,accept,,,2026-07-30T19:55:21.492Z
+alias-myeolchi,accept,,,2026-07-30T19:55:22.994Z
+alias-celery,accept,,,2026-07-30T19:55:25.183Z
+alias-chinese-celery,accept,,,2026-07-30T19:55:26.373Z
+alias-red-onion,accept,,,2026-07-30T19:55:28.245Z
+alias-rice-wine-vinegar,accept,,,2026-07-30T19:55:29.394Z
+alias-flank-steak,flag,,beef flank steak,2026-07-30T19:55:48.144Z
+alias-beef-flank-steak,accept,,,2026-07-30T19:55:52.466Z
+alias-white-wine-vinegar,accept,,,2026-07-30T19:55:53.582Z
+alias-red-wine-vinegar,accept,,,2026-07-30T19:55:55.343Z
+alias-steak,accept,,,2026-07-30T19:55:57.325Z
+alias-sirloin-steak,accept,,,2026-07-30T19:55:58.143Z
+alias-skirt-steak,accept,,,2026-07-30T19:55:59.293Z
+alias-beef-steak,accept,,,2026-07-30T19:56:01.195Z
+alias-star-anise,accept,,,2026-07-30T19:56:01.981Z
+alias-white-sugar,accept,,,2026-07-30T19:56:03.877Z
+alias-egg-yolk,accept,,,2026-07-30T19:56:05.661Z
+alias-organic-yolk,reject,,egg yolk,2026-07-30T19:56:12.787Z
+alias-korean-red-chili-flakes,flag,,gochugaru,2026-07-30T19:56:22.326Z
+alias-chili-flakes,accept,,,2026-07-30T19:56:34.139Z
+alias-sichuan-chili-flakes,accept,,,2026-07-30T19:56:35.047Z
+alias-red-chili-flakes,accept,,,2026-07-30T19:56:36.223Z
+alias-szechuan-chili-flakes,accept,,,2026-07-30T19:56:39.556Z
+alias-thai-chili-flakes,accept,,,2026-07-30T19:56:40.735Z
+alias-dried-chili-flakes,accept,,,2026-07-30T19:56:41.868Z
+alias-chili-oil-with-chili-flakes,flag,,should be split into chili oil / chili flakes,2026-07-30T19:57:10.861Z
+alias-hoisin-sauce,accept,,,2026-07-30T19:57:13.419Z
+alias-chinese-black-vinegar,accept,,,2026-07-30T19:57:15.127Z
+alias-black-vinegar,accept,,,2026-07-30T19:57:16.378Z
+alias-bacon,accept,,,2026-07-30T19:57:18.818Z
+alias-cut-bacon,reject,,bacon,2026-07-30T19:57:25.190Z
+alias-applewood-smoked-bacon,accept,,,2026-07-30T19:57:27.427Z
+alias-oyster-mushrooms,accept,,,2026-07-30T19:57:31.163Z
+alias-king-oyster-mushrooms,accept,,,2026-07-30T19:57:32.320Z
+alias-mozzarella-cheese,accept,,,2026-07-30T19:57:33.589Z
+alias-maple-syrup,accept,,,2026-07-30T19:57:35.176Z
+alias-mushrooms,accept,,,2026-07-30T19:57:36.767Z
+alias-parmesan-cheese,accept,,,2026-07-30T19:57:37.964Z
+alias-fish-cake,accept,,,2026-07-30T19:57:40.501Z
+alias-korean-fish-cake,accept,,,2026-07-30T19:57:44.089Z
+alias-rice-cake,accept,,,2026-07-30T19:57:45.232Z
+alias-korean-rice-cake,accept,,,2026-07-30T19:57:47.140Z
+alias-sweetened-condensed-milk,accept,,,2026-07-30T19:57:49.938Z
+alias-condensed-milk,accept,,,2026-07-30T19:57:51.616Z
+alias-sweet-condensed-milk,flag,,sweetened condensed milk,2026-07-30T19:58:03.058Z
+alias-thyme,accept,,,2026-07-30T19:58:06.622Z
+alias-dried-thyme,accept,,,2026-07-30T19:58:07.986Z
+alias-avocado,accept,,,2026-07-30T19:58:09.502Z
+alias-wonton-wrappers,accept,,,2026-07-30T19:58:11.563Z
+alias-dumpling-wrappers,accept,,,2026-07-30T19:58:12.592Z
+alias-egg-roll-wrappers,accept,,,2026-07-30T19:58:13.733Z
+alias-rice-paper-wrappers,accept,,,2026-07-30T19:58:15.434Z
+alias-ripe-avocado,accept,,,2026-07-30T19:58:21.723Z
+alias-square-wonton-wrappers,flag,,wonton wrappers,2026-07-30T19:58:43.993Z
+alias-spring-roll-wrappers,accept,,,2026-07-30T19:58:45.424Z
+alias-canola-oil,accept,,,2026-07-30T19:58:46.347Z
+alias-short-grain-rice,accept,,,2026-07-30T19:58:50.943Z
+alias-pork-shoulder,accept,,,2026-07-30T19:58:52.648Z
+alias-boneless-pork-shoulder,accept,,,2026-07-30T19:58:53.921Z
+alias-uncooked-short-grain-rice,flag,,short grain rice,2026-07-30T19:59:03.583Z
+alias-grain-rice,flag,,rice,2026-07-30T19:59:12.818Z
+alias-long-grain-rice,accept,,,2026-07-30T19:59:17.856Z
+alias-lamb-shoulder,accept,,,2026-07-30T19:59:21.251Z
+alias-sriracha,accept,,,2026-07-30T19:59:22.504Z
+alias-cream-cheese,accept,,,2026-07-30T19:59:23.905Z
+alias-egg-white,accept,,,2026-07-30T19:59:26.195Z
+alias-leek,accept,,,2026-07-30T19:59:27.445Z
+alias-asian-leek,accept,,,2026-07-30T19:59:28.888Z
+alias-scallion-whites,flag,,scallion,2026-07-30T19:59:38.165Z
+alias-white,reject,,I guess there is a parsing error here. investigate it,2026-07-30T20:00:37.373Z
+alias-vegan-cream-cheese,accept,,,2026-07-30T20:00:39.016Z
+alias-enoki-mushrooms,accept,,,2026-07-30T20:00:40.283Z
+alias-chives,accept,,,2026-07-30T20:00:43.958Z
+alias-chinese-chives,accept,,,2026-07-30T20:00:45.488Z
+alias-chinese-garlic-chives,flag,,chinese chives,2026-07-30T20:00:53.601Z
+alias-avocado-oil,accept,,,2026-07-30T20:00:57.552Z
+alias-mint,accept,,,2026-07-30T20:00:59.032Z
+alias-worcestershire-sauce,accept,,,2026-07-30T20:01:02.154Z
+alias-laver,flag,,seaweed,2026-07-30T20:01:14.405Z
+alias-broccoli,accept,,,2026-07-30T20:01:18.961Z
+alias-chinese-broccoli,accept,,,2026-07-30T20:01:20.114Z
+alias-apple-cider-vinegar,accept,,,2026-07-30T20:01:21.650Z
+alias-coconut-milk,accept,,,2026-07-30T20:01:22.978Z
+alias-cider-vinegar,accept,,,2026-07-30T20:01:25.591Z
+alias-lite-coconut-milk,accept,,,2026-07-30T20:01:27.926Z
+alias-cake-flour,accept,,,2026-07-30T20:01:28.834Z
+alias-dangmyeon,accept,,,2026-07-30T20:01:32.792Z
+alias-bread-flour,accept,,,2026-07-30T20:01:34.831Z
+alias-tteok,accept,,,2026-07-30T20:01:36.104Z
+alias-unbleached-bread-flour,edit,bread flour,"was ""unbleached bread flour"" — resolved to the rule",2026-07-30T20:01:43.606Z
+alias-cumin,accept,,,2026-07-30T20:01:45.191Z
+alias-chicken-wings,accept,,,2026-07-30T20:01:46.535Z
+alias-single-chicken-wings,reject,,chicken wings,2026-07-30T20:01:52.554Z
+alias-rock-sugar,accept,,,2026-07-30T20:02:00.216Z
+alias-lemon-zest,reject,,lemon,2026-07-30T20:02:05.435Z
+alias-orange-zest,reject,,orange,2026-07-30T20:02:12.624Z
+alias-scallion-greens,flag,,scallion,2026-07-30T20:02:26.437Z
+alias-baby-greens,accept,,,2026-07-30T20:02:28.515Z
+alias-leafy-greens,accept,,,2026-07-30T20:02:30.007Z
+alias-pickled-mustard-greens,accept,,,2026-07-30T20:02:38.832Z
+alias-chrysanthemum-greens,accept,,,2026-07-30T20:02:40.197Z
+alias-lime-zest,reject,,lime. add special logic to handle “zest” words,2026-07-30T20:03:06.570Z
+alias-collard-greens,accept,,,2026-07-30T20:03:10.725Z
+alias-mixed-greens,accept,,,2026-07-30T20:03:13.624Z
+alias-vanilla-bean-paste,accept,,,2026-07-30T20:03:21.287Z
+alias-spicy-bean-paste,accept,,,2026-07-30T20:03:22.495Z
+alias-sweet-red-bean-paste,flag,,sweetened red bean paste,2026-07-30T20:03:34.858Z
+alias-sweetened-red-bean-paste,accept,,,2026-07-30T20:03:36.915Z
+alias-korean-black-bean-paste,accept,,,2026-07-30T20:03:42.735Z
+alias-black-bean-paste,accept,,,2026-07-30T20:03:45.693Z
+alias-korean-soy-bean-paste,flag,,doenjang,2026-07-30T20:03:52.671Z
+alias-nutmeg,accept,,,2026-07-30T20:03:54.794Z
+alias-strawberries,accept,,,2026-07-30T20:03:56.388Z
+alias-jasmine-rice,accept,,,2026-07-30T20:03:58.696Z
+alias-day-old-jasmine-rice,edit,jasmine rice,"jasmin rice; was ""jasmin rice"" — resolved to the rule",2026-07-30T20:04:04.350Z
+alias-uncooked-jasmine-rice,edit,jasmine rice,"jasmin rice; was ""jasmin rice"" — resolved to the rule",2026-07-30T20:04:09.536Z
+alias-chili-powder,accept,,,2026-07-30T20:04:12.366Z
+alias-red-chili-powder,accept,,,2026-07-30T20:04:14.365Z
+alias-ginger-powder,accept,,,2026-07-30T20:04:16.144Z
+alias-panko-breadcrumbs,accept,,,2026-07-30T20:04:18.034Z
+alias-lotus-root,accept,,,2026-07-30T20:04:19.285Z
+alias-breadcrumbs,accept,,,2026-07-30T20:04:20.764Z
+alias-burdock-root,accept,,,2026-07-30T20:04:22.660Z
+alias-ginger-root,accept,,,2026-07-30T20:04:23.866Z
+alias-sand-ginger-powder,accept,,,2026-07-30T20:04:27.484Z
+alias-ginseng-roots,accept,,,2026-07-30T20:04:29.007Z
+alias-licorice-root,accept,,,2026-07-30T20:04:30.446Z
+alias-bamboo-shoots,accept,,,2026-07-30T20:04:32.165Z
+alias-squid,accept,,,2026-07-30T20:04:34.045Z
+alias-canned-tuna,accept,,,2026-07-30T20:04:35.433Z
+alias-kewpie-mayo,flag,,kewpie mayonnaise,2026-07-30T20:04:46.837Z
+alias-tuna,accept,,,2026-07-30T20:04:49.529Z
+alias-mayo,flag,,mayonnaise,2026-07-30T20:04:56.590Z
+alias-canned-bamboo-shoots,accept,,,2026-07-30T20:05:01.984Z
+alias-dried-squid,accept,,,2026-07-30T20:05:04.210Z
+alias-cleaned-squid,reject,,squid,2026-07-30T20:05:09.386Z
+alias-japanese-mayo,edit,japanese mayonnaise,"was ""japanese mayo"" — resolved to the rule",2026-07-30T20:05:13.371Z
+alias-spicy-mayo,accept,,,2026-07-30T20:05:14.933Z
+alias-spam,accept,,,2026-07-30T20:05:15.776Z
+alias-curry-powder,accept,,,2026-07-30T20:05:16.975Z
+alias-korean-pancake-mix,accept,,,2026-07-30T20:05:21.098Z
+alias-korean-curry-powder,accept,,,2026-07-30T20:05:23.926Z
+alias-korean-mix,flag,,parsing error - korean frying mix,2026-07-30T20:05:44.212Z
+alias-spring-mix,accept,,,2026-07-30T20:05:50.227Z
+alias-half-of-the-seasoning-mix,reject,,no such thing. seasoning mix must be from their own separate recipe. this kind of case should be handled carefully by telling a user that it might have more required ingredients.,2026-07-30T20:06:51.371Z
+alias-spice-mix,reject,,same with seasoning mix case,2026-07-30T20:07:07.883Z
+alias-tempura-mix,accept,,,2026-07-30T20:07:11.153Z
+alias-seafood-mix,accept,,,2026-07-30T20:07:11.893Z
+alias-beef-brisket,accept,,,2026-07-30T20:07:13.105Z
+alias-chicken-bouillon-powder,accept,,,2026-07-30T20:07:15.394Z
+alias-agave-nectar,accept,,,2026-07-30T20:07:16.973Z
+alias-spaghetti,accept,,,2026-07-30T20:07:22.774Z
+alias-dried-spaghetti,flag,,spaghetti,2026-07-30T20:07:27.966Z
+alias-dry-spaghetti,flag,,spaghetti,2026-07-30T20:07:33.073Z
+alias-sugar-nectar,reject,,parsing error. sugar/agave nectar,2026-07-30T20:07:49.388Z
+alias-cayenne-pepper,accept,,,2026-07-30T20:07:51.961Z
+alias-aekjeot,accept,,,2026-07-30T20:07:53.764Z
+alias-dried-jujube,accept,,,2026-07-30T20:07:55.717Z
+alias-jujubes,accept,,,2026-07-30T20:07:57.296Z
+alias-myulchi-aekjeot,flag,,myeolchi aekjeot,2026-07-30T20:08:13.776Z
+alias-myeolchi-aekjeot,accept,,,2026-07-30T20:08:15.482Z
+alias-turmeric,accept,,,2026-07-30T20:08:16.963Z
+alias-tomato-paste,accept,,,2026-07-30T20:08:17.799Z
+alias-walnuts,accept,,,2026-07-30T20:08:18.985Z
+alias-miso,accept,,,2026-07-30T20:08:20.753Z
+alias-dried-oregano,accept,,,2026-07-30T20:08:23.418Z
+alias-rosemary,accept,,,2026-07-30T20:08:24.745Z
+alias-cheddar-cheese,accept,,,2026-07-30T20:08:26.033Z
+alias-spicy-bean-sauce,accept,,,2026-07-30T20:08:28.196Z
+alias-chestnuts,accept,,,2026-07-30T20:08:29.573Z
+alias-water-chestnuts,accept,,,2026-07-30T20:08:30.753Z
+alias-imitation-crab-meat,accept,,,2026-07-30T20:08:32.633Z
+alias-dried-rosemary,accept,,,2026-07-30T20:08:33.472Z
+alias-oregano,accept,,,2026-07-30T20:08:35.262Z
+alias-sharp-cheddar-cheese,flag,,cheddar cheese,2026-07-30T20:08:56.601Z
+alias-sweet-bean-sauce,accept,,,2026-07-30T20:08:59.072Z
+alias-lump-crab-meat,reject,,crab meat,2026-07-30T20:09:18.271Z
+alias-white-miso,accept,,,2026-07-30T20:09:21.986Z
+alias-bean-sauce,flag,,ground bean sauce,2026-07-30T20:09:38.932Z
+alias-clam-meat,accept,,,2026-07-30T20:09:41.710Z
+alias-beef-stew-meat,accept,,,2026-07-30T20:09:43.001Z
+alias-lobster-meat,accept,,,2026-07-30T20:09:44.329Z
+alias-white-cheddar-cheese,accept,,,2026-07-30T20:09:45.828Z
+alias-crab-meat,accept,,,2026-07-30T20:09:47.668Z
+alias-meat,flag,,ground meat,2026-07-30T20:09:53.988Z
+alias-red-miso,accept,,,2026-07-30T20:09:55.877Z
+alias-plain-yogurt,accept,,,2026-07-30T20:09:58.638Z
+alias-greek-yogurt,accept,,,2026-07-30T20:09:59.847Z
+alias-white-onion,accept,,,2026-07-30T21:48:32.599Z
+alias-sweet-onion,accept,,,2026-07-30T21:48:33.327Z
+alias-brown-onion,accept,,,2026-07-30T21:48:35.279Z
+alias-purple-onion,accept,,,2026-07-30T21:48:37.574Z
+alias-medium-size-onion,reject,,medium-size is size (or measurement),2026-07-30T21:48:51.510Z
+alias-rough-onion,reject,,"rough is part of rough chopped, which is a processing",2026-07-30T21:49:12.486Z
+alias-white-black-sesame-seeds,reject,,should be split into white sesame seeds/black sesame seeds,2026-07-30T21:49:30.554Z
+alias-black-and-white-sesame-seeds,reject,,should be split into white sesame seeds/black sesame seeds,2026-07-30T21:49:35.664Z
+alias-wine,flag,,parsing error - cooking wine,2026-07-30T21:49:49.805Z
+alias-rice-cooking-wine,accept,,,2026-07-30T21:49:53.023Z
+alias-fine-gochugaru,accept,,,2026-07-30T21:50:00.705Z
+alias-dried-chili-pepper,accept,,,2026-07-30T21:50:02.774Z
+alias-beef-stock,accept,,,2026-07-30T21:50:04.941Z
+alias-dashi-stock,accept,,,2026-07-30T21:50:06.734Z
+alias-anchovy-stock,accept,,,2026-07-30T21:50:08.126Z
+alias-vegetable-stock,accept,,,2026-07-30T21:50:09.583Z
+alias-korean-ultimate-stock,reject,,same issue with before. it’s not actual ingredient. it’s a outcome of a separate recipe.,2026-07-30T21:50:34.951Z
+alias-stock,accept,,,2026-07-30T21:50:41.230Z
+alias-korean-soup-stock,accept,,,2026-07-30T21:50:43.075Z
+alias-sea-kelp-stock,flag,,kelp stock,2026-07-30T21:50:55.692Z
+alias-anchovy-kelp-stock,accept,,,2026-07-30T21:50:57.592Z
+alias-taiwanese-flat-cabbage,flag,,taiwanese cabbage,2026-07-30T21:51:09.375Z
+alias-pickled-radish,accept,,,2026-07-30T21:51:14.525Z
+alias-potatoes,accept,,,2026-07-30T21:51:15.837Z
+alias-ice-cream,accept,,,2026-07-30T21:51:17.194Z
+alias-cassia-cinnamon,accept,,,2026-07-30T21:51:24.977Z
+alias-oligodang-syrup,flag,,oligodang,2026-07-30T21:51:31.978Z
+alias-korean-corn-syrup,flag,,oligodang,2026-07-30T21:51:46.974Z
+alias-simple-syrup,flag,,this is problematic. there’s no simple syrup. it needs manual curation.,2026-07-30T21:52:35.523Z
+alias-green-plum-syrup,flag,,maesil syrup,2026-07-30T21:52:50.392Z
+alias-maesil-syrup,accept,,,2026-07-30T21:52:50.862Z
+alias-light-corn-syrup,accept,,,2026-07-30T21:52:53.371Z
+alias-brown-rice-syrup,accept,,,2026-07-30T21:52:55.173Z
+alias-plum-syrup,flag,,maesil syrup,2026-07-30T21:53:01.413Z
+alias-oligo-syrup,flag,,oligodang,2026-07-30T21:53:07.174Z
+alias-barley-malt-syrup,accept,,,2026-07-30T21:53:08.923Z
+alias-golden-syrup,accept,,,2026-07-30T21:53:15.508Z
+alias-seaweed-kombu-dashima,accept,,,2026-07-30T21:53:39.558Z
+alias-perilla-leaf,accept,,,2026-07-30T21:53:43.110Z
+alias-bay-leaf,accept,,,2026-07-30T21:53:44.539Z
+alias-japanese-short-grain-white-rice,accept,,,2026-07-30T21:53:53.085Z
+alias-medium-grain-white-rice,accept,,,2026-07-30T21:53:55.741Z
+alias-seaweed-nori-gim,accept,,,2026-07-30T21:53:57.020Z
+alias-pickled-mustard,accept,,,2026-07-30T21:53:58.608Z
+alias-bay-leaves,flag,,bay leaf,2026-07-30T21:54:04.128Z
+alias-shiso-leaves,flag,,sisho,2026-07-30T21:54:16.764Z
+alias-kaffir-lime-leaves,accept,,,2026-07-30T21:54:24.868Z
+alias-dried-bay-leaves,accept,,,2026-07-30T21:54:25.569Z
+alias-dried-mung-beans,accept,,,2026-07-30T21:54:27.296Z
+alias-aa-choy,accept,,,2026-07-30T21:54:30.941Z
+alias-beef-skirt-steak,accept,,,2026-07-30T21:54:35.001Z
+alias-eye-steak,accept,,,2026-07-30T21:54:36.316Z
+alias-beef-short-ribs,accept,,,2026-07-30T21:54:37.640Z
+alias-baby-back-ribs,accept,,,2026-07-30T21:54:38.931Z
+alias-short-ribs,accept,,,2026-07-30T21:54:39.753Z
+alias-salted-duck-egg-yolks,accept,,,2026-07-30T21:54:43.438Z
+alias-dried-rice-paper-wrappers,accept,,,2026-07-30T21:54:45.835Z
+alias-medium-grain-rice,accept,,,2026-07-30T21:54:47.049Z
+alias-spicy-broad-bean-paste,accept,,,2026-07-30T21:54:50.441Z
+alias-red-bean-paste,accept,,,2026-07-30T21:54:51.844Z
+alias-panko,accept,,,2026-07-30T21:54:53.258Z
+alias-dried-licorice-root,accept,,,2026-07-30T21:54:54.380Z
+alias-raw-sugar,accept,,,2026-07-30T21:54:55.853Z
+alias-vegetable,reject,,parsing error. vegetable oil,2026-07-30T21:55:08.513Z
+alias-mixed-vegetables,flag,,frozen mixed vegetables. this is a separate grocery product.,2026-07-30T21:55:42.080Z
+alias-ground-bean-sauce,accept,,,2026-07-30T21:55:45.072Z
+alias-sandwich-bread,accept,,,2026-07-30T21:55:45.721Z
+alias-white-bread,flag,,milk bread,2026-07-30T21:55:56.105Z
+alias-milk-bread,accept,,,2026-07-30T21:55:57.053Z
+alias-bread,accept,,,2026-07-30T21:55:58.129Z
+alias-sourdough-bread,accept,,,2026-07-30T21:55:59.560Z
+alias-crusty-bread,accept,,,2026-07-30T21:56:12.056Z
+alias-ham,accept,,,2026-07-30T21:56:14.706Z
+alias-vegan-yogurt,accept,,,2026-07-30T21:56:15.627Z
+alias-yogurt,accept,,,2026-07-30T21:56:16.928Z
+alias-plain-greek-yogurt,accept,,,2026-07-30T21:56:19.107Z
+alias-jinhua-ham,accept,,,2026-07-30T21:56:20.505Z
+alias-deli-ham,accept,,,2026-07-30T21:56:21.781Z
+alias-virginia-ham,accept,,,2026-07-30T21:56:23.030Z
+alias-korean-frying-mix,accept,,,2026-07-30T21:56:25.792Z
+alias-ginger-paste,accept,,,2026-07-30T21:56:27.159Z
+alias-saeujeot,accept,,,2026-07-30T21:56:28.220Z
+alias-long-hot-green-peppers,accept,,,2026-07-30T21:56:31.263Z
+alias-links-chinese-sausage,reject,,chinese sausage,2026-07-30T21:56:47.395Z
+alias-green-pepper,accept,,,2026-07-30T21:56:50.921Z
+alias-sausages,accept,,,2026-07-30T21:56:52.538Z
+alias-chinese-sausage,accept,,,2026-07-30T21:56:54.682Z
+alias-cocktail-sausage,accept,,,2026-07-30T21:56:56.659Z
+alias-italian-sausage,accept,,,2026-07-30T21:56:57.887Z
+alias-lemongrass,accept,,,2026-07-30T21:56:59.006Z
+alias-glutinous-rice,accept,,,2026-07-30T21:57:00.067Z
+alias-orange,accept,,,2026-07-30T21:57:01.435Z
+alias-mandarin-orange,accept,,,2026-07-30T21:57:04.203Z
+alias-jalapeno,accept,,,2026-07-30T21:57:05.927Z
+alias-salmon-fillet,accept,,,2026-07-30T21:57:07.431Z
+alias-cod-fillet,accept,,,2026-07-30T21:57:09.416Z
+alias-fish-fillets,accept,,,2026-07-30T21:57:10.199Z
+alias-chicken-breast-fillets,accept,,,2026-07-30T21:57:11.477Z
+alias-soju,accept,,,2026-07-30T21:57:12.368Z
+alias-palm-sugar,accept,,,2026-07-30T21:57:13.306Z
+alias-white-pepper-powder,accept,,,2026-07-30T21:57:14.424Z
+alias-bittersweet-chocolate-chips,accept,,,2026-07-30T21:57:16.780Z
+alias-korean-red-pepper-powder,flag,,gochugaru,2026-07-30T21:57:24.379Z
+alias-dark-chocolate-chips,accept,,,2026-07-30T21:57:26.358Z
+alias-white-chocolate-chips,accept,,,2026-07-30T21:57:27.632Z
+alias-semi-sweet-chocolate-chips,accept,,,2026-07-30T21:57:31.511Z
+alias-tortilla-chips,accept,,,2026-07-30T21:57:33.717Z
+alias-red-chili-pepper-powder,flag,,guchugaru,2026-07-30T21:57:39.978Z
+alias-chocolate-chips,accept,,,2026-07-30T21:57:41.489Z
+alias-cheese,accept,,,2026-07-30T21:57:42.580Z
+alias-pineapple,accept,,,2026-07-30T21:57:43.572Z
+alias-sesame-paste,accept,,,2026-07-30T21:57:47.335Z
+alias-sweet-corn,accept,,,2026-07-30T21:57:49.596Z
+alias-corn,accept,,,2026-07-30T21:57:50.742Z
+alias-crab,reject,,parsing error - crab meat,2026-07-30T21:58:00.856Z
+alias-chinese-sesame-paste,accept,,,2026-07-30T21:58:03.027Z
+alias-imitation-crab,accept,,,2026-07-30T21:58:08.228Z
+alias-black-pepper-corn,accept,,,2026-07-30T21:58:10.227Z
+alias-blue-crabs,accept,,,2026-07-30T21:58:11.568Z
+alias-canned-pineapple,accept,,,2026-07-30T21:58:14.321Z
+alias-cinnamon-powder,accept,,,2026-07-30T21:58:15.395Z
+alias-pumpkin-puree,accept,,,2026-07-30T21:58:16.562Z
+alias-dried-wood-ear-mushrooms,accept,,,2026-07-30T21:58:18.105Z
+alias-wood-ear-mushrooms,accept,,,2026-07-30T21:58:19.102Z
+alias-tomato-puree,accept,,,2026-07-30T21:58:20.183Z
+alias-peanut-oil,accept,,,2026-07-30T21:58:21.400Z
+alias-asparagus,accept,,,2026-07-30T21:58:22.319Z
+alias-perilla-oil,accept,,,2026-07-30T21:58:23.506Z
+alias-dried-goji-berries,accept,,,2026-07-30T21:58:24.603Z
+alias-mango,accept,,,2026-07-30T21:58:25.701Z
+alias-hot-pepper-flakes,accept,,,2026-07-30T21:58:26.833Z
+alias-chinese-chili-pepper-flakes,accept,,,2026-07-30T21:58:27.899Z
+alias-thai-chili-pepper-flakes,accept,,,2026-07-30T21:58:28.904Z
+alias-berries,accept,,,2026-07-30T21:58:30.017Z
+alias-mixed-berries,accept,,,2026-07-30T21:58:31.353Z
+alias-goji-berries,accept,,,2026-07-30T21:58:32.451Z
+alias-ripe-mangoes,accept,,,2026-07-30T21:58:37.739Z
+alias-dried-chili-pepper-flakes,accept,,,2026-07-30T21:58:43.840Z
+alias-korean-chili-pepper-flakes,flag,,gochugaru,2026-07-30T21:58:55.349Z
+alias-udon-noodles,accept,,,2026-07-30T21:58:55.454Z
+alias-herbs,reject,,fresh herbs. distinction matters. dried and fresh herbs are completly different,2026-07-30T21:59:23.166Z
+alias-japanese-short-grain-rice,accept,,,2026-07-30T21:59:27.987Z
+alias-dried-herbs,accept,,,2026-07-30T21:59:32.192Z
+alias-furikake,accept,,,2026-07-30T21:59:32.379Z
+alias-yondu,accept,,,2026-07-30T21:59:32.386Z
+alias-banana,accept,,,2026-07-30T21:59:36.933Z
+alias-ripe-bananas,accept,,,2026-07-30T21:59:38.179Z
+alias-buttermilk,accept,,,2026-07-30T21:59:39.100Z
+alias-maesilaek,accept,,,2026-07-30T21:59:40.369Z
+alias-overripe-bananas,flag,,ripe bananas,2026-07-30T22:00:22.160Z
+alias-button-mushrooms,accept,,,2026-07-30T22:00:24.661Z
+alias-cocoa-powder,accept,,,2026-07-30T22:00:28.068Z
+alias-unsweetened-cocoa-powder,accept,,,2026-07-30T22:00:29.250Z
+alias-white-button-mushrooms,accept,,,2026-07-30T22:00:30.808Z
+alias-dutch-processed-cocoa-powder,reject,,cocoa powder,2026-07-30T22:01:02.314Z
+alias-shishito-peppers,accept,,,2026-07-30T22:01:04.626Z
+alias-coconut-oil,accept,,,2026-07-30T22:01:05.409Z
+alias-raisins,accept,,,2026-07-30T22:01:06.100Z
+alias-red-pepper,accept,,,2026-07-30T22:01:10.891Z
+alias-white-miso-paste,accept,,,2026-07-30T22:01:13.713Z
+alias-miso-paste,accept,,,2026-07-30T22:01:14.653Z
+alias-shiro-miso-paste,accept,,,2026-07-30T22:01:15.614Z
+alias-sichuan-peppercorn-powder,accept,,,2026-07-30T22:01:17.032Z
+alias-rice-noodles,accept,,,2026-07-30T22:01:18.278Z
+alias-dashi,accept,,,2026-07-30T22:01:19.763Z
+alias-dried-tangerine-peel,accept,,,2026-07-30T22:01:23.612Z
+alias-dried-orange-peel,accept,,,2026-07-30T22:01:24.651Z
+alias-shiro-dashi,accept,,,2026-07-30T22:01:28.320Z
+alias-dried-mandarin-orange-peel,accept,,,2026-07-30T22:01:28.970Z
+alias-wasabi,accept,,,2026-07-30T22:01:30.321Z
+alias-hot-sauce,accept,,,2026-07-30T22:01:31.842Z
+alias-ramen-noodles,accept,,,2026-07-30T22:01:33.370Z
+alias-panko-bread-crumbs,accept,,,2026-07-30T22:01:34.486Z
+alias-graham-cracker-crumbs,accept,,,2026-07-30T22:01:35.711Z
+alias-pasta,accept,,,2026-07-30T22:01:37.441Z
+alias-instant-ramen-noodles,accept,,,2026-07-30T22:01:39.170Z
+alias-dried-pasta,accept,,,2026-07-30T22:01:40.280Z
+alias-spaghetti-pasta,accept,,,2026-07-30T22:01:41.273Z
+alias-penne-pasta,accept,,,2026-07-30T22:01:42.240Z
+alias-louisiana-hot-sauce,accept,,,2026-07-30T22:01:43.526Z
+alias-dry-pasta,flag,,pasta. there’s no wet pasta,2026-07-30T22:01:55.300Z
+alias-minari,accept,,,2026-07-30T22:01:56.907Z
+alias-fennel-seeds,accept,,,2026-07-30T22:01:58.088Z
+alias-pecans,accept,,,2026-07-30T22:02:04.487Z
+alias-eggplant,accept,,,2026-07-30T22:02:05.677Z
+alias-star-anise-pods,flag,,star anise,2026-07-30T22:02:40.585Z
+alias-kabocha-squash,accept,,,2026-07-30T22:02:47.145Z
+alias-glutinous-rice-powder,accept,,,2026-07-30T22:02:47.950Z
+alias-butternut-squash,accept,,,2026-07-30T22:02:50.708Z
+alias-italian-seasoning,accept,,,2026-07-30T22:02:51.916Z
+alias-rice-powder,accept,,,2026-07-30T22:02:53.029Z
+alias-black-cardamom-pod,flag,,black cardamon,2026-07-30T22:03:00.945Z
+alias-old-bay-seasoning,accept,,,2026-07-30T22:03:05.239Z
+alias-tteok-rice-powder,flag,,rice powder,2026-07-30T22:03:53.493Z
+alias-asian-eggplants,accept,,,2026-07-30T22:04:04.350Z
+alias-cardamom-pods,flag,,cardamom,2026-07-30T22:04:17.317Z
+alias-lemon-pepper-seasoning,reject,,it’s not raw ingredient. it’s outcome of another recipe,2026-07-30T22:04:39.569Z
+alias-korean-squash,accept,,,2026-07-30T22:04:41.407Z
+alias-mushroom-seasoning,accept,,,2026-07-30T22:04:41.973Z
+alias-korean-eggplant,accept,,,2026-07-30T22:05:00.429Z
+alias-lard,accept,,,2026-07-30T22:05:05.785Z
+alias-chili-garlic-sauce,accept,,,2026-07-30T22:05:08.118Z
+alias-somyeon,accept,,,2026-07-30T22:05:10.730Z
+alias-pork-loin,accept,,,2026-07-30T22:05:12.534Z
+alias-thai-red-curry-paste,accept,,,2026-07-30T22:05:15.789Z
+alias-instant-coffee,accept,,,2026-07-30T22:05:17.024Z
+alias-clams,accept,,,2026-07-30T22:05:21.824Z
+alias-starch-powder,flag,,starch,2026-07-30T22:05:36.379Z
+alias-pork-neck-bones,accept,,,2026-07-30T22:05:41.719Z
+alias-potato-starch-powder,flag,,potato starch,2026-07-30T22:05:47.060Z
+alias-coffee,flag,,ground coffee,2026-07-30T22:05:58.518Z
+alias-red-curry-paste,accept,,,2026-07-30T22:06:09.137Z
+alias-pork-bones,accept,,,2026-07-30T22:06:11.361Z
+alias-littleneck-clams,accept,,,2026-07-30T22:06:12.953Z
+alias-boneless-pork-loin,accept,,,2026-07-30T22:06:14.446Z
+alias-beef-bones,accept,,,2026-07-30T22:06:16.395Z
+alias-little-neck-clams,flag,,littleneck clams,2026-07-30T22:06:36.979Z
+alias-blueberries,accept,,,2026-07-30T22:06:41.695Z
+alias-noodles,accept,,,2026-07-30T22:06:43.033Z
+alias-peaches,accept,,,2026-07-30T22:06:44.489Z
+alias-pumpkin-seeds,accept,,,2026-07-30T22:06:45.917Z
+alias-turmeric-powder,accept,,,2026-07-30T22:06:47.328Z
+alias-shichimi-togarashi,accept,,,2026-07-30T22:06:48.876Z
+alias-beansprouts,accept,,,2026-07-30T22:06:50.814Z
+alias-wheat-noodles,accept,,,2026-07-30T22:06:52.516Z
+alias-kale,accept,,,2026-07-30T22:06:53.458Z
+alias-grape-seed-oil,accept,,,2026-07-30T22:06:56.090Z
+alias-perilla-seed-oil,accept,,,2026-07-30T22:06:56.972Z
+alias-dried-wheat-noodles,accept,,,2026-07-30T22:06:58.572Z
+alias-curly-kale,accept,,,2026-07-30T22:07:27.948Z
+alias-sesame-seed-oil,accept,,,2026-07-30T22:07:28.984Z
+alias-baby-kale,accept,,,2026-07-30T22:07:30.409Z
+alias-egg-wash,accept,,,2026-07-30T22:07:38.830Z
+alias-balsamic-vinegar,accept,,,2026-07-30T22:07:41.321Z
+alias-chicken-drumsticks,accept,,,2026-07-30T22:07:42.449Z
+alias-cayenne,flag,,cayenne pepper,2026-07-30T22:07:51.655Z
+alias-half-and-half,accept,,,2026-07-30T22:08:11.386Z
+alias-gochujang-paste,flag,,gochujang,2026-07-30T22:08:15.487Z
+alias-taro,accept,,,2026-07-30T22:08:18.608Z
+alias-sambal,accept,,,2026-07-30T22:08:20.066Z
+alias-dumplings,accept,,,2026-07-30T22:08:21.610Z
+alias-chive,accept,,,2026-07-30T22:08:22.870Z
+alias-strawberry-jam,accept,,,2026-07-30T22:08:24.302Z
+alias-cashews,accept,,,2026-07-30T22:08:25.692Z
+alias-apricot-jam,accept,,,2026-07-30T22:08:27.146Z
+alias-korean-dumplings,flag,,mandu,2026-07-30T22:08:33.137Z
+alias-unsalted-cashews,accept,,,2026-07-30T22:08:34.902Z
+alias-garlic-chive,accept,,,2026-07-30T22:08:36.306Z
+alias-watercress,accept,,,2026-07-30T22:08:37.412Z
+alias-edamame,accept,,,2026-07-30T22:08:39.375Z
+alias-protein,accept,,,2026-07-30T22:08:57.861Z
+alias-maesil,accept,,,2026-07-30T22:09:02.674Z
+alias-cumin-seeds,accept,,,2026-07-30T22:09:03.733Z
+alias-almonds,accept,,,2026-07-30T22:09:06.746Z
+alias-red-food-coloring,reject,,coloring is not ingredient,2026-07-30T22:09:20.314Z
+alias-mung-bean-vermicelli,accept,,,2026-07-30T22:09:26.200Z
+alias-beef-ribeye,accept,,,2026-07-30T22:09:27.330Z
+alias-egg-noodles,accept,,,2026-07-30T22:09:28.769Z
+alias-parmesan,flag,,parmesan cheese,2026-07-30T22:09:45.489Z
+alias-instant-dashi-powder,flag,,dashi,2026-07-30T22:10:02.662Z
+alias-oysters,accept,,,2026-07-30T22:10:04.636Z
+alias-seaweed-wakame-miyeok,accept,,,2026-07-30T22:10:06.116Z
+alias-ribeye,accept,,,2026-07-30T22:10:07.351Z
+alias-dashi-powder,flag,,dashi,2026-07-30T22:10:12.416Z
+alias-vegan-parmesan,accept,,,2026-07-30T22:10:14.200Z
+alias-rice-vermicelli,accept,,,2026-07-30T22:10:15.386Z
+alias-drops-red-food-coloring,reject,,,2026-07-30T22:10:26.117Z
+alias-plain-breadcrumbs,flag,,breadcrumbs,2026-07-30T22:10:32.276Z
+alias-chinese-egg-noodles,accept,,,2026-07-30T22:10:35.529Z
+alias-hong-kong-style-egg-noodles,accept,,,2026-07-30T22:10:37.778Z
+alias-beef-sirloin,accept,,,2026-07-30T22:10:39.253Z
+alias-katsuobushi,accept,,,2026-07-30T22:10:40.279Z
+alias-watermelon,accept,,,2026-07-30T22:10:41.424Z
+alias-dill,accept,,,2026-07-30T22:10:42.365Z
+alias-danmuji,flag,,pickled radish,2026-07-30T22:10:49.142Z
+alias-beef-chuck,accept,,,2026-07-30T22:10:51.236Z
+alias-plain-flour,accept,,,2026-07-30T22:10:53.915Z
+alias-jalape-o,reject,,parsing error - jalapeno,2026-07-30T22:11:05.261Z
+alias-chickpeas,accept,,,2026-07-30T22:11:05.290Z
+alias-sticky-rice,flag,,glutinous rice,2026-07-30T22:11:12.819Z
+alias-unsweetened-soy-milk,accept,,,2026-07-30T22:11:14.480Z
+alias-soy-milk,accept,,,2026-07-30T22:11:15.528Z
+alias-sweet-chili-sauce,accept,,,2026-07-30T22:11:17.373Z
+alias-chili-sauce,accept,,,2026-07-30T22:11:18.485Z
+alias-scallops,accept,,,2026-07-30T22:11:23.976Z
+alias-dried-chinese-red-dates,accept,,,2026-07-30T22:11:27.508Z
+alias-jalope-o,reject,,jalapeno,2026-07-30T22:11:32.827Z
+alias-thai-sweet-chili-sauce,accept,,,2026-07-30T22:11:36.145Z
+alias-canned-chickpeas,accept,,,2026-07-30T22:11:37.289Z
+alias-jujube-dates,accept,,,2026-07-30T22:11:38.579Z
+alias-medjool-dates,accept,,,2026-07-30T22:11:40.634Z
+alias-dried-red-dates,accept,,,2026-07-30T22:11:42.472Z
+alias-dried-scallops,accept,,,2026-07-30T22:11:45.229Z
+alias-brown-rice,accept,,,2026-07-30T22:11:47.001Z
+alias-coriander-seeds,accept,,,2026-07-30T22:11:48.217Z
+alias-tomato-sauce,accept,,,2026-07-30T22:11:49.137Z
+alias-american-cheese,accept,,,2026-07-30T22:11:56.150Z
+alias-korean,reject,,parsing error,2026-07-30T22:12:02.100Z
+alias-whole,reject,,parsing error,2026-07-30T22:12:07.151Z
+alias-mozzarella,accept,,,2026-07-30T22:12:11.308Z
+alias-maltose,accept,,,2026-07-30T22:12:12.919Z
+alias-mushroom-caps,flag,,mushrooms,2026-07-30T22:12:26.521Z
+alias-serrano,flag,,serrano pepper,2026-07-30T22:12:35.068Z
+alias-capers,accept,,,2026-07-30T22:12:36.979Z
+alias-whole-wheat-flour,accept,,,2026-07-30T22:12:40.124Z
+alias-sage,accept,,,2026-07-30T22:12:41.296Z
+alias-dried-shitake-mushrooms,accept,,,2026-07-30T22:12:42.526Z
+alias-dry-milk-powder,accept,,,2026-07-30T22:12:43.851Z
+alias-milk-powder,accept,,,2026-07-30T22:12:45.309Z
+alias-shitake-mushrooms,accept,,,2026-07-30T22:12:47.632Z
+alias-all-purpose-wheat-flour,accept,,,2026-07-30T22:12:49.084Z
+alias-dried-sage,accept,,,2026-07-30T22:12:50.471Z
+alias-pumpkin,accept,,,2026-07-30T22:12:52.813Z
+alias-tsuyu,accept,,,2026-07-30T22:12:54.731Z
+alias-dried-pollock,accept,,,2026-07-30T22:12:56.653Z
+alias-crown-daisy,accept,,,2026-07-30T22:12:58.423Z
+alias-bourbon,accept,,,2026-07-30T22:12:59.677Z
+alias-coriander,accept,,,2026-07-30T22:13:00.981Z
+alias-cauliflower,accept,,,2026-07-30T22:13:02.417Z
+alias-short,reject,,parsing error,2026-07-30T22:13:08.104Z
+alias-hot-dog-buns,accept,,,2026-07-30T22:13:11.807Z
+alias-corn-kernels,accept,,,2026-07-30T22:13:15.331Z
+alias-lobster,accept,,,2026-07-30T22:13:16.740Z
+alias-live-lobsters,flag,,lobster,2026-07-30T22:13:22.437Z
+alias-hamburger-buns,accept,,,2026-07-30T22:13:24.681Z
+alias-brioche-buns,accept,,,2026-07-30T22:13:26.105Z
+alias-sweet-corn-kernels,accept,,,2026-07-30T22:13:29.189Z
+alias-korean-tuna-sauce,accept,,,2026-07-30T22:13:31.424Z
+alias-allspice,accept,,,2026-07-30T22:13:33.433Z
+alias-choy-sum,accept,,,2026-07-30T22:13:34.759Z
+alias-almond-flour,accept,,,2026-07-30T22:13:35.890Z
+alias-sprite,accept,,,2026-07-30T22:13:38.179Z
+alias-soba-noodles,accept,,,2026-07-30T22:13:39.663Z
+alias-chicken-tenders,accept,,,2026-07-30T22:13:41.156Z
+alias-doenjang-paste,flag,,doenjang,2026-07-30T22:13:46.649Z
+alias-tonkatsu-sauce,accept,,,2026-07-30T22:13:49.146Z
+alias-saewoojeot,accept,,,2026-07-30T22:13:50.353Z
+alias-parmigiano,accept,,,2026-07-30T22:13:53.868Z
+alias-tahini,accept,,,2026-07-30T22:13:54.917Z
+alias-marinara-sauce,accept,,,2026-07-30T22:13:56.184Z
+alias-winter-melon,accept,,,2026-07-30T22:13:57.887Z
+alias-bulgogi,accept,,,2026-07-30T22:13:59.119Z
+alias-jalape-o-pepper,flag,,jalapeno,2026-07-30T22:14:03.773Z
+alias-dried-cranberries,accept,,,2026-07-30T22:14:08.824Z
+alias-rolled-oats,accept,,,2026-07-30T22:14:11.308Z
+alias-flour-tortillas,accept,,,2026-07-30T22:14:14.736Z
+alias-coconut-water,accept,,,2026-07-30T22:14:28.883Z
+alias-sparkling-water,accept,,this is different from water case. sparkling water is not staple. a user should separately purchase it,2026-07-30T22:14:57.596Z
+alias-cheddar,accept,,,2026-07-30T22:14:59.169Z
+alias-jalapeno-pepper,flag,,jalapeno,2026-07-30T22:15:04.128Z
+alias-corn-tortillas,accept,,,2026-07-30T22:15:06.924Z
+alias-quick-oats,accept,,,2026-07-30T22:15:08.918Z
+alias-beef-bulgogi,accept,,,2026-07-30T22:15:15.888Z
+alias-cranberries,accept,,,2026-07-30T22:15:16.692Z
+alias-bitter-melon,accept,,,2026-07-30T22:15:19.244Z
+alias-cumin-powder,accept,,,2026-07-30T22:15:20.679Z
+alias-arugula,accept,,,2026-07-30T22:15:22.107Z
+alias-chunjang,flag,,black bean paste,2026-07-30T22:15:30.532Z
+alias-salmon,accept,,,2026-07-30T22:15:32.519Z
+alias-maesil-cheong,flag,,plum extract,2026-07-30T22:15:39.095Z
+alias-matcha-powder,accept,,,2026-07-30T22:15:41.040Z
+alias-doubanjiang,accept,,,2026-07-30T22:15:43.089Z
+alias-liquid-stevia-drops,flag,,liquid stevia,2026-07-30T22:15:55.529Z
+alias-garlic-scapes,accept,,,2026-07-30T22:15:57.063Z
+alias-turkey,accept,,,2026-07-30T22:15:58.652Z
+alias-mussels,accept,,,2026-07-30T22:15:59.902Z
+alias-eomuk,flag,,korean fish cake,2026-07-30T22:16:07.201Z
+alias-perilla-seeds,accept,,,2026-07-30T22:16:09.338Z
+alias-culinary-grade-matcha,accept,,,2026-07-30T22:16:10.800Z
+alias-confectioners-sugar,accept,,granulated sugar,2026-07-30T22:16:20.942Z
+alias-coconut-flakes,accept,,,2026-07-30T22:16:23.216Z
+alias-for-2,reject,,parsing error,2026-07-30T22:16:28.297Z
+alias-neutral-oil-spray,reject,,neutral oil,2026-07-30T22:16:35.371Z
+alias-marshmallows,accept,,,2026-07-30T22:16:36.278Z
+alias-tapioca-pearls,accept,,,2026-07-30T22:16:37.599Z
+alias-spray,reject,,parsing error,2026-07-30T22:16:42.327Z
+alias-sago-pearls,accept,,,2026-07-30T22:16:44.021Z
+alias-unsweetened-coconut-flakes,accept,,,2026-07-30T22:16:45.504Z
+alias-kiwi,accept,,,2026-07-30T22:16:47.088Z
+alias-kimchi-brine,accept,,,2026-07-30T22:16:48.045Z
+alias-buckwheat-noodles,accept,,,2026-07-30T22:16:49.267Z
+alias-yubu,flag,,inari,2026-07-30T22:16:55.903Z
+alias-evaporated-milk,accept,,,2026-07-30T22:16:57.449Z
+alias-agave,accept,,,2026-07-30T22:16:59.504Z
+alias-daikon,accept,,,2026-07-30T22:17:05.504Z
+alias-bonito-flakes,accept,,,2026-07-30T22:17:06.647Z
+alias-shimeji-mushrooms,accept,,,2026-07-30T22:17:08.052Z
+alias-japanese,reject,,parsing error,2026-07-30T22:17:12.507Z
+alias-daepa,flag,,leek,2026-07-30T22:17:17.525Z
+alias-apple-vinegar,accept,,,2026-07-30T22:17:20.997Z
+alias-ssamjang,accept,,,2026-07-30T22:17:21.928Z
+alias-castor-sugar,accept,,,2026-07-30T22:17:25.743Z
+alias-all-propose-flour,accept,,,2026-07-30T22:17:26.601Z
+alias-tempura-powder,accept,,,2026-07-30T22:17:28.723Z
+alias-rice-paper,accept,,,2026-07-30T22:17:30.279Z
+alias-gosari,accept,,,2026-07-30T22:17:31.885Z
+alias-oil-for-pan,reject,,oil,2026-07-30T22:17:38.447Z
+alias-chicken-bouillon,accept,,,2026-07-30T22:17:52.961Z
+alias-soy-puffs,accept,,,2026-07-30T22:17:53.991Z
+alias-pumpkin-spice,accept,,,2026-07-30T22:17:57.654Z
+alias-mustard-green,accept,,,2026-07-30T22:17:59.048Z
+alias-korean-soy-sauce-for-soup,flag,,gukganjang,2026-07-30T22:18:08.360Z
+alias-green,reject,,should be split into green leaf lettuce/red leaf lettuce,2026-07-30T22:18:36.405Z
+alias-parchment-paper,reject,,not ingredient,2026-07-30T22:19:14.082Z
+alias-dried-anchovies-for-soup,accept,,,2026-07-30T22:19:40.288Z
+alias-vegetable-oil-for-pan,reject,,oil,2026-07-30T22:19:46.988Z
+alias-dried-gosari,accept,,,2026-07-30T22:19:49.058Z
+alias-chinese-five-spice,accept,,,2026-07-30T22:19:52.444Z
+alias-beef-bouillon,accept,,,2026-07-30T22:20:22.263Z
+alias-tofu-puffs,accept,,,2026-07-30T22:20:23.756Z
+alias-feta-cheese,accept,,,2026-07-30T22:20:25.247Z
+alias-sushi-rice,accept,,,2026-07-30T22:20:27.850Z
+alias-molasses,accept,,,2026-07-30T22:20:29.278Z
+alias-injeolmi,accept,,,2026-07-30T22:20:30.485Z
+alias-soybean-powder,accept,,,2026-07-30T22:20:44.535Z
+alias-turbinado-sugar,accept,,,2026-07-30T22:20:45.272Z
+alias-lo-mein-noodles,accept,,,2026-07-30T22:20:47.947Z
+alias-kecap-manis,accept,,,2026-07-30T22:20:53.767Z
+alias-sweetener,accept,,"there are rarely ingredients not naming specifics, but its role only. such as protein.",2026-07-30T22:22:46.182Z
+alias-dangmyeon-noodles,flag,,dangmyeon,2026-07-30T22:23:06.828Z
+alias-kalguksu-noodles,accept,,,2026-07-30T22:23:12.502Z
+alias-beech-mushrooms,accept,,,2026-07-30T22:23:14.381Z
+alias-japanese-short-grain-rice-per-donburi,accept,,,2026-07-30T22:23:19.947Z
+alias-jin-ganjang,accept,,,2026-07-30T22:23:21.057Z
+alias-dae-pa,flag,,leek,2026-07-30T22:23:25.941Z
+alias-korean-chilli-paste,flag,,gochujang,2026-07-30T22:23:33.304Z
+alias-firm,reject,,parsing error,2026-07-30T22:23:38.656Z
+alias-thai-chili-paste,accept,,,2026-07-30T22:23:40.328Z
+alias-chicken-leg-quarters,flag,,should include bone-in skin-on. it’s seprate product from bone-less or skin-less,2026-07-30T22:24:35.864Z
+alias-dried-persimmon,accept,,,2026-07-30T22:24:38.889Z
+alias-mustard-powder,accept,,,2026-07-30T22:24:40.332Z
+alias-bittersweet-chocolate-bar,accept,,,2026-07-30T22:24:43.153Z
+alias-wooden-skewers,reject,,not ingredient,2026-07-30T22:24:50.895Z
+alias-fruit,accept,,,2026-07-30T22:25:00.192Z
+alias-pork-tenderloin,accept,,,2026-07-30T22:25:02.429Z
+alias-gelatin,accept,,,2026-07-30T22:25:04.458Z
+alias-black-sweet-rice,accept,,,2026-07-30T22:25:05.933Z
+alias-oil-for-stir-frying,reject,,oil,2026-07-30T22:25:10.847Z
+alias-dried-soybeans,flag,,soybean. it’s always dry,2026-07-30T22:25:24.270Z
+alias-red-capsicum,accept,,,2026-07-30T22:25:25.704Z
+alias-fish-balls,accept,,,2026-07-30T22:25:27.786Z
+alias-beef-shank,accept,,,2026-07-30T22:25:29.061Z
+alias-dried-rice-vermicelli-noodles,flag,,rice vermicelli. it’s always dry,2026-07-30T22:25:47.171Z
+alias-dry-parsley-flakes,accept,,,2026-07-30T22:25:48.823Z
+alias-persimmon,accept,,,2026-07-30T22:25:50.453Z
+alias-dried-parsley-flakes,flag,,dry parsely flakes,2026-07-30T22:26:03.084Z
+alias-korean-sweet-rice,accept,,,2026-07-30T22:26:06.573Z
+alias-beef-tenderloin,accept,,,2026-07-30T22:26:08.093Z
+alias-unflavored-gelatin,accept,,,2026-07-30T22:26:11.130Z
+alias-semisweet-chocolate-bar,accept,,,2026-07-30T22:26:12.400Z
+alias-dry-soybeans,accept,,,2026-07-30T22:26:13.900Z
+alias-bamboo-skewers,reject,,not ingredient.,2026-07-30T22:26:32.860Z
+alias-korean-mustard-powder,accept,,,2026-07-30T22:26:36.240Z
+alias-capsicum,accept,,,2026-07-30T22:26:37.841Z
+alias-rice-vermicelli-noodles,accept,,,2026-07-30T22:26:40.476Z
+alias-boneless-beef-shank,accept,,,2026-07-30T22:26:41.843Z
+alias-beef-balls,accept,,,2026-07-30T22:26:43.239Z
+alias-coconut,accept,,,2026-07-30T22:26:44.728Z
+alias-pecorino-romano,accept,,,2026-07-30T22:26:46.482Z
+alias-garam-masala,accept,,,2026-07-30T22:26:47.596Z
+alias-kimchi-liquid,flag,,kimchi juice,2026-07-30T22:26:57.115Z
+alias-misugaru,accept,,,2026-07-30T22:26:59.236Z
+alias-hot-dogs,accept,,,2026-07-30T22:27:00.700Z
+alias-baguette,accept,,,2026-07-30T22:27:01.647Z
+alias-cream-of-tartar,accept,,,2026-07-30T22:27:05.019Z
+alias-salmon-filets,accept,,,2026-07-30T22:27:07.352Z
+alias-chia-seeds,accept,,,2026-07-30T22:27:08.887Z
+alias-coriander-powder,accept,,,2026-07-30T22:27:09.837Z
+alias-cherries,accept,,,2026-07-30T22:27:11.011Z
+alias-raspberries,accept,,,2026-07-30T22:27:13.040Z
+alias-of,reject,,parsing error,2026-07-30T22:27:17.540Z
+alias-puff-pastry,accept,,,2026-07-30T22:27:20.476Z
+alias-okra,accept,,,2026-07-30T22:27:21.842Z
+alias-samgyeopsal,flag,,pork belly,2026-07-30T22:27:32.476Z
+alias-perilla-seeds-powder,accept,,,2026-07-30T22:27:34.423Z
+alias-chicken-stock-powder,accept,,,2026-07-30T22:27:35.221Z
+alias-nutella,accept,,,2026-07-30T22:27:36.884Z
+alias-kongnamul,flag,,soybean sprout,2026-07-30T22:27:43.350Z
+alias-white-mushrooms,accept,,,2026-07-30T22:27:45.965Z
+alias-quinoa,accept,,,2026-07-30T22:27:47.098Z
+alias-prawns,accept,,,2026-07-30T22:27:48.500Z
+alias-black-tea,accept,,,2026-07-30T22:27:49.947Z
+alias-galangal,accept,,,2026-07-30T22:27:51.153Z
+alias-graham-crackers,accept,,,2026-07-30T22:27:52.774Z
+alias-white-noodles,accept,,,2026-07-30T22:27:54.569Z
+alias-caster-sugar,accept,,,2026-07-30T22:27:56.293Z
+alias-red-fermented-bean-curd,accept,,,2026-07-30T22:27:57.543Z
+alias-dried-lily-flowers,accept,,,2026-07-30T22:27:59.028Z
+alias-fine-cornmeal,accept,,,2026-07-30T22:28:01.502Z
+alias-instant-espresso-powder,flag,,instant coffee,2026-07-30T22:28:13.664Z
+alias-cornmeal,accept,,,2026-07-30T22:28:15.400Z
+alias-pickles,accept,,,2026-07-30T22:28:19.359Z
+alias-duck-fat,accept,,,2026-07-30T22:28:20.872Z
+alias-korean-red-chili-pepper-paste,flag,,gochujang,2026-07-30T22:28:29.542Z
+alias-boneless-pork-loin-chops,accept,,,2026-07-30T22:28:31.592Z
+alias-korean-chili-pepper-paste,flag,,gochujang,2026-07-30T22:28:37.773Z
+alias-for-seasoning-sauce,reject,,parsing error,2026-07-30T22:28:46.195Z
+alias-seasoning-sauce,reject,,it’s the outcome of subrecipe,2026-07-30T22:29:06.150Z
+alias-yellow-radish-pickle,flag,,danmuji,2026-07-30T22:29:12.524Z
+alias-espresso-powder,flag,,instant coffee,2026-07-30T22:29:19.086Z
+alias-bone-in-pork-chops,accept,,,2026-07-30T22:29:20.561Z
+alias-pork-fat,accept,,,2026-07-30T22:29:22.204Z
+alias-pea-tips,accept,,,2026-07-30T22:29:24.240Z
+alias-pork-rib-tips,accept,,,2026-07-30T22:29:25.758Z
+alias-fennel,accept,,,2026-07-30T22:29:26.713Z
+alias-pistachios,accept,,,2026-07-30T22:29:28.133Z
+alias-ramen,accept,,,2026-07-30T22:29:29.537Z
+alias-rice-cake-rounds,accept,,,2026-07-30T22:29:34.195Z
+alias-mascarpone-cheese,accept,,,2026-07-30T22:29:36.496Z
+alias-french-fries,accept,,,2026-07-30T22:29:37.960Z
+alias-canned-tuna-in-oil,flag,,canned tuna,2026-07-30T22:29:43.562Z
+alias-somyeon-noodles,flag,,somyeon,2026-07-30T22:29:50.457Z
+alias-green-and,reject,,parsing error. green chili/red chili,2026-07-30T22:30:01.453Z
+alias-pine-needles,accept,,,2026-07-30T22:30:03.114Z
+alias-tapioca-flour,accept,,,2026-07-30T22:30:04.570Z
+alias-makgeolli,accept,,,2026-07-30T22:30:06.089Z
+alias-yakult,accept,,,2026-07-30T22:30:07.585Z
+alias-balsamic-glaze,accept,,,2026-07-30T22:30:09.560Z
+alias-tarragon,accept,,,2026-07-30T22:30:10.807Z
+alias-abalone,accept,,,2026-07-30T22:30:11.930Z
+alias-chicken-powder,accept,,,2026-07-30T22:30:13.113Z
+alias-bbq-sauce,accept,,,2026-07-30T22:30:14.698Z
+alias-gruyere-cheese,accept,,,2026-07-30T22:30:16.235Z
+alias-vodka,accept,,,2026-07-30T22:30:17.588Z
+alias-cotija-cheese,accept,,,2026-07-30T22:30:19.041Z
+alias-lao-gan-ma-spicy-chili-crisp,accept,,,2026-07-30T22:30:20.642Z
+alias-somen-noodles,flag,,somen,2026-07-30T22:30:24.975Z
+alias-mandu,accept,,,2026-07-30T22:30:27.459Z
+alias-kabocha,flag,,kabocha squash,2026-07-30T22:30:33.436Z
+alias-millet,accept,,,2026-07-30T22:30:36.537Z
+alias-soft,reject,,adjective,2026-07-30T22:30:42.893Z
+alias-ponzu,accept,,,2026-07-30T22:30:44.477Z
+alias-ikura,accept,,,2026-07-30T22:30:45.699Z
+alias-mitsuba,accept,,,2026-07-30T22:30:47.188Z
+alias-neoguri,accept,,,2026-07-30T22:30:52.791Z
+alias-dried,reject,,adjective,2026-07-30T22:30:57.131Z
+alias-chrysanthemum,accept,,,2026-07-30T22:30:59.355Z
+alias-sauce,reject,,lost context,2026-07-30T22:31:34.536Z
+alias-sundubu,reject,,silken tofu,2026-07-30T22:31:40.643Z
+alias-green-tea-powder,flag,,matcha powder,2026-07-30T22:31:47.341Z
+alias-carrot-matchsticks,reject,,matchisticks is how to processed. it’s just carrot,2026-07-30T22:32:12.644Z
+alias-liquid-smoke,accept,,,2026-07-30T22:32:19.518Z
+alias-pork-butt,accept,,,2026-07-30T22:32:20.891Z
+alias-shrimp-paste,accept,,,2026-07-30T22:32:32.812Z
+alias-anchovies,accept,,,2026-07-30T22:32:34.571Z
+alias-hondashi,accept,,,2026-07-30T22:32:36.403Z
+alias-kkaetnip,flag,,perilla leaf,2026-07-30T22:32:43.224Z
+alias-sha-cha-sauce,accept,,,2026-07-30T22:32:46.471Z
+alias-vegetable-shortening,accept,,,2026-07-30T22:32:53.362Z
+alias-hondashi-powder,accept,,,2026-07-30T22:32:54.191Z
+alias-ginger-ale,accept,,,2026-07-30T22:32:56.745Z
+alias-korean-sweet-potato-noodles,flag,,dangmyeon,2026-07-30T22:33:03.345Z
+alias-canola,reject,,parsing error. canola oil/grape seed oil,2026-07-30T22:33:14.983Z
+alias-sriracha-sauce,accept,,,2026-07-30T22:33:17.184Z
+alias-ricotta-cheese,accept,,,2026-07-30T22:33:18.663Z
+alias-cardamom,accept,,,2026-07-30T22:33:19.936Z
+alias-barley,accept,,,2026-07-30T22:33:21.532Z
+alias-mugwort,accept,,,2026-07-30T22:33:23.210Z
+alias-dried-naengmyeon-noodles,accept,,naengmyeon noodles,2026-07-30T22:33:38.782Z
+alias-prosciutto,accept,,,2026-07-30T22:33:42.673Z
+alias-dotorimuk,accept,,acorn jelly,2026-07-30T22:33:53.386Z
+alias-bisquick,accept,,,2026-07-30T22:33:55.820Z
+alias-wontons,accept,,,2026-07-30T22:33:57.767Z
+alias-gai-lan,accept,,,2026-07-30T22:33:59.048Z
+alias-cantaloupe,accept,,,2026-07-30T22:34:02.252Z
+alias-cayenne-powder,accept,,,2026-07-30T22:34:03.795Z
+alias-christmas-sprinkles,accept,,,2026-07-30T22:34:06.017Z
+alias-dark-chocolate,accept,,,2026-07-30T22:34:07.365Z
+alias-semolina-flour,accept,,,2026-07-30T22:34:08.826Z
+alias-mackerel,accept,,,2026-07-30T22:34:12.324Z
+alias-seafood,accept,,,2026-07-30T22:34:17.127Z
+alias-dallae,accept,,,2026-07-30T22:34:19.784Z
+alias-jjolmyeon-noodles,accept,,,2026-07-30T22:34:21.106Z
+alias-green-papaya,accept,,,2026-07-30T22:34:22.648Z
+alias-yakisoba-noodles,accept,,,2026-07-30T22:34:23.505Z
+alias-yuzu-kosho,accept,,,2026-07-30T22:34:24.937Z
+alias-white-sparkling-sugar,accept,,,2026-07-30T22:34:25.922Z
+alias-beer,accept,,,2026-07-30T22:34:28.996Z
+alias-salt-pickled-cherry-blossoms,accept,,,2026-07-30T22:35:22.409Z
+alias-chapagetti,accept,,,2026-07-30T22:35:25.519Z
+alias-cornish-hen,accept,,,2026-07-30T22:35:26.837Z
+alias-dried-omija,accept,,,2026-07-30T22:35:28.238Z
+alias-2-low-fat-milk,flag,,low fat milk,2026-07-30T22:35:35.867Z
+alias-silgochu,accept,,,2026-07-30T22:35:41.211Z
+alias-kitchen-gloves,reject,,not ingredient,2026-07-30T22:35:47.500Z
+alias-boneless,reject,,parsing error,2026-07-30T22:35:52.005Z
+alias-hot-mustard-paste,accept,,,2026-07-30T22:35:54.424Z
+alias-shaved-ice,reject,,ice. shaved is processing,2026-07-30T22:36:23.513Z
+alias-myulchiaekjeot,flag,,anchovy sauce,2026-07-30T22:36:35.218Z
+alias-white-fluffy-rice,flag,,rice,2026-07-30T22:37:04.308Z
+alias-black,reject,,parsing error,2026-07-30T22:37:10.956Z
+alias-beef-mince,accept,,,2026-07-30T22:37:12.550Z
+alias-castella,accept,,,2026-07-30T22:37:13.871Z
+alias-rigatoni,accept,,,2026-07-30T22:37:14.825Z
+alias-oat-milk,accept,,,2026-07-30T22:37:16.221Z
+alias-toban-djan,accept,,,2026-07-30T22:37:23.938Z
+alias-tamarind-paste,accept,,,2026-07-30T22:37:25.513Z
+alias-pork-riblets,accept,,,2026-07-30T22:37:28.015Z
+alias-curry-base,accept,,,2026-07-30T22:37:30.121Z
+alias-udon,flag,,udon noodles,2026-07-30T22:37:36.794Z
+alias-baby-portobello-mushrooms,accept,,,2026-07-30T22:37:40.045Z
+alias-plant-milk,accept,,,2026-07-30T22:37:43.142Z
+alias-vegan-ricotta,accept,,,2026-07-30T22:37:44.097Z
+alias-sago,accept,,,2026-07-30T22:37:46.079Z
+alias-dried-lotus-seeds,accept,,,2026-07-30T22:37:48.456Z
+alias-button,reject,,parsing error. should be split,2026-07-30T22:37:56.785Z
+alias-chinese,reject,,parsing error,2026-07-30T22:38:07.443Z
+alias-dried-shrimp-flakes,accept,,,2026-07-30T22:38:09.375Z
+alias-chicken-bouillon-paste,accept,,,2026-07-30T22:38:12.793Z
+alias-hotdogs,flag,,hot dogs,2026-07-30T22:38:17.206Z
+alias-grape-seed,reject,,parsing error. should be split,2026-07-30T22:38:31.514Z
+alias-parmigiano-reggiano,accept,,,2026-07-30T22:38:33.756Z
+alias-sunflower-seeds,accept,,,2026-07-30T22:38:35.304Z
+alias-cr-me-fra-che,reject,,parsing error. french character,2026-07-30T22:38:45.354Z
+alias-dried-filefish,accept,,,2026-07-30T22:38:51.672Z
+alias-hot-milk,reject,,milk,2026-07-30T22:39:00.001Z
+alias-jjajangmyeon-noodles,accept,,,2026-07-30T22:39:03.615Z
+alias-beet,accept,,,2026-07-30T22:39:04.959Z
+alias-apricot-preserve,accept,,maesilcheong,2026-07-30T22:39:27.334Z
+alias-granola,accept,,,2026-07-30T22:39:38.998Z
+alias-instant-coffee-powder,flag,,instant coffee,2026-07-30T22:39:47.768Z
+alias-korean-pepper,accept,,,2026-07-30T22:40:06.623Z
+alias-dried-noodles,accept,,,2026-07-30T22:40:11.755Z
+alias-celery-seed,accept,,,2026-07-30T22:40:16.555Z
+alias-mexican-cheese,accept,,,2026-07-30T22:40:17.916Z
+alias-black-olives,accept,,,2026-07-30T22:40:19.493Z
+alias-toppings,reject,,parsing error. not ingredient,2026-07-30T22:40:27.346Z
+alias-artichoke-hearts,accept,,,2026-07-30T22:40:30.140Z
+alias-cognac,accept,,,2026-07-30T22:40:31.427Z
+alias-elbow-macaroni,accept,,,2026-07-30T22:40:32.739Z
+alias-wonton-noodles,accept,,,2026-07-30T22:40:34.132Z
+alias-basmati-rice,accept,,,2026-07-30T22:40:35.592Z
+alias-almond-milk,accept,,,2026-07-30T22:40:37.374Z
+alias-cinnamon-sugar,accept,,,2026-07-30T22:40:38.597Z
+alias-truffle-oil,accept,,,2026-07-30T22:40:39.902Z
+alias-unsalted-butter-at,reject,,parsing error. unsalted butter,2026-07-30T22:40:49.339Z
+alias-lobster-tails,accept,,,2026-07-30T22:40:54.094Z
+alias-microgreens,accept,,,2026-07-30T22:40:55.392Z
+alias-oreos,accept,,,2026-07-30T22:40:56.946Z
+alias-ginseng,accept,,,2026-07-30T22:40:59.344Z
+alias-flying-fish-roe,flag,,tobiko,2026-07-30T22:41:06.238Z
+alias-teriyaki-sauce,accept,,,2026-07-30T22:41:08.551Z
+alias-perilla-powder,accept,,,2026-07-30T22:41:10.136Z
+alias-myeongran,flag,,pollock roe,2026-07-30T22:41:18.146Z
+alias-shichimi,accept,,,2026-07-30T22:41:19.855Z
+alias-short-grain,reject,,parsing error. short grain rice,2026-07-30T22:41:32.661Z
+alias-sorghum,accept,,,2026-07-30T22:41:34.837Z
+alias-sagol-yuksu,flag,,beef broth,2026-07-30T22:41:45.265Z
+alias-shirataki-noodles,accept,,,2026-07-30T22:41:46.481Z
+alias-tsuyu-sauce,flag,,tsuyu,2026-07-30T22:41:51.405Z
+alias-mentsuyu,accept,,,2026-07-30T22:41:52.486Z
+alias-kamaboko,accept,,,2026-07-30T22:41:53.960Z
+alias-neutral-oil-of-oil-in-the-pot,reject,,oil,2026-07-30T22:41:58.624Z
+alias-plum-sauce,accept,,,2026-07-30T22:42:02.199Z
+alias-tokyo-negi,accept,,,2026-07-30T22:42:03.512Z
+alias-la-yu,accept,,,2026-07-30T22:42:06.450Z
+alias-broccolini,accept,,,2026-07-30T22:42:08.196Z
+alias-tamagoyaki,accept,,,2026-07-30T22:42:13.733Z
+alias-blackberries,accept,,,2026-07-30T22:42:15.743Z
+alias-seaweed-aonori,accept,,,2026-07-30T22:42:18.089Z
+alias-konnyaku,accept,,,2026-07-30T22:42:20.943Z
+alias-king-mushrooms,accept,,,2026-07-30T22:42:22.915Z
+alias-pancetta,accept,,,2026-07-30T22:42:24.472Z
+alias-buckwheat-flour,accept,,,2026-07-30T22:42:26.180Z
+alias-steamer,reject,,not ingredient,2026-07-30T22:42:31.380Z
+alias-water-dropwort,accept,,,2026-07-30T22:42:35.816Z
+alias-saewujeot,flag,,saeujeot,2026-07-30T22:42:41.489Z
+alias-colander,accept,,,2026-07-30T22:42:43.848Z
+alias-jjolmyeon,flag,,jjolmyeon noodles,2026-07-30T22:42:52.223Z
+alias-garaetteok,accept,,,2026-07-30T22:42:55.488Z
+alias-shiitake,flag,,shiiitake mushrooms,2026-07-30T22:43:02.933Z
+alias-assorted-mushrooms,flag,,mushrooms,2026-07-30T22:43:09.091Z
+alias-ssukgat,accept,,,2026-07-30T22:43:12.473Z
+alias-scallion-white-part,flag,,scallion white,2026-07-30T22:43:20.504Z
+alias-soba,flag,,soba noodles,2026-07-30T22:43:26.955Z
+alias-japanese-curry,accept,,,2026-07-30T22:43:28.671Z
+alias-fettuccine,accept,,,2026-07-30T22:43:29.988Z
+alias-dried-pollack,flag,,dried pollock,2026-07-30T22:43:38.380Z
+alias-organic,reject,,parsing error. not ingredient,2026-07-30T22:43:47.522Z
+alias-parmigiano-cheese,accept,,,2026-07-30T22:43:50.219Z
+alias-chicken-feet,accept,,,2026-07-30T22:43:52.010Z
+alias-penne,flag,,penne pasta,2026-07-30T22:43:57.752Z
+alias-cane-vinegar,accept,,,2026-07-30T22:43:59.344Z
+alias-pepper-jack-cheese,accept,,,2026-07-30T22:44:03.911Z
+alias-benishoga,accept,,,2026-07-30T22:44:04.956Z
+alias-dasida,flag,,dashida,2026-07-30T22:44:10.867Z
+alias-korean-spinach-side-dish,flag,,not ingredient. take it out,2026-07-30T22:44:22.175Z
+alias-aquafaba,accept,,,2026-07-30T22:44:23.961Z
+alias-organic-cane-sugar,flag,,cane sugar,2026-07-30T22:44:29.471Z
+alias-justegg,reject,,typo from source. egg,2026-07-30T22:45:18.962Z
+alias-black-sesame-powder,accept,,,2026-07-30T22:45:21.219Z
+alias-chinese-dough,accept,,,2026-07-30T22:45:24.124Z
+alias-sichuan-peppercorn-oil,accept,,,2026-07-30T22:45:25.773Z
+alias-celtuce,accept,,,2026-07-30T22:45:27.684Z
+alias-tilapia,accept,,,2026-07-30T22:45:28.976Z
+alias-dried-bamboo,accept,,,2026-07-30T22:45:30.161Z
+alias-dried-chinese-yam,accept,,,2026-07-30T22:45:31.407Z
+alias-straw-mushrooms,accept,,,2026-07-30T22:45:34.533Z
+alias-sui-mi-ya-cai,accept,,,2026-07-30T22:45:35.760Z
+alias-dried-bean-threads,accept,,,2026-07-30T22:45:37.652Z
+alias-mung-bean-glass-noodles,accept,,,2026-07-30T22:45:39.035Z
+alias-sacha-sauce,accept,,,2026-07-30T22:45:40.642Z
+alias-yellow,reject,,parsing error. should be split,2026-07-30T22:45:50.109Z
+alias-oxtails,accept,,,2026-07-30T22:45:51.280Z
+alias-self-rising-flour,accept,,,2026-07-30T22:45:54.244Z
+alias-duck,reject,,parsing error. should be whole duck,2026-07-30T22:46:12.275Z
+alias-xo-sauce,accept,,,2026-07-30T22:46:14.764Z
+alias-superfine-sugar,flag,,fine sugar,2026-07-30T22:46:22.567Z
+alias-char-siu,accept,,,2026-07-30T22:46:24.088Z

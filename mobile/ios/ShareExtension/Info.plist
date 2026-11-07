@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  What JipBap accepts from the share sheet, and when it offers itself.
+
+  `NSExtensionActivationRule` is the whole contract. iOS reads it to decide
+  whether to show this extension for a given share, and it reads it BEFORE the
+  extension runs — so a rule that is too broad puts JipBap in the sheet when
+  someone shares a photo, which trains people to ignore it.
+
+  One web URL, or one piece of text. Text is accepted because most apps share a
+  caption with the link inside it rather than a bare URL; the extension pulls
+  the first link out. Counts are 1 rather than 0-or-more deliberately: sharing
+  eleven links at once is not a thing anyone does to a recipe app, and offering
+  to handle it would be a promise the add form cannot keep.
+
+  `NSExtensionPrincipalClass` names the class rather than a storyboard, because
+  this extension draws nothing — see ShareViewController.
+-->
+<plist version="1.0">
+<dict>
+  <key>CFBundleDisplayName</key>
+  <string>JipBap</string>
+  <key>CFBundleName</key>
+  <string>JipBap</string>
+  <key>CFBundleIdentifier</key>
+  <string>app.jipbap.share</string>
+  <key>CFBundlePackageType</key>
+  <string>XPC!</string>
+  <key>CFBundleShortVersionString</key>
+  <string>1.0</string>
+  <key>CFBundleVersion</key>
+  <string>1</string>
+  <key>NSExtension</key>
+  <dict>
+    <key>NSExtensionPointIdentifier</key>
+    <string>com.apple.share-services</string>
+    <key>NSExtensionPrincipalClass</key>
+    <string>ShareViewController</string>
+    <key>NSExtensionAttributes</key>
+    <dict>
+      <key>NSExtensionActivationRule</key>
+      <dict>
+        <key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
+        <integer>1</integer>
+        <key>NSExtensionActivationSupportsText</key>
+        <true/>
+      </dict>
+    </dict>
+  </dict>
+</dict>
+</plist>

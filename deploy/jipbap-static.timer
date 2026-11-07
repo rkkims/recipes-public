@@ -1,0 +1,9 @@
+[Unit]
+Description=Check every 15 minutes whether the static site needs republishing
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=15min
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,38 @@
+# The outbound attribution redirect — STATIC-SPEC §4.
+#
+# The static replacement for `app/src/app/go/route.ts`: same allowlist
+# (generated from the retailer registry, RETAILER-SPEC §6 — the registry IS
+# the allowlist), same click-id contract (accept the client's `cid`, mint one
+# when absent, append `sub_id`, 302). It never learns who clicked.
+#
+# NO ROUTE HERE ON PURPOSE. Binding this to jipbap.com/go* while the VM
+# still serves that path would take attribution away from the running app
+# mid-flight. The route is added at cutover, in the same act as the site's
+# custom domain.
+name = "jipbap-go"
+main = "../../workers/go.ts"
+compatibility_date = "2026-08-23"
+
+# The allowlist and the `resolved` test are read from `static-data/retailers.json`,
+# which `npm run static-data` generates from the retailer registry. Run that
+# before deploying this, or the Worker bundles a stale (or missing) table.
+#
+# The click log goes to Workers Analytics Engine rather than a file: nothing
+# personal in it, so nothing to protect, and the questions the append-only
+# file answered survive the VM's retirement.
+#
+# ONE-TIME MANUAL STEP, and it is a gate rather than a nicety: Analytics Engine
+# has to be switched on for the account before a Worker may bind it. Until it
+# is, `wrangler deploy` refuses this file outright with
+#
+#   You need to enable Analytics Engine. Head to the Cloudflare Dashboard...
+#   [code: 10089]
+#
+# It is free and it is one click, at
+# https://dash.cloudflare.com/<account>/workers/analytics-engine — but there is
+# no API for it, so it belongs on the cutover checklist beside the DNS move.
+# The Worker itself already survives a missing binding (`env.CLICKS?.`): the
+# redirect is never held up by the record of it.
+[[analytics_engine_datasets]]
+binding = "CLICKS"
+dataset = "jipbap_outbound_clicks"

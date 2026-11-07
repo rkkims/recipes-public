@@ -1,0 +1,33 @@
+{
+  "actorSpecification": 1,
+  "name": "recipe-corpus-crawler",
+  "title": "Recipe corpus crawler (JSON-LD)",
+  "description": "Crawls recipe blog sitemaps through Apify Proxy and extracts schema.org/Recipe ingredient lists. Exists because Apify Proxy is only reachable from inside an Actor on this account.",
+  "version": "0.1",
+  "dockerfile": "../Dockerfile",
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "Raw recipes",
+      "views": {
+        "overview": {
+          "title": "Overview",
+          "transformation": {
+            "fields": ["sourceId", "title", "cuisine", "rawIngredients", "sourceUrl"]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "sourceId": { "label": "Source", "format": "text" },
+              "title": { "label": "Title", "format": "text" },
+              "cuisine": { "label": "Cuisine", "format": "text" },
+              "rawIngredients": { "label": "Ingredients", "format": "array" },
+              "sourceUrl": { "label": "URL", "format": "link" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

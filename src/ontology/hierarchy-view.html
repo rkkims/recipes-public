@@ -1,0 +1,679 @@
+<title>Ingredient hierarchy — determination key</title>
+
+<style>
+  :root {
+    --ground:  #F3F5F4;
+    --panel:   #FCFDFC;
+    --sunk:    #E9EDEB;
+    --ink:     #16211F;
+    --ink-2:   #475853;
+    --ink-3:   #7C8B87;
+    --rule:    #D6DDDA;
+    --rule-2:  #C2CCC8;
+    --pine:    #0E6353;
+    --saffron: #8A5E06;
+    --clay:    #A03724;
+    --violet:  #574786;
+    --pine-bg:    #DCEBE6;
+    --saffron-bg: #F2E9D2;
+    --clay-bg:    #F5DED8;
+    --violet-bg:  #E4E0F0;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans:  ui-sans-serif, -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    --mono:  ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:  #0F1513;
+      --panel:   #151E1B;
+      --sunk:    #1B2622;
+      --ink:     #E7EEEB;
+      --ink-2:   #A5B4AF;
+      --ink-3:   #71827D;
+      --rule:    #26332F;
+      --rule-2:  #33433E;
+      --pine:    #52C2A8;
+      --saffron: #D8A63F;
+      --clay:    #E4886D;
+      --violet:  #A99BDD;
+      --pine-bg:    #163029;
+      --saffron-bg: #2E2712;
+      --clay-bg:    #33201A;
+      --violet-bg:  #242040;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:  #0F1513;
+    --panel:   #151E1B;
+    --sunk:    #1B2622;
+    --ink:     #E7EEEB;
+    --ink-2:   #A5B4AF;
+    --ink-3:   #71827D;
+    --rule:    #26332F;
+    --rule-2:  #33433E;
+    --pine:    #52C2A8;
+    --saffron: #D8A63F;
+    --clay:    #E4886D;
+    --violet:  #A99BDD;
+    --pine-bg:    #163029;
+    --saffron-bg: #2E2712;
+    --clay-bg:    #33201A;
+    --violet-bg:  #242040;
+  }
+  :root[data-theme="light"] {
+    --ground:  #F3F5F4;
+    --panel:   #FCFDFC;
+    --sunk:    #E9EDEB;
+    --ink:     #16211F;
+    --ink-2:   #475853;
+    --ink-3:   #7C8B87;
+    --rule:    #D6DDDA;
+    --rule-2:  #C2CCC8;
+    --pine:    #0E6353;
+    --saffron: #8A5E06;
+    --clay:    #A03724;
+    --violet:  #574786;
+    --pine-bg:    #DCEBE6;
+    --saffron-bg: #F2E9D2;
+    --clay-bg:    #F5DED8;
+    --violet-bg:  #E4E0F0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ── masthead ───────────────────────────────────────────────── */
+
+  header { padding: 56px 0 28px; border-bottom: 1px solid var(--rule); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(30px, 4.4vw, 46px);
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    max-width: 62ch;
+    color: var(--ink-2);
+    font-size: 16px;
+    margin: 0;
+  }
+  .standfirst code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--sunk);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ── tallies ────────────────────────────────────────────────── */
+
+  .tallies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 28px 0 0;
+  }
+  .tally { background: var(--panel); padding: 14px 16px; }
+  .tally dt {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 5px;
+  }
+  .tally dd {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 27px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .tally dd .unit { font-size: 12px; font-family: var(--sans); color: var(--ink-3); margin-left: 4px; }
+  .t-pine dd { color: var(--pine); }
+  .t-saffron dd { color: var(--saffron); }
+  .t-violet dd { color: var(--violet); }
+
+  /* ── controls ───────────────────────────────────────────────── */
+
+  .controls {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--ground);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+    margin-bottom: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    align-items: center;
+  }
+
+  .search {
+    flex: 1 1 240px;
+    min-width: 200px;
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 8px 11px;
+    background: var(--panel);
+    border: 1px solid var(--rule-2);
+    border-radius: 2px;
+    color: var(--ink);
+  }
+  .search::placeholder { color: var(--ink-3); }
+  .search:focus-visible { outline: 2px solid var(--pine); outline-offset: 1px; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border: 1px solid var(--rule-2);
+    background: var(--panel);
+    color: var(--ink-2);
+    border-radius: 2px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .chip:hover { border-color: var(--ink-3); }
+  .chip:focus-visible { outline: 2px solid var(--pine); outline-offset: 1px; }
+  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.35; }
+  .chip[aria-pressed="true"] { color: var(--ink); border-color: var(--ink-3); background: var(--sunk); }
+  .chip[aria-pressed="true"] .dot { opacity: 1; }
+  .chip.c-derived[aria-pressed="true"] { color: var(--pine); border-color: var(--pine); background: var(--pine-bg); }
+  .chip.c-drafted[aria-pressed="true"] { color: var(--saffron); border-color: var(--saffron); background: var(--saffron-bg); }
+  .chip.c-new[aria-pressed="true"]     { color: var(--violet); border-color: var(--violet); background: var(--violet-bg); }
+  .chip.c-flag[aria-pressed="true"]    { color: var(--clay); border-color: var(--clay); background: var(--clay-bg); }
+
+  .spacer { flex: 1 1 auto; }
+
+  .textbtn {
+    background: none;
+    border: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    cursor: pointer;
+    padding: 6px 2px;
+  }
+  .textbtn:hover { color: var(--ink); }
+  .textbtn:focus-visible { outline: 2px solid var(--pine); outline-offset: 1px; }
+
+  .resultline {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    padding: 10px 0 2px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── the key ────────────────────────────────────────────────── */
+
+  .key, .key ul { list-style: none; margin: 0; padding: 0; }
+  .key ul {
+    margin-left: 11px;
+    padding-left: 15px;
+    border-left: 1px solid var(--rule);
+  }
+  .key li.hid { display: none; }
+  .key li.shut > ul { display: none; }
+
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    padding: 3px 8px 3px 0;
+    border-radius: 2px;
+    cursor: default;
+  }
+  .row:hover { background: var(--sunk); }
+  li.pick > .row { background: var(--saffron-bg); box-shadow: inset 2px 0 0 var(--saffron); }
+
+  .caret {
+    flex: none;
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+    border: none;
+    background: none;
+    padding: 0;
+    color: var(--ink-3);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 9px;
+    line-height: 1;
+    transition: transform 0.12s ease;
+  }
+  @media (prefers-reduced-motion: reduce) { .caret { transition: none; } }
+  li.shut > .row > .caret { transform: rotate(-90deg); }
+  .caret.leaf { visibility: hidden; }
+  .caret:focus-visible { outline: 2px solid var(--pine); outline-offset: 1px; border-radius: 2px; }
+
+  .name {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink);
+    word-break: break-word;
+  }
+  .name mark { background: var(--saffron-bg); color: var(--ink); padding: 0 1px; border-radius: 2px; }
+
+  .mentions {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
+
+  .kidcount {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-3);
+    flex: none;
+  }
+
+  /* source marks — the edge INTO this node */
+  .mark {
+    flex: none;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .m-d { color: var(--pine);    background: var(--pine-bg); }
+  .m-l { color: var(--saffron); background: var(--saffron-bg); }
+  .m-n { color: var(--violet);  background: var(--violet-bg); }
+
+  .conf { flex: none; font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .conf.k-high   { color: var(--pine); }
+  .conf.k-medium { color: var(--saffron); }
+  .conf.k-low    { color: var(--clay); }
+
+  .flagmark { flex: none; color: var(--clay); font-size: 12px; cursor: help; }
+
+  .proposed {
+    flex: none;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--violet);
+    border: 1px dashed var(--violet);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  /* 477 reasons rendered at once is noise, not information — they appear on
+     the rows a search actually picked, or when the reader asks for all. */
+  .why {
+    display: none;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    padding: 2px 0 8px 24px;
+    max-width: 68ch;
+    font-style: italic;
+  }
+  .show-why .why, li.pick > .why { display: block; }
+  .why b { font-style: normal; font-weight: 600; color: var(--clay); }
+
+  /* ── legend + aliases ───────────────────────────────────────── */
+
+  section { margin-top: 52px; }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    letter-spacing: -0.005em;
+  }
+  .sectionnote { color: var(--ink-2); max-width: 64ch; margin: 0 0 18px; font-size: 14.5px; }
+
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px 26px;
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+  }
+  .legend div { display: flex; gap: 10px; align-items: baseline; font-size: 13px; color: var(--ink-2); }
+  .legend p { margin: 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .scroll { overflow-x: auto; border: 1px solid var(--rule); }
+  th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 400;
+    padding: 9px 12px;
+    background: var(--sunk);
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+  td { padding: 7px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.n { font-family: var(--mono); font-size: 12px; white-space: nowrap; }
+  td.note { color: var(--ink-2); font-size: 12.5px; }
+  .arrow { color: var(--ink-3); }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--ink-3);
+    max-width: 64ch;
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">data/qc · proposals, not edges</p>
+    <h1>Ingredient hierarchy: a determination key</h1>
+    <p class="standfirst">
+      Every <code>is_a</code> edge answers one question — may a pantry holding the
+      <em>child</em> be offered a recipe calling for the <em>parent</em>, with a note to
+      check first? Nothing here has been accepted. This is the review queue, drawn as
+      the tree it will become.
+    </p>
+
+    <dl class="tallies">
+      <div class="tally"><dt>Confirmed nodes</dt><dd id="t-nodes">—</dd></div>
+      <div class="tally t-pine"><dt>Derived by name</dt><dd id="t-derived">—</dd></div>
+      <div class="tally t-saffron"><dt>Drafted by meaning</dt><dd id="t-drafted">—</dd></div>
+      <div class="tally t-violet"><dt>Proposed categories</dt><dd id="t-proposed">—</dd></div>
+      <div class="tally"><dt>Roots</dt><dd id="t-roots">—</dd></div>
+      <div class="tally"><dt>Still unplaced</dt><dd id="t-orphans">—</dd></div>
+    </dl>
+  </header>
+
+  <div class="controls">
+    <input class="search" id="q" type="search" placeholder="Find an ingredient — try basa, or white fish" autocomplete="off" spellcheck="false" />
+    <div class="filters">
+      <button class="chip c-derived" id="f-d" aria-pressed="true"><span class="dot"></span>Derived</button>
+      <button class="chip c-drafted" id="f-l" aria-pressed="true"><span class="dot"></span>Drafted</button>
+      <button class="chip c-new" id="f-n" aria-pressed="true"><span class="dot"></span>New category</button>
+      <button class="chip c-flag" id="f-f" aria-pressed="false"><span class="dot"></span>Flagged only</button>
+      <button class="chip" id="f-w" aria-pressed="false"><span class="dot"></span>Reasons</button>
+    </div>
+    <span class="spacer"></span>
+    <button class="textbtn" id="expand">Expand all</button>
+    <button class="textbtn" id="collapse">Collapse</button>
+  </div>
+
+  <p class="resultline" id="result">—</p>
+
+  <ul class="key" id="tree"></ul>
+
+  <section>
+    <h2>Reading the key</h2>
+    <div class="legend">
+      <div><span class="mark m-d">der</span><p>Derived from the name — <code>light soy sauce</code> ends in <code>soy sauce</code>. A lexical rule, no judgement.</p></div>
+      <div><span class="mark m-l">llm</span><p>Drafted from meaning. Nothing in <code>salmon</code> says <code>fish</code>; a rule cannot reach it.</p></div>
+      <div><span class="mark m-n">new</span><p>The parent does not exist yet. Accepting one mints a node, which §1 reserves to review.</p></div>
+      <div><span class="flagmark">▲</span><p>Flagged by a trap the repo already knows — a plant word on an animal product, an origin word, a rare parent.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Not a tree: one ingredient, two names</h2>
+    <p class="sectionnote">
+      These are not edges. <code>bonito flakes</code> is not a kind of <code>katsuobushi</code> —
+      it is the same packet under an English name, and an <code>is_a</code> edge between them
+      would surface a disclosure nobody needs. They belong in the alias table, one hop each,
+      and are listed here only so the tree above stays honest about what it is.
+    </p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Surface</th><th>Resolves to</th><th>Why</th></tr></thead>
+        <tbody id="aliases"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script type="application/json" id="data">__DATA__</script>
+
+<script>
+(function () {
+  "use strict";
+
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var N = D.nodes;
+
+  // ── shape the tree ────────────────────────────────────────────
+  var kids = [];
+  for (var i = 0; i < N.length; i++) kids.push([]);
+  var roots = [];
+  for (var j = 0; j < N.length; j++) {
+    if (N[j].p >= 0 && N[j].p < N.length) kids[N[j].p].push(j);
+    else roots.push(j);
+  }
+
+  // Corpus reach: a category is worth reviewing for what it would carry,
+  // not for its own mention count, which for a proposed node is zero.
+  var reach = new Array(N.length).fill(-1);
+  function computeReach(i) {
+    if (reach[i] >= 0) return reach[i];
+    reach[i] = N[i].m;               // guard against a cycle in bad data
+    var t = N[i].m, k = kids[i];
+    for (var a = 0; a < k.length; a++) t += computeReach(k[a]);
+    return (reach[i] = t);
+  }
+  for (var r = 0; r < N.length; r++) computeReach(r);
+
+  var byReach = function (a, b) { return reach[b] - reach[a] || N[a].n.localeCompare(N[b].n); };
+  roots.sort(byReach);
+  for (var s = 0; s < kids.length; s++) kids[s].sort(byReach);
+
+  // ── render once, toggle thereafter ────────────────────────────
+  var els = new Array(N.length);
+  var SRC = { d: "der", l: "llm", n: "new" };
+
+  function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+  function build(i) {
+    var n = N[i], k = kids[i];
+    var li = document.createElement("li");
+    li.dataset.i = i;
+    if (k.length) li.className = "shut";
+
+    var html = '<div class="row">';
+    html += '<button class="caret' + (k.length ? '' : ' leaf') + '" aria-label="Toggle" aria-expanded="false">&#9660;</button>';
+    html += '<span class="name">' + esc(n.n) + '</span>';
+    if (n.x) html += '<span class="proposed">proposed</span>';
+    if (n.s) html += '<span class="mark m-' + n.s + '">' + SRC[n.s] + '</span>';
+    if (n.c) html += '<span class="conf k-' + esc(n.c) + '">' + esc(n.c) + '</span>';
+    if (n.f) html += '<span class="flagmark" title="' + esc(n.f) + '">&#9650;</span>';
+    html += '<span class="spacer"></span>';
+    if (n.m) html += '<span class="mentions">' + n.m + '</span>';
+    if (k.length) html += '<span class="kidcount">' + k.length + ' &#8595; ' + reach[i] + '</span>';
+    html += '</div>';
+    if (n.r) html += '<p class="why">' + esc(n.r) + (n.f ? ' <b>&#9650; ' + esc(n.f) + '</b>' : '') + '</p>';
+
+    li.innerHTML = html;
+
+    if (k.length) {
+      var ul = document.createElement("ul");
+      for (var a = 0; a < k.length; a++) ul.appendChild(build(k[a]));
+      li.appendChild(ul);
+    }
+    els[i] = li;
+    return li;
+  }
+
+  var tree = document.getElementById("tree");
+  var frag = document.createDocumentFragment();
+  for (var t = 0; t < roots.length; t++) frag.appendChild(build(roots[t]));
+  tree.appendChild(frag);
+
+  // ── toggling ──────────────────────────────────────────────────
+  tree.addEventListener("click", function (e) {
+    var c = e.target.closest(".caret");
+    if (!c || c.classList.contains("leaf")) return;
+    var li = c.closest("li");
+    var shut = li.classList.toggle("shut");
+    c.setAttribute("aria-expanded", shut ? "false" : "true");
+  });
+
+  function setAll(shut) {
+    var all = tree.querySelectorAll("li");
+    for (var a = 0; a < all.length; a++) {
+      if (!all[a].querySelector(":scope > ul")) continue;
+      all[a].classList.toggle("shut", shut);
+      var c = all[a].querySelector(":scope > .row > .caret");
+      if (c) c.setAttribute("aria-expanded", shut ? "false" : "true");
+    }
+  }
+  document.getElementById("expand").addEventListener("click", function () { setAll(false); });
+  document.getElementById("collapse").addEventListener("click", function () { setAll(true); });
+
+  // ── filtering ─────────────────────────────────────────────────
+  var show = { d: true, l: true, n: true };
+  var flagOnly = false;
+  var query = "";
+
+  function matches(i) {
+    var n = N[i];
+    if (query && n.n.indexOf(query) === -1) return false;
+    if (flagOnly && !n.f) return false;
+    if (n.s) return show[n.s];
+    /**
+     * A root has no incoming edge, so it has no source to filter on. It still
+     * has a NAME, which is why an earlier cut of this got `oil` wrong: it
+     * excluded every sourceless node the moment a query existed, and searching
+     * for the largest root in the corpus found nothing. A root is excluded
+     * only when the source chips are actually narrowing — then it survives on
+     * its descendants' account, through the ancestor walk below.
+     */
+    return show.d && show.l && show.n;
+  }
+
+  function applyFilter() {
+    var keep = new Uint8Array(N.length);
+    var hits = 0;
+    for (var i = 0; i < N.length; i++) {
+      if (!matches(i)) continue;
+      hits++;
+      // keep the row and every ancestor, so the path stays readable
+      var c = i;
+      while (c >= 0 && !keep[c]) { keep[c] = 1; c = N[c].p; }
+    }
+    var neutral = show.d && show.l && show.n && !flagOnly && !query;
+    for (var j = 0; j < N.length; j++) {
+      els[j].classList.toggle("hid", neutral ? false : !keep[j]);
+      // `pick` marks a DIRECT hit, not an ancestor kept for the path — so a
+      // search for `cod` reads as one answer, not a lit-up trail to it.
+      els[j].classList.toggle("pick", !neutral && matches(j));
+    }
+    // auto-open the paths to what survived, but only when narrowing
+    if (!neutral) {
+      for (var k = 0; k < N.length; k++) {
+        if (keep[k] && kids[k].length) {
+          els[k].classList.remove("shut");
+          var cr = els[k].querySelector(":scope > .row > .caret");
+          if (cr) cr.setAttribute("aria-expanded", "true");
+        }
+      }
+    }
+    var res = document.getElementById("result");
+    res.textContent = neutral
+      ? N.length + " placed ingredients · " + roots.length + " roots · sorted by corpus reach"
+      : hits + (hits === 1 ? " ingredient" : " ingredients") + " match" + (query ? ' “' + query + '”' : "");
+  }
+
+  var qEl = document.getElementById("q");
+  var timer = null;
+  qEl.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () { query = qEl.value.trim().toLowerCase(); applyFilter(); }, 120);
+  });
+
+  function toggleChip(id, fn) {
+    var el = document.getElementById(id);
+    el.addEventListener("click", function () {
+      var on = el.getAttribute("aria-pressed") === "true";
+      el.setAttribute("aria-pressed", on ? "false" : "true");
+      fn(!on);
+      applyFilter();
+    });
+  }
+  toggleChip("f-d", function (v) { show.d = v; });
+  toggleChip("f-l", function (v) { show.l = v; });
+  toggleChip("f-n", function (v) { show.n = v; });
+  toggleChip("f-f", function (v) { flagOnly = v; });
+  toggleChip("f-w", function (v) { document.body.classList.toggle("show-why", v); });
+
+  // ── tallies, aliases, footer ──────────────────────────────────
+  var T = D.totals;
+  function put(id, v) { document.getElementById(id).textContent = v.toLocaleString(); }
+  put("t-nodes", T.nodes); put("t-derived", T.derived); put("t-drafted", T.drafted);
+  put("t-proposed", T.proposed); put("t-roots", T.roots); put("t-orphans", T.orphans);
+
+  var tb = document.getElementById("aliases");
+  var rows = "";
+  for (var a = 0; a < D.aliases.length; a++) {
+    var al = D.aliases[a];
+    rows += '<tr><td class="n">' + esc(al.s) + '</td><td class="n"><span class="arrow">&#8594;</span> '
+         + esc(al.n) + '</td><td class="note">' + esc(al.note) + '</td></tr>';
+  }
+  tb.innerHTML = rows;
+
+  document.getElementById("foot").textContent =
+    "Generated from data/qc/hierarchy.csv, hierarchy-llm.csv, hierarchy-llm-new-nodes.csv and "
+    + "hierarchy-llm-aliases.csv. " + T.orphans.toLocaleString() + " confirmed ingredients still sit "
+    + "outside the tree — most correctly, because salt and sugar have no broader ingredient, and "
+    + "because the deep tail of the corpus is parser wreckage rather than food.";
+
+  applyFilter();
+})();
+</script>

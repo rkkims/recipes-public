@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recipe QC — offline</title>
+<style>
+  :root {
+    --ground:#F3F5F4; --panel:#FCFDFC; --sunk:#E9EDEB; --ink:#16211F; --ink-2:#475853;
+    --ink-3:#7C8B87; --rule:#D6DDDA; --rule-2:#C2CCC8;
+    --pine:#0E6353; --saffron:#8A5E06; --clay:#A03724; --violet:#574786;
+    --pine-bg:#DCEBE6; --saffron-bg:#F2E9D2; --clay-bg:#F5DED8; --violet-bg:#E4E0F0;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,system-ui,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ground:#0F1513; --panel:#151E1B; --sunk:#1B2622; --ink:#E7EEEB; --ink-2:#A5B4AF;
+      --ink-3:#71827D; --rule:#26332F; --rule-2:#33433E; --pine:#52C2A8; --saffron:#D8A63F;
+      --clay:#E4886D; --violet:#A99BDD; --pine-bg:#163029; --saffron-bg:#2E2712;
+      --clay-bg:#33201A; --violet-bg:#242040; }
+  }
+  * { box-sizing:border-box; }
+  html, body { height:100%; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans);
+    font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+
+  /* ── frame ─────────────────────────────────────────────────────────────── */
+  #app { display:grid; grid-template-columns:288px 1fr; grid-template-rows:auto 1fr;
+    height:100vh; overflow:hidden; }
+  header { grid-column:1/-1; display:flex; align-items:center; gap:16px; padding:10px 18px;
+    background:var(--panel); border-bottom:1px solid var(--rule); }
+  .brand { font-family:var(--serif); font-size:17px; font-weight:600; white-space:nowrap; }
+  .bar { flex:1 1 auto; height:6px; background:var(--sunk); border-radius:3px; overflow:hidden; min-width:80px; }
+  .bar i { display:block; height:100%; background:var(--pine); width:0%; transition:width .25s ease; }
+  @media (prefers-reduced-motion: reduce) { .bar i { transition:none; } }
+  .count { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  #save { font-family:var(--mono); font-size:11px; padding:4px 8px; border-radius:2px;
+    background:var(--sunk); color:var(--ink-3); white-space:nowrap; }
+  #save.on { background:var(--pine-bg); color:var(--pine); }
+  #save.warn { background:var(--clay-bg); color:var(--clay); }
+
+  button { font-family:inherit; font-size:inherit; cursor:pointer; }
+  .btn { font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    padding:6px 10px; border:1px solid var(--rule-2); background:var(--panel); color:var(--ink-2);
+    border-radius:2px; white-space:nowrap; }
+  .btn:hover { border-color:var(--ink-3); color:var(--ink); }
+  .btn:focus-visible, input:focus-visible, li:focus-visible { outline:2px solid var(--pine); outline-offset:1px; }
+  .btn.go { background:var(--pine-bg); border-color:var(--pine); color:var(--pine); }
+
+  /* ── recipe list ───────────────────────────────────────────────────────── */
+  nav { border-right:1px solid var(--rule); background:var(--panel); overflow-y:auto; }
+  .filters { display:flex; gap:4px; padding:8px; position:sticky; top:0; background:var(--panel);
+    border-bottom:1px solid var(--rule); z-index:2; }
+  .filters .btn { flex:1; text-align:center; padding:5px 4px; }
+  .filters .btn[aria-pressed="true"] { background:var(--sunk); color:var(--ink); border-color:var(--ink-3); }
+  #search { width:calc(100% - 16px); margin:8px; font-family:var(--mono); font-size:12px;
+    padding:6px 8px; border:1px solid var(--rule-2); background:var(--ground); color:var(--ink); border-radius:2px; }
+  nav ol { list-style:none; margin:0; padding:0; }
+  nav li { padding:7px 12px; border-bottom:1px solid var(--rule); cursor:pointer; display:flex; gap:8px; align-items:baseline; }
+  nav li:hover { background:var(--sunk); }
+  nav li[aria-current="true"] { background:var(--pine-bg); box-shadow:inset 3px 0 0 var(--pine); }
+  nav li .t { flex:1; font-size:12.5px; line-height:1.35; }
+  nav li .n { font-family:var(--mono); font-size:10px; color:var(--ink-3); flex:none; }
+  nav li.done .t { color:var(--ink-3); }
+
+  /* ── recipe ────────────────────────────────────────────────────────────── */
+  main { overflow-y:auto; padding:22px 26px 120px; }
+  h1 { font-family:var(--serif); font-size:25px; font-weight:600; margin:0 0 4px; text-wrap:balance; }
+  .meta { font-family:var(--mono); font-size:11px; color:var(--ink-3); margin:0 0 18px; }
+  .meta a { color:var(--ink-3); }
+
+  .line { border:1px solid var(--rule); border-radius:3px; margin-bottom:7px; background:var(--panel); }
+  .line.open { border-color:var(--pine); }
+  .line.done { opacity:.62; }
+  .line.skip { opacity:.45; }
+  .lhead { display:flex; gap:10px; align-items:baseline; padding:8px 11px; cursor:pointer; }
+  .raw { flex:1; font-size:13.5px; }
+  .res { font-family:var(--mono); font-size:11.5px; flex:none; max-width:40%; text-align:right; }
+  .res .ok { color:var(--pine); }
+  .res .none { color:var(--clay); }
+  .res .skipped { color:var(--ink-3); }
+  .crumb { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); }
+  .crumb .prov { border-bottom:1px dashed var(--violet); color:var(--violet); }
+  .link { cursor:pointer; }
+  .link:hover { text-decoration:underline; }
+  .res .via { color:var(--saffron); }
+
+  .edit { border-top:1px solid var(--rule); padding:11px; display:none; }
+  .line.open .edit { display:block; }
+  .edit .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:9px; }
+  .edit input[type=text] { flex:1 1 260px; font-family:var(--mono); font-size:13px; padding:7px 9px;
+    border:1px solid var(--rule-2); background:var(--ground); color:var(--ink); border-radius:2px; }
+  .hint { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); }
+
+  .sugg { list-style:none; margin:0 0 9px; padding:0; border:1px solid var(--rule); border-radius:2px; max-height:240px; overflow-y:auto; }
+  .sugg li { padding:6px 10px; border-bottom:1px solid var(--rule); cursor:pointer; display:flex; gap:9px; align-items:baseline; }
+  .sugg li:last-child { border-bottom:none; }
+  .sugg li:hover, .sugg li.sel { background:var(--sunk); }
+  .sugg .nm { font-family:var(--mono); font-size:12.5px; flex:none; }
+  .sugg .via { font-size:11.5px; color:var(--saffron); }
+  .sugg .via b { font-weight:700; }
+  .tagprop { font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--violet); border:1px dashed var(--violet); padding:0 4px; border-radius:2px; }
+  .sugg .path { flex:1; text-align:right; font-family:var(--mono); font-size:10px; color:var(--ink-3); }
+  .sugg .mn { font-family:var(--mono); font-size:10px; color:var(--ink-3); flex:none; }
+
+  .modes { border-bottom:1px solid var(--rule); }
+  /* The hierarchy row: child, the edge, the parent — readable down a column. */
+  .edge { display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; margin:0 0 4px; }
+  .edge .rel { font-family:var(--mono); font-size:10px; text-transform:uppercase;
+    letter-spacing:.06em; padding:1px 6px; border-radius:9px; border:1px solid var(--rule); }
+  .edge .rel.derives { color:var(--clay); border-color:var(--clay); }
+  .edge .who { font-weight:600; }
+  .hier-why { font-size:12px; color:var(--ink-3); margin:2px 0 8px; }
+  .hier-alt { font-size:12px; margin:4px 0; }
+  .hier-alt b { font-weight:600; }
+  li.v-ok .t { color:var(--pine); }
+  li.v-no .t { color:var(--clay); text-decoration:line-through; }
+  .verdicts { display:flex; gap:6px; flex-wrap:wrap; }
+  .verdicts .btn.mint { color:var(--violet); border-color:var(--violet); }
+  .verdicts .btn.no { color:var(--clay); border-color:var(--clay); }
+
+  /* ── modal ─────────────────────────────────────────────────────────────── */
+  dialog { border:1px solid var(--rule-2); border-radius:4px; background:var(--panel); color:var(--ink);
+    padding:0; max-width:560px; width:92vw; }
+  dialog::backdrop { background:rgba(0,0,0,.42); }
+  .dh { padding:14px 16px; border-bottom:1px solid var(--rule); display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+  .dh h2 { font-family:var(--serif); font-size:19px; margin:0; }
+  .db { padding:14px 16px; max-height:60vh; overflow-y:auto; }
+  .db dl { display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin:0 0 14px; }
+  .db dt { font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-3); }
+  .db dd { margin:0; font-size:13px; }
+  .db h3 { font-size:12px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em;
+    color:var(--ink-3); font-weight:400; margin:14px 0 6px; }
+  .chips { display:flex; flex-wrap:wrap; gap:5px; }
+  .chip { font-family:var(--mono); font-size:11px; padding:3px 7px; background:var(--sunk); border-radius:2px; }
+  .df { padding:11px 16px; border-top:1px solid var(--rule); display:flex; gap:7px; justify-content:flex-end; }
+  .warnbox { background:var(--saffron-bg); color:var(--saffron); font-size:12px; padding:8px 10px;
+    border-radius:2px; margin-bottom:12px; }
+  .empty { color:var(--ink-3); font-size:13px; padding:40px 0; text-align:center; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <span class="brand">Recipe QC</span>
+    <span class="bar"><i id="prog"></i></span>
+    <span class="count" id="count">—</span>
+    <span id="save">not saving</span>
+    <button class="btn" id="attach">Save to file…</button>
+    <button class="btn" id="export">Export</button>
+  </header>
+
+  <nav>
+    <!-- Two queues, one tool. The recipe queue is entry-point-driven (QC-SPEC
+         §1: "the recipe is the entry point, always"); the hierarchy queue is a
+         SWEEP, because 2,000 derived edges will never be reviewed by stumbling
+         into them one recipe at a time. -->
+    <div class="filters modes">
+      <button class="btn" id="m-recipes" aria-pressed="true">Recipes</button>
+      <button class="btn" id="m-hier" aria-pressed="false">Hierarchy</button>
+    </div>
+    <div class="filters">
+      <button class="btn" id="f-todo" aria-pressed="true">Needs work</button>
+      <button class="btn" id="f-all" aria-pressed="false">All</button>
+      <button class="btn" id="f-done" aria-pressed="false">Done</button>
+    </div>
+    <input id="search" type="search" placeholder="Filter recipes…" autocomplete="off" />
+    <ol id="list"></ol>
+  </nav>
+
+  <main id="main"><p class="empty">Pick a recipe.</p></main>
+</div>
+
+<dialog id="modal">
+  <div class="dh"><h2 id="m-title">—</h2><span class="hint" id="m-kind"></span></div>
+  <div class="db" id="m-body"></div>
+  <div class="df" id="m-foot"></div>
+</dialog>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+"use strict";
+(function () {
+
+// ── data ────────────────────────────────────────────────────────────────────
+var D = JSON.parse(document.getElementById("data").textContent);
+var R = D.recipes, NODES = D.nodes, ALIASES = D.aliases;
+var PARENT = D.parent;            // node -> [parentName, provisional?]
+var DERIVES = new Map((D.derives || []).map(function (d) { return [d[0], d[1]]; }));
+var NOTSTOCKED = new Set(D.notStocked);
+
+var mentions = new Map(NODES.map(function (n) { return [n.n, n.m]; }));
+var nodeSet = new Set(NODES.map(function (n) { return n.n; }));
+
+/**
+ * numberKey — must stay identical to src/ontology/naming.ts. The generator
+ * asserts that on every build against real corpus heads, so a drift here
+ * fails `npm run offline-qc` rather than quietly changing what matches.
+ */
+var IRREGULAR = D.irregular || {}, KEEP_PLURAL = new Set(D.keepPlural || []);
+var NOT_A_PLURAL = /(?:us|ss)$/;
+function singular(w) {
+  if (Object.prototype.hasOwnProperty.call(IRREGULAR, w)) return IRREGULAR[w];
+  if (KEEP_PLURAL.has(w) || w.length < 4) return w;
+  if (NOT_A_PLURAL.test(w)) return w;
+  if (/ies$/.test(w)) return w.slice(0, -3) + "y";
+  if (/(?:oes|ses|xes|ches|shes)$/.test(w)) return w.slice(0, -2);
+  if (/s$/.test(w) && !/ss$/.test(w)) return w.slice(0, -1);
+  return w;
+}
+function keyToken(t) {
+  var s = singular(t);
+  return s === t && KEEP_PLURAL.has(t + "s") ? t + "s" : s;
+}
+function numberKey(s) {
+  return (s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()
+    .split(" ").filter(Boolean).map(keyToken).join(" ");
+}
+
+// ── suggest — mirrors src/ontology/suggest.ts ───────────────────────────────
+var PREFIX_CREDIT = 0.6, HEAD_BONUS = 0.35;
+var recipesOf = new Map(NODES.map(function (n) { return [n.n, n.r || 0]; }));
+var CAND = NODES.map(function (n) { return { node: n.n, surface: n.n, mentions: n.r || 0 }; })
+  .concat(ALIASES.map(function (a) { return { node: a.n, surface: a.s, mentions: recipesOf.get(a.n) || 0 }; }));
+var CAND_KEY = CAND.map(function (c) { return numberKey(c.surface); });
+var ALIAS_EXACT = new Map(), NODE_EXACT = new Map();
+ALIASES.forEach(function (a) { if (!ALIAS_EXACT.has(numberKey(a.s))) ALIAS_EXACT.set(numberKey(a.s), a); });
+var ALIAS_BY_SURFACE = new Map(ALIASES.map(function (a) { return [a.s, a]; }));
+NODES.forEach(function (n) { if (!NODE_EXACT.has(numberKey(n.n))) NODE_EXACT.set(numberKey(n.n), n.n); });
+
+function score(qKey, cKey) {
+  var q = qKey.split(" ").filter(Boolean), c = cKey.split(" ").filter(Boolean);
+  if (!q.length || !c.length) return 0;
+  var qSet = new Set(q), cSet = new Set(c), last = q[q.length - 1];
+  var cc = 0;
+  cSet.forEach(function (t) {
+    if (qSet.has(t)) cc += 1;
+    else if (t.indexOf(last) === 0 && t !== last) cc += PREFIX_CREDIT;
+  });
+  var qc = 0, cArr = Array.from(cSet);
+  qSet.forEach(function (t) {
+    if (cSet.has(t)) qc += 1;
+    else if (t === last && cArr.some(function (x) { return x.indexOf(t) === 0; })) qc += PREFIX_CREDIT;
+  });
+  if (!cc || !qc) return 0;
+  var p = cc / cSet.size, r = qc / qSet.size, f1 = (2 * p * r) / (p + r);
+  var cLast = c[c.length - 1];
+  return f1 + ((cLast === last || cLast.indexOf(last) === 0) ? HEAD_BONUS : 0);
+}
+
+function suggest(query, limit) {
+  limit = limit || 7;
+  var key = numberKey(query);
+  if (!key) return [];
+  if (ALIAS_EXACT.has(key)) { var a = ALIAS_EXACT.get(key); return [{ node: a.n, via: a.s, prop: !!a.p, score: 1, how: "alias" }]; }
+  if (NODE_EXACT.has(key)) return [{ node: NODE_EXACT.get(key), via: null, score: 1, how: "node" }];
+  var best = new Map();
+  for (var i = 0; i < CAND.length; i++) {
+    var s = score(key, CAND_KEY[i]);
+    if (s <= 0) continue;
+    var c = CAND[i], prev = best.get(c.node);
+    if (prev && prev.score >= s) continue;
+    best.set(c.node, { node: c.node, via: c.surface === c.node ? null : c.surface, score: s, how: "scored", mentions: c.mentions });
+  }
+  return Array.from(best.values()).sort(function (x, y) {
+    return y.score - x.score || (y.mentions || 0) - (x.mentions || 0) || x.node.localeCompare(y.node);
+  }).slice(0, limit);
+}
+
+/** `fish › white fish › basa`, marking edges that are still proposals. */
+function pathOf(node) {
+  var out = [], seen = {}, cur = node, guard = 0;
+  while (cur && !seen[cur] && guard++ < 12) {
+    seen[cur] = 1;
+    var e = PARENT[cur];
+    out.unshift({ name: cur, prov: e ? !!e[1] : false });
+    cur = e ? e[0] : null;
+  }
+  return out;
+}
+
+// ── session state ───────────────────────────────────────────────────────────
+var S = { ann: {}, aliases: [], nodes: [], edges: [], aliasEdits: [], notes: [],
+          /** Hierarchy verdicts, keyed child\u0000parent — see the review pass. */
+          hier: {}, startedAt: new Date().toISOString() };
+var view = "todo", q = "", current = null, openLine = -1;
+/** Which queue is on screen: the recipe sweep, or the hierarchy sweep. */
+var mode = "recipes";
+
+function lineResolved(rid, i) {
+  var a = S.ann[rid] && S.ann[rid][i];
+  if (a) return a;
+  var l = R.find(function (r) { return r.i === rid; }).l[i];
+  if (NOTSTOCKED.has(l.h)) return { v: "assumed", node: "", auto: true };
+  if (l.n) return { v: "ok", node: l.n, auto: true };
+  return null;
+}
+function recipeDone(r) {
+  for (var i = 0; i < r.l.length; i++) if (!lineResolved(r.i, i)) return false;
+  return true;
+}
+function openCount(r) {
+  var n = 0;
+  for (var i = 0; i < r.l.length; i++) if (!lineResolved(r.i, i)) n++;
+  return n;
+}
+
+// ── persistence ─────────────────────────────────────────────────────────────
+var DB = "recipe-qc", handle = null, saveTimer = null;
+function idb(fn) {
+  var rq = indexedDB.open(DB, 1);
+  rq.onupgradeneeded = function () { rq.result.createObjectStore("kv"); };
+  rq.onsuccess = function () { fn(rq.result); };
+  rq.onerror = function () { /* private mode — fall back to Export */ };
+}
+function keepHandle(h) { idb(function (db) { db.transaction("kv", "readwrite").objectStore("kv").put(h, "handle"); }); }
+function loadHandle(cb) {
+  idb(function (db) {
+    var g = db.transaction("kv", "readonly").objectStore("kv").get("handle");
+    g.onsuccess = function () { cb(g.result || null); };
+  });
+}
+function saveState() { idb(function (db) { db.transaction("kv", "readwrite").objectStore("kv").put(S, "state"); }); }
+function loadState(cb) {
+  idb(function (db) {
+    var g = db.transaction("kv", "readonly").objectStore("kv").get("state");
+    g.onsuccess = function () { cb(g.result || null); };
+  });
+}
+
+function payload() {
+  return JSON.stringify({
+    tool: "recipe-qc", builtFrom: D.builtAt, exportedAt: new Date().toISOString(),
+    annotations: S.ann, aliases: S.aliases, nodes: S.nodes,
+    edges: S.edges, aliasEdits: S.aliasEdits, notes: S.notes, hier: S.hier,
+  }, null, 1);
+}
+function flag(t, cls) { var e = document.getElementById("save"); e.textContent = t; e.className = cls || ""; }
+
+function writeThrough() {
+  saveState();
+  if (!handle) { flag("in browser only", "warn"); return; }
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function () {
+    handle.createWritable().then(function (w) {
+      return w.write(payload()).then(function () { return w.close(); });
+    }).then(function () {
+      flag("saved " + new Date().toLocaleTimeString(), "on");
+    }).catch(function () { flag("save failed — use Export", "warn"); });
+  }, 400);
+}
+
+document.getElementById("attach").addEventListener("click", function () {
+  if (!window.showSaveFilePicker) { alert("This browser has no file access. Use Export instead."); return; }
+  window.showSaveFilePicker({
+    suggestedName: "recipe-qc.json",
+    types: [{ description: "JSON", accept: { "application/json": [".json"] } }],
+  }).then(function (h) { handle = h; keepHandle(h); writeThrough(); }).catch(function () {});
+});
+document.getElementById("export").addEventListener("click", function () {
+  var b = new Blob([payload()], { type: "application/json" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(b); a.download = "recipe-qc.json"; a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+});
+
+/**
+ * ── the hierarchy review pass ─────────────────────────────────────────────
+ *
+ * A sweep, not an entry point. QC-SPEC §1 makes the RECIPE the way in for
+ * annotation, and that is right for annotation — but 2,240 derived edges will
+ * not be reviewed by stumbling into them one recipe at a time, and the ones
+ * that matter most are attached to ingredients that appear in hundreds of
+ * recipes each.
+ *
+ * Every verdict is one of three, and the third is the one that makes the queue
+ * honest: an edge can be TRUE AS A DIFFERENT RELATION. `oyster sauce` is not a
+ * kind of oyster, but it is made from oyster — rejecting it outright would
+ * throw away a true fact because the generator guessed the wrong relation.
+ */
+var HIER = (D.hier || []).map(function (h, i) { return { i: i, c: h.c, p: h.p, rel: h.rel, r: h.r, pr: h.pr, src: h.src, flag: h.flag }; });
+var hierAt = 0;
+
+/** Alternative parents the OTHER rule proposed for the same child. */
+var ALT = new Map();
+HIER.forEach(function (h) {
+  if (!ALT.has(h.c)) ALT.set(h.c, []);
+  ALT.get(h.c).push(h);
+});
+
+function hierKey(h) { return h.c + "\u0000" + h.p; }
+function hierVerdict(h) { return S.hier[hierKey(h)]; }
+
+function hierVisible() {
+  var ql = q.toLowerCase();
+  return HIER.filter(function (h) {
+    if (ql && (h.c + " " + h.p).toLowerCase().indexOf(ql) === -1) return false;
+    var v = hierVerdict(h);
+    if (view === "all") return true;
+    return view === "done" ? !!v : !v;
+  });
+}
+
+function renderHierList() {
+  var v = hierVisible(), html = "";
+  for (var i = 0; i < v.length && i < 400; i++) {
+    var h = v[i], vd = hierVerdict(h);
+    html += '<li tabindex="0" data-h="' + h.i + '"' +
+      (HIER[hierAt] && HIER[hierAt].i === h.i ? ' aria-current="true"' : "") +
+      (vd ? ' class="v-' + esc(vd.v) + '"' : "") +
+      '><span class="t">' + esc(h.c) + " → " + esc(h.p) + "</span>" +
+      '<span class="n">' + h.r + "</span></li>";
+  }
+  if (!v.length) html = '<li class="done"><span class="t">Nothing matches.</span></li>';
+  else if (v.length > 400) html += '<li class="done"><span class="t">…' + (v.length - 400) + " more; filter to narrow.</span></li>";
+  listEl.innerHTML = html;
+
+  var done = HIER.filter(hierVerdict).length;
+  document.getElementById("prog").style.width = (done / (HIER.length || 1) * 100) + "%";
+  document.getElementById("count").textContent = done + " / " + HIER.length + " edges";
+}
+
+function renderHier() {
+  var h = HIER[hierAt];
+  if (!h) { mainEl.innerHTML = '<p class="empty">Nothing left in the queue.</p>'; return; }
+  var vd = hierVerdict(h);
+  var others = (ALT.get(h.c) || []).filter(function (x) { return x.p !== h.p; });
+
+  var html = '<div class="edge">' +
+    '<span class="who">' + esc(h.c) + '</span>' +
+    '<span class="rel' + (h.rel === "derives_from" ? " derives" : "") + '">' +
+      (h.rel === "derives_from" ? "made from" : "is a") + '</span>' +
+    '<span class="who">' + esc(h.p) + '</span></div>';
+
+  html += '<p class="hier-why">' + h.r + " recipes use " + esc(h.c) +
+          " · " + h.pr + " use " + esc(h.p) +
+          " · found by " + esc(h.src) + (h.flag ? " · " + esc(h.flag) : "") + "</p>";
+
+  /**
+   * Other parents proposed for the same child, shown rather than hidden.
+   *
+   * Both can be true — the matcher holds several parents now — so this is
+   * context, not a conflict to resolve. Seeing `steak` while judging `beef`
+   * is what stops a reviewer rejecting a true edge because a truer-looking
+   * one exists.
+   */
+  if (others.length) {
+    html += '<p class="hier-alt">also proposed: ' + others.map(function (o) {
+      var ov = hierVerdict(o);
+      return "<b>" + esc(o.p) + "</b>" + (ov ? " (" + esc(ov.v) + ")" : "");
+    }).join(", ") + " — both can be true</p>";
+  }
+
+  html += '<div class="verdicts">' +
+    '<button class="btn" data-hv="ok"' + (vd && vd.v === "ok" ? ' aria-pressed="true"' : "") + '>A · accept</button>' +
+    '<button class="btn no" data-hv="no"' + (vd && vd.v === "no" ? ' aria-pressed="true"' : "") + '>X · reject</button>' +
+    '<button class="btn mint" data-hv="flip">R · ' +
+      (h.rel === "is_a" ? "made from, not a kind of" : "a kind of, not made from") + '</button>' +
+    (vd ? '<button class="btn" data-hv="clear">clear</button>' : "") +
+    "</div>";
+  html += '<p class="hint">J / K move · A accept · X reject · R change the relation</p>';
+  mainEl.innerHTML = html;
+}
+
+function hierPut(v, rel) {
+  var h = HIER[hierAt]; if (!h) return;
+  var k = hierKey(h);
+  if (v === null) delete S.hier[k];
+  else S.hier[k] = { child: h.c, parent: h.p, relation: rel || h.rel, v: v,
+                     src: h.src, at: new Date().toISOString() };
+  writeThrough();
+  // Advance on a decision, the way the recipe queue does — the queue is long
+  // and reaching for the next row every time is the tax that ends a session.
+  if (v !== null) {
+    var vis = hierVisible();
+    var nxt = vis.find(function (x) { return x.i > h.i; });
+    if (nxt) hierAt = HIER.indexOf(nxt);
+  }
+  renderHierList(); renderHier();
+}
+
+// ── render: list ────────────────────────────────────────────────────────────
+var listEl = document.getElementById("list");
+function visible() {
+  var ql = q.toLowerCase();
+  return R.filter(function (r) {
+    if (ql && r.t.toLowerCase().indexOf(ql) === -1) return false;
+    if (view === "all") return true;
+    var d = recipeDone(r);
+    return view === "done" ? d : !d;
+  });
+}
+function renderList() {
+  var v = visible(), html = "";
+  for (var i = 0; i < v.length && i < 400; i++) {
+    var r = v[i], open = openCount(r);
+    html += '<li tabindex="0" data-i="' + esc(r.i) + '"' + (current === r.i ? ' aria-current="true"' : "") +
+      (open ? "" : ' class="done"') + '><span class="t">' + esc(r.t) + '</span><span class="n">' +
+      (open ? open + " left" : "done") + "</span></li>";
+  }
+  if (!v.length) html = '<li class="done"><span class="t">Nothing matches.</span></li>';
+  else if (v.length > 400) html += '<li class="done"><span class="t">…' + (v.length - 400) + " more; filter to narrow.</span></li>";
+  listEl.innerHTML = html;
+
+  var done = R.filter(recipeDone).length;
+  document.getElementById("prog").style.width = (done / R.length * 100) + "%";
+  document.getElementById("count").textContent = done + " / " + R.length + " recipes";
+}
+listEl.addEventListener("click", function (e) {
+  var li = e.target.closest("li[data-i]"); if (!li) return;
+  current = li.dataset.i; openLine = -1; renderList(); renderRecipe();
+});
+listEl.addEventListener("keydown", function (e) {
+  if (e.key !== "Enter") return;
+  var li = e.target.closest("li[data-i]"); if (!li) return;
+  current = li.dataset.i; openLine = -1; renderList(); renderRecipe();
+});
+
+function esc(t) {
+  return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// ── render: recipe ──────────────────────────────────────────────────────────
+var mainEl = document.getElementById("main");
+function crumbHtml(node) {
+  var p = pathOf(node), out = "";
+  if (p.length > 1) {
+    out += p.map(function (s) {
+      return '<span class="link' + (s.prov ? " prov" : "") + '" data-node="' + esc(s.name) + '"' +
+        (s.prov ? ' title="proposed, not yet accepted — click to review"' : ' title="open this ingredient"') +
+        ">" + esc(s.name) + "</span>";
+    }).join(" &rsaquo; ");
+  }
+  /**
+   * A one-way edge reads nothing like a parent, so it is not drawn as one.
+   * Shown because reading the relation is how a wrong one gets caught, which
+   * is the same argument that puts the breadcrumb here at all.
+   */
+  var whole = DERIVES.get(node);
+  if (whole) out += (out ? "<br>" : "") + "made from " + esc(whole);
+  return out ? '<div class="crumb">' + out + "</div>" : "";
+}
+function resHtml(a) {
+  if (!a) return '<span class="none">unresolved</span>';
+  if (a.v === "skip") return '<span class="skipped">not an ingredient</span>';
+  if (a.v === "assumed") return '<span class="skipped">assumed on hand</span>';
+  var h = '<span class="ok link" data-node="' + esc(a.node) + '" title="open this ingredient">' + esc(a.node) + "</span>";
+  if (a.via) h += ' <span class="via link" data-alias="' + esc(a.via) + '" title="open this alias">via &laquo;' + esc(a.via) + "&raquo;</span>";
+  return h + (a.auto ? "" : " &check;");
+}
+function renderRecipe() {
+  var r = R.find(function (x) { return x.i === current; });
+  if (!r) { mainEl.innerHTML = '<p class="empty">Pick a recipe.</p>'; return; }
+  var h = "<h1>" + esc(r.t) + "</h1><p class=\"meta\">" + esc(r.s) + (r.c ? " &middot; " + esc(r.c) : "") +
+    (r.u ? ' &middot; <a href="' + esc(r.u) + '" target="_blank" rel="noopener">source</a>' : "") + "</p>";
+  for (var i = 0; i < r.l.length; i++) {
+    var l = r.l[i], a = lineResolved(r.i, i);
+    var cls = "line" + (openLine === i ? " open" : "") + (a && a.v === "ok" ? " done" : "") +
+      (a && (a.v === "skip" || a.v === "assumed") ? " skip" : "");
+    h += '<div class="' + cls + '" data-l="' + i + '"><div class="lhead"><span class="raw">' + esc(l.r) +
+      '</span><span class="res">' + resHtml(a) + (a && a.node ? crumbHtml(a.node) : "") + "</span></div>";
+    h += '<div class="edit">' + (openLine === i ? editHtml(l, a) : "") + "</div></div>";
+  }
+  mainEl.innerHTML = h;
+  if (openLine >= 0) {
+    var inp = mainEl.querySelector(".edit input[type=text]");
+    if (inp) { inp.focus(); inp.select(); }
+  }
+}
+function editHtml(l, a) {
+  var seed = (a && a.surface) || l.h || "";
+  return '<div class="row"><input type="text" id="q" value="' + esc(seed) +
+    '" placeholder="what is this ingredient?" autocomplete="off" spellcheck="false" />' +
+    '<span class="hint">parsed head: ' + esc(l.h || "—") + "</span></div>" +
+    '<ul class="sugg" id="sugg"></ul>' +
+    '<div class="verdicts">' +
+    '<button class="btn no" data-v="skip">Not an ingredient</button>' +
+    '<button class="btn mint" data-v="mint">New ingredient…</button>' +
+    '<button class="btn" data-v="clear">Clear</button>' +
+    "</div>";
+}
+
+mainEl.addEventListener("click", function (e) {
+  var n = e.target.closest("[data-node]");
+  if (n) { e.stopPropagation(); nodeModal(n.dataset.node); return; }
+  var al = e.target.closest("[data-alias]");
+  if (al) { e.stopPropagation(); aliasModal(al.dataset.alias); return; }
+  var head = e.target.closest(".lhead");
+  if (head) {
+    var i = Number(head.parentElement.dataset.l);
+    openLine = openLine === i ? -1 : i;
+    renderRecipe(); if (openLine >= 0) refreshSugg();
+    return;
+  }
+  var v = e.target.closest("[data-v]");
+  if (v) { verdict(v.dataset.v); return; }
+  var s = e.target.closest("#sugg li");
+  if (s) { accept(s.dataset.node, s.dataset.via || null); return; }
+});
+mainEl.addEventListener("input", function (e) { if (e.target.id === "q") refreshSugg(); });
+mainEl.addEventListener("keydown", function (e) {
+  if (e.target.id !== "q") return;
+  var items = Array.prototype.slice.call(mainEl.querySelectorAll("#sugg li"));
+  var at = items.findIndex(function (x) { return x.classList.contains("sel"); });
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    e.preventDefault();
+    if (!items.length) return;
+    if (at >= 0) items[at].classList.remove("sel");
+    var next = e.key === "ArrowDown" ? (at + 1) % items.length : (at <= 0 ? items.length - 1 : at - 1);
+    items[next].classList.add("sel"); items[next].scrollIntoView({ block: "nearest" });
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    var pick = at >= 0 ? items[at] : items[0];
+    if (pick) accept(pick.dataset.node, pick.dataset.via || null);
+  } else if (e.key === "Escape") { openLine = -1; renderRecipe(); }
+});
+
+/**
+ * The name the row matched ON, when that is not the node's own name.
+ *
+ * Typing `green onion` has to return `scallion`, and the row has to say why —
+ * otherwise the tool looks like it ignored what was typed and answered with
+ * something else. The alias is bold because it is the part the annotator
+ * recognises; the node name beside it is the answer they are being given.
+ */
+function aliasHtml(hit) {
+  if (!hit.via) return "";
+  return '<span class="via">&laquo;<b>' + esc(hit.via) + "</b>&raquo;" +
+    (hit.prop ? ' <span class="tagprop">proposed</span>' : "") + "</span>";
+}
+
+function refreshSugg() {
+  var inp = document.getElementById("q"); if (!inp) return;
+  var hits = suggest(inp.value, 7), html = "";
+  for (var i = 0; i < hits.length; i++) {
+    var s = hits[i], p = pathOf(s.node);
+    html += '<li data-node="' + esc(s.node) + '" data-via="' + esc(s.via || "") + '"' + (i === 0 ? ' class="sel"' : "") +
+      '><span class="nm">' + esc(s.node) + "</span>" + aliasHtml(s) +
+      '<span class="path">' + (p.length > 1 ? esc(p.slice(0, -1).map(function (x) { return x.name; }).join(" › ")) : "") + "</span>" +
+      '<span class="mn">' + (recipesOf.get(s.node) || 0) + " recipes</span></li>";
+  }
+  if (!hits.length) html = '<li class="done"><span class="nm">no match — mint it, or mark it not an ingredient</span></li>';
+  document.getElementById("sugg").innerHTML = html;
+}
+
+// ── verdicts ────────────────────────────────────────────────────────────────
+function put(rid, i, a) {
+  if (!S.ann[rid]) S.ann[rid] = {};
+  if (a === null) delete S.ann[rid][i]; else S.ann[rid][i] = a;
+  writeThrough(); renderList(); renderRecipe();
+}
+function accept(node, via) {
+  var r = R.find(function (x) { return x.i === current; }), i = openLine, l = r.l[i];
+  var typed = (document.getElementById("q") || {}).value || l.h;
+  /**
+   * The surface AND the node are both recorded — QC-SPEC §8.3b. Storing only
+   * the surface would let a later alias edit silently rewrite this decision;
+   * storing only the node would leave it stale when the alias is corrected.
+   * Import compares the two and reports where they have come apart.
+   */
+  var a = { v: "ok", node: node, surface: typed, at: new Date().toISOString() };
+  if (via) a.via = via;
+  // A surface that resolved only by ranking is a new alias worth recording.
+  if (numberKey(typed) !== numberKey(node) && !ALIAS_EXACT.has(numberKey(typed))) {
+    S.aliases.push({ surface: typed, node: node, from: r.i, at: a.at });
+    ALIAS_EXACT.set(numberKey(typed), { s: typed, n: node });
+    CAND.push({ node: node, surface: typed, mentions: recipesOf.get(node) || 0 });
+    CAND_KEY.push(numberKey(typed));
+  }
+  openLine = -1;
+  put(r.i, i, a);
+}
+function verdict(kind) {
+  var r = R.find(function (x) { return x.i === current; }), i = openLine;
+  if (kind === "clear") { openLine = -1; put(r.i, i, null); return; }
+  if (kind === "skip") { openLine = -1; put(r.i, i, { v: "skip", node: "", at: new Date().toISOString() }); return; }
+  if (kind === "mint") mintDialog(r, i);
+}
+
+// ── modal: mint, and node detail ────────────────────────────────────────────
+var modal = document.getElementById("modal");
+function showModal(title, kind, body, foot) {
+  document.getElementById("m-title").textContent = title;
+  document.getElementById("m-kind").textContent = kind;
+  document.getElementById("m-body").innerHTML = body;
+  document.getElementById("m-foot").innerHTML = foot;
+  modal.showModal();
+}
+document.getElementById("m-foot").addEventListener("click", function (e) {
+  var b = e.target.closest("[data-act]"); if (!b) return;
+  var act = b.dataset.act;
+  if (act === "close") { modal.close(); pending = null; return; }
+  if (act === "mint") return doMint();
+  if (!pending) return;
+  if (act === "node-save") return applyEdge(pending.node, pending.pick, "reparented");
+  if (act === "node-root") return applyEdge(pending.node, null, "made-root");
+  if (act === "node-accept") return applyEdge(pending.node, PARENT[pending.node][0], "accepted");
+  if (act === "alias-save") return applyAlias(pending.surface, pending.pick, "retargeted");
+  if (act === "alias-accept") return applyAlias(pending.surface, pending.node, "accepted");
+  if (act === "alias-drop") return applyAlias(pending.surface, null, "drop");
+});
+
+var pendingMint = null;
+function mintDialog(r, i) {
+  var typed = (document.getElementById("q") || {}).value || r.l[i].h;
+  pendingMint = { name: typed.trim(), rid: r.i, line: i };
+  var near = suggest(typed, 5).map(function (s) { return '<span class="chip">' + esc(s.node) + "</span>"; }).join("");
+  /**
+   * Near-misses are shown before the button, not after — QC-SPEC §8.4. Minting
+   * is one keystroke from anyone who did not find what they wanted, and the
+   * corpus already carries a long tail of one-mention nodes from exactly that.
+   */
+  showModal("Mint “" + pendingMint.name + "”?", "new ingredient",
+    '<div class="warnbox">A new node is permanent. It gets an id at import and every reference resolves through it forever.</div>' +
+    (near ? "<h3>Did you mean</h3><div class=\"chips\">" + near + "</div>" : "<p>Nothing in the ontology is close.</p>") +
+    "<h3>This will record</h3><dl><dt>name</dt><dd>" + esc(pendingMint.name) +
+    "</dd><dt>from</dt><dd>" + esc(r.t) + "</dd></dl>",
+    '<button class="btn" data-act="close">Cancel</button><button class="btn mint go" data-act="mint">Mint it</button>');
+}
+function doMint() {
+  if (!pendingMint) return;
+  var n = pendingMint;
+  S.nodes.push({ name: n.name, from: n.rid, at: new Date().toISOString() });
+  NODES.push({ n: n.name, m: 0, r: 0 }); nodeSet.add(n.name); mentions.set(n.name, 0); recipesOf.set(n.name, 0);
+  NODE_EXACT.set(numberKey(n.name), n.name);
+  CAND.push({ node: n.name, surface: n.name, mentions: 0 }); CAND_KEY.push(numberKey(n.name));
+  modal.close(); openLine = -1;
+  put(n.rid, n.line, { v: "ok", node: n.name, surface: n.name, minted: true, at: new Date().toISOString() });
+  pendingMint = null;
+}
+
+
+// ── ontology and alias editing ──────────────────────────────────────────────
+/**
+ * Both editors are MODAL OVER THE RECIPE (QC-SPEC §4). The recipe stays behind
+ * the dialog because it is the reason you are here; losing it to a full page
+ * change is how a curation session turns into aimless list-reading.
+ *
+ * Every edit mutates the in-memory graph and re-renders, so the fix shows in
+ * the line you were annotating before the dialog has finished closing. Nothing
+ * is written to the ontology — the session exports a list of edits and the VM
+ * applies them, because ids live there and the page must not invent one.
+ */
+var KIDS = null;
+function childIndex() {
+  if (KIDS) return KIDS;
+  KIDS = new Map();
+  Object.keys(PARENT).forEach(function (c) {
+    var p = PARENT[c][0];
+    if (!KIDS.has(p)) KIDS.set(p, []);
+    KIDS.get(p).push(c);
+  });
+  return KIDS;
+}
+function invalidate() { KIDS = null; }
+
+var pending = null;   // what the open dialog will act on
+
+function pickerHtml(label, value) {
+  return '<h3>' + esc(label) + '</h3><input type="text" id="mq" value="' + esc(value || "") +
+    '" placeholder="type an ingredient…" autocomplete="off" spellcheck="false" ' +
+    'style="width:100%;font-family:var(--mono);font-size:13px;padding:7px 9px;border:1px solid var(--rule-2);background:var(--ground);color:var(--ink);border-radius:2px" />' +
+    '<ul class="sugg" id="msugg" style="margin-top:8px"></ul>';
+}
+function refreshModalSugg() {
+  var inp = document.getElementById("mq"); if (!inp) return;
+  var hits = suggest(inp.value, 6), html = "";
+  for (var i = 0; i < hits.length; i++) {
+    var h = hits[i];
+    html += '<li data-pick="' + esc(h.node) + '"' + (pending && pending.pick === h.node ? ' class="sel"' : "") +
+      '><span class="nm">' + esc(h.node) + "</span>" + aliasHtml(h) +
+      '<span class="mn">' + (recipesOf.get(h.node) || 0) + " recipes</span></li>";
+  }
+  document.getElementById("msugg").innerHTML = html || '<li><span class="nm">nothing matches</span></li>';
+}
+document.getElementById("m-body").addEventListener("input", function (e) {
+  if (e.target.id === "mq") refreshModalSugg();
+});
+document.getElementById("m-body").addEventListener("click", function (e) {
+  var li = e.target.closest("[data-pick]"); if (!li || !pending) return;
+  pending.pick = li.dataset.pick;
+  refreshModalSugg();
+  var f = document.getElementById("m-foot").querySelector("[data-act$='-save']");
+  if (f) f.removeAttribute("disabled");
+});
+
+function nodeModal(name) {
+  var e = PARENT[name], kids = childIndex().get(name) || [];
+  var mine = ALIASES.filter(function (a) { return a.n === name; });
+  var whole = DERIVES.get(name);
+  pending = { kind: "node", node: name, pick: e ? e[0] : "" };
+  var body =
+    '<dl><dt>used by</dt><dd>' + (recipesOf.get(name) || 0) + " recipes &middot; " + (mentions.get(name) || 0) + " ingredient lines</dd>" +
+    "<dt>parent</dt><dd>" + (e ? esc(e[0]) + (e[1] ? ' <span class="chip">proposed</span>' : "") : "<em>none — a root</em>") + "</dd>" +
+    (whole ? "<dt>made from</dt><dd>" + esc(whole) + " <span class=\"chip\">one-way</span></dd>" : "") +
+    "<dt>children</dt><dd>" + (kids.length ? kids.length + " — " + esc(kids.slice(0, 8).join(", ")) + (kids.length > 8 ? "…" : "") : "<em>none</em>") + "</dd></dl>" +
+    (mine.length ? '<h3>also called</h3><div class="chips">' + mine.map(function (a) {
+      return '<span class="chip">' + esc(a.s) + (a.p ? " ·prop" : "") + "</span>";
+    }).join("") + "</div>" : "") +
+    pickerHtml("Reparent to", e ? e[0] : "");
+  showModal(name, "ingredient",
+    (e && e[1] ? '<div class="warnbox">This parent is a PROPOSAL. Accepting it here records your agreement; rejecting removes the edge.</div>' : "") + body,
+    '<button class="btn" data-act="close">Cancel</button>' +
+    (e ? '<button class="btn no" data-act="node-root">Make it a root</button>' : "") +
+    (e && e[1] ? '<button class="btn go" data-act="node-accept">Accept edge</button>' : "") +
+    '<button class="btn" data-act="node-save">Reparent</button>');
+  refreshModalSugg();
+}
+
+function aliasModal(surface) {
+  var a = ALIAS_BY_SURFACE.get(surface);
+  if (!a) { return; }
+  var siblings = ALIASES.filter(function (x) { return x.n === a.n && x.s !== surface; });
+  pending = { kind: "alias", surface: surface, node: a.n, pick: a.n };
+  var body =
+    "<dl><dt>surface</dt><dd>" + esc(surface) + "</dd>" +
+    "<dt>resolves to</dt><dd>" + esc(a.n) + "</dd>" +
+    "<dt>status</dt><dd>" + (a.p ? "proposed" : "accepted") + "</dd>" +
+    (a.why ? "<dt>reason</dt><dd>" + esc(a.why) + "</dd>" : "") + "</dl>" +
+    (siblings.length ? '<h3>other names for ' + esc(a.n) + '</h3><div class="chips">' +
+      siblings.map(function (x) { return '<span class="chip">' + esc(x.s) + "</span>"; }).join("") + "</div>" : "") +
+    pickerHtml("Point it at", a.n);
+  showModal("«" + surface + "»", "alias",
+    (a.p ? '<div class="warnbox">This alias is a PROPOSAL and has never been merged into aliases.csv.</div>' : "") + body,
+    '<button class="btn" data-act="close">Cancel</button>' +
+    '<button class="btn no" data-act="alias-drop">Wrong — drop it</button>' +
+    (a.p ? '<button class="btn go" data-act="alias-accept">Accept</button>' : "") +
+    '<button class="btn" data-act="alias-save">Retarget</button>');
+  refreshModalSugg();
+}
+
+function applyEdge(node, parentName, verdict) {
+  if (parentName) PARENT[node] = [parentName, 0];
+  else delete PARENT[node];
+  S.edges.push({ node: node, parent: parentName || null, verdict: verdict, at: new Date().toISOString() });
+  invalidate(); modal.close(); writeThrough(); renderRecipe();
+}
+function applyAlias(surface, target, verdict) {
+  var a = ALIAS_BY_SURFACE.get(surface);
+  if (verdict === "drop") {
+    ALIASES = ALIASES.filter(function (x) { return x.s !== surface; });
+    ALIAS_BY_SURFACE.delete(surface);
+    if (ALIAS_EXACT.get(numberKey(surface)) === a) ALIAS_EXACT.delete(numberKey(surface));
+  } else {
+    a.n = target; a.p = 0;
+    ALIAS_EXACT.set(numberKey(surface), a);
+  }
+  S.aliasEdits.push({ surface: surface, node: verdict === "drop" ? null : target, verdict: verdict, at: new Date().toISOString() });
+  modal.close(); writeThrough(); renderRecipe();
+}
+
+/**
+ * One entry point for both queues.
+ *
+ * Every existing caller says `renderList()`, and there are a dozen of them. A
+ * mode check here is one place to be wrong instead of twelve.
+ */
+var renderListRecipes = renderList;
+renderList = function () { return mode === "hier" ? renderHierList() : renderListRecipes(); };
+
+function setMode(next) {
+  mode = next;
+  document.getElementById("m-recipes").setAttribute("aria-pressed", String(next === "recipes"));
+  document.getElementById("m-hier").setAttribute("aria-pressed", String(next === "hier"));
+  document.getElementById("search").placeholder =
+    next === "hier" ? "Filter edges…" : "Filter recipes…";
+  renderList();
+  if (next === "hier") renderHier();
+  else { mainEl.innerHTML = '<p class="empty">Pick a recipe.</p>'; if (current) renderRecipe(); }
+}
+document.getElementById("m-recipes").addEventListener("click", function () { setMode("recipes"); });
+document.getElementById("m-hier").addEventListener("click", function () { setMode("hier"); });
+
+/**
+ * Verdict buttons and keys for the hierarchy queue.
+ *
+ * Same bindings as the recipe queue — A accept, X reject, J/K move — because
+ * QC-SPEC's note on the vocabulary tool applies here too: a second review
+ * surface with a second set of keys is how decisions get typed into the wrong
+ * field. R is the one addition, and it is the verdict the other queue has no
+ * equivalent for.
+ */
+mainEl.addEventListener("click", function (e) {
+  var b = e.target.closest("[data-hv]"); if (!b || mode !== "hier") return;
+  var act = b.dataset.hv;
+  if (act === "clear") return hierPut(null);
+  if (act === "flip") {
+    var h = HIER[hierAt];
+    return hierPut("ok", h.rel === "is_a" ? "derives_from" : "is_a");
+  }
+  hierPut(act);
+});
+listEl.addEventListener("click", function (e) {
+  var li = e.target.closest("li[data-h]"); if (!li) return;
+  hierAt = HIER.findIndex(function (x) { return x.i === Number(li.dataset.h); });
+  renderHierList(); renderHier();
+});
+document.addEventListener("keydown", function (e) {
+  if (mode !== "hier") return;
+  // Never steal a key from a field the reviewer is typing in.
+  var t = e.target;
+  if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+  if (document.getElementById("modal").open) return;
+  var vis = hierVisible();
+  var pos = vis.findIndex(function (x) { return HIER[hierAt] && x.i === HIER[hierAt].i; });
+  if (e.key === "j" || e.key === "J") {
+    e.preventDefault();
+    var n = vis[Math.min(pos + 1, vis.length - 1)];
+    if (n) { hierAt = HIER.indexOf(n); renderHierList(); renderHier(); }
+  } else if (e.key === "k" || e.key === "K") {
+    e.preventDefault();
+    var p2 = vis[Math.max(pos - 1, 0)];
+    if (p2) { hierAt = HIER.indexOf(p2); renderHierList(); renderHier(); }
+  } else if (e.key === "a" || e.key === "A") { e.preventDefault(); hierPut("ok"); }
+  else if (e.key === "x" || e.key === "X") { e.preventDefault(); hierPut("no"); }
+  else if (e.key === "r" || e.key === "R") {
+    e.preventDefault();
+    var cur = HIER[hierAt];
+    if (cur) hierPut("ok", cur.rel === "is_a" ? "derives_from" : "is_a");
+  }
+});
+
+// ── boot ────────────────────────────────────────────────────────────────────
+function bindFilter(id, val) {
+  document.getElementById(id).addEventListener("click", function () {
+    view = val;
+    ["f-todo", "f-all", "f-done"].forEach(function (x) {
+      document.getElementById(x).setAttribute("aria-pressed", String(x === id));
+    });
+    renderList();
+  });
+}
+bindFilter("f-todo", "todo"); bindFilter("f-all", "all"); bindFilter("f-done", "done");
+document.getElementById("search").addEventListener("input", function (e) { q = e.target.value.trim(); renderList(); });
+
+loadState(function (saved) {
+  if (saved && saved.ann) {
+    S = saved;
+    // A session saved before the hierarchy queue existed has no `hier` key, and
+    // an undefined lookup would throw on the first render.
+    if (!S.hier) S.hier = {};
+    flag("restored " + Object.keys(S.ann).length + " recipe(s)", "on");
+  }
+  loadHandle(function (h) {
+    if (!h) { renderList(); return; }
+    h.queryPermission({ mode: "readwrite" }).then(function (p) {
+      if (p === "granted") { handle = h; flag("saving to file", "on"); }
+      else flag("click Save to file to re-attach", "warn");
+      renderList();
+    }).catch(function () { renderList(); });
+  });
+  renderList();
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recipe QC</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --line:#252a35; --fg:#e7e9ee; --dim:#8a92a6;
+    --accept:#3fb950; --edit:#d29922; --reject:#f85149; --flag:#a371f7; --focus:#2f81f7;
+  }
+  @media (prefers-color-scheme: light){
+    :root{--bg:#fbfbfd;--panel:#fff;--line:#e3e6ec;--fg:#1c2128;--dim:#68707f;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+  header{display:flex;gap:14px;align-items:center;padding:10px 16px;
+    border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5;flex-wrap:wrap}
+  select,input,button{font:inherit;color:var(--fg);background:var(--panel);
+    border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+  button{cursor:pointer}
+  button:hover{border-color:var(--focus)}
+  .bar{flex:1;min-width:140px;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:var(--accept);width:0}
+  .dim{color:var(--dim)}
+  main{max-width:1100px;margin:0 auto;padding:12px 16px 120px}
+  .row{border:1px solid var(--line);border-left:3px solid transparent;border-radius:8px;
+    background:var(--panel);padding:10px 12px;margin:6px 0;cursor:pointer}
+  .row[data-v=accept]{border-left-color:var(--accept)}
+  .row[data-v=edit]{border-left-color:var(--edit)}
+  .row[data-v=reject]{border-left-color:var(--reject)}
+  .row[data-v=flag]{border-left-color:var(--flag)}
+  .row[data-v=merge]{border-left-color:var(--focus);opacity:.72}
+  .fam{display:flex;align-items:baseline;gap:8px;margin:16px 0 2px;
+    padding:0 2px;font-size:12px;color:var(--dim);
+    border-bottom:1px solid var(--line);padding-bottom:3px}
+  .fam b{color:var(--fg);font-size:13px}
+  .into{color:var(--focus);font-size:12px}
+  .row.sel{outline:2px solid var(--focus);outline-offset:1px}
+  .top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .canon{font-weight:650;font-size:15px}
+  .n{font-variant-numeric:tabular-nums;color:var(--dim);font-size:12px}
+  .members{margin-top:5px;display:flex;flex-wrap:wrap;gap:4px}
+  .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;
+    padding:1px 8px;font-size:12px;color:var(--dim)}
+  .ex{margin-top:5px;font-size:12px;color:var(--dim);font-style:italic}
+  .note{margin-top:6px;font-size:12px;color:var(--edit)}
+  .row[data-v=reject] .note{color:var(--reject)}
+  .row[data-v=flag] .note{color:var(--flag)}
+  footer{position:fixed;bottom:0;left:0;right:0;background:var(--panel);
+    border-top:1px solid var(--line);padding:8px 16px;font-size:12px;color:var(--dim);
+    display:flex;gap:16px;flex-wrap:wrap}
+  kbd{background:var(--bg);border:1px solid var(--line);border-bottom-width:2px;
+    border-radius:4px;padding:1px 5px;font:12px ui-monospace,monospace;color:var(--fg)}
+  .empty{padding:40px;text-align:center;color:var(--dim)}
+  /* The rule's verdict, shown only when it differs from yours. Agreement is
+     silent — a badge on every row is a badge nobody reads. */
+  .rule{margin-top:5px;padding:5px 8px;border-radius:4px;font:12px ui-monospace,monospace;
+        border-left:3px solid transparent;background:#0000000d}
+  @media (prefers-color-scheme:dark){ .rule{background:#ffffff0f} }
+  .rule.conflict{border-left-color:#e0a030}
+  .rule.missed{border-left-color:#7a8ba0}
+  .rule b{font-weight:600}
+  .rule .why{color:var(--dim);display:block;margin-top:2px}
+  .row[data-s="conflict"]{border-left:3px solid #e0a030}
+</style>
+</head>
+<body>
+<header>
+  <select id="artifact"></select>
+  <input id="search" placeholder="/ search" style="min-width:200px">
+  <select id="filterBy" title="filter by verdict">
+    <option value="">all</option>
+    <option value="undecided">undecided</option>
+    <option value="flag">flagged</option>
+    <option value="reject">rejected</option>
+    <option value="edit">edited</option>
+    <option value="merge">merged</option>
+    <option value="accept">accepted</option>
+    <option value="conflict">⚠ against the rule</option>
+    <option value="engine-missed">rule has no opinion</option>
+    <option value="agree">rule agrees</option>
+  </select>
+  <div class="bar"><i id="barfill"></i></div>
+  <span id="count" class="n"></span>
+  <button id="jump" title="G">first undecided</button>
+  <button id="export">export</button>
+</header>
+
+<main id="list"></main>
+
+<footer>
+  <span><kbd>J</kbd>/<kbd>K</kbd> move</span>
+  <span><kbd>A</kbd> accept</span>
+  <span><kbd>E</kbd> edit</span>
+  <span><kbd>X</kbd> reject</span>
+  <span><kbd>M</kbd> merge into family head</span>
+  <span><kbd>N</kbd> note / flag</span>
+  <span><kbd>U</kbd> undo</span>
+  <span><kbd>G</kbd> first undecided</span>
+  <span><kbd>/</kbd> search</span>
+  <span id="saved" class="dim"></span>
+</footer>
+
+<script>
+const $ = (s) => document.querySelector(s);
+
+// Carry the access token (if any) on every API call. Taken from this page's own
+// URL, so the single link printed at startup is all that needs sharing.
+const TOKEN = new URLSearchParams(location.search).get("k");
+const api = (path) => TOKEN ? path + (path.includes("?") ? "&" : "?") + "k=" + encodeURIComponent(TOKEN) : path;
+let artifact = "", header = [], items = [], decisions = {}, scores = {}, view = [], sel = 0;
+
+const proposalKey = () => header.find(h => h.startsWith("proposed")) || header[1];
+const labelKey    = () => header.find(h => ["node","slot","ingredient"].includes(h)) || proposalKey();
+
+async function loadArtifacts(){
+  const list = await (await fetch(api("/api/artifacts"))).json();
+  $("#artifact").innerHTML = list.map(a => `<option>${a}</option>`).join("");
+  artifact = list[0];
+  await loadRows();
+}
+
+async function loadRows(){
+  const d = await (await fetch(api("/api/rows?a=" + encodeURIComponent(artifact)))).json();
+  header = d.header; items = d.items; decisions = d.decisions; scores = d.scores || {};
+  sel = 0; render();
+}
+
+function filtered(){
+  const q = $("#search").value.trim().toLowerCase();
+  const f = $("#filterBy").value;
+  const RULE = { conflict:1, "engine-missed":1, agree:1 };
+  return items.filter(it => {
+    const v = decisions[it.id]?.verdict;
+    // Rule filters look at what the ENGINE says about this row, not at your
+    // verdict — the point is to isolate where the two disagree.
+    if (f in RULE){
+      const st = scores[it.id]?.status;
+      if (f === "agree") return st === "agree" || st === "agree-refined";
+      return st === f;
+    }
+    if (f === "undecided" && v) return false;
+    if (f && f !== "undecided" && v !== f) return false;
+    if (!q) return true;
+    return Object.values(it).some(v => String(v).toLowerCase().includes(q));
+  });
+}
+
+function render(){
+  view = filtered();
+  const decided = Object.keys(decisions).length;
+  const against = items.filter(it => scores[it.id]?.status === "conflict").length;
+  $("#count").textContent =
+    `${decided} / ${items.length} decided · showing ${view.length}` +
+    (against ? ` · ${against} against the rule` : "");
+  $("#barfill").style.width = (items.length ? decided / items.length * 100 : 0) + "%";
+
+  if (!view.length){ $("#list").innerHTML = `<div class="empty">nothing to show</div>`; return; }
+
+  // The first row of a family is its head — the most-mentioned member, which is
+  // what M merges into. Families of one get no divider; they're just rows.
+  const familyHead = {};
+  for (const it of view) if (it.family && !(it.family in familyHead)) familyHead[it.family] = it;
+
+  let lastFamily = null;
+  $("#list").innerHTML = view.map((it, i) => {
+    const d = decisions[it.id];
+    let divider = "";
+    if (it.family !== lastFamily) {
+      lastFamily = it.family;
+      if (Number(it.family_size) > 1) {
+        divider = `<div class="fam"><b>${esc(it.family)}</b>
+          <span>${it.family_size} in this family — head is “${esc(familyHead[it.family].proposed_canonical)}”</span></div>`;
+      }
+    }
+    const members = (it.members || "").split(" | ").filter(Boolean);
+    const shown = d && d.verdict === "edit" ? d.value : it[proposalKey()];
+    const sc = scores[it.id];
+    // Show the rule ONLY where it disagrees. On `agree` rows there is nothing
+    // to decide, and printing a badge there would bury the ~40 rows that matter
+    // under 1,200 that do not.
+    const ruleBox =
+      sc && sc.status === "conflict"
+        ? `<div class="rule conflict">⚠ the rule says <b>${esc(sc.engine)}</b>, you said <b>${esc(sc.wanted)}</b>
+             ${sc.why ? `<span class="why">${esc(sc.why)}</span>` : ""}</div>`
+      : sc && sc.status === "engine-missed"
+        ? `<div class="rule missed">the rule has no opinion here — it leaves this as <b>${esc(sc.engine)}</b>, you said <b>${esc(sc.wanted)}</b></div>`
+        : "";
+    return divider + `<div class="row ${i===sel?"sel":""}" data-i="${i}" ${d?`data-v="${d.verdict}"`:""} ${sc?`data-s="${sc.status}"`:""}>
+      <div class="top">
+        <span class="canon">${esc(shown)}</span>
+        ${d && d.verdict==="edit" ? `<span class="n">was ${esc(it[proposalKey()])}</span>` : ""}
+        ${d && d.verdict==="merge" ? `<span class="into">→ merged into ${esc(d.value)}</span>` : ""}
+        <span class="n">${it.mentions ? it.mentions + " mentions" : ""}</span>
+        <span class="n">${it.cuisines || ""}</span>
+        ${it.member_count > 1 ? `<span class="n">${it.member_count} variants</span>` : ""}
+      </div>
+      ${members.length > 1 ? `<div class="members">${members.map(m=>`<span class="chip">${esc(m)}</span>`).join("")}</div>` : ""}
+      ${it.example ? `<div class="ex">${esc(it.example)}</div>` : ""}
+      ${it.reason ? `<div class="ex">${esc(it.reason)}</div>` : ""}
+      ${d && d.note ? `<div class="note">note: ${esc(d.note)}</div>` : ""}
+      ${ruleBox}
+    </div>`;
+  }).join("");
+
+  const el = $(`.row[data-i="${sel}"]`);
+  if (el) el.scrollIntoView({block:"nearest"});
+}
+
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/**
+ * Record a decision.
+ *
+ * `advance` is explicit rather than automatic. Accepting is a run — moving on is
+ * what you want. Rejecting is not: a rejection usually needs a reason, and
+ * auto-advancing meant the note keystroke landed on the FOLLOWING row, silently
+ * annotating the wrong ingredient.
+ */
+async function decide(verdict, value = "", note = null, advance = false){
+  const it = view[sel]; if (!it) return;
+  const prev = decisions[it.id];
+  const finalNote = note === null ? (prev?.note ?? "") : note;
+  if (verdict === "clear") delete decisions[it.id];
+  else decisions[it.id] = { id: it.id, verdict, value, note: finalNote };
+  render();
+  await fetch(api("/api/decide"), {
+    method:"POST", headers:{"content-type":"application/json"},
+    body: JSON.stringify({ artifact, id: it.id, verdict, value, note: finalNote }),
+  });
+  $("#saved").textContent = "saved " + new Date().toLocaleTimeString();
+  if (advance && sel < view.length - 1){ sel++; render(); }
+}
+
+addEventListener("keydown", (e) => {
+  if (e.target.tagName === "INPUT" && e.key !== "Escape") {
+    if (e.key === "Enter") { e.target.blur(); render(); }
+    return;
+  }
+  const k = e.key.toLowerCase();
+  if (k === "j" || e.key === "ArrowDown"){ sel = Math.min(sel+1, view.length-1); render(); e.preventDefault(); }
+  else if (k === "k" || e.key === "ArrowUp"){ sel = Math.max(sel-1, 0); render(); e.preventDefault(); }
+  else if (k === "a") decide("accept", "", null, true);
+  else if (k === "x"){
+    // Ask for the reason at the moment of rejection, while it's in your head.
+    // Cancel still rejects; only the note is optional.
+    const it = view[sel]; if (!it) return;
+    const why = prompt("Why reject? (optional — Esc still rejects)", decisions[it.id]?.note || "");
+    decide("reject", "", why === null ? null : why, false);
+  }
+  else if (k === "u") decide("clear");
+  else if (k === "m"){
+    // Merge into the family head — the most-mentioned member, which sorts first.
+    // Recorded as a decision rather than applied to the proposal, so it stays
+    // reversible and visible in the diff.
+    const it = view[sel]; if (!it || !it.family) return;
+    const head = view.find(v => v.family === it.family);
+    if (!head || head.id === it.id){ $("#saved").textContent = "already the family head"; return; }
+    decide("merge", head[proposalKey()], null, true);
+  }
+  else if (k === "e"){
+    const it = view[sel]; if (!it) return;
+    const v = prompt("Canonical name:", decisions[it.id]?.value || it[proposalKey()]);
+    if (v !== null) decide("edit", v.trim(), null, true);
+  }
+  else if (k === "n"){
+    // Note only — never changes an existing verdict. On an undecided row it
+    // marks `flag`, so "I need to think about this" is a state you can filter
+    // for later rather than a silent accept.
+    const it = view[sel]; if (!it) return;
+    const n = prompt("Note:", decisions[it.id]?.note || "");
+    if (n !== null) decide(decisions[it.id]?.verdict || "flag", decisions[it.id]?.value || "", n, false);
+  }
+  else if (k === "g"){ const i = view.findIndex(v => !decisions[v.id]); if (i >= 0){ sel = i; render(); } }
+  else if (e.key === "/"){ e.preventDefault(); $("#search").focus(); }
+});
+
+$("#list").addEventListener("click", (e) => {
+  const row = e.target.closest(".row"); if (!row) return;
+  sel = Number(row.dataset.i); render();
+});
+$("#artifact").addEventListener("change", (e) => { artifact = e.target.value; loadRows(); });
+$("#search").addEventListener("input", () => { sel = 0; render(); });
+$("#filterBy").addEventListener("change", () => { sel = 0; render(); });
+$("#jump").addEventListener("click", () => { const i = view.findIndex(v=>!decisions[v.id]); if(i>=0){ sel=i; render(); } });
+$("#export").addEventListener("click", () => { location.href = api("/api/export?a=" + encodeURIComponent(artifact)); });
+
+loadArtifacts();
+</script>
+</body>
+</html>
