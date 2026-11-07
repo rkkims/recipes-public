@@ -6,9 +6,10 @@ between them: what a data folder must hold for the app to run, in what format,
 and what the app writes back into it. Anyone who supplies a folder that meets
 this spec can run Jipbap on their own recipes.
 
-Scope: the **website** (`app/`). The pipeline in `src/` produces most of these
-files from raw crawl output; its own inputs (`data/raw/`, `data/qc/`, …) are
-not specified here.
+Scope: the files the **website** (`app/`) reads and writes. The pipeline in
+`src/` produces most of them from raw crawl output. The pipeline's own inputs
+and working files (`raw/`, most of `qc/`, `reports/`) are not specified here.
+The one `qc/` file the website reads, `qc/unknown.csv`, is in §4.
 
 ---
 
@@ -37,19 +38,24 @@ it.**
 - **`RECIPES_DATA`** keeps the meaning it has today, for compatibility: when
   set, it is where `ontology/` is read from, and it wins over
   `<JIPBAP_DATA_DIR>/ontology`. Every other path follows `JIPBAP_DATA_DIR`.
+- A relative value of either variable is resolved against the **repo root**,
+  not the current directory, so it means the same folder whether the process
+  starts in the repo root or in `app/`.
 
 ---
 
-## 2. Three kinds of file
+## 2. Four kinds of file
 
-| Kind | If absent | Who writes it |
-|---|---|---|
-| **Required** | The app refuses to start, with an error naming the missing file and the setting from §1 | The pipeline |
-| **Optional** | The feature it feeds is off; nothing else changes | The pipeline, or a person |
-| **Runtime state** | Treated as empty and created on first write | The running app |
+| Kind | If absent | Who writes it | Part of a data set? |
+|---|---|---|---|
+| **Required** (§3) | The app refuses to start, with an error naming the missing file and the setting from §1 | The pipeline | Yes |
+| **Optional** (§4) | The feature it feeds is off; nothing else changes | The pipeline, or a person | Yes |
+| **Curated** (§5) | Treated as empty, created on first write | The running app, through the curator's tools | Yes: it is reviewed judgement, kept in the data repo, and the pipeline also reads it |
+| **Runtime state** (§6) | Treated as empty, created on first write | The running app, on behalf of users and creators | **No** |
 
-Runtime state is never shipped with a data set, and a sample data set must not
-contain it. It is the users' own data.
+Each file has exactly one kind. Runtime state is the users' own data: it is
+never committed to the data repo or shipped with a data set, and a sample data
+set must not contain it. A sample data set may contain curated files.
 
 ---
 
@@ -87,6 +93,11 @@ Built by `npm run build-ontology` from the CSVs beside it (`nodes.csv`,
 
 The type is `Ontology` / `Ingredient` in `app/src/lib/data.ts`. Unknown extra
 fields (e.g. `kind_reviewed`) are ignored.
+
+`ingredients`, `relations` and all three lists inside `relations` must be
+present, though any list may be empty. Each ingredient needs `id`, `slug`,
+`name`, `mentions` and `aliases` (`[]` when it has none). `redirects` and the
+fields marked optional may be left out.
 
 ### 3.2 `ontology/recipe-index.json`: the recipes
 
@@ -149,7 +160,26 @@ A malformed optional file is treated as absent. It must never take a page down.
 
 ---
 
-## 5. Runtime state
+## 5. Curated
+
+Written by the app when a curator uses the curate and editor pages, and
+committed to the data repo as reviewed history. The pipeline reads them as
+input (`npm run recipe-index`, `npm run apply-edits`). The format is owned by
+the module named.
+
+| Path | Module | What it is |
+|---|---|---|
+| `curation/recipes.json` | `lib/curation.ts` | Curator verdicts, merged into recipes on load |
+| `decisions/ontology-edits.csv` | `lib/ontology-edits.ts` | Ingredient editor edits, overlaid on the ontology |
+| `decisions/unknown.csv` | `lib/unknowns.ts` | Verdicts on the unknown queue |
+| `decisions/parse-errors.csv` | `lib/unknowns.ts` | Reported parse errors |
+
+The other files in `decisions/` are not written by the app. The website reads
+only `decisions/hard-to-find.csv` (§4). The rest are pipeline inputs.
+
+---
+
+## 6. Runtime state
 
 Written by the app. Listed for location only: the format is owned by the
 module named, and nothing outside the app should edit these files while it runs.
@@ -164,21 +194,14 @@ module named, and nothing outside the app should edit these files while it runs.
 | `creators/recipes.json` | `lib/creator-recipes.ts` | Recipes added by creators |
 | `creators/self.json` | `lib/self-creators.ts` | Creator self-registrations |
 | `creators/removals.json` | `lib/removals.ts` | Removal requests |
-| `curation/recipes.json` | `lib/curation.ts` | Curator verdicts, merged into recipes on load |
-| `decisions/ontology-edits.csv` | `lib/ontology-edits.ts` | Ingredient editor edits, overlaid on the ontology |
-| `decisions/unknown.csv` | `lib/unknowns.ts` | Verdicts on the unknown queue |
-| `decisions/parse-errors.csv` | `lib/unknowns.ts` | Reported parse errors |
 | `images/user/` | `lib/user-images.ts` | Uploaded images |
 
-Writes go to a temp file and are renamed into place. The JSONL logs are
-appended.
-
-`decisions/*.csv` are both runtime state and reviewed history: the app appends
-to them, and they are committed to the data repo.
+Writes to §5 and §6 files go to a temp file and are renamed into place. The
+JSONL logs are appended.
 
 ---
 
-## 6. A minimal data set
+## 7. A minimal data set
 
 The smallest folder the app runs on:
 
@@ -189,4 +212,4 @@ The smallest folder the app runs on:
     recipe-index.json
 ```
 
-Everything else is optional or created at runtime.
+Everything else is optional, or created when the app first writes it.
